@@ -144,7 +144,8 @@ const JDITSalarySlipTemplate = ({ data, company }) => {
           transform: "translate(-50%, -50%)",
           width: "110mm",
           height: "50mm",
-          opacity: 0.6,
+          opacity: 0.35,
+          filter: "brightness(0.35) contrast(1.7)",
           pointerEvents: "none",
           userSelect: "none",
         }}

@@ -1,9 +1,11 @@
 // Mock data for companies and document templates
 
 // smart imports
-import smart_header from '../assets/images/SmartSoftware/smartsoftware-header.png';
+// import smart_header from '../assets/images/SmartSoftware/smartsoftware-header.png';
+import smart_header from '../assets/images/SmartSoftware/smartheaders.png';
+import smartholderFooter from '../assets/images/SmartSoftware/smartfooters.png'
 import smartholderHeader from '../assets/images/SmartSoftware/smart-header.png';
-import smartholderFooter from '../assets/images/SmartSoftware/smart-footer.png';
+// import smartholderFooter from '../assets/images/SmartSoftware/smart-footer.png';
 import smartholderWatermark from '../assets/images/SmartSoftware/Watermark.png';
 import smartholderSignature from '../assets/images/SmartSoftware/Sign.png';
 import smartholderStamp from '../assets/images/SmartSoftware/Stamp.png';
@@ -21,11 +23,9 @@ import rp_footer from "../assets/images/rp/RP_footer.png"
 import Rpbuisness_stamp from "../assets/images/rp/Rpbuisness_stamp.png"
 import Rpbuisness_signature from "../assets/images/rp/Rpbuisness_signature.png"
 
-
-
-
 // Import placeholder images
 import placeholderHeader from '../assets/images/SmartSoftware/smart-header.png';
+// import placeholderHeader from '../assets/images/SmartSoftware/smartheaders.png';
 // import placeholderFooter from '../assets/images/placeholder-footer.svg';
 import placeholderFooter from '../assets/images/SmartSoftware/smart-footer.png';
 import placeholderWatermark from '../assets/images/SmartSoftware/Watermark.png';
@@ -72,18 +72,6 @@ import Nimbja_stamp from "../assets/images/Nimbja/Nimbja_stamp.png"
   import QMS_Sign from "../assets/images/QMS/QMS_Sign.png" 
   import QMS_Stamp from "../assets/images/QMS/QMS_Stamp.png" 
 
-
-
-
-
-
-
-
-
-
-
-
-
 export const companies = [
     {
         // 
@@ -115,6 +103,7 @@ export const companies = [
             hueRotate: 0
         }
     },
+    // Newage
     {
         id: 2,
         name: 'Neweage Cloud Solution Pvt. Ltd.',
@@ -144,6 +133,7 @@ export const companies = [
             hueRotate: 90
         }
     },
+    // Smartmatrix
     {
         id: 3,
         name: 'SmartMatrix Digital Services Pvt. Ltd.',
@@ -173,6 +163,7 @@ export const companies = [
             hueRotate: 45
         }
     },
+    // Devcons
     {
         id: 4,
         name: 'Devcons Software Solution Pvt. Ltd.',
@@ -202,6 +193,7 @@ export const companies = [
             hueRotate: 270
         }
     },
+    // RP Business
     {
         id: 5,
         name: 'RP Business Solution LLP',
@@ -231,6 +223,7 @@ export const companies = [
             hueRotate: 0
         }
     },
+    // Penta Software
     {
         id: 6,
         name: 'Penta Software Consultancy Services (I) Pvt Ltd',
@@ -260,6 +253,7 @@ export const companies = [
             hueRotate: 180
         }
     },
+    // Nimbja Security
     {
         id: 7,
         name: 'Nimbja Security Solutions Pvt. Ltd.',
@@ -289,6 +283,7 @@ export const companies = [
             hueRotate: 30
         }
     },
+    // JDIT Software
     {
         id: 8,
         name: 'JDIT Software Solutions Pvt. Ltd.',
@@ -318,6 +313,7 @@ export const companies = [
             hueRotate: 0
         }
     },
+    // Quick Management Services
     {
         id: 9,
         name: 'Quick Management Services',
@@ -347,6 +343,7 @@ export const companies = [
             hueRotate: 315
         }
     },
+    // Smart Software Services
     {
         id: 10,
         name: 'Smart Software Services (I) Pvt. Ltd.',
