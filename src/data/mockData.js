@@ -1,6 +1,19 @@
 // Mock data for companies and document templates
 
 // smart imports
+// All Company's Logo images.
+import cubeagelogo from "../../public/companylogos/cubeagelogo.webp"
+import neweagelogo from '../../public/companylogos/neweagelogo.png'
+import smartmatrixlogo from '../../public/companylogos/smartmatrixlogo.webp'
+import devconslogo from '../../public/companylogos/devconslogo.webp'
+import rpblogo from '../../public/companylogos/rbplogo.jpg'
+import nimbjalogo from '../../public/companylogos/nimbjalogo.png'
+import pentalogo from '../../public/companylogos/pentalogo.png'
+import qmslogo from '../../public/companylogos/qmslogo.webp'
+import jditlogo from '../../public/companylogos/jditlogo.png'
+
+
+
 // import smart_header from '../assets/images/SmartSoftware/smartsoftware-header.png';
 import smart_header from '../assets/images/SmartSoftware/smartheaders.png';
 import smartholderFooter from '../assets/images/SmartSoftware/smartfooters.png'
@@ -54,6 +67,7 @@ import devcons_footer from "../assets/images/devconssoftware/devcons_footer.png"
 import devcons_signature from "../assets/images/devconssoftware/devcons_signature.png"
 import devcons_stamp from "../assets/images/devconssoftware/devcons_stamp.png"
 
+
 //penta
 import Penta_header from "../assets/images/Penta/Penta_header.png" 
 import Penta_footer from "../assets/images/Penta/Penta_footer.png" 
@@ -78,7 +92,7 @@ export const companies = [
         id: 1,
         name: 'Cubeage Technologies Services Pvt. Ltd.',
         shortName: 'Cubeage Tech',
-        logo: '/logos/cubeage-logo.svg',
+        logo: cubeagelogo,
         header: cubeage_header,
         footer: placeholderFooter,
         signature: cubeage_signature,
@@ -108,7 +122,7 @@ export const companies = [
         id: 2,
         name: 'Neweage Cloud Solution Pvt. Ltd.',
         shortName: 'Neweage Cloud',
-        logo: '/logos/neweage-logo.svg',
+        logo: neweagelogo,
         header: Newage_header,
         footer: Newage_footer,
         signature: Newage_signature,
@@ -138,7 +152,7 @@ export const companies = [
         id: 3,
         name: 'SmartMatrix Digital Services Pvt. Ltd.',
         shortName: 'SmartMatrix',
-        logo: '/logos/smartmatrix-logo.svg',
+        logo: smartmatrixlogo,
         header: placeholderHeader,
         footer: placeholderFooter,
         signature: smartmatrix_signature,
@@ -168,7 +182,7 @@ export const companies = [
         id: 4,
         name: 'Devcons Software Solution Pvt. Ltd.',
         shortName: 'Devcons',
-        logo: '/logos/devcons-logo.svg',
+        logo: devconslogo,
         header: devcons_header,
         footer: devcons_footer,
         signature: devcons_signature,
@@ -198,7 +212,7 @@ export const companies = [
         id: 5,
         name: 'RP Business Solution LLP',
         shortName: 'RP Business',
-        logo: '/logos/rpbusiness-logo.svg',
+        logo: rpblogo,
         header: rp_header,
         footer: rp_footer,
         signature: Rpbuisness_signature,
@@ -228,7 +242,7 @@ export const companies = [
         id: 6,
         name: 'Penta Software Consultancy Services (I) Pvt Ltd',
         shortName: 'Penta Software',
-        logo: '/logos/pentasoftware-logo.svg',
+        logo: pentalogo,
         header: Penta_header,
         footer: Penta_footer,
         signature: Penta_signature,
@@ -258,7 +272,7 @@ export const companies = [
         id: 7,
         name: 'Nimbja Security Solutions Pvt. Ltd.',
         shortName: 'Nimbja Security',
-        logo: '/logos/nimbja-logo.svg',
+        logo: nimbjalogo,
         header: Nimbja_header,
         footer: Nimbja_footer,
         signature: Nimbja_signature,
@@ -288,7 +302,7 @@ export const companies = [
         id: 8,
         name: 'JDIT Software Solutions Pvt. Ltd.',
         shortName: 'JDIT',
-        logo: '/logos/jdit_logo.png',
+        logo: jditlogo,
         header: jdit_header,
         footer: jdit_footer,
         signature: jdit_signature,
@@ -318,7 +332,7 @@ export const companies = [
         id: 9,
         name: 'Quick Management Services',
         shortName: 'Quick Management',
-        logo: '/logos/quickmanagement-logo.svg',
+        logo: qmslogo,
         header: QMS_Header,
         footer: placeholderFooter,
         signature: QMS_Sign,
