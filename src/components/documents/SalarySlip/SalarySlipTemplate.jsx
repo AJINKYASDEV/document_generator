@@ -1,9 +1,35 @@
-import React from 'react'
+import React from "react";
 
-const SalarySlipTemplate = () => {
-  return (
-    <div>SalarySlipTemplate</div>
-  )
-}
+import CubeageSalarySlip from "./CompanyWiseSalary/CubeageSalarySlip";
+import DevconsSalarySlip from "./CompanyWiseSalary/DevconsSalarySlip";
+import JDISTalarySlip from "./CompanyWiseSalary/JDITSalarySlip";
+import NeweageSalarySlip from "./CompanyWiseSalary/NeweageSalarySlip";
+import PentaSalarySlip from "./CompanyWiseSalary/PentaSalarySlip";
+import RPSalarySlip from "./CompanyWiseSalary/RPSalarySlip";
+import SmartMatrixSalarySlip from "./CompanyWiseSalary/SmartMatrixSalarySlip";
+import SmartSoftwareSalarySlip from "./CompanyWiseSalary/SmartSoftwareSalarySlip";
 
-export default SalarySlipTemplate
+const companyComponentMap = {
+  1: CubeageSalarySlip,
+  2: NeweageSalarySlip,
+  3: SmartMatrixSalarySlip,
+  4: DevconsSalarySlip,
+  5: RPSalarySlip,
+  6: PentaSalarySlip,
+  8: JDISTalarySlip,
+  10: SmartSoftwareSalarySlip,
+};
+
+const SalarySlipTemplate = ({ company }) => {
+  if (!company) return null;
+
+  const SalarySlipComponent = companyComponentMap[company.id];
+
+  if (!SalarySlipComponent) {
+    return <div>No salary slip template available</div>;
+  }
+
+  return <SalarySlipComponent company={company} />;
+};
+
+export default SalarySlipTemplate;
