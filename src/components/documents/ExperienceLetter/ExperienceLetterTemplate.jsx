@@ -21,7 +21,7 @@ const companyComponentMap = {
   10: SmartSoftwareExperience,
 };
 
-const ExperienceLetterTemplate = ({ company }) => {
+const ExperienceLetterTemplate = ({ company, data }) => {
   if (!company) return null;
 
   const ExperienceComponent = companyComponentMap[company.id];
@@ -30,7 +30,7 @@ const ExperienceLetterTemplate = ({ company }) => {
     return <div>No experience template available for this company</div>;
   }
 
-  return <ExperienceComponent company={company} />;
+  return <ExperienceComponent company={company} data={data} />;
 };
 
 export default ExperienceLetterTemplate;

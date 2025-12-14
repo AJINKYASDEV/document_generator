@@ -21,7 +21,7 @@ const companyComponentMap = {
   10: SmartSoftwareIncrement,
 };
 
-const IncrementLetterTemplate = ({ company }) => {
+const IncrementLetterTemplate = ({ company, data }) => {
   if (!company) return null;
 
   const IncrementComponent = companyComponentMap[company.id];
@@ -30,7 +30,7 @@ const IncrementLetterTemplate = ({ company }) => {
     return <div>No increment template available for this company</div>;
   }
 
-  return <IncrementComponent company={company} />;
+  return <IncrementComponent company={company} data={data} />;
 };
 
 export default IncrementLetterTemplate;
