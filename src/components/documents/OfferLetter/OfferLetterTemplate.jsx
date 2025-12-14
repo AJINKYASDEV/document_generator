@@ -21,7 +21,7 @@ const companyComponentMap = {
   10: SmartSoftwareOffer,
 };
 
-const OfferLetterTemplate = ({ company }) => {
+const OfferLetterTemplate = ({ company, data }) => {
   if (!company) return null;
 
   const OfferComponent = companyComponentMap[company.id];
@@ -30,7 +30,7 @@ const OfferLetterTemplate = ({ company }) => {
     return <div>No offer letter template available for this company</div>;
   }
 
-  return <OfferComponent company={company} />;
+  return <OfferComponent company={company} data={data} />;
 };
 
 export default OfferLetterTemplate;
