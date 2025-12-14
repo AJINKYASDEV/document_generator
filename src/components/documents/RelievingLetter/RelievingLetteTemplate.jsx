@@ -1,9 +1,35 @@
-import React from 'react'
+import React from "react";
 
-const RelievingLetteTemplate = () => {
-  return (
-    <div>RelievingLetteTemplate</div>
-  )
-}
+import CubeageRelieving from "./CompanyWiseRelieving/CubeageRelieving";
+import DevconsRelieving from "./CompanyWiseRelieving/DevconsRelieving";
+import JDITRelieving from "./CompanyWiseRelieving/JDITRelieving";
+import NeweageRelieving from "./CompanyWiseRelieving/NeweageRelieving";
+import PentaRelieving from "./CompanyWiseRelieving/PentaRelieving";
+import RPRelieving from "./CompanyWiseRelieving/RPRelieving";
+import SmartMatrixRelieving from "./CompanyWiseRelieving/SmartMatrixRelieving";
+import SmartSoftwareRelieving from "./CompanyWiseRelieving/SmartSoftwareRelieving";
 
-export default RelievingLetteTemplate
+const companyComponentMap = {
+  1: CubeageRelieving,
+  2: NeweageRelieving,
+  3: SmartMatrixRelieving,
+  4: DevconsRelieving,
+  5: RPRelieving,
+  6: PentaRelieving,
+  8: JDITRelieving,
+  10: SmartSoftwareRelieving,
+};
+
+const RelievingLetterTemplate = ({ company }) => {
+  if (!company) return null;
+
+  const RelievingComponent = companyComponentMap[company.id];
+
+  if (!RelievingComponent) {
+    return <div>No relieving letter template available for this company</div>;
+  }
+
+  return <RelievingComponent company={company} />;
+};
+
+export default RelievingLetterTemplate;

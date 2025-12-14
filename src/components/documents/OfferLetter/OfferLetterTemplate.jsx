@@ -1,9 +1,36 @@
-import React from 'react'
+import React from "react";
 
-const OfferLetterTemplate = () => {
-  return (
-    <div>OfferLetterTemplate</div>
-  )
-}
+import CubeageOffer from "./CompanyWiseOffer/CubeageOffer";
+import DevconsOffer from "./CompanyWiseOffer/DevconsOffer";
+import JDITOffer from "./CompanyWiseOffer/JDITOffer";
+import NeweageOffer from "./CompanyWiseOffer/NeweageOffer";
+import PentaOffer from "./CompanyWiseOffer/PentaOffer";
+import RPOffer from "./CompanyWiseOffer/RPOffer";
+import SmartMatrixOffer from "./CompanyWiseOffer/SmartMatrixOffer";
+import SmartSoftwareOffer from "./CompanyWiseOffer/SmartSoftwareOffer";
 
-export default OfferLetterTemplate
+// same company ids, Offer components
+const companyComponentMap = {
+  1: CubeageOffer,
+  2: NeweageOffer,
+  3: SmartMatrixOffer,
+  4: DevconsOffer,
+  5: RPOffer,
+  6: PentaOffer,
+  8: JDITOffer,
+  10: SmartSoftwareOffer,
+};
+
+const OfferLetterTemplate = ({ company }) => {
+  if (!company) return null;
+
+  const OfferComponent = companyComponentMap[company.id];
+
+  if (!OfferComponent) {
+    return <div>No offer letter template available for this company</div>;
+  }
+
+  return <OfferComponent company={company} />;
+};
+
+export default OfferLetterTemplate;
