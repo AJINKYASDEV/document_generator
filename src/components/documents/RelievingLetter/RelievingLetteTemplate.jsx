@@ -20,7 +20,7 @@ const companyComponentMap = {
   10: SmartSoftwareRelieving,
 };
 
-const RelievingLetterTemplate = ({ company }) => {
+const RelievingLetterTemplate = ({ company, data }) => {
   if (!company) return null;
 
   const RelievingComponent = companyComponentMap[company.id];
@@ -29,7 +29,7 @@ const RelievingLetterTemplate = ({ company }) => {
     return <div>No relieving letter template available for this company</div>;
   }
 
-  return <RelievingComponent company={company} />;
+  return <RelievingComponent company={company} data={data} />;
 };
 
 export default RelievingLetterTemplate;

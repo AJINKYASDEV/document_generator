@@ -20,7 +20,7 @@ const companyComponentMap = {
   10: SmartSoftwareSalarySlip,
 };
 
-const SalarySlipTemplate = ({ company }) => {
+const SalarySlipTemplate = ({ company, data }) => {
   if (!company) return null;
 
   const SalarySlipComponent = companyComponentMap[company.id];
@@ -29,7 +29,7 @@ const SalarySlipTemplate = ({ company }) => {
     return <div>No salary slip template available</div>;
   }
 
-  return <SalarySlipComponent company={company} />;
+  return <SalarySlipComponent company={company} data={data} />;
 };
 
 export default SalarySlipTemplate;
