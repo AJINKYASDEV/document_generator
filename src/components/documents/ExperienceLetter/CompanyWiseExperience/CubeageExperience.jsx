@@ -2,7 +2,7 @@ import React from 'react'
 
 const CubeageExperience = () => {
   return (
-    <div>CubeageExperience</div>
+    <div>Experiance CubeageExperience</div>
   )
 }
 

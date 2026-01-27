@@ -48,14 +48,14 @@ import placeholderWatermark from '../assets/images/SmartSoftware/Watermark.png';
 // import placeholderStamp from '../assets/images/SmartSoftware/Stamp.png';
 
 //Newage
-import Newage_header from "../assets/images/Newagecloud/neweagehead.jpeg"
+import Newage_header from "../assets/images/Newagecloud/Neweagehead.jpeg"
 import Newage_footer from "../assets/images/Newagecloud/neweagefooter.jpeg" 
 import Newage_signature from "../assets/images/Newagecloud/Newage_signature.png" 
 import Newage_stamp from "../assets/images/Newagecloud/Newage_stamp.png"
-import Newage_watermark from "../assets/images/Newagecloud/Newage_watermark.png" 
+import Newage_watermark from "../assets/images/Newagecloud/Newage_watermark.png"
 
 //cubeage(footer and watermark pending)
-import cubeage_header from "../assets/images/cubeagetechnology/cubeageheader.png" 
+import cubeage_header from "../assets/images/cubeagetechnology/cubeageheader.png"
 import cubeage_signature from "../assets/images/cubeagetechnology/cubeage_signature.png"
 import cubeage_stamp from "../assets/images/cubeagetechnology/cubeage_stamp.png"
 
@@ -64,29 +64,30 @@ import smartmatrix_stamp from "../assets/images/smartmatrix/Smartmatrix_stamp.pn
 import smartmatrix_signature from "../assets/images/smartmatrix/Smartmatrix_signature.png"
 
 //  Devcons (watermark pending)
-import devcons_header from "../assets/images/devconssoftware/devcons_header.png" 
+import devcons_header from "../assets/images/devconssoftware/devconsheaders.png"
 import devcons_footer from "../assets/images/devconssoftware/devcons_footer.png"
 import devcons_signature from "../assets/images/devconssoftware/devcons_signature.png"
 import devcons_stamp from "../assets/images/devconssoftware/devcons_stamp.png"
+import dilip_sign from "../assets/images/devconssoftware/dilip_kumar_signature.png"
 
 
 //penta
-import Penta_header from "../assets/images/Penta/Penta_header.png" 
-import Penta_footer from "../assets/images/Penta/Penta_footer.png" 
-import Penta_signature from "../assets/images/Penta/Penta_sign.png" 
-import Penta_stamp from "../assets/images/Penta/Penta_stamp.png" 
-import Penta_watermark from "../assets/images/Penta/Penta_watermark.png" 
+import Penta_header from "../assets/images/Penta/Penta_header.png"
+import Penta_footer from "../assets/images/Penta/Penta_footer.png"
+import Penta_signature from "../assets/images/Penta/Penta_sign.png"
+import Penta_stamp from "../assets/images/Penta/Penta_stamp.png"
+import Penta_watermark from "../assets/images/Penta/Penta_watermark.png"
 
 //Nimbja( Watermark Pending)
-import Nimbja_header from "../assets/images/Nimbja/Nimbja_header.png" 
-import Nimbja_footer from "../assets/images/Nimbja/Nimbja_footer.png" 
-import Nimbja_signature from "../assets/images/Nimbja/Nimbja_signature.png" 
-import Nimbja_stamp from "../assets/images/Nimbja/Nimbja_stamp.png" 
+import Nimbja_header from "../assets/images/Nimbja/Nimbja_header.png"
+import Nimbja_footer from "../assets/images/Nimbja/Nimbja_footer.png"
+import Nimbja_signature from "../assets/images/Nimbja/Nimbja_signature.png"
+import Nimbja_stamp from "../assets/images/Nimbja/Nimbja_stamp.png"
 
 //QM  (Footer watermark Pending)
-  import QMS_Header from "../assets/images/QMS/QMS_Header.png" 
-  import QMS_Sign from "../assets/images/QMS/QMS_Sign.png" 
-  import QMS_Stamp from "../assets/images/QMS/QMS_Stamp.png" 
+import QMS_Header from "../assets/images/QMS/QMS_Header.png"
+import QMS_Sign from "../assets/images/QMS/QMS_Sign.png"
+import QMS_Stamp from "../assets/images/QMS/QMS_Stamp.png"
 
 export const companies = [
     {
@@ -104,12 +105,12 @@ export const companies = [
         footerImage: placeholderFooter,
         watermarkImage: placeholderWatermark,
         address: 'Survey No. 21, Ganesham Commercial -A Office No. 102-B First Floor 18-21/24, BRTS Road Pimple Saudagar Pune, Maharashtra 411027 India',
-        email: 'hr@cubeagetech.com',  
-        phone: '+91 9112100661', 
+        email: 'hr@cubeagetech.com',
+        phone: '+91 9112100661',
         website: 'www.cubeagetech.com',
         city: 'Pune',
         regNo: 'CIN: U72900PN2022PTC217321',
-        hrName: 'Saloni Dere',   
+        hrName: 'Saloni Dere',
         brandColors: {
             primary: '#2196F3',
             secondary: '#1976D2',
@@ -139,7 +140,7 @@ export const companies = [
         website: 'https://neweageclouds.com/',
         city: 'Pune',
         regNo: 'CIN: U72900PN2022PTC217339',
-        hrName: 'Shyam Patil',  
+        hrName: 'Shyam Patil',
         brandColors: {
             primary: '#4CAF50',
             secondary: '#388E3C',
@@ -158,7 +159,7 @@ export const companies = [
         header: placeholderHeader,
         footer: placeholderFooter,
         signature: smartmatrix_signature,
-        stamp:smartmatrix_stamp,
+        stamp: smartmatrix_stamp,
         watermark: placeholderWatermark,
         headerImage: placeholderHeader,
         footerImage: placeholderFooter,
@@ -188,18 +189,19 @@ export const companies = [
         header: devcons_header,
         footer: devcons_footer,
         signature: devcons_signature,
+        dilipSignature: dilip_sign,
         stamp: devcons_stamp,
-        watermark: placeholderWatermark,
+        watermark: null,
         headerImage: devcons_header,
         footerImage: devcons_footer,
-        watermarkImage: placeholderWatermark,
-        address: 'Office No. 4-B, Ganesham Commercial - A, Survey No. 21/18-21/24, BRTS Road, Pimple Saudagar, Pune- 411027',
+        watermarkImage: null,
+        address: 'Office No. 4-A, Second Floor, Ganesham Commercial - A, Survey No. 21/18-21/24, BRTS Road, Pimple Saudagar, Pune- 411027',
         email: ' hr@devconsoftware.com',
         phone: '+91 9112106565',
         website: 'https://www.devconsoftware.com/',
         city: 'Pune',
         regNo: 'CIN: U72900MH2022PTC396129',
-        hrName: 'Mayur Patil ', 
+        hrName: 'Mayur Patil ',
         brandColors: {
             primary: '#9C27B0',
             secondary: '#7B1FA2',
@@ -212,7 +214,7 @@ export const companies = [
     // RP Business
     {
         id: 5,
-        name: 'RP Business Solution LLP',
+        name: 'RP Business Solutions LLP',
         shortName: 'RP Business',
         logo: rpblogo,
         header: rp_header,
@@ -223,7 +225,7 @@ export const companies = [
         headerImage: rp_header,
         footerImage: rp_footer,
         watermarkImage: placeholderWatermark,
-        address: 'Address : 401/402,4th Floor,Sai Villa Commercial Appartment,Sr No 166,Malwadi road, Opps. to Sahyadri Hospital, Hadapsar,Pune-411028',
+        address: 'Address : 301, 3rd Floor, Sai Villa Commercial Appartment, Sr No 166,Malwadi road, Opps. to Sahyadri Hospital, Hadapsar,Pune-411028',
         email: ' hr@rpbsolution.com',
         phone: '+91 9284888739',
         website: 'https://www.rpbsolution.com/',
@@ -259,7 +261,7 @@ export const companies = [
         website: 'https://pentasoftwareconsultancy.com/',
         city: 'Pune',
         regNo: 'CIN: U72900MH2022PTC388125',
-        hrName: 'Neeta Dere',  
+        hrName: 'Neeta Dere',
         brandColors: {
             primary: '#607D8B',
             secondary: '#455A64',
@@ -289,7 +291,7 @@ export const companies = [
         website: 'https://nimbjasolution.com/',
         city: 'Pune',
         regNo: 'CIN: U74999PN2018PTC177547',
-        hrName: 'kalpana Khade ', 
+        hrName: 'kalpana Khade ',
         brandColors: {
             primary: '#795548',
             secondary: '#5D4037',
@@ -321,7 +323,8 @@ export const companies = [
         website: 'https://www.jditbs.com/',
         city: 'Pune',
         regNo: 'CIN: U72900PN2022PTC215539',
-        hrName: ' Ajay Wadatkar',  
+        hrNameIncrement: ' Ajay Wadatkar',  
+        hrName: 'Sweety Khade',
         brandColors: {
             primary: '#1976D2',
             secondary: '#1565C0',
@@ -369,8 +372,7 @@ export const companies = [
         logo: 'logos/SmartSoftwareServicesLogo.png',
         header: smart_header,
         footer: smartholderFooter,
-        signature: smartholderSignature,
-        signature: smartholderSignature,        // Normal letters
+        signature: smartholderSignature,      // Normal letters
         incrementSignature: vandanaSignature,   // ✅ Increment ONLY
 
         stamp: smartholderStamp,
@@ -446,8 +448,8 @@ export const documentTypes = [
             { name: 'noticePeriod', label: 'Notice Period', type: 'text', required: false },
             { name: 'offerValidTill', label: 'Offer Valid Till', type: 'date', required: true },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
-            { name: 'benefits', label: 'Benefits & Perks', type: 'textarea', required: false },
-            { name: 'documentsRequired', label: 'Documents Required', type: 'textarea', required: false }
+            // { name: 'benefits', label: 'Benefits & Perks', type: 'textarea', required: false },
+            // { name: 'documentsRequired', label: 'Documents Required', type: 'textarea', required: false }
         ]
     },
     {
@@ -457,6 +459,7 @@ export const documentTypes = [
         fields: [
             { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
             { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
             { name: 'address', label: 'Address', type: 'textarea', required: true },
             { name: 'position', label: 'Position', type: 'text', required: true },
             { name: 'department', label: 'Department', type: 'text', required: true },
@@ -481,7 +484,7 @@ export const documentTypes = [
             { name: 'department', label: 'Department', type: 'text', required: true },
             { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
             { name: 'relievingDate', label: 'Relieving Date', type: 'date', required: true },
-            { name: 'workDescription', label: 'Work Description', type: 'textarea', required: true },
+            // { name: 'workDescription', label: 'Work Description', type: 'textarea', required: true },
             { name: 'conduct', label: 'Conduct & Performance', type: 'select', options: ['Excellent', 'Very Good', 'Good', 'Satisfactory'], required: true },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
         ]
@@ -535,16 +538,16 @@ export const documentTypes = [
             { name: 'currentCTC', label: 'Current CTC (Annual)', type: 'number', required: true },
             { name: 'newCTC', label: 'New CTC (Annual)', type: 'number', required: true },
             {
-              name: 'incrementPercentage',
-              label: 'Increment Percentage',
-              type: 'number',
-              required: true,
-              formula: '(newCTC - currentCTC) / currentCTC * 100', // 👈 dynamic formula
-              suffix: '%'
+                name: 'incrementPercentage',
+                label: 'Increment Percentage',
+                type: 'number',
+                required: true,
+                formula: '(newCTC - currentCTC) / currentCTC * 100', // 👈 dynamic formula
+                suffix: '%'
             },
             { name: 'effectiveDate', label: 'Effective Date', type: 'date', required: true },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
-            { name: 'reason', label: 'Reason for Increment', type: 'textarea', required: false }
+            // { name: 'reason', label: 'Reason for Increment', type: 'textarea', required: false }
         ]
     },
     {
@@ -609,18 +612,78 @@ export const documentTypes = [
         name: 'Internship Certificate',
         template: 'internship-certificate',
         fields: [
-            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-            { name: 'internName', label: 'Intern Name', type: 'text', required: true },
-            { name: 'field', label: 'Field of Study', type: 'text', required: true },
-            { name: 'startDate', label: 'Start Date', type: 'date', required: true },
-            { name: 'endDate', label: 'End Date', type: 'date', required: true },
-            // { name: 'department', label: 'Department', type: 'text', required: true },
-            // { name: 'projectName', label: 'Project Name', type: 'text', required: true },
-            // { name: 'performance', label: 'Performance', type: 'select', options: ['Excellent', 'Very Good', 'Good', 'Satisfactory'], required: true },
-            // { name: 'mentorName', label: 'Mentor Name', type: 'text', required: false },
-            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
+            {
+                name: 'mrms',
+                label: 'Select Title',
+                type: 'select',
+                options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'],
+                required: true
+            },
+
+            {
+                name: 'employeeName',
+                label: 'Employee Name',
+                type: 'text',
+                required: true
+            },
+
+            {
+                name: 'designation',
+                label: 'Designation',
+                type: 'text',
+                required: true
+            },
+
+            // ✅ NEW — Internship Type
+            {
+                name: 'internshipType',
+                label: 'Select Internship Type',
+                type: 'select',
+                options: ['paid', 'unpaid'],
+                required: true
+            },
+
+            {  name: 'address',
+                 label: 'Address',
+                type: 'textarea',
+                required: false 
+            },
+
+            // ✅ NEW — Stipend (Only for Paid)
+            {
+                name: 'stipend',
+                label: 'Monthly Stipend',
+                type: 'number',
+                required: false,
+                dependsOn: {
+                    field: 'internshipType',
+                    value: 'paid'
+                }
+            },
+
+            {
+                name: 'startDate',
+                label: 'Start Date',
+                type: 'date',
+                required: true
+            },
+
+            {
+                name: 'endDate',
+                label: 'End Date',
+                type: 'date',
+                required: true
+            },
+
+            {
+                name: 'issueDate',
+                label: 'Issue Date',
+                type: 'date',
+                required: true
+            }
         ]
     },
+
     {
         id: 12,
         name: 'Completion Certificate',
@@ -696,7 +759,40 @@ export const documentTypes = [
             { name: 'newReportingManager', label: 'New Reporting Manager', type: 'text', required: false },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
         ]
+    },
+    {
+        id: 16,
+        name: 'FullandFinal Letter',
+        template: 'fullandfinal-letter',
+        fields: [
+           // { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            {name:  'date', label:'F&F Date', type:'date', required: true},
+            { name: 'month', label: 'For the Month', type: 'month', required: true },
+            { name: 'totalSalary', label: 'Total Salary', type: 'number', required: true },
+            { name: 'doj', label: 'Joining Date', type: 'date', require: true },
+            { name: 'dateofresignation', label: 'Date of Resignation', type: 'date', required: true },
+            { name: 'dateofleaving', label: 'Date of Leaving', type: 'date',  required: true },
+             { name:'leaveencashment' , label:'Leave encashment', type:'number', required: true},
+              { name: 'paiddays', label: 'Paid days ', type: 'number', required: true },
+            //{ name: 'mode', label: 'Mode Bank', type: 'text', required: true },
+            { name: 'workdays', label: 'Total Day in the month', type: 'number', required: true },
+            //{ name: 'dob', label: 'Date of Birth', type: 'date', required: true },
+            // { name: 'basicSalary', label: 'Basic Salary', type: 'number', required: true },
+            // { name: 'hra', label: 'HRA', type: 'number', required: true },
+            // { name: 'conveyanceAllowance', label: 'Conveyance Allowance', type: 'number', required: true },
+            // { name: 'medicalAllowance', label: 'Medical Allowance', type: 'number', required: true },
+            // { name: 'specialAllowance', label: 'Special Allowance', type: 'number', required: true },
+            // { name: 'pf', label: 'PF', type: 'number', required: true },
+            // { name: 'professionalTax', label: 'Professional Tax', type: 'number', required: true },
+            // { name: 'incomeTax', label: 'Income Tax', type: 'number', required: true }
+        ]
     }
+
+
 ];
 
 // Mock user data for authentication
