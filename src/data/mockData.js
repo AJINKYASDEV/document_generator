@@ -21,14 +21,16 @@ import smartholderHeader from '../assets/images/SmartSoftware/smart-header.png';
 // import smartholderFooter from '../assets/images/SmartSoftware/smart-footer.png';
 import smartholderWatermark from '../assets/images/SmartSoftware/Watermark.png';
 import smartholderSignature from '../assets/images/SmartSoftware/Sign.png';
+import vandanaSignature from '../assets/images/SmartSoftware/Sign2.jpeg';
 import smartholderStamp from '../assets/images/SmartSoftware/Stamp.png';
 
 // Import JDIT Company Data images
-import jdit_header from "../assets/images/jdit/jdit-header.png"
+import jdit_header from "../assets/images/jdit/jdit_head.jpeg"
 import jdit_footer from "../assets/images/jdit/jditFooter.png"
 import jdit_watermark from "../assets/images/jdit/jdit_watermark.png"
-import jdit_signature from "../assets/images/jdit/jdit_sign.png"
-import jdit_stamp from "../assets/images/jdit/jdit_stamp.png"
+import jdit_signature from "../assets/images/jdit/jdit_Sign.jpeg"
+import ajaySignature from "../assets/images/jdit/jdit_sign.png"
+import jdit_stamp from "../assets/images/jdit/jdit_Stamp.jpeg"
 
 // rp imports  (watermark pending)
 import rp_header from "../assets/images/rp/RP_header.png"
@@ -46,9 +48,9 @@ import placeholderWatermark from '../assets/images/SmartSoftware/Watermark.png';
 // import placeholderStamp from '../assets/images/SmartSoftware/Stamp.png';
 
 //Newage
-import Newage_header from "../assets/images/Newagecloud/Newageheader.png"
-import Newage_footer from "../assets/images/Newagecloud/Newagefooter.png"
-import Newage_signature from "../assets/images/Newagecloud/Newage_signature.png"
+import Newage_header from "../assets/images/Newagecloud/Neweagehead.jpeg"
+import Newage_footer from "../assets/images/Newagecloud/neweagefooter.jpeg" 
+import Newage_signature from "../assets/images/Newagecloud/Newage_signature.png" 
 import Newage_stamp from "../assets/images/Newagecloud/Newage_stamp.png"
 import Newage_watermark from "../assets/images/Newagecloud/Newage_watermark.png"
 
@@ -308,6 +310,8 @@ export const companies = [
         header: jdit_header,
         footer: jdit_footer,
         signature: jdit_signature,
+        // signature: jdit_Signature, 
+        incrementSignature: ajaySignature,        // Normal letters
         stamp: jdit_stamp,
         watermark: jdit_watermark,
         headerImage: jdit_header,
@@ -319,6 +323,7 @@ export const companies = [
         website: 'https://www.jditbs.com/',
         city: 'Pune',
         regNo: 'CIN: U72900PN2022PTC215539',
+        hrNameIncrement: ' Ajay Wadatkar',  
         hrName: 'Sweety Khade',
         brandColors: {
             primary: '#1976D2',
@@ -367,7 +372,9 @@ export const companies = [
         logo: 'logos/SmartSoftwareServicesLogo.png',
         header: smart_header,
         footer: smartholderFooter,
-        signature: smartholderSignature,
+        signature: smartholderSignature,      // Normal letters
+        incrementSignature: vandanaSignature,   // ✅ Increment ONLY
+
         stamp: smartholderStamp,
         watermark: smartholderWatermark,
         headerImage: smartholderHeader,
@@ -379,7 +386,7 @@ export const companies = [
         website: 'https://smartsoftwareservice.com/',
         city: 'Pune',
         regNo: 'CIN:U74990PN2016PTC158285',
-        hrName: 'Sandip Patil',
+        hrName: 'Sandeep Patil', 
         brandColors: {
             primary: '#00BCD4',
             secondary: '#0097A7',
@@ -410,6 +417,7 @@ export const documentTypes = [
             { name: 'mode', label: 'Mode Bank', type: 'text', required: true },
             { name: 'workdays', label: 'Total Workdays', type: 'number', required: true },
             { name: 'dob', label: 'Date of Birth', type: 'date', required: true },
+            { name: 'accountNo', label: 'Account Number', type: 'text', required: true },
             // { name: 'basicSalary', label: 'Basic Salary', type: 'number', required: true },
             // { name: 'hra', label: 'HRA', type: 'number', required: true },
             // { name: 'conveyanceAllowance', label: 'Conveyance Allowance', type: 'number', required: true },
@@ -491,7 +499,7 @@ export const documentTypes = [
             { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
             { name: 'designation', label: 'Designation', type: 'text', required: true },
             { name: 'department', label: 'Department', type: 'text', required: true },
-            { name: 'joiningDate', label: 'Joining Date', type: 'date' },
+            { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
             { name: 'lastWorkingDay', label: 'Last Working Day', type: 'date', required: true },
             { name: 'noticePeriod', label: 'Notice Period Served', type: 'text', required: true },
             { name: 'handoverStatus', label: 'Handover Status', type: 'select', options: ['Completed', 'Partially Completed', 'Not Applicable'], required: true },
