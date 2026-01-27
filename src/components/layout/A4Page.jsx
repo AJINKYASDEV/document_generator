@@ -1,8 +1,8 @@
 // A4Page.js
 import React from "react";
 import { Box } from "@mui/material";
-import placeholderHeader from '../../assets/images/placeholder-header.svg';
-import placeholderFooter from '../../assets/images/placeholder-footer.svg';
+import placeholderHeader from '../../assets/images/SmartSoftware/smartheaders.png';
+import placeholderFooter from '../../assets/images/SmartSoftware/smartfooters.png';
 import placeholderWatermark from '../../assets/images/SmartSoftware/Watermark.png';
 
 const A4Page = ({
@@ -17,8 +17,7 @@ const A4Page = ({
   const watermarkImage =
     watermarkSrc ||
     company?.watermarkImage ||
-    company?.watermark ||
-    placeholderWatermark;
+    company?.watermark;
   
   return (
   <Box
@@ -54,10 +53,10 @@ const A4Page = ({
     }}
   >
     {/* HEADER - HIGHLIGHT: width = 210mm, height as needed */}
-    {(headerSrc || company?.header || company?.headerImage || placeholderHeader) && (
+    {(headerSrc || company?.header || company?.headerImage ) && (
       <Box
         component="img"
-        src={headerSrc || company?.header || company?.headerImage || placeholderHeader}
+        src={headerSrc || company?.header || company?.headerImage }
         alt="Header"
         sx={{
           position: "absolute",
