@@ -3,7 +3,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import placeholderHeader from '../../assets/images/placeholder-header.svg';
 import placeholderFooter from '../../assets/images/placeholder-footer.svg';
-import placeholderWatermark from '../../assets/images/SmartSoftware/Watermark.png';
+// import placeholderWatermark from '../../assets/images/SmartSoftware/Watermark.png';
 
 const A4Page = ({
   headerSrc,
@@ -17,8 +17,7 @@ const A4Page = ({
   const watermarkImage =
     watermarkSrc ||
     company?.watermarkImage ||
-    company?.watermark ||
-    placeholderWatermark;
+    company?.watermark || null;
   
   return (
   <Box

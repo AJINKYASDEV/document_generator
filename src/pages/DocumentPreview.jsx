@@ -41,6 +41,14 @@ import IncrementLetterTemplate from '../components/documents/IncrementLetter/Inc
 import ExperienceLetterTemplate from '../components/documents/ExperienceLetter/ExperienceLetterTemplate';
 import RelievingLetterTemplate from '../components/documents/RelievingLetter/RelievingLetteTemplate';
 import OfferLetterTemplate from '../components/documents/OfferLetter/OfferLetterTemplate';
+import AppointmentLetterTemplate from '../components/documents/AppointmentLeter/AppointmentLetterTemplate';
+import InternshipLetterTemplate from '../components/documents/InternshipLetter/InternshipLetterTemplate';
+import CertificationLetterTemplate from '../components/documents/InternshipComplitionCertificate/CertificationLetterTemplate';
+import FullandFinalLetterTemplate from '../components/documents/FullandFinalLetter/FullandFinalLetterTemplate';
+
+
+
+
 
 const DocumentPreview = () => {
   const { selectedCompany } = useCompany();
@@ -75,16 +83,23 @@ const DocumentPreview = () => {
     switch (selectedDocType.template) {
       case 'salary-slip':
         return <SalarySlipTemplate data={documentData} company={selectedCompany} />;
-      // case 'internship-certificate':
-      //   return <InternshipCertificateTemplate data={documentData} company={selectedCompany} />;
+
+       case 'internship-certificate':
+      return (
+        <InternshipLetterTemplate data={documentData} company={selectedCompany}/>
+      );
+
+       
       case 'offer-letter':
         return <OfferLetterTemplate data={documentData} company={selectedCompany} />;
-      // case 'completion-certificate':
-        // return <CompletionCertificateTemplate data={documentData} company={selectedCompany} />;
+        
+       case 'completion-certificate':
+         return <CertificationLetterTemplate data={documentData} company={selectedCompany} />;
+
       case 'increment-letter':
         return <IncrementLetterTemplate data={documentData} company={selectedCompany} />;
-      // case 'appointment-letter':
-        // return <AppointmentLetterTemplate data={documentData} company={selectedCompany} />;
+      case 'appointment-letter':
+        return <AppointmentLetterTemplate data={documentData} company={selectedCompany} />;
       case 'experience-letter':
         return <ExperienceLetterTemplate data={documentData} company={selectedCompany} />;
       case 'relieving-letter':
@@ -103,6 +118,8 @@ const DocumentPreview = () => {
         // return <TerminationLetterTemplate data={documentData} company={selectedCompany} />;
       // case 'transfer-letter':
         // return <TransferLetterTemplate data={documentData} company={selectedCompany} />;
+        case 'fullandfinal-letter':
+         return <FullandFinalLetterTemplate data={documentData} company={selectedCompany} />;
       default:
         return <Typography>Template not found</Typography>;
     }

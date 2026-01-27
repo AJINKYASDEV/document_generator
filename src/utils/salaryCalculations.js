@@ -22,16 +22,24 @@ export const getProfessionalTax = (monthStr, totalSalary) => {
  * @param {number} ctc - Cost to Company (annual amount)
  * @returns {object} - Salary breakdown with all components
  */
-export const calculateSalaryBreakdown = (ctc) => {
+  export const calculateSalaryBreakdown = (ctc) => {
   const annual = parseFloat(ctc) || 350000; // Default to 3.5 LPA
   const monthly = annual / 12;
   
   // Standard salary breakdown percentages
+  // const basicPercentage = 0.40; // 40% of CTC
+  // const hraPercentage = 0.18; // 20% of CTC
+  // const conveyancePercentage = 0.12; // 5% of CTC
+  // const medicalPercentage = 0.16; // 5% of CTC
+  // const specialAllowancePercentage = 0.08; // 30% of CTC
+
   const basicPercentage = 0.40; // 40% of CTC
-  const hraPercentage = 0.20; // 20% of CTC
-  const conveyancePercentage = 0.05; // 5% of CTC
-  const medicalPercentage = 0.05; // 5% of CTC
-  const specialAllowancePercentage = 0.30; // 30% of CTC
+   const hraPercentage = 0.18; // 20% of CTC
+   const conveyancePercentage = 0.12; // 5% of CTC
+   const medicalPercentage = 0.16; // 5% of CTC
+   const specialAllowancePercentage = 0.08; // 30% of CTC
+
+
   
   // Calculate components
   const basicSalary = annual * basicPercentage;
@@ -159,13 +167,17 @@ export const calculateIncrement = (currentCTC, incrementPercentage) => {
  * @param {number} amount - Amount to format
  * @returns {string} - Formatted currency string
  */
-export const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('en-IN', {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+
+export const formatCurrency = (amount, decimals = 2) => {
+  if (amount == null || isNaN(amount)) {
+    return Number(0).toFixed(decimals);
+  }
+
+  return new Intl.NumberFormat("en-IN", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
   }).format(amount);
 };
-
 /**
  * Convert number to words (Indian format)
  * @param {number} amount - Amount to convert
