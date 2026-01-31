@@ -367,14 +367,15 @@ import {
   useTheme,
   useMediaQuery,
   Alert,
-  Snackbar,
-} from "@mui/material";
-import { useCompany } from "../context/CompanyContext";
-import { useDocument } from "../context/DocumentContext";
-import { useAuth } from "../context/AuthContext";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import ResponsiveContainer from "../components/common/ResponsiveContainer";
+  Snackbar
+} from '@mui/material';
+import { useCompany } from '../context/CompanyContext';
+import { useDocument } from '../context/DocumentContext';
+import { useAuth } from '../context/AuthContext';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import ResponsiveContainer from '../components/common/ResponsiveContainer';
+import { generatePDF } from '../utils/pdfUtils'; // adjust path as needed
 
 // Templates
 import SalarySlipTemplate from '../components/documents/SalarySlip/SalarySlipTemplate';
@@ -472,55 +473,30 @@ const DocumentPreview = () => {
   };
 
   /* ================= PDF GENERATION (FULL) ================= */
-  const handleDownloadPDF = async () => {
-    if (!documentRef.current) return;
+ const handleDownloadPDF = async () => {
+  if (!documentRef.current) return;
 
     setLoading(true);
-    setError("");
+    setError('');
 
-    try {
-      setSnackbarMessage('Generating PDF...');
-      setSnackbarOpen(true);
+  try {
+    setSnackbarMessage('Generating PDF...');
+    setSnackbarOpen(true);
 
-      const canvas = await html2canvas(documentRef.current, {
-        scale: 3,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-        windowWidth: documentRef.current.scrollWidth,
-      });
+    await generatePDF(
+      documentRef.current,
+      `${selectedDocType.name}-${new Date().toISOString().slice(0, 10)}`
+    );
 
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-
-      const imgWidth = 210;
-      const pageHeight = 297;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      let heightLeft = imgHeight;
-      let position = 0;
-
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      const fileName = `${selectedDocType.name}-${new Date().toISOString().slice(0, 10)}.pdf`;
-      pdf.save(fileName);
-
-      setSnackbarMessage(`PDF downloaded successfully`);
-      setSnackbarOpen(true);
-    } catch (err) {
-      console.error(err);
-      setError('Failed to generate PDF');
-    } finally {
-      setLoading(false);
-    }
-  };
+    setSnackbarMessage('PDF downloaded successfully');
+    setSnackbarOpen(true);
+  } catch (err) {
+    console.error(err);
+    setError('Failed to generate PDF');
+  } finally {
+    setLoading(false);
+  }
+};
 
   /* ================= PDF (CONTENT ONLY / WORD STYLE) ================= */
   const handleDownloadPDFWord = async () => {
@@ -600,19 +576,14 @@ const DocumentPreview = () => {
       </Box>
 
       <Paper
+        ref={documentRef}
         elevation={3}
         sx={{
-          p: 0, // Remove padding to avoid affecting A4 dimensions
-          mb: isMobile ? 2 : 4,
-          width: "210mm", // Fixed A4 width
-          margin: "0 auto",
-          minHeight: "297mm", // Fixed A4 height
-          backgroundColor: "#fff",
-          overflowX: "auto",
-          display: "flex",
-          flexDirection: "column",
+          width: '210mm',
+          minHeight: '297mm',
+          margin: '0 auto',
+          backgroundColor: '#fff',
         }}
-        ref={documentRef}
       >
         {renderDocumentTemplate()}
       </Paper>

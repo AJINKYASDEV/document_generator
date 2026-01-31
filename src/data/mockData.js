@@ -48,7 +48,7 @@ import placeholderWatermark from '../assets/images/SmartSoftware/Watermark.png';
 // import placeholderStamp from '../assets/images/SmartSoftware/Stamp.png';
 
 //Newage
-import Newage_header from "../assets/images/Newagecloud/Neweagehead.jpeg"
+import Newage_header from "../assets/images/Newagecloud/neweagehead.jpeg"
 import Newage_footer from "../assets/images/Newagecloud/neweagefooter.jpeg" 
 import Newage_signature from "../assets/images/Newagecloud/Newage_signature.png" 
 import Newage_stamp from "../assets/images/Newagecloud/Newage_stamp.png"
@@ -315,38 +315,40 @@ export const companies = [
       watermarkOpacity: 0.04,
       hueRotate: 30,
     },
-  },
-  // JDIT Software
-  {
-    id: 8,
-    name: "JDIT Software Solutions Pvt. Ltd.",
-    shortName: "JDIT",
-    logo: jditlogo,
-    header: jdit_header,
-    footer: jdit_footer,
-    signature: jdit_signature,
-    stamp: jdit_stamp,
-    watermark: jdit_watermark,
-    headerImage: jdit_header,
-    footerImage: jdit_footer,
-    watermarkImage: jdit_watermark,
-    address:
-      "301, 3th Floor, Sai Vill Commercial Apartment,Next to Vaibhav Talkies, Behind RR Dage saries, Sr. No. 166,Malwadi Road, App. Sahyadri Hospital, Hadapsar, Pune 411028.",
-    email: "hr@jditbs.com",
-    phone: "+91 8390930580",
-    website: "https://www.jditbs.com/",
-    city: "Pune",
-    regNo: "CIN: U72900PN2022PTC215539",
-    hrName: "Sweety Khade",
-    brandColors: {
-      primary: "#1976D2",
-      secondary: "#1565C0",
-      accent: "#42A5F5",
-      textColor: "#0D47A1",
-      watermarkOpacity: 0.07,
-      hueRotate: 0,
+},
+    // JDIT Software
+    {
+        id: 8,
+        name: 'JDIT Software Solutions Pvt. Ltd.',
+        shortName: 'JDIT',
+        logo: jditlogo,
+        header: jdit_header,
+        footer: jdit_footer,
+        signature: jdit_signature,
+        // signature: jdit_Signature, 
+        incrementSignature: ajaySignature,        // Normal letters
+        stamp: jdit_stamp,
+        watermark: jdit_watermark,
+        headerImage: jdit_header,
+        footerImage: jdit_footer,
+        watermarkImage: jdit_watermark,
+        address: '301, 3th Floor, Sai Vill Commercial Apartment,Next to Vaibhav Talkies, Behind RR Dage saries, Sr. No. 166,Malwadi Road, App. Sahyadri Hospital, Hadapsar, Pune 411028.',
+        email: 'hr@jditbs.com',
+        phone: '+91 8390930580',
+        website: 'https://www.jditbs.com/',
+        city: 'Pune',
+        regNo: 'CIN: U72900PN2022PTC215539',
+        hrName: ' Sweety Khade', 
+        hrNameOne: 'Ajay Wadatkar', 
+        brandColors: {
+            primary: '#1976D2',
+            secondary: '#1565C0',
+            accent: '#42A5F5',
+            textColor: '#0D47A1',
+            watermarkOpacity: 0.07,
+            hueRotate: 0
+        }
     },
-  },
   // Quick Management Services
   {
     id: 9,
@@ -386,7 +388,8 @@ export const companies = [
         logo: 'logos/SmartSoftwareServicesLogo.png',
         header: smart_header,
         footer: smartholderFooter,
-        signature: smartholderSignature,      // Normal letters
+        signature: smartholderSignature,
+        signature: smartholderSignature,        // Normal letters
         incrementSignature: vandanaSignature,   // ✅ Increment ONLY
 
         stamp: smartholderStamp,

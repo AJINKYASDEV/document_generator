@@ -30,6 +30,11 @@ const CELL = {
   fontSize: "13px",
 };
 
+const CENTER_CELL = {
+  ...CELL,
+  textAlign: "center",
+};
+
 /* ================= COMPONENT ================= */
 const NeweageSalarySlip = ({ company, data }) => {
   if (!company || !data) return null;
@@ -47,10 +52,10 @@ const NeweageSalarySlip = ({ company, data }) => {
     mode,
     accountNo,
     workdays,
-    totalSalary, 
+    totalSalary,
   } = data;
 
-  /* ================= SALARY CALCULATION (LOCAL) ================= */
+  /* ================= SALARY CALCULATION ================= */
   const {
     basicSalary,
     hra,
@@ -59,7 +64,6 @@ const NeweageSalarySlip = ({ company, data }) => {
     miscAllowance,
     pf,
     professionalTax,
-    netPay,
   } = useMemo(() => {
     const gross = Number(totalSalary) || 0;
 
@@ -71,11 +75,7 @@ const NeweageSalarySlip = ({ company, data }) => {
     const pfCalc = Math.round(basic * 0.12);
     const pt = getProfessionalTax(month, gross);
 
-    const misc =
-      gross - (basic + hraCalc + da + food);
-
-    const net =
-      gross - (pfCalc + pt);
+    const misc = gross - (basic + hraCalc + da + food);
 
     return {
       basicSalary: basic,
@@ -85,10 +85,10 @@ const NeweageSalarySlip = ({ company, data }) => {
       miscAllowance: misc,
       pf: pfCalc,
       professionalTax: pt,
-      netPay: net,
     };
   }, [totalSalary, month]);
 
+  /* ================= EARNINGS & DEDUCTIONS ================= */
   const earnings = [
     { label: "BASIC", value: basicSalary },
     { label: "HRA", value: hra },
@@ -102,9 +102,10 @@ const NeweageSalarySlip = ({ company, data }) => {
     { label: "PT", value: professionalTax },
   ];
 
-  const totalDeductions = deductions.reduce((s, d) => s + d.value, 0);
-  const maxRows = Math.max(earnings.length, deductions.length);
+  const totalEarnings = earnings.reduce((sum, e) => sum + e.value, 0);
+  const totalDeductions = deductions.reduce((sum, d) => sum + d.value, 0);
 
+  const netPay = totalEarnings - totalDeductions; // ✅ Correct Net Pay
 
   const formatMonthYear = (month) =>
     month
@@ -120,6 +121,7 @@ const NeweageSalarySlip = ({ company, data }) => {
       <Table>
         <TableBody>
 
+          {/* HEADER */}
           <TableRow>
             <TableCell colSpan={4} sx={{ ...CELL, textAlign: "center", fontWeight: "bold", fontSize: "16px" }}>
               NEWEAGE CLOUD SOFTWARE SERVICES PVT. LTD.
@@ -127,14 +129,7 @@ const NeweageSalarySlip = ({ company, data }) => {
           </TableRow>
 
           <TableRow>
-            <TableCell
-              colSpan={4}
-              sx={{
-                ...CELL,
-                textAlign: "center",
-                fontSize: "13px",
-              }}
-            >
+            <TableCell colSpan={4} sx={{ ...CELL, textAlign: "center", fontSize: "13px" }}>
               <b>Office No-4B, Second Floor, Ganesham Wing-A, On BRTS Road,
               Pimple Saudagar, Pune - 411027</b>
             </TableCell>
@@ -142,10 +137,11 @@ const NeweageSalarySlip = ({ company, data }) => {
 
           <TableRow>
             <TableCell colSpan={4} sx={{ ...CELL, textAlign: "center" }}>
-             <b> Salary Slip {formatMonthYear(month)}</b>
+             <b>Salary Slip {formatMonthYear(month)}</b>
             </TableCell>
           </TableRow>
 
+          {/* EMPLOYEE DETAILS */}
           <TableRow>
             <TableCell sx={CELL}><b>Employee Name</b></TableCell>
             <TableCell sx={CELL}>{employeeName}</TableCell>
@@ -154,10 +150,10 @@ const NeweageSalarySlip = ({ company, data }) => {
           </TableRow>
 
           <TableRow>
-            <TableCell sx={CELL}><b>Gender <br></br> DOJ</b></TableCell>
-            <TableCell sx={CELL}>{gender} <br /> {formatDate(doj)}</TableCell>
-            <TableCell sx={CELL}>Department <br></br> PAN</TableCell>
-            <TableCell sx={CELL}>{department} <br /> {pan}</TableCell>
+            <TableCell sx={CELL}><b>Gender<br/>DOJ</b></TableCell>
+            <TableCell sx={CELL}>{gender}<br/> {formatDate(doj)}</TableCell>
+            <TableCell sx={CELL}>Department<br/>PAN Number</TableCell>
+            <TableCell sx={CELL}>{department} <br />{pan}</TableCell>
           </TableRow>
 
           <TableRow>
@@ -177,39 +173,43 @@ const NeweageSalarySlip = ({ company, data }) => {
             <TableCell sx={CELL}>{workdays}</TableCell>
           </TableRow>
 
-          {/* SALARY HEADER */}
+          {/* SALARY TABLE HEADER */}
           <TableRow>
             <TableCell sx={CELL}><b>Earnings</b></TableCell>
-            <TableCell sx={CELL}><b>Amount</b></TableCell>
-            <TableCell sx={CELL}><b>Deductions</b></TableCell>
-            <TableCell sx={CELL}><b>Amount</b></TableCell>
+            <TableCell sx={CENTER_CELL}><b>Amount</b></TableCell>
+            <TableCell sx={CENTER_CELL}><b>Deductions</b></TableCell>
+            <TableCell sx={CENTER_CELL}><b>Amount</b></TableCell>
           </TableRow>
 
+          {/* EARNINGS & DEDUCTIONS ROWS */}
           {earnings.map((e, i) => (
             <TableRow key={i}>
               <TableCell sx={CELL}><b>{e.label}</b></TableCell>
-              <TableCell sx={CELL}>{formatCurrency(e.value)}</TableCell>
-              <TableCell sx={CELL}>{deductions[i]?.label || ""}</TableCell>
-              <TableCell sx={CELL}>
+              <TableCell sx={CENTER_CELL}>{formatCurrency(e.value)}</TableCell>
+              <TableCell sx={CENTER_CELL}>{deductions[i]?.label || ""}</TableCell>
+              <TableCell sx={CENTER_CELL}>
                 {deductions[i] ? formatCurrency(deductions[i].value) : ""}
               </TableCell>
             </TableRow>
           ))}
 
+          {/* TOTAL ROW */}
           <TableRow>
             <TableCell sx={CELL}><b>Total</b></TableCell>
-            <TableCell sx={CELL}>{formatCurrency(totalSalary)}</TableCell>
-            <TableCell sx={CELL}><b>Total Deduction</b></TableCell>
-            <TableCell sx={CELL}>{formatCurrency(totalDeductions)}</TableCell>
+            <TableCell sx={CENTER_CELL}>{formatCurrency(totalEarnings)}</TableCell>
+            <TableCell sx={CENTER_CELL}><b>Total Deduction</b></TableCell>
+            <TableCell sx={CENTER_CELL}>{formatCurrency(totalDeductions)}</TableCell>
           </TableRow>
 
+          {/* NET PAY ROW */}
           <TableRow>
             <TableCell sx={CELL}><b>Net Pay</b></TableCell>
-            <TableCell sx={CELL}>{formatCurrency(netPay)}</TableCell>
-            <TableCell sx={CELL} />
-            <TableCell sx={CELL} />
+            <TableCell sx={CENTER_CELL}>{formatCurrency(netPay)}</TableCell> {/* Net Pay in first Amount column */}
+            <TableCell sx={CELL}></TableCell>       {/* Empty Deductions label */}
+            <TableCell sx={CENTER_CELL}></TableCell> {/* Empty second Amount column */}
           </TableRow>
 
+          {/* IN WORDS */}
           <TableRow>
             <TableCell sx={CELL}><b>In Words</b></TableCell>
             <TableCell colSpan={3} sx={CELL}>
@@ -217,15 +217,10 @@ const NeweageSalarySlip = ({ company, data }) => {
             </TableCell>
           </TableRow>
 
-
+          {/* SIGNATURE & STAMP */}
           <TableRow>
-            <TableCell
-              sx={{ border: "1px solid #000", paddingLeft: "150px" }}
-            ></TableCell>
-
-            <TableCell
-              sx={{ border: "1px solid #000", paddingLeft: "150px" }}
-            ></TableCell>
+            <TableCell sx={{ border: "1px solid #000", paddingLeft: "150px" }}></TableCell>
+            <TableCell sx={{ border: "1px solid #000", paddingLeft: "150px" }}></TableCell>
 
             <TableCell
               sx={{
@@ -270,7 +265,4 @@ const NeweageSalarySlip = ({ company, data }) => {
 };
 
 export default NeweageSalarySlip;
-
-
-
-
+ 

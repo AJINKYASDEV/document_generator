@@ -345,7 +345,7 @@ const NeweageOffer = ({ company, data }) => {
 
           <Box sx={{ width: "55%" }}>
             <Typography>Signature : ___________________</Typography>
-            <Typography>Candidate Name : {candidateName}</Typography>
+            <Typography>Candidate Name :{candidateName}</Typography>
           </Box>
         </Box>
       </A4Layout>

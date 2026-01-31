@@ -25,16 +25,31 @@ export default function SmartSoftwareOffer({ company, data }) {
     position = "",
     joiningDate = "",
     salary = 0,
+    mrms = "", // Title field (Mr, Ms, Mrs, Miss, Mx)
   } = data || {};
+
+  /* ================= TITLE & PRONOUNS ================= */
+  const title = (mrms || "").toLowerCase().trim();
+
+  const pronouns =
+    ["miss", "miss.", "mrs", "mrs.", "ms", "ms."].includes(title)
+      ? { subject: "She", object: "her", possessive: "her" }
+      : ["mx", "mx."].includes(title)
+        ? { subject: "They", object: "them", possessive: "their" }
+        : { subject: "He", object: "him", possessive: "his" };
+
+  const displayTitle = title
+    ? title.charAt(0).toUpperCase() + title.slice(1)
+    : "Mr.";
 
   const firstName = candidateName.split(" ")[0] || "";
 
   const formattedJoiningDate = joiningDate
     ? new Date(joiningDate).toLocaleDateString("en-IN", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    })
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })
     : "";
 
   /* ================= SALARY ================= */
@@ -90,7 +105,6 @@ export default function SmartSoftwareOffer({ company, data }) {
     <>
       {/* ================= PAGE 1 ================= */}
       <A4Layout company={{ ...company, watermark: null, watermarkImage: null }}>
-
         <Box sx={baseText}>
           <Typography sx={{ textAlign: "right" }}>
             {new Date(issueDate).toLocaleDateString("en-US", {
@@ -100,9 +114,8 @@ export default function SmartSoftwareOffer({ company, data }) {
             })}
           </Typography>
 
-
           <Typography sx={{ mt: "24px" }}>
-            <Box component="span" sx={labelStyle}>Name</Box> : Mr. {candidateName}
+            <Box component="span" sx={labelStyle}>Name</Box> : {displayTitle} {candidateName}
           </Typography>
 
           <Typography sx={{ mt: "12px" }}>
@@ -117,18 +130,18 @@ export default function SmartSoftwareOffer({ company, data }) {
           </Typography>
 
           <Typography sx={{ mt: "24px" }}>
-            Dear {firstName},
+            Dear {displayTitle} {firstName},
           </Typography>
 
           <Typography sx={para}>
-            We are pleased to offer you the position of {position}. As discussed
-            by us you are requested to join on {formattedJoiningDate}. Your total
-            Gross salary will be Rs. {formatCurrency(totalAnnual)} (
+            We are pleased to offer you the position of {position}. As discussed,
+            {pronouns.subject.toLowerCase()} is requested to join on {formattedJoiningDate}.
+            Your total Gross salary will be Rs. {formatCurrency(totalAnnual)} (
             {salaryInWords}) per year.
           </Typography>
 
           <Typography sx={paraLarge}>
-            Subject to various deductions as per companies and government policy.
+            Subject to various deductions as per company and government policy.
           </Typography>
 
           <Typography sx={para}>
@@ -145,7 +158,6 @@ export default function SmartSoftwareOffer({ company, data }) {
             Kindly acknowledge the duplicate copy of this letter as an acceptance
             of this offer.
           </Typography>
-
 
           <Typography sx={{ mt: "24px" }}>Yours Sincerely,</Typography>
           <Typography>For <b>{company.name?.toUpperCase()}</b></Typography>
@@ -177,9 +189,8 @@ export default function SmartSoftwareOffer({ company, data }) {
         </Box>
       </A4Layout>
 
-      {/* ================= PAGE 2 (SALARY STRUCTURE + SIGNATURE) ================= */}
+      {/* ================= PAGE 2 ================= */}
       <A4Layout company={{ ...company, watermark: null, watermarkImage: null }}>
-
         <Box sx={baseText}>
           <Typography align="center" sx={{ mb: "24px" }}>
             <b>Annexure A – Salary Structure</b>

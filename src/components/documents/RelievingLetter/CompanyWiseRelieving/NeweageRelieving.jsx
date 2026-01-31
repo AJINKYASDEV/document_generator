@@ -29,16 +29,23 @@ const NeweageRelieving = ({ company, data }) => {
     designation = "",
     joiningDate = "",
     relievingDate = "",
+    lastWorkingDay = "",
+    employeeId = "",
+    mrms = "",
   } = data;
 
-  const firstName = employeeName.split(" ")[0] || "";
-  const COMPANY_NAME = company.name.toUpperCase();
+  /* ===== SAFE FIRST NAME HANDLING ===== */
+  const safeEmployeeName = (employeeName || "").trim();
+  const firstName = safeEmployeeName
+    ? safeEmployeeName.split(/\s+/)[0]
+    : "";
+
+  const COMPANY_NAME = (company.name || "").toUpperCase();
 
   return (
     <A4Layout
       headerSrc={company.headerImage}
       footerSrc={company.footerImage}
-      
     >
       {/* ================= DATE ================= */}
       <Typography align="right" sx={{ ...TEXT, mb: 4 }}>
@@ -47,7 +54,7 @@ const NeweageRelieving = ({ company, data }) => {
 
       {/* ================= EMPLOYEE NAME ================= */}
       <Typography sx={{ ...TEXT, mb: 1 }}>
-        <b>{data.mrms}{employeeName}</b>
+        <b>{mrms} {safeEmployeeName}</b>
       </Typography>
 
       <Typography sx={{ ...TEXT, mb: 4 }}>
@@ -56,7 +63,7 @@ const NeweageRelieving = ({ company, data }) => {
 
       {/* ================= GREETING ================= */}
       <Typography sx={{ ...TEXT, mb: 3 }}>
-        Dear {firstName},
+        Dear {firstName || safeEmployeeName},
       </Typography>
 
       {/* ================= BODY CONTENT ================= */}
@@ -67,7 +74,7 @@ const NeweageRelieving = ({ company, data }) => {
 
       <Typography sx={{ ...TEXT, mb: 2 }}>
         You were an important part of the company since{" "}
-        {formatDate(data.joiningDate)} and you have played an integral role in
+        <b>{formatDate(joiningDate)}</b> and you have played an integral role in
         accomplishing your targets for the organization.
       </Typography>
 
@@ -78,9 +85,9 @@ const NeweageRelieving = ({ company, data }) => {
       </Typography>
 
       <Typography sx={{ ...TEXT, mb: 2 }}>
-        We are sure your hard work and diligence will find you success in the new
-        company. Your tenure with <b>{COMPANY_NAME}</b> ends on{" "}
-        <b>{formatDate(data.relievingDate)}</b>.
+        Your tenure with <b>{COMPANY_NAME}</b> ends on{" "}
+        <b>{formatDate(relievingDate)}</b>. Your last working day will be{" "}
+        <b>{formatDate(lastWorkingDay)}</b>.
       </Typography>
 
       <Typography sx={{ ...TEXT, mb: 6 }}>
@@ -92,7 +99,7 @@ const NeweageRelieving = ({ company, data }) => {
         Sincerely,
       </Typography>
 
-      {/* ================= SIGNATURE & STAMP (ONE LINE) ================= */}
+      {/* ================= SIGNATURE & STAMP ================= */}
       <Box
         sx={{
           display: "flex",
@@ -101,29 +108,27 @@ const NeweageRelieving = ({ company, data }) => {
           mt: 3,
         }}
       >
-        {/* LEFT SIDE : Signature + HR Details */}
         <Box>
-          {/* RIGHT SIDE : Stamp */}
-           {company.signature && (
+          {company.signature && (
             <img
               src={company.signature}
               alt="Signature"
               style={{ height: "60px", marginBottom: "6px" }}
-            /> )}
-          {company.stamp && (
-              <img
-                src={company.stamp}
-                alt="Stamp"
-                style={{ height: "100px" }}
-              />
+            />
           )}
-         
-         
+
+          {company.stamp && (
+            <img
+              src={company.stamp}
+              alt="Stamp"
+              style={{ height: "100px" }}
+            />
+          )}
+
           <Typography sx={TEXT}>{company.hrName}</Typography>
           <Typography sx={TEXT}>HR Relations Lead</Typography>
           <Typography sx={TEXT}>Department of HR Relations</Typography>
         </Box>
-
       </Box>
     </A4Layout>
   );

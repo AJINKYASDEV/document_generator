@@ -6,10 +6,10 @@ import A4Layout from "../../../layout/A4Page";
 const formatDate = (date) =>
   date
     ? new Date(date).toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      })
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    })
     : "";
 
 const JDITRelieving = ({ company, data }) => {
@@ -20,8 +20,9 @@ const JDITRelieving = ({ company, data }) => {
     employeeId = "",
     employeeName = "",
     designation = "",
-    joinDate = "",
+    joiningDate = "",
     relievingDate = "",
+    lastWorkingDay = "",
     signatoryName = "",
     signatoryDesignation = "",
     mrms = "",
@@ -33,8 +34,8 @@ const JDITRelieving = ({ company, data }) => {
     title === "miss." || title === "mrs."
       ? { subject: "She", object: "her", possessive: "her" }
       : title === "mx."
-      ? { subject: "They", object: "them", possessive: "their" }
-      : { subject: "He", object: "him", possessive: "his" };
+        ? { subject: "They", object: "them", possessive: "their" }
+        : { subject: "He", object: "him", possessive: "his" };
 
   return (
     <A4Layout
@@ -57,10 +58,11 @@ const JDITRelieving = ({ company, data }) => {
         This letter is to formally acknowledge that{" "}
         <b>{mrms ? `${mrms} ${employeeName}` : employeeName}</b> has been
         relieved from duties with <b>JDIT SOFTWARE SOLUTIONS PVT. LTD.</b> as
-        of <b>{formatDate(relievingDate)}</b>. {pronouns.subject} joined our
-        organization on <b>{formatDate(joinDate)}</b> and served as{" "}
-        <b>{designation}</b>.
+        of <b>{formatDate(joiningDate)}</b>. {pronouns.subject} joined our
+        organization on and served as{" "}
+        <b>{designation}</b> until <b>{formatDate(lastWorkingDay)}</b>.
       </Typography>
+
 
       <Typography sx={{ mb: 3, textAlign: "justify" }}>
         Throughout {pronouns.possessive} employment, {pronouns.subject.toLowerCase()} played
