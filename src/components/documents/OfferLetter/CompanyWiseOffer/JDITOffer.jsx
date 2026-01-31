@@ -1,3 +1,68 @@
+// import React, { useMemo } from "react";
+// import {
+//   Box,
+//   Typography,
+//   Table,
+//   TableBody,
+//   TableRow,
+//   TableCell,
+//   TableHead,
+//   TableContainer,
+// } from "@mui/material";
+// import A4Layout from "../../../layout/A4Page";
+// import { formatCurrency, generateOfferLetterComponents, numberToWords } from "../../../../utils/salaryCalculations";
+
+// /* ================= DATE FORMAT ================= */
+// const formatDate = (date) =>
+//   date
+//     ? new Date(date).toLocaleDateString("en-GB", {
+//       day: "2-digit",
+//       month: "long",
+//       year: "numeric",
+//     })
+//     : "";
+
+// /* ================= STYLES ================= */
+// const TEXT = {
+//   fontFamily: "Times New Roman, serif",
+//   fontSize: "14px",
+//   lineHeight: 1.7,
+// };
+
+// /* ================= COMPONENT ================= */
+// const JDITOffer = ({ company, data }) => {
+//   if (!company || !data) return null;
+
+//   /* 🔥 OFFER LETTER FIELD NAMES */
+//   const {
+//     issueDate,
+//     candidateName,
+//     position,
+//     joiningDate,
+//     employeeId,
+//     signatoryName,
+//     signatoryDesignation,
+//     newCTC,
+//     salary,          // Annual CTC
+//     location,
+//   } = data;
+
+//   /* 🔥 DERIVED VALUES */
+//   // const annualCTC = Number(salary || 0);
+//   // const monthlyCTC = Math.round(annualCTC / 12);
+//   const annualCTC = Number(salary || 0);
+
+//   const salaryComponents = useMemo(
+//     () => generateOfferLetterComponents(annualCTC),
+//     [annualCTC]
+//   );
+
+//   const totalAnnual = annualCTC;
+//   const totalMonthly = Math.round(annualCTC / 12);
+
+
+
+
 import React, { useMemo } from "react";
 import {
   Box,

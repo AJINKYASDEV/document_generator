@@ -1,3 +1,101 @@
+// import React from "react";
+// import {
+//   Box,
+//   Typography,
+//   Table,
+//   TableContainer,
+//   TableHead,
+//   TableRow,
+//   Paper,
+//   TableCell,
+//   TableBody,
+// } from "@mui/material";
+// import A4Layout from "../../../layout/A4Page";
+// import { calculateIncrement, formatCurrency, numberToWords } from "../../../../utils/salaryCalculations";
+
+// /* ================= DATE FORMAT ================= */
+// const formatDate = (date) =>
+//   date
+//     ? new Date(date).toLocaleDateString("en-US", {
+//       day: "2-digit",
+//       month: "long",
+//       year: "numeric",
+//     })
+//     : "";
+
+// /* ================= STYLES ================= */
+// const TEXT = {
+//   fontFamily: "Times New Roman, serif",
+//   fontSize: "14px",
+//   lineHeight: 1.8,
+// };
+
+// const CELL = {
+//   border: "1px solid #000",
+//   padding: "5px",
+//   fontSize: "13px",
+// };
+
+// /* ================= FIXED SALARY DATA ================= */
+// const SALARY_COMPONENTS = [
+//   { name: "Basic", monthly: 4000, annual: 48000 },
+//   { name: "House Rent Allowance", monthly: 1800, annual: 21600 },
+//   { name: "Dearness Allowance", monthly: 1200, annual: 14400 },
+//   { name: "Special Allowance", monthly: 1600, annual: 19200 },
+//   { name: "Food Allowance", monthly: 600, annual: 7200 },
+//   { name: "Misc. Allowance", monthly: 800, annual: 9600 },
+// ];
+
+// /* ================= MAIN COMPONENT ================= */
+// const NeweageIncrement = ({ company, data }) => {
+//   if (company?.name === "Cubeage Technologies Services Pvt. Ltd.") {
+//     return <CubeageIncrementLetter data={data} company={company} />;
+//   }
+
+//   const newCTC = parseFloat(data.newCTC); // annual salary
+
+
+//   // === Annual components (percentages of totalSalaryAnually) ===
+//   const basicAnnual = newCTC * 0.4013;
+//   const hraAnnual = newCTC * 0.1798;
+//   const conveyanceAnnual = newCTC * 0.1599;
+//   const medicAnnual = newCTC * 0.1394;
+//   const specialAnnual = newCTC * 0.1196;
+
+//   // === Monthly components ===
+//   const basicMonthly = Math.round(basicAnnual / 12);
+//   const hraMonthly = Math.round(hraAnnual / 12);
+//   const conveyanceMonthly = Math.round(conveyanceAnnual / 12);
+//   const medicMonthly = Math.round(medicAnnual / 12);
+//   const specialMonthly = Math.round(specialAnnual / 12);
+
+//   // Calculate increment details
+//   const incrementDetails = calculateIncrement(
+//     data.currentCTC || 350000, // Default to 3.5 LPA
+//     data.incrementPercentage || 10 // Default to 10% increment
+//   );
+
+//   const formatDate = (dateString) => {
+//     if (!dateString) return '';
+//     const date = new Date(dateString);
+//     return date.toLocaleDateString('en-IN', {
+//       day: '2-digit',
+//       month: 'long',
+//       year: 'numeric'
+//     });
+//   };
+
+//   // Calculate previous year and issue year dynamically
+//   const issueDate = data.issueDate ? new Date(data.issueDate) : new Date();
+//   const issueYear = issueDate.getFullYear();
+//   const prevYear = issueYear - 1;
+
+//   const {
+//     employeeName = "",
+//     employeeId = "",
+//     effectiveDate = "",
+//   } = data;
+
 import React from "react";
 import {
   Box,
