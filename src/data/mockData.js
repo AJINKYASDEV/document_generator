@@ -62,6 +62,9 @@ import cubeage_stamp from "../assets/images/cubeagetechnology/cubeage_stamp.png"
 //samrtmatrix (Header footer and watermark prnding)
 import smartmatrix_stamp from "../assets/images/smartmatrix/Smartmatrix_stamp.png"
 import smartmatrix_signature from "../assets/images/smartmatrix/Smartmatrix_signature.png"
+import smartmatrix_header from '../assets/images/smartmatrix/smartmatrix_header.png'
+import smartmatrix_footer from '../assets/images/smartmatrix/smartmatrix_footer.png'
+import smartmatrix_CEO from "../assets/images/smartmatrix/Smartmatrix_CEO.png";
 
 //  Devcons (watermark pending)
 import devcons_header from "../assets/images/devconssoftware/devconsheaders.png"
@@ -79,291 +82,302 @@ import Penta_stamp from "../assets/images/Penta/Penta_stamp.png"
 import Penta_watermark from "../assets/images/Penta/Penta_watermark.png"
 
 //Nimbja( Watermark Pending)
-import Nimbja_header from "../assets/images/Nimbja/Nimbja_header.png"
-import Nimbja_footer from "../assets/images/Nimbja/Nimbja_footer.png"
-import Nimbja_signature from "../assets/images/Nimbja/Nimbja_signature.png"
-import Nimbja_stamp from "../assets/images/Nimbja/Nimbja_stamp.png"
+import Nimbja_header from "../assets/images/Nimbja/Nimbja_header.png" 
+import Nimbja_footer from "../assets/images/Nimbja/Nimbja_footers.png" 
+import Nimbja_signature from "../assets/images/Nimbja/Nimbja_signature.png" 
+import Nimbja_stamp from "../assets/images/Nimbja/Nimbja_stamp.png" 
+import Nimbja_watermark from '../assets/images/Nimbja/nimbja_watermark.png'
+import Nimbja_CEO from '../assets/images/Nimbja/Nimbja_CEO.png'
 
 //QM  (Footer watermark Pending)
 import QMS_Header from "../assets/images/QMS/QMS_Header.png"
 import QMS_Sign from "../assets/images/QMS/QMS_Sign.png"
 import QMS_Stamp from "../assets/images/QMS/QMS_Stamp.png"
 
+
 export const companies = [
-    {
-        // 
-        id: 1,
-        name: 'Cubeage Technologies Services Pvt. Ltd.',
-        shortName: 'Cubeage Tech',
-        logo: cubeagelogo,
-        header: cubeage_header,
-        footer: placeholderFooter,
-        signature: cubeage_signature,
-        stamp: cubeage_stamp,
-        watermark: placeholderWatermark,
-        headerImage: cubeage_header,
-        footerImage: placeholderFooter,
-        watermarkImage: placeholderWatermark,
-        address: 'Survey No. 21, Ganesham Commercial -A Office No. 102-B First Floor 18-21/24, BRTS Road Pimple Saudagar Pune, Maharashtra 411027 India',
-        email: 'hr@cubeagetech.com',
-        phone: '+91 9112100661',
-        website: 'www.cubeagetech.com',
-        city: 'Pune',
-        regNo: 'CIN: U72900PN2022PTC217321',
-        hrName: 'Saloni Dere',
-        brandColors: {
-            primary: '#2196F3',
-            secondary: '#1976D2',
-            accent: '#03DAC6',
-            textColor: '#212121',
-            watermarkOpacity: 0.05,
-            hueRotate: 0
-        }
+  {
+    //
+    id: 1,
+    name: "Cubeage Technologies Services Pvt. Ltd.",
+    shortName: "Cubeage Tech",
+    logo: cubeagelogo,
+    header: cubeage_header,
+    footer: placeholderFooter,
+    signature: cubeage_signature,
+    stamp: cubeage_stamp,
+    watermark: placeholderWatermark,
+    headerImage: cubeage_header,
+    footerImage: placeholderFooter,
+    watermarkImage: placeholderWatermark,
+    address:
+      "Survey No. 21, Ganesham Commercial -A Office No. 102-B First Floor 18-21/24, BRTS Road Pimple Saudagar Pune, Maharashtra 411027 India",
+    email: "hr@cubeagetech.com",
+    phone: "+91 9112100661",
+    website: "www.cubeagetech.com",
+    city: "Pune",
+    regNo: "CIN: U72900PN2022PTC217321",
+    hrName: "Saloni Dere",
+    brandColors: {
+      primary: "#2196F3",
+      secondary: "#1976D2",
+      accent: "#03DAC6",
+      textColor: "#212121",
+      watermarkOpacity: 0.05,
+      hueRotate: 0,
     },
-    // Newage
-    {
-        id: 2,
-        name: 'Neweage Cloud Solution Pvt. Ltd.',
-        shortName: 'Neweage Cloud',
-        logo: neweagelogo,
-        header: Newage_header,
-        footer: Newage_footer,
-        signature: Newage_signature,
-        stamp: Newage_stamp,
-        watermark: Newage_watermark,
-        headerImage: Newage_header,
-        footerImage: Newage_footer,
-        watermarkImage: Newage_watermark,
-        address: 'Office No. 4-B, Ganesham Commercial - A, Survey No. 21/18-21/24 BRTS Road,Pimple Saudagar, Pune-411027',
-        email: 'contact@neweagecloud.com',
-        phone: ': +91 7066531234',
-        website: 'https://neweageclouds.com/',
-        city: 'Pune',
-        regNo: 'CIN: U72900PN2022PTC217339',
-        hrName: 'Shyam Patil',
-        brandColors: {
-            primary: '#4CAF50',
-            secondary: '#388E3C',
-            accent: '#8BC34A',
-            textColor: '#1B5E20',
-            watermarkOpacity: 0.06,
-            hueRotate: 90
-        }
+  },
+  // Newage
+  {
+    id: 2,
+    name: "Neweage Cloud Solution Pvt. Ltd.",
+    shortName: "Neweage Cloud",
+    logo: neweagelogo,
+    header: Newage_header,
+    footer: Newage_footer,
+    signature: Newage_signature,
+    stamp: Newage_stamp,
+    watermark: Newage_watermark,
+    headerImage: Newage_header,
+    footerImage: Newage_footer,
+    watermarkImage: Newage_watermark,
+    address:
+      "Office No. 4-B, Ganesham Commercial - A, Survey No. 21/18-21/24 BRTS Road,Pimple Saudagar, Pune-411027",
+    email: "contact@neweagecloud.com",
+    phone: ": +91 7066531234",
+    website: "https://neweageclouds.com/",
+    city: "Pune",
+    regNo: "CIN: U72900PN2022PTC217339",
+    hrName: "Shyam Patil",
+    brandColors: {
+      primary: "#4CAF50",
+      secondary: "#388E3C",
+      accent: "#8BC34A",
+      textColor: "#1B5E20",
+      watermarkOpacity: 0.06,
+      hueRotate: 90,
     },
-    // Smartmatrix
-    {
-        id: 3,
-        name: 'SmartMatrix Digital Services Pvt. Ltd.',
-        shortName: 'SmartMatrix',
-        logo: smartmatrixlogo,
-        header: placeholderHeader,
-        footer: placeholderFooter,
-        signature: smartmatrix_signature,
-        stamp: smartmatrix_stamp,
-        watermark: placeholderWatermark,
-        headerImage: placeholderHeader,
-        footerImage: placeholderFooter,
-        watermarkImage: placeholderWatermark,
-        address: 'Office No. 102-B, First Floor, Ganesham Commercial -A, Survey No. 21/18-21/24, BRTS Road, Pimple Saudagar, Pune- 411027',
-        email: 'contact@smartmatrixds.com',
-        phone: '+91 9112108484',
-        website: 'https://smartmatrixds.com/',
-        city: 'Pune',
-        regNo: 'CIN: U72900PN2022PTC217318',
-        hrName: 'Shiv Lahane',
-        brandColors: {
-            primary: '#FF9800',
-            secondary: '#F57C00',
-            accent: '#FFB74D',
-            textColor: '#E65100',
-            watermarkOpacity: 0.04,
-            hueRotate: 45
-        }
+  },
+  // Smartmatrix
+  {
+    id: 3,
+    name: "SmartMatrix Digital Services Pvt. Ltd.",
+    shortName: "SmartMatrix",
+    logo: smartmatrixlogo,
+    header: smartmatrix_header,
+    footer: smartmatrix_footer,
+    signature: smartmatrix_signature,
+    CEO:smartmatrix_CEO,
+    stamp: smartmatrix_stamp,
+    watermark: null,
+    headerImage: null,
+    footerImage: null,
+    watermarkImage: null,
+    address:
+      "Office No. 102-B, First Floor, Ganesham Commercial -A, Survey No. 21/18-21/24, BRTS Road, Pimple Saudagar, Pune- 411027",
+    email: "contact@smartmatrixds.com",
+    phone: "+91 9112108484",
+    website: "https://smartmatrixds.com/",
+    city: "Pune",
+    regNo: "CIN: U72900PN2022PTC217318",
+    hrName: "Shiv Lahane",
+    ceoName: "Sanjay Kumar",
+    brandColors: {
+      primary: "#FF9800",
+      secondary: "#F57C00",
+      accent: "#FFB74D",
+      textColor: "#E65100",
+      watermarkOpacity: 0.04,
+      hueRotate: 45,
     },
-    // Devcons
-    {
-        id: 4,
-        name: 'Devcons Software Solution Pvt. Ltd.',
-        shortName: 'Devcons',
-        logo: devconslogo,
-        header: devcons_header,
-        footer: devcons_footer,
-        signature: devcons_signature,
-        dilipSignature: dilip_sign,
-        stamp: devcons_stamp,
-        watermark: null,
-        headerImage: devcons_header,
-        footerImage: devcons_footer,
-        watermarkImage: null,
-        address: 'Office No. 4-A, Second Floor, Ganesham Commercial - A, Survey No. 21/18-21/24, BRTS Road, Pimple Saudagar, Pune- 411027',
-        email: ' hr@devconsoftware.com',
-        phone: '+91 9112106565',
-        website: 'https://www.devconsoftware.com/',
-        city: 'Pune',
-        regNo: 'CIN: U72900MH2022PTC396129',
-        hrName: 'Mayur Patil ',
-        brandColors: {
-            primary: '#9C27B0',
-            secondary: '#7B1FA2',
-            accent: '#BA68C8',
-            textColor: '#4A148C',
-            watermarkOpacity: 0.05,
-            hueRotate: 270
-        }
+  },
+  // Devcons
+  {
+    id: 4,
+    name: "Devcons Software Solution Pvt. Ltd.",
+    shortName: "Devcons",
+    logo: devconslogo,
+    header: devcons_header,
+    footer: devcons_footer,
+    signature: devcons_signature,
+    stamp: devcons_stamp,
+    watermark: placeholderWatermark,
+    headerImage: devcons_header,
+    footerImage: devcons_footer,
+    watermarkImage: placeholderWatermark,
+    address:
+      "Office No. 4-B, Ganesham Commercial - A, Survey No. 21/18-21/24, BRTS Road, Pimple Saudagar, Pune- 411027",
+    email: " hr@devconsoftware.com",
+    phone: "+91 9112106565",
+    website: "https://www.devconsoftware.com/",
+    city: "Pune",
+    regNo: "CIN: U72900MH2022PTC396129",
+    hrName: "Mayur Patil ",
+    brandColors: {
+      primary: "#9C27B0",
+      secondary: "#7B1FA2",
+      accent: "#BA68C8",
+      textColor: "#4A148C",
+      watermarkOpacity: 0.05,
+      hueRotate: 270,
     },
-    // RP Business
-    {
-        id: 5,
-        name: 'RP Business Solutions LLP',
-        shortName: 'RP Business',
-        logo: rpblogo,
-        header: rp_header,
-        footer: rp_footer,
-        signature: Rpbuisness_signature,
-        stamp: Rpbuisness_stamp,
-        watermark: placeholderWatermark,
-        headerImage: rp_header,
-        footerImage: rp_footer,
-        watermarkImage: placeholderWatermark,
-        address: 'Address : 301, 3rd Floor, Sai Villa Commercial Appartment, Sr No 166,Malwadi road, Opps. to Sahyadri Hospital, Hadapsar,Pune-411028',
-        email: ' hr@rpbsolution.com',
-        phone: '+91 9284888739',
-        website: 'https://www.rpbsolution.com/',
-        city: 'Pune',
-        regNo: '396129',
-        hrName: 'Aditi Dhambare',
-        brandColors: {
-            primary: '#F44336',
-            secondary: '#D32F2F',
-            accent: '#FF5722',
-            textColor: '#B71C1C',
-            watermarkOpacity: 0.06,
-            hueRotate: 0
-        }
+  },
+  // RP Business
+  {
+    id: 5,
+    name: "RP Business Solution LLP",
+    shortName: "RP Business",
+    logo: rpblogo,
+    header: rp_header,
+    footer: rp_footer,
+    signature: Rpbuisness_signature,
+    stamp: Rpbuisness_stamp,
+    watermark: placeholderWatermark,
+    headerImage: rp_header,
+    footerImage: rp_footer,
+    watermarkImage: placeholderWatermark,
+    address:
+      "Address : 401/402,4th Floor,Sai Villa Commercial Appartment,Sr No 166,Malwadi road, Opps. to Sahyadri Hospital, Hadapsar,Pune-411028",
+    email: " hr@rpbsolution.com",
+    phone: "+91 9284888739",
+    website: "https://www.rpbsolution.com/",
+    city: "Pune",
+    regNo: "396129",
+    hrName: "Aditi Dhambare",
+    brandColors: {
+      primary: "#F44336",
+      secondary: "#D32F2F",
+      accent: "#FF5722",
+      textColor: "#B71C1C",
+      watermarkOpacity: 0.06,
+      hueRotate: 0,
     },
-    // Penta Software
-    {
-        id: 6,
-        name: 'Penta Software Consultancy Services (I) Pvt Ltd',
-        shortName: 'Penta Software',
-        logo: pentalogo,
-        header: Penta_header,
-        footer: Penta_footer,
-        signature: Penta_signature,
-        stamp: Penta_stamp,
-        watermark: Penta_watermark,
-        headerImage: Penta_header,
-        footerImage: Penta_footer,
-        watermarkImage: Penta_watermark,
-        address: 'Office No. 102-C, First Floor, Ganesham Commercial -A, Survey No. 21/18-21/24, BRTS Road, Pimple Saudagar, Pune- 4110271',
-        email: 'hr@pentasoftwareconsultancy.com',
-        phone: '+91 7066541234',
-        website: 'https://pentasoftwareconsultancy.com/',
-        city: 'Pune',
-        regNo: 'CIN: U72900MH2022PTC388125',
-        hrName: 'Neeta Dere',
-        brandColors: {
-            primary: '#607D8B',
-            secondary: '#455A64',
-            accent: '#90A4AE',
-            textColor: '#263238',
-            watermarkOpacity: 0.05,
-            hueRotate: 180
-        }
+  },
+  // Penta Software
+  {
+    id: 6,
+    name: "Penta Software Consultancy Services (I) Pvt Ltd",
+    shortName: "Penta Software",
+    logo: pentalogo,
+    header: Penta_header,
+    footer: Penta_footer,
+    signature: Penta_signature,
+    stamp: Penta_stamp,
+    watermark: Penta_watermark,
+    headerImage: Penta_header,
+    footerImage: Penta_footer,
+    watermarkImage: Penta_watermark,
+    address:
+      "Office No. 102-C, First Floor, Ganesham Commercial -A, Survey No. 21/18-21/24, BRTS Road, Pimple Saudagar, Pune- 4110271",
+    email: "hr@pentasoftwareconsultancy.com",
+    phone: "+91 7066541234",
+    website: "https://pentasoftwareconsultancy.com/",
+    city: "Pune",
+    regNo: "CIN: U72900MH2022PTC388125",
+    hrName: "Neeta Dere",
+    brandColors: {
+      primary: "#607D8B",
+      secondary: "#455A64",
+      accent: "#90A4AE",
+      textColor: "#263238",
+      watermarkOpacity: 0.05,
+      hueRotate: 180,
     },
-    // Nimbja Security
-    {
-        id: 7,
-        name: 'Nimbja Security Solutions Pvt. Ltd.',
-        shortName: 'Nimbja Security',
-        logo: nimbjalogo,
-        header: Nimbja_header,
-        footer: Nimbja_footer,
-        signature: Nimbja_signature,
-        stamp: Nimbja_stamp,
-        watermark: placeholderWatermark,
-        headerImage: Nimbja_header,
-        footerImage: Nimbja_footer,
-        watermarkImage: placeholderWatermark,
-        address: 'Office No: 4-A, Second Floor, Ganesham A Commercial Bldg, Off Nashik Wakad, BRT Road, Pimple Saudagar, Pune, Maharashtra 411027',
-        email: 'hr@nimbjasolution.com',
-        phone: '+91 7066561234',
-        website: 'https://nimbjasolution.com/',
-        city: 'Pune',
-        regNo: 'CIN: U74999PN2018PTC177547',
-        hrName: 'kalpana Khade ',
-        brandColors: {
-            primary: '#795548',
-            secondary: '#5D4037',
-            accent: '#A1887F',
-            textColor: '#3E2723',
-            watermarkOpacity: 0.04,
-            hueRotate: 30
-        }
+  },
+  // Nimbja Security
+  {
+    id: 7,
+    name: "NIMBJA SECURITY SOLUTIONS Pvt. Ltd.",
+    shortName: "Nimbja Security",
+    logo: nimbjalogo,
+    header: Nimbja_header,
+    footer: Nimbja_footer,
+    signature: Nimbja_signature,
+    CEO: Nimbja_CEO,
+    stamp: Nimbja_stamp,
+    watermark: null,
+    headerImage: Nimbja_header,
+    footerImage: Nimbja_footer,
+    watermarkImage: null,
+    address:
+      "Office No. 4, 2nd Floor, Ganesham Commercial A, 13, Nashik Phata Road, Pimple Gurav, Pimpri-Chinchwad, Pune- 411027",
+    email: "hr@nimbjasolution.com",
+    phone: "+91 7066561234",
+    website: "https://nimbjasolution.com/",
+    city: "Pune",
+    regNo: "CIN: U74999PN2018PTC177547",
+    hrName: "Kalpana Khade ",
+    brandColors: {
+      primary: "#795548",
+      secondary: "#5D4037",
+      accent: "#A1887F",
+      textColor: "#3E2723",
+      watermarkOpacity: 0.04,
+      hueRotate: 30,
     },
-    // JDIT Software
-    {
-        id: 8,
-        name: 'JDIT Software Solutions Pvt. Ltd.',
-        shortName: 'JDIT',
-        logo: jditlogo,
-        header: jdit_header,
-        footer: jdit_footer,
-        signature: jdit_signature,
-        // signature: jdit_Signature, 
-        incrementSignature: ajaySignature,        // Normal letters
-        stamp: jdit_stamp,
-        watermark: jdit_watermark,
-        headerImage: jdit_header,
-        footerImage: jdit_footer,
-        watermarkImage: jdit_watermark,
-        address: '301, 3th Floor, Sai Vill Commercial Apartment,Next to Vaibhav Talkies, Behind RR Dage saries, Sr. No. 166,Malwadi Road, App. Sahyadri Hospital, Hadapsar, Pune 411028.',
-        email: 'hr@jditbs.com',
-        phone: '+91 8390930580',
-        website: 'https://www.jditbs.com/',
-        city: 'Pune',
-        regNo: 'CIN: U72900PN2022PTC215539',
-        hrNameIncrement: ' Ajay Wadatkar',  
-        hrName: 'Sweety Khade',
-        brandColors: {
-            primary: '#1976D2',
-            secondary: '#1565C0',
-            accent: '#42A5F5',
-            textColor: '#0D47A1',
-            watermarkOpacity: 0.07,
-            hueRotate: 0
-        }
+  },
+  // JDIT Software
+  {
+    id: 8,
+    name: "JDIT Software Solutions Pvt. Ltd.",
+    shortName: "JDIT",
+    logo: jditlogo,
+    header: jdit_header,
+    footer: jdit_footer,
+    signature: jdit_signature,
+    stamp: jdit_stamp,
+    watermark: jdit_watermark,
+    headerImage: jdit_header,
+    footerImage: jdit_footer,
+    watermarkImage: jdit_watermark,
+    address:
+      "301, 3th Floor, Sai Vill Commercial Apartment,Next to Vaibhav Talkies, Behind RR Dage saries, Sr. No. 166,Malwadi Road, App. Sahyadri Hospital, Hadapsar, Pune 411028.",
+    email: "hr@jditbs.com",
+    phone: "+91 8390930580",
+    website: "https://www.jditbs.com/",
+    city: "Pune",
+    regNo: "CIN: U72900PN2022PTC215539",
+    hrName: "Sweety Khade",
+    brandColors: {
+      primary: "#1976D2",
+      secondary: "#1565C0",
+      accent: "#42A5F5",
+      textColor: "#0D47A1",
+      watermarkOpacity: 0.07,
+      hueRotate: 0,
     },
-    // Quick Management Services
-    {
-        id: 9,
-        name: 'Quick Management Services',
-        shortName: 'Quick Management',
-        logo: qmslogo,
-        header: QMS_Header,
-        footer: placeholderFooter,
-        signature: QMS_Sign,
-        stamp: QMS_Stamp,
-        watermark: placeholderWatermark,
-        headerImage: QMS_Header,
-        footerImage: placeholderFooter,
-        watermarkImage: placeholderWatermark,
-        address: 'Quick Management Services 203,Changbhale Heights, Jawalkar Nagar, near Kalpataru Society, Phase-3, Pimple Gurav, Pune, Maharashtra 411061',
-        email: 'hr@quickmanagementservices.com',
-        phone: '+91 7066521234',
-        website: 'https://www.quickmanagementservices.com/',
-        city: 'Pune',
-        regNo: 'CIN: U74140WB2009PLC135775',
-        hrName: 'Subhash Sarkate',
-        brandColors: {
-            primary: '#E91E63',
-            secondary: '#C2185B',
-            accent: '#F48FB1',
-            textColor: '#880E4F',
-            watermarkOpacity: 0.05,
-            hueRotate: 315
-        }
+  },
+  // Quick Management Services
+  {
+    id: 9,
+    name: "Quick Management Services",
+    shortName: "Quick Management",
+    logo: qmslogo,
+    header: QMS_Header,
+    footer: placeholderFooter,
+    signature: QMS_Sign,
+    stamp: QMS_Stamp,
+    watermark: placeholderWatermark,
+    headerImage: QMS_Header,
+    footerImage: placeholderFooter,
+    watermarkImage: placeholderWatermark,
+    address:
+      "Quick Management Services 203,Changbhale Heights, Jawalkar Nagar, near Kalpataru Society, Phase-3, Pimple Gurav, Pune, Maharashtra 411061",
+    email: "hr@quickmanagementservices.com",
+    phone: "+91 7066521234",
+    website: "https://www.quickmanagementservices.com/",
+    city: "Pune",
+    regNo: "CIN: U74140WB2009PLC135775",
+    hrName: "Subhash Sarkate",
+    brandColors: {
+      primary: "#E91E63",
+      secondary: "#C2185B",
+      accent: "#F48FB1",
+      textColor: "#880E4F",
+      watermarkOpacity: 0.05,
+      hueRotate: 315,
     },
+  },
     // Smart Software Services
     {
         id: 10,
