@@ -21,14 +21,16 @@ import smartholderHeader from '../assets/images/SmartSoftware/smart-header.png';
 // import smartholderFooter from '../assets/images/SmartSoftware/smart-footer.png';
 import smartholderWatermark from '../assets/images/SmartSoftware/Watermark.png';
 import smartholderSignature from '../assets/images/SmartSoftware/Sign.png';
+import vandanaSignature from '../assets/images/SmartSoftware/Sign2.jpeg';
 import smartholderStamp from '../assets/images/SmartSoftware/Stamp.png';
 
 // Import JDIT Company Data images
-import jdit_header from "../assets/images/jdit/jdit-header.png"
+import jdit_header from "../assets/images/jdit/jdit_head.jpeg"
 import jdit_footer from "../assets/images/jdit/jditFooter.png"
 import jdit_watermark from "../assets/images/jdit/jdit_watermark.png"
-import jdit_signature from "../assets/images/jdit/jdit_sign.png"
-import jdit_stamp from "../assets/images/jdit/jdit_stamp.png"
+import jdit_signature from "../assets/images/jdit/jdit_Sign.jpeg"
+import ajaySignature from "../assets/images/jdit/jdit_sign.png"
+import jdit_stamp from "../assets/images/jdit/jdit_Stamp.jpeg"
 
 // rp imports  (watermark pending)
 import rp_header from "../assets/images/rp/RP_header.png"
@@ -46,14 +48,14 @@ import placeholderWatermark from '../assets/images/SmartSoftware/Watermark.png';
 // import placeholderStamp from '../assets/images/SmartSoftware/Stamp.png';
 
 //Newage
-import Newage_header from "../assets/images/Newagecloud/Newageheader.png"
-import Newage_footer from "../assets/images/Newagecloud/Newagefooter.png" 
+import Newage_header from "../assets/images/Newagecloud/Neweagehead.jpeg"
+import Newage_footer from "../assets/images/Newagecloud/neweagefooter.jpeg" 
 import Newage_signature from "../assets/images/Newagecloud/Newage_signature.png" 
 import Newage_stamp from "../assets/images/Newagecloud/Newage_stamp.png"
-import Newage_watermark from "../assets/images/Newagecloud/Newage_watermark.png" 
+import Newage_watermark from "../assets/images/Newagecloud/Newage_watermark.png"
 
 //cubeage(footer and watermark pending)
-import cubeage_header from "../assets/images/cubeagetechnology/cubeageheader.png" 
+import cubeage_header from "../assets/images/cubeagetechnology/cubeageheader.png"
 import cubeage_signature from "../assets/images/cubeagetechnology/cubeage_signature.png"
 import cubeage_stamp from "../assets/images/cubeagetechnology/cubeage_stamp.png"
 
@@ -65,18 +67,19 @@ import smartmatrix_footer from '../assets/images/smartmatrix/smartmatrix_footer.
 import smartmatrix_CEO from "../assets/images/smartmatrix/Smartmatrix_CEO.png";
 
 //  Devcons (watermark pending)
-import devcons_header from "../assets/images/devconssoftware/devcons_header.png" 
+import devcons_header from "../assets/images/devconssoftware/devconsheaders.png"
 import devcons_footer from "../assets/images/devconssoftware/devcons_footer.png"
 import devcons_signature from "../assets/images/devconssoftware/devcons_signature.png"
 import devcons_stamp from "../assets/images/devconssoftware/devcons_stamp.png"
+import dilip_sign from "../assets/images/devconssoftware/dilip_kumar_signature.png"
 
 
 //penta
-import Penta_header from "../assets/images/Penta/Penta_header.png" 
-import Penta_footer from "../assets/images/Penta/Penta_footer.png" 
-import Penta_signature from "../assets/images/Penta/Penta_sign.png" 
-import Penta_stamp from "../assets/images/Penta/Penta_stamp.png" 
-import Penta_watermark from "../assets/images/Penta/Penta_watermark.png" 
+import Penta_header from "../assets/images/Penta/Penta_header.png"
+import Penta_footer from "../assets/images/Penta/Penta_footer.png"
+import Penta_signature from "../assets/images/Penta/Penta_sign.png"
+import Penta_stamp from "../assets/images/Penta/Penta_stamp.png"
+import Penta_watermark from "../assets/images/Penta/Penta_watermark.png"
 
 //Nimbja( Watermark Pending)
 import Nimbja_header from "../assets/images/Nimbja/Nimbja_header.png" 
@@ -87,9 +90,9 @@ import Nimbja_watermark from '../assets/images/Nimbja/nimbja_watermark.png'
 import Nimbja_CEO from '../assets/images/Nimbja/Nimbja_CEO.png'
 
 //QM  (Footer watermark Pending)
-  import QMS_Header from "../assets/images/QMS/QMS_Header.png" 
-  import QMS_Sign from "../assets/images/QMS/QMS_Sign.png" 
-  import QMS_Stamp from "../assets/images/QMS/QMS_Stamp.png" 
+import QMS_Header from "../assets/images/QMS/QMS_Header.png"
+import QMS_Sign from "../assets/images/QMS/QMS_Sign.png"
+import QMS_Stamp from "../assets/images/QMS/QMS_Stamp.png"
 
 
 export const companies = [
@@ -375,595 +378,435 @@ export const companies = [
       hueRotate: 315,
     },
   },
-  // Smart Software Services
-  {
-    id: 10,
-    name: "Smart Software Services (I) Pvt. Ltd.",
-    shortName: "Smart Software",
-    logo: "logos/SmartSoftwareServicesLogo.png",
-    header: smart_header,
-    footer: smartholderFooter,
-    signature: smartholderSignature,
-    stamp: smartholderStamp,
-    watermark: smartholderWatermark,
-    headerImage: smartholderHeader,
-    footerImage: smartholderFooter,
-    watermarkImage: smartholderWatermark,
-    address:
-      "406 Changbhale Heights, Near Kalpataru Estate Phase III, Pimple Gurav, Pune 411061",
-    email: "hr@smartsoftwareservice.com",
-    phone: "+91 7066511234",
-    website: "https://smartsoftwareservice.com/",
-    city: "Pune",
-    regNo: "CIN:U74990PN2016PTC158285",
-    hrName: "Sandip Patil",
-    brandColors: {
-      primary: "#00BCD4",
-      secondary: "#0097A7",
-      accent: "#4DD0E1",
-      textColor: "#006064",
-      watermarkOpacity: 0.06,
-      hueRotate: 180,
-    },
-  },
+    // Smart Software Services
+    {
+        id: 10,
+        name: 'Smart Software Services (I) Pvt. Ltd.',
+        shortName: 'Smart Software',
+        logo: 'logos/SmartSoftwareServicesLogo.png',
+        header: smart_header,
+        footer: smartholderFooter,
+        signature: smartholderSignature,      // Normal letters
+        incrementSignature: vandanaSignature,   // ✅ Increment ONLY
+
+        stamp: smartholderStamp,
+        watermark: smartholderWatermark,
+        headerImage: smartholderHeader,
+        footerImage: smartholderFooter,
+        watermarkImage: smartholderWatermark,
+        address: '406 Changbhale Heights, Near Kalpataru Estate Phase III, Pimple Gurav, Pune 411061',
+        email: 'hr@smartsoftwareservice.com',
+        phone: '+91 7066511234',
+        website: 'https://smartsoftwareservice.com/',
+        city: 'Pune',
+        regNo: 'CIN:U74990PN2016PTC158285',
+        hrName: 'Sandeep Patil', 
+        brandColors: {
+            primary: '#00BCD4',
+            secondary: '#0097A7',
+            accent: '#4DD0E1',
+            textColor: '#006064',
+            watermarkOpacity: 0.06,
+            hueRotate: 180
+        }
+    }
 ];
 
 export const documentTypes = [
-  {
-    id: 1,
-    name: "Salary Slip",
-    template: "salary-slip",
-    fields: [
-      {
-        name: "mrms",
-        label: "Select Title",
-        type: "select",
-        options: ["Mr.", "Mrs.", "Miss.", "Mx."],
-        required: true,
-      },
-      {
-        name: "employeeName",
-        label: "Employee Name",
-        type: "text",
-        required: true,
-      },
-      {
-        name: "employeeId",
-        label: "Employee ID",
-        type: "text",
-        required: true,
-      },
-      {
-        name: "designation",
-        label: "Designation",
-        type: "text",
-        required: true,
-      },
-      { name: "department", label: "Department", type: "text", required: true },
-      { name: "month", label: "Month", type: "month", required: true },
-      {
-        name: "totalSalary",
-        label: "Total Salary",
-        type: "number",
-        required: true,
-      },
-      { name: "doj", label: "Date of Joining", type: "date", require: true },
-      { name: "pan", label: "PAN Card Number", type: "text", required: true },
-      {
-        name: "gender",
-        label: "Gender",
-        type: "select",
-        options: ["Male", "Female", "Other"],
-        required: true,
-      },
-      { name: "mode", label: "Mode Bank", type: "text", required: true },
-      {
-        name: "workdays",
-        label: "Total Workdays",
-        type: "number",
-        required: true,
-      },
-      { name: "dob", label: "Date of Birth", type: "date", required: true },
-      // { name: 'basicSalary', label: 'Basic Salary', type: 'number', required: true },
-      // { name: 'hra', label: 'HRA', type: 'number', required: true },
-      // { name: 'conveyanceAllowance', label: 'Conveyance Allowance', type: 'number', required: true },
-      // { name: 'medicalAllowance', label: 'Medical Allowance', type: 'number', required: true },
-      // { name: 'specialAllowance', label: 'Special Allowance', type: 'number', required: true },
-      // { name: 'pf', label: 'PF', type: 'number', required: true },
-      // { name: 'professionalTax', label: 'Professional Tax', type: 'number', required: true },
-      // { name: 'incomeTax', label: 'Income Tax', type: 'number', required: true }
-    ],
-  },
-  {
-    id: 2,
-    name: "Offer Letter",
-    template: "offer-letter",
-    fields: [
-      {
-        name: "mrms",
-        label: "Select Title",
-        type: "select",
-        options: ["Mr.", "Mrs.", "Miss.", "Mx."],
-        required: true,
-      },
-      {
-        name: "candidateName",
-        label: "Candidate Name",
-        type: "text",
-        required: true,
-      },
-      { name: "address", label: "Address", type: "textarea", required: false },
-      { name: "position", label: "Position", type: "text", required: true },
-      { name: "department", label: "Department", type: "text", required: true },
-      {
-        name: "employmentType",
-        label: "Employment Type",
-        type: "select",
-        options: ["Full-time", "Part-time", "Contract", "Internship"],
-        required: true,
-      },
-      {
-        name: "joiningDate",
-        label: "Joining Date",
-        type: "date",
-        required: true,
-      },
-      {
-        name: "probationPeriod",
-        label: "Probation Period (months)",
-        type: "number",
-        required: false,
-      },
-      {
-        name: "salary",
-        label: "Annual Salary (CTC)",
-        type: "number",
-        required: true,
-      },
-      {
-        name: "location",
-        label: "Work Location",
-        type: "text",
-        required: true,
-      },
-      { name: "workHours", label: "Work Hours", type: "text", required: false },
-      {
-        name: "reportingManager",
-        label: "Reporting Manager",
-        type: "text",
-        required: true,
-      },
-      {
-        name: "noticePeriod",
-        label: "Notice Period",
-        type: "text",
-        required: false,
-      },
-      {
-        name: "offerValidTill",
-        label: "Offer Valid Till",
-        type: "date",
-        required: true,
-      },
-      { name: "issueDate", label: "Issue Date", type: "date", required: true },
-      {
-        name: "benefits",
-        label: "Benefits & Perks",
-        type: "textarea",
-        required: false,
-      },
-      {
-        name: "documentsRequired",
-        label: "Documents Required",
-        type: "textarea",
-        required: false,
-      },
-    ],
-  },
-  {
-      id: 3,
-      name: 'Appointment Letter',
-      template: 'appointment-letter',
-      fields: [
-          { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-          { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
-          { name: 'address', label: 'Address', type: 'textarea', required: true },
-          { name: 'position', label: 'Position', type: 'text', required: true },
-          { name: 'department', label: 'Department', type: 'text', required: true },
-          { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
-          { name: 'employeeId', label: 'EMP ID', type: 'text', required: true },
-          { name: 'probationPeriod', label: 'Probation Period (months)', type: 'number', required: true },
-          { name: 'salary', label: 'Annual Salary (CTC)', type: 'number', required: true },
-          { name: 'workLocation', label: 'Work Location', type: 'text', required: true },
-          { name: 'reportingManager', label: 'Reporting Manager', type: 'text', required: true },
-          { name: 'workHours', label: 'Work Hours', type: 'text', required: false },
-          { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
-      ]
-  },
-  {
-    id: 4,
-    name: "Experience Letter",
-    template: "experience-letter",
-    fields: [
-      {
-        name: "mrms",
-        label: "Select Title",
-        type: "select",
-        options: ["Mr.", "Mrs.", "Miss.", "Mx."],
-        required: true,
-      },
-      {
-        name: "employeeName",
-        label: "Employee Name",
-        type: "text",
-        required: true,
-      },
-      {
-        name: "employeeId",
-        label: "Employee ID",
-        type: "text",
-        required: true,
-      },
-      {
-        name: "designation",
-        label: "Designation",
-        type: "text",
-        required: true,
-      },
-      { name: "department", label: "Department", type: "text", required: true },
-      {
-        name: "joiningDate",
-        label: "Joining Date",
-        type: "date",
-        required: true,
-      },
-      {
-        name: "relievingDate",
-        label: "Relieving Date",
-        type: "date",
-        required: true,
-      },
-      {
-        name: "workDescription",
-        label: "Work Description",
-        type: "textarea",
-        required: true,
-      },
-      {
-        name: "conduct",
-        label: "Conduct & Performance",
-        type: "select",
-        options: ["Excellent", "Very Good", "Good", "Satisfactory"],
-        required: true,
-      },
-      { name: "issueDate", label: "Issue Date", type: "date", required: true },
-    ],
-  },
-  {
-    id: 5,
-    name: "Relieving Letter",
-    template: "relieving-letter",
-    fields: [
-      {
-        name: "mrms",
-        label: "Select Title",
-        type: "select",
-        options: ["Mr.", "Mrs.", "Miss.", "Mx."],
-        required: true,
-      },
-      {
-        name: "employeeName",
-        label: "Employee Name",
-        type: "text",
-        required: true,
-      },
-      {
-        name: "employeeId",
-        label: "Employee ID",
-        type: "text",
-        required: true,
-      },
-      {
-        name: "designation",
-        label: "Designation",
-        type: "text",
-        required: true,
-      },
-      { name: "department", label: "Department", type: "text", required: true },
-      { name: "joiningDate", label: "Joining Date", type: "date" },
-      {
-        name: "lastWorkingDay",
-        label: "Last Working Day",
-        type: "date",
-        required: true,
-      },
-      {
-        name: "noticePeriod",
-        label: "Notice Period Served",
-        type: "text",
-        required: true,
-      },
-      {
-        name: "handoverStatus",
-        label: "Handover Status",
-        type: "select",
-        options: ["Completed", "Partially Completed", "Not Applicable"],
-        required: true,
-      },
-      { name: "issueDate", label: "Issue Date", type: "date", required: true },
-    ],
-  },
-  // {
-  //     id: 6,
-  //     name: 'Employment Verification Letter',
-  //     template: 'employment-verification',
-  //     fields: [
-  //         { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-  //         { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
-  //         { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
-  //         { name: 'designation', label: 'Designation', type: 'text', required: true },
-  //         { name: 'department', label: 'Department', type: 'text', required: true },
-  //         { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
-  //         { name: 'employmentStatus', label: 'Employment Status', type: 'select', options: ['Active', 'Former'], required: true },
-  //         { name: 'currentSalary', label: 'Current Annual Salary', type: 'number', required: false },
-  //         { name: 'workLocation', label: 'Work Location', type: 'text', required: true },
-  //         { name: 'requestedBy', label: 'Requested By', type: 'text', required: true },
-  //         { name: 'purpose', label: 'Purpose of Verification', type: 'text', required: false },
-  //         { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
-  //     ]
-  // },
-  {
-    id: 7,
-    name: "Increment Letter",
-    template: "increment-letter",
-    fields: [
-      {
-        name: "mrms",
-        label: "Select Title",
-        type: "select",
-        options: ["Mr.", "Mrs.", "Miss.", "Mx."],
-        required: true,
-      },
-      {
-        name: "employeeName",
-        label: "Employee Name",
-        type: "text",
-        required: true,
-      },
-      {
-        name: "employeeId",
-        label: "Employee ID",
-        type: "text",
-        required: true,
-      },
-      {
-        name: "designation",
-        label: "Designation",
-        type: "text",
-        required: true,
-      },
-      { name: "department", label: "Department", type: "text", required: true },
-      {
-        name: "currentCTC",
-        label: "Current CTC (Annual)",
-        type: "number",
-        required: true,
-      },
-      {
-        name: "newCTC",
-        label: "New CTC (Annual)",
-        type: "number",
-        required: true,
-      },
-      {
-        name: "incrementPercentage",
-        label: "Increment Percentage",
-        type: "number",
-        required: true,
-        formula: "(newCTC - currentCTC) / currentCTC * 100", // 👈 dynamic formula
-        suffix: "%",
-      },
-      {
-        name: "effectiveDate",
-        label: "Effective Date",
-        type: "date",
-        required: true,
-      },
-      { name: "issueDate", label: "Issue Date", type: "date", required: true },
-      {
-        name: "reason",
-        label: "Reason for Increment",
-        type: "textarea",
-        required: false,
-      },
-    ],
-  },
-  // {
-  //     id: 8,
-  //     name: 'Promotion Letter',
-  //     template: 'promotion-letter',
-  //     fields: [
-  //         { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-  //         { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
-  //         { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
-  //         { name: 'currentDesignation', label: 'Current Designation', type: 'text', required: true },
-  //         { name: 'newDesignation', label: 'New Designation', type: 'text', required: true },
-  //         { name: 'currentDepartment', label: 'Current Department', type: 'text', required: true },
-  //         { name: 'newDepartment', label: 'New Department', type: 'text', required: false },
-  //         { name: 'currentCTC', label: 'Current CTC (Annual)', type: 'number', required: true },
-  //         { name: 'newCTC', label: 'New CTC (Annual)', type: 'number', required: true },
-  //         { name: 'effectiveDate', label: 'Effective Date', type: 'date', required: true },
-  //         { name: 'newReportingManager', label: 'New Reporting Manager', type: 'text', required: false },
-  //         { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
-  //         { name: 'achievements', label: 'Key Achievements', type: 'textarea', required: false }
-  //     ]
-  // },
-  // {
-  //     id: 9,
-  //     name: 'Warning Letter',
-  //     template: 'warning-letter',
-  //     fields: [
-  //         { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-  //         { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
-  //         { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
-  //         { name: 'designation', label: 'Designation', type: 'text', required: true },
-  //         { name: 'department', label: 'Department', type: 'text', required: true },
-  //         { name: 'warningType', label: 'Warning Type', type: 'select', options: ['Verbal Warning', 'Written Warning', 'Final Warning'], required: true },
-  //         { name: 'issueDescription', label: 'Issue Description', type: 'textarea', required: true },
-  //         { name: 'previousWarnings', label: 'Previous Warnings', type: 'textarea', required: false },
-  //         { name: 'expectedImprovement', label: 'Expected Improvement', type: 'textarea', required: true },
-  //         { name: 'reviewDate', label: 'Review Date', type: 'date', required: true },
-  //         { name: 'consequences', label: 'Consequences if Not Improved', type: 'textarea', required: true },
-  //         { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
-  //     ]
-  // },
-  // {
-  //     id: 10,
-  //     name: 'No Objection Certificate (NOC)',
-  //     template: 'noc-letter',
-  //     fields: [
-  //         { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-  //         { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
-  //         { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
-  //         { name: 'designation', label: 'Designation', type: 'text', required: true },
-  //         { name: 'department', label: 'Department', type: 'text', required: true },
-  //         { name: 'purpose', label: 'Purpose of NOC', type: 'select', options: ['Higher Education', 'Part-time Job', 'Freelancing', 'Business Activity', 'Travel/Visa', 'Other'], required: true },
-  //         { name: 'purposeDetails', label: 'Purpose Details', type: 'textarea', required: true },
-  //         { name: 'duration', label: 'Duration/Period', type: 'text', required: false },
-  //         { name: 'conditions', label: 'Conditions/Terms', type: 'textarea', required: false },
-  //         { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
-  //         { name: 'validTill', label: 'Valid Till', type: 'date', required: false }
-  //     ]
-  // },
-  {
-      id: 11,
-      name: 'Internship Paid',
-      template: 'internship-certificate',
-      fields: [
-        { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-        { name: 'internName', label: 'Intern Name', type: 'text', required: true },
-        { name: 'field', label: 'Field of Study', type: 'text', required: true },
-        { name: 'startDate', label: 'Start Date', type: 'date', required: true },
-        { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
-          { name: 'endDate', label: 'End Date', type: 'date', required: true },
-          { name: 'salary', label: 'Annual Salary (LPA)', type: 'text', required: true },
-          // { name: 'department', label: 'Department', type: 'text', required: true },
-          // { name: 'projectName', label: 'Project Name', type: 'text', required: true },
-          // { name: 'performance', label: 'Performance', type: 'select', options: ['Excellent', 'Very Good', 'Good', 'Satisfactory'], required: true },
-          // { name: 'mentorName', label: 'Mentor Name', type: 'text', required: false },
-      ]
-  },
-  {
-      id: 16,
-      name: 'Internship UnPaid',
-      template: 'internship-certificate-unpaid',
-      fields: [
-        { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-        { name: 'internName', label: 'Intern Name', type: 'text', required: true },
-        { name: 'field', label: 'Field of Study', type: 'text', required: true },
-        { name: 'startDate', label: 'Start Date', type: 'date', required: true },
-        { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
-          { name: 'endDate', label: 'End Date', type: 'date', required: true },
-          // { name: 'department', label: 'Department', type: 'text', required: true },
-          // { name: 'projectName', label: 'Project Name', type: 'text', required: true },
-          // { name: 'performance', label: 'Performance', type: 'select', options: ['Excellent', 'Very Good', 'Good', 'Satisfactory'], required: true },
-          // { name: 'mentorName', label: 'Mentor Name', type: 'text', required: false },
-      ]
-  },
-  // {
-  //     id: 12,
-  //     name: 'Completion Certificate',
-  //     template: 'completion-certificate',
-  //     fields: [
-  //         { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-  //         { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
-  //         { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
-  //         { name: 'projectName', label: 'Project Name', type: 'text', required: true },
-  //         { name: 'startDate', label: 'Start Date', type: 'date', required: true },
-  //         { name: 'completionDate', label: 'Completion Date', type: 'date', required: true },
-  //         { name: 'role', label: 'Role in Project', type: 'text', required: true },
-  //         { name: 'technologies', label: 'Technologies Used', type: 'textarea', required: true },
-  //         { name: 'achievements', label: 'Key Achievements', type: 'textarea', required: true },
-  //         { name: 'clientName', label: 'Client Name', type: 'text', required: false },
-  //         { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
-  //     ]
-  // },
-  // {
-  //     id: 13,
-  //     name: 'Salary Transaction Certificate',
-  //     template: 'salary-transaction',
-  //     fields: [
-  //         { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-  //         { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
-  //         { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
-  //         { name: 'designation', label: 'Designation', type: 'text', required: true },
-  //         { name: 'month', label: 'Salary Month', type: 'month', required: true },
-  //         { name: 'ctc', label: 'Annual CTC', type: 'number', required: true },
-  //         { name: 'netSalary', label: 'Net Salary Paid', type: 'number', required: true },
-  //         { name: 'bankName', label: 'Bank Name', type: 'text', required: true },
-  //         { name: 'accountNumber', label: 'Account Number', type: 'text', required: true },
-  //         { name: 'transactionDate', label: 'Transaction Date', type: 'date', required: true },
-  //         { name: 'transactionId', label: 'Transaction ID', type: 'text', required: true },
-  //         { name: 'paymentMode', label: 'Payment Mode', type: 'select', options: ['Bank Transfer', 'Cheque', 'Cash'], required: true }
-  //     ]
-  // },
-  // {
-  //     id: 14,
-  //     name: 'Termination Letter',
-  //     template: 'termination-letter',
-  //     fields: [
-  //         { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-  //         { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
-  //         { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
-  //         { name: 'designation', label: 'Designation', type: 'text', required: true },
-  //         { name: 'department', label: 'Department', type: 'text', required: true },
-  //         { name: 'terminationType', label: 'Termination Type', type: 'select', options: ['Voluntary Resignation', 'Involuntary Termination', 'Mutual Separation', 'End of Contract'], required: true },
-  //         { name: 'terminationDate', label: 'Termination Date', type: 'date', required: true },
-  //         { name: 'lastWorkingDay', label: 'Last Working Day', type: 'date', required: true },
-  //         { name: 'reason', label: 'Reason for Termination', type: 'textarea', required: true },
-  //         { name: 'noticePeriod', label: 'Notice Period', type: 'text', required: false },
-  //         { name: 'finalSettlement', label: 'Final Settlement Details', type: 'textarea', required: false },
-  //         { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
-  //     ]
-  // },
-  // {
-  //     id: 15,
-  //     name: 'Transfer Letter',
-  //     template: 'transfer-letter',
-  //     fields: [
-  //         { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
-  //         { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
-  //         { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
-  //         { name: 'currentDesignation', label: 'Current Designation', type: 'text', required: true },
-  //         { name: 'currentDepartment', label: 'Current Department', type: 'text', required: true },
-  //         { name: 'currentLocation', label: 'Current Location', type: 'text', required: true },
-  //         { name: 'newDesignation', label: 'New Designation', type: 'text', required: false },
-  //         { name: 'newDepartment', label: 'New Department', type: 'text', required: true },
-  //         { name: 'newLocation', label: 'New Location', type: 'text', required: true },
-  //         { name: 'transferDate', label: 'Transfer Date', type: 'date', required: true },
-  //         { name: 'reason', label: 'Reason for Transfer', type: 'textarea', required: false },
-  //         { name: 'newReportingManager', label: 'New Reporting Manager', type: 'text', required: false },
-  //         { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
-  //     ]
-  // }
-  {
-    id: 17,
-    name: 'Full and Final',
-    template: 'full-and-final',
-    fields: [
-      { name: 'mrms', label: 'Select Title', type: 'select', options: [ 'Mr.', 'Mrs.', 'Miss', 'Mx.' ], required: true },
-      { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
-      { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
-      { name: 'department', label: 'Department', type: 'text', required: true },
-      { name: 'designation', label: 'Designation', type: 'text', required: true },
-      { name: 'date', label: 'Final Date', type: 'date', required: true },
-      { name: 'doj', label: 'Joining Date', type: 'date', required: true },
-      { name: 'dateofresignation', label: 'Resignation Date', type: 'date', required: true },
-      { name: 'dateofleaving', label: 'Leaving Date', type: 'date', required: true },
-      { name: 'month', label: 'Select Month', type: 'month', required: true },
-      { name: 'totalSalary', label: 'Salary', type: 'number', required: true },
-    ]
-  }
+    {
+        id: 1,
+        name: 'Salary Slip',
+        template: 'salary-slip',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'month', label: 'Month', type: 'month', required: true },
+            { name: 'totalSalary', label: 'Total Salary', type: 'number', required: true },
+            { name: 'doj', label: 'Date of Joining', type: 'date', require: true },
+            { name: 'pan', label: 'PAN Card Number', type: 'text', required: true },
+            { name: 'gender', label: 'Gender', type: 'select', options: ['Male', 'Female', 'Other'], required: true },
+            { name: 'mode', label: 'Mode Bank', type: 'text', required: true },
+            { name: 'workdays', label: 'Total Workdays', type: 'number', required: true },
+            { name: 'dob', label: 'Date of Birth', type: 'date', required: true },
+            { name: 'accountNo', label: 'Account Number', type: 'text', required: true },
+            // { name: 'basicSalary', label: 'Basic Salary', type: 'number', required: true },
+            // { name: 'hra', label: 'HRA', type: 'number', required: true },
+            // { name: 'conveyanceAllowance', label: 'Conveyance Allowance', type: 'number', required: true },
+            // { name: 'medicalAllowance', label: 'Medical Allowance', type: 'number', required: true },
+            // { name: 'specialAllowance', label: 'Special Allowance', type: 'number', required: true },
+            // { name: 'pf', label: 'PF', type: 'number', required: true },
+            // { name: 'professionalTax', label: 'Professional Tax', type: 'number', required: true },
+            // { name: 'incomeTax', label: 'Income Tax', type: 'number', required: true }
+        ]
+    },
+    {
+        id: 2,
+        name: 'Offer Letter',
+        template: 'offer-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'candidateName', label: 'Candidate Name', type: 'text', required: true },
+            { name: 'address', label: 'Address', type: 'textarea', required: false },
+            { name: 'position', label: 'Position', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'employmentType', label: 'Employment Type', type: 'select', options: ['Full-time', 'Part-time', 'Contract', 'Internship'], required: true },
+            { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
+            { name: 'probationPeriod', label: 'Probation Period (months)', type: 'number', required: false },
+            { name: 'salary', label: 'Annual Salary (CTC)', type: 'number', required: true },
+            { name: 'location', label: 'Work Location', type: 'text', required: true },
+            { name: 'workHours', label: 'Work Hours', type: 'text', required: false },
+            { name: 'reportingManager', label: 'Reporting Manager', type: 'text', required: true },
+            { name: 'noticePeriod', label: 'Notice Period', type: 'text', required: false },
+            { name: 'offerValidTill', label: 'Offer Valid Till', type: 'date', required: true },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
+            // { name: 'benefits', label: 'Benefits & Perks', type: 'textarea', required: false },
+            // { name: 'documentsRequired', label: 'Documents Required', type: 'textarea', required: false }
+        ]
+    },
+    {
+        id: 3,
+        name: 'Appointment Letter',
+        template: 'appointment-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'address', label: 'Address', type: 'textarea', required: true },
+            { name: 'position', label: 'Position', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
+            { name: 'probationPeriod', label: 'Probation Period (months)', type: 'number', required: true },
+            { name: 'salary', label: 'Annual Salary (CTC)', type: 'number', required: true },
+            { name: 'workLocation', label: 'Work Location', type: 'text', required: true },
+            { name: 'reportingManager', label: 'Reporting Manager', type: 'text', required: true },
+            { name: 'workHours', label: 'Work Hours', type: 'text', required: false },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
+        ]
+    },
+    {
+        id: 4,
+        name: 'Experience Letter',
+        template: 'experience-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
+            { name: 'relievingDate', label: 'Relieving Date', type: 'date', required: true },
+            // { name: 'workDescription', label: 'Work Description', type: 'textarea', required: true },
+            { name: 'conduct', label: 'Conduct & Performance', type: 'select', options: ['Excellent', 'Very Good', 'Good', 'Satisfactory'], required: true },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
+        ]
+    },
+    {
+        id: 5,
+        name: 'Relieving Letter',
+        template: 'relieving-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
+            { name: 'lastWorkingDay', label: 'Last Working Day', type: 'date', required: true },
+            { name: 'noticePeriod', label: 'Notice Period Served', type: 'text', required: true },
+            { name: 'handoverStatus', label: 'Handover Status', type: 'select', options: ['Completed', 'Partially Completed', 'Not Applicable'], required: true },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
+        ]
+    },
+    {
+        id: 6,
+        name: 'Employment Verification Letter',
+        template: 'employment-verification',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
+            { name: 'employmentStatus', label: 'Employment Status', type: 'select', options: ['Active', 'Former'], required: true },
+            { name: 'currentSalary', label: 'Current Annual Salary', type: 'number', required: false },
+            { name: 'workLocation', label: 'Work Location', type: 'text', required: true },
+            { name: 'requestedBy', label: 'Requested By', type: 'text', required: true },
+            { name: 'purpose', label: 'Purpose of Verification', type: 'text', required: false },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
+        ]
+    },
+    {
+        id: 7,
+        name: 'Increment Letter',
+        template: 'increment-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'currentCTC', label: 'Current CTC (Annual)', type: 'number', required: true },
+            { name: 'newCTC', label: 'New CTC (Annual)', type: 'number', required: true },
+            {
+                name: 'incrementPercentage',
+                label: 'Increment Percentage',
+                type: 'number',
+                required: true,
+                formula: '(newCTC - currentCTC) / currentCTC * 100', // 👈 dynamic formula
+                suffix: '%'
+            },
+            { name: 'effectiveDate', label: 'Effective Date', type: 'date', required: true },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
+            // { name: 'reason', label: 'Reason for Increment', type: 'textarea', required: false }
+        ]
+    },
+    {
+        id: 8,
+        name: 'Promotion Letter',
+        template: 'promotion-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'currentDesignation', label: 'Current Designation', type: 'text', required: true },
+            { name: 'newDesignation', label: 'New Designation', type: 'text', required: true },
+            { name: 'currentDepartment', label: 'Current Department', type: 'text', required: true },
+            { name: 'newDepartment', label: 'New Department', type: 'text', required: false },
+            { name: 'currentCTC', label: 'Current CTC (Annual)', type: 'number', required: true },
+            { name: 'newCTC', label: 'New CTC (Annual)', type: 'number', required: true },
+            { name: 'effectiveDate', label: 'Effective Date', type: 'date', required: true },
+            { name: 'newReportingManager', label: 'New Reporting Manager', type: 'text', required: false },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
+            { name: 'achievements', label: 'Key Achievements', type: 'textarea', required: false }
+        ]
+    },
+    {
+        id: 9,
+        name: 'Warning Letter',
+        template: 'warning-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'warningType', label: 'Warning Type', type: 'select', options: ['Verbal Warning', 'Written Warning', 'Final Warning'], required: true },
+            { name: 'issueDescription', label: 'Issue Description', type: 'textarea', required: true },
+            { name: 'previousWarnings', label: 'Previous Warnings', type: 'textarea', required: false },
+            { name: 'expectedImprovement', label: 'Expected Improvement', type: 'textarea', required: true },
+            { name: 'reviewDate', label: 'Review Date', type: 'date', required: true },
+            { name: 'consequences', label: 'Consequences if Not Improved', type: 'textarea', required: true },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
+        ]
+    },
+    {
+        id: 10,
+        name: 'No Objection Certificate (NOC)',
+        template: 'noc-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'purpose', label: 'Purpose of NOC', type: 'select', options: ['Higher Education', 'Part-time Job', 'Freelancing', 'Business Activity', 'Travel/Visa', 'Other'], required: true },
+            { name: 'purposeDetails', label: 'Purpose Details', type: 'textarea', required: true },
+            { name: 'duration', label: 'Duration/Period', type: 'text', required: false },
+            { name: 'conditions', label: 'Conditions/Terms', type: 'textarea', required: false },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
+            { name: 'validTill', label: 'Valid Till', type: 'date', required: false }
+        ]
+    },
+    {
+        id: 11,
+        name: 'Internship Certificate',
+        template: 'internship-certificate',
+        fields: [
+            {
+                name: 'mrms',
+                label: 'Select Title',
+                type: 'select',
+                options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'],
+                required: true
+            },
+
+            {
+                name: 'employeeName',
+                label: 'Employee Name',
+                type: 'text',
+                required: true
+            },
+
+            {
+                name: 'designation',
+                label: 'Designation',
+                type: 'text',
+                required: true
+            },
+
+            // ✅ NEW — Internship Type
+            {
+                name: 'internshipType',
+                label: 'Select Internship Type',
+                type: 'select',
+                options: ['paid', 'unpaid'],
+                required: true
+            },
+
+            {  name: 'address',
+                 label: 'Address',
+                type: 'textarea',
+                required: false 
+            },
+
+            // ✅ NEW — Stipend (Only for Paid)
+            {
+                name: 'stipend',
+                label: 'Monthly Stipend',
+                type: 'number',
+                required: false,
+                dependsOn: {
+                    field: 'internshipType',
+                    value: 'paid'
+                }
+            },
+
+            {
+                name: 'startDate',
+                label: 'Start Date',
+                type: 'date',
+                required: true
+            },
+
+            {
+                name: 'endDate',
+                label: 'End Date',
+                type: 'date',
+                required: true
+            },
+
+            {
+                name: 'issueDate',
+                label: 'Issue Date',
+                type: 'date',
+                required: true
+            }
+        ]
+    },
+
+    {
+        id: 12,
+        name: 'Completion Certificate',
+        template: 'completion-certificate',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'projectName', label: 'Project Name', type: 'text', required: true },
+            { name: 'startDate', label: 'Start Date', type: 'date', required: true },
+            { name: 'completionDate', label: 'Completion Date', type: 'date', required: true },
+            { name: 'role', label: 'Role in Project', type: 'text', required: true },
+            { name: 'technologies', label: 'Technologies Used', type: 'textarea', required: true },
+            { name: 'achievements', label: 'Key Achievements', type: 'textarea', required: true },
+            { name: 'clientName', label: 'Client Name', type: 'text', required: false },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
+        ]
+    },
+    {
+        id: 13,
+        name: 'Salary Transaction Certificate',
+        template: 'salary-transaction',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'month', label: 'Salary Month', type: 'month', required: true },
+            { name: 'ctc', label: 'Annual CTC', type: 'number', required: true },
+            { name: 'netSalary', label: 'Net Salary Paid', type: 'number', required: true },
+            { name: 'bankName', label: 'Bank Name', type: 'text', required: true },
+            { name: 'accountNumber', label: 'Account Number', type: 'text', required: true },
+            { name: 'transactionDate', label: 'Transaction Date', type: 'date', required: true },
+            { name: 'transactionId', label: 'Transaction ID', type: 'text', required: true },
+            { name: 'paymentMode', label: 'Payment Mode', type: 'select', options: ['Bank Transfer', 'Cheque', 'Cash'], required: true }
+        ]
+    },
+    {
+        id: 14,
+        name: 'Termination Letter',
+        template: 'termination-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'terminationType', label: 'Termination Type', type: 'select', options: ['Voluntary Resignation', 'Involuntary Termination', 'Mutual Separation', 'End of Contract'], required: true },
+            { name: 'terminationDate', label: 'Termination Date', type: 'date', required: true },
+            { name: 'lastWorkingDay', label: 'Last Working Day', type: 'date', required: true },
+            { name: 'reason', label: 'Reason for Termination', type: 'textarea', required: true },
+            { name: 'noticePeriod', label: 'Notice Period', type: 'text', required: false },
+            { name: 'finalSettlement', label: 'Final Settlement Details', type: 'textarea', required: false },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
+        ]
+    },
+    {
+        id: 15,
+        name: 'Transfer Letter',
+        template: 'transfer-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'currentDesignation', label: 'Current Designation', type: 'text', required: true },
+            { name: 'currentDepartment', label: 'Current Department', type: 'text', required: true },
+            { name: 'currentLocation', label: 'Current Location', type: 'text', required: true },
+            { name: 'newDesignation', label: 'New Designation', type: 'text', required: false },
+            { name: 'newDepartment', label: 'New Department', type: 'text', required: true },
+            { name: 'newLocation', label: 'New Location', type: 'text', required: true },
+            { name: 'transferDate', label: 'Transfer Date', type: 'date', required: true },
+            { name: 'reason', label: 'Reason for Transfer', type: 'textarea', required: false },
+            { name: 'newReportingManager', label: 'New Reporting Manager', type: 'text', required: false },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
+        ]
+    },
+    {
+        id: 16,
+        name: 'FullandFinal Letter',
+        template: 'fullandfinal-letter',
+        fields: [
+           // { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'designation', label: 'Designation', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: true },
+            {name:  'date', label:'F&F Date', type:'date', required: true},
+            { name: 'month', label: 'For the Month', type: 'month', required: true },
+            { name: 'totalSalary', label: 'Total Salary', type: 'number', required: true },
+            { name: 'doj', label: 'Joining Date', type: 'date', require: true },
+            { name: 'dateofresignation', label: 'Date of Resignation', type: 'date', required: true },
+            { name: 'dateofleaving', label: 'Date of Leaving', type: 'date',  required: true },
+             { name:'leaveencashment' , label:'Leave encashment', type:'number', required: true},
+              { name: 'paiddays', label: 'Paid days ', type: 'number', required: true },
+            //{ name: 'mode', label: 'Mode Bank', type: 'text', required: true },
+            { name: 'workdays', label: 'Total Day in the month', type: 'number', required: true },
+            //{ name: 'dob', label: 'Date of Birth', type: 'date', required: true },
+            // { name: 'basicSalary', label: 'Basic Salary', type: 'number', required: true },
+            // { name: 'hra', label: 'HRA', type: 'number', required: true },
+            // { name: 'conveyanceAllowance', label: 'Conveyance Allowance', type: 'number', required: true },
+            // { name: 'medicalAllowance', label: 'Medical Allowance', type: 'number', required: true },
+            // { name: 'specialAllowance', label: 'Special Allowance', type: 'number', required: true },
+            // { name: 'pf', label: 'PF', type: 'number', required: true },
+            // { name: 'professionalTax', label: 'Professional Tax', type: 'number', required: true },
+            // { name: 'incomeTax', label: 'Income Tax', type: 'number', required: true }
+        ]
+    }
+
+
 ];
 
 // Mock user data for authentication

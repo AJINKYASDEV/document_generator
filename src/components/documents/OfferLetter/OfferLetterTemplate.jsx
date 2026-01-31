@@ -24,6 +24,7 @@ const companyComponentMap = {
 };
 
 const OfferLetterTemplate = ({ company, data }) => {
+  
   if (!company) return null;
 
   const OfferComponent = companyComponentMap[company.id];

@@ -1,9 +1,9 @@
 // A4Page.js
 import React from "react";
 import { Box } from "@mui/material";
-import placeholderHeader from "../../assets/images/placeholder-header.svg";
-import placeholderFooter from "../../assets/images/placeholder-footer.svg";
-// import placeholderWatermark from '../../assets/images/SmartSoftware/Watermark.png';
+import placeholderHeader from '../../assets/images/SmartSoftware/smartheaders.png';
+import placeholderFooter from '../../assets/images/SmartSoftware/smartfooters.png';
+import placeholderWatermark from '../../assets/images/SmartSoftware/Watermark.png';
 
 const A4Page = ({
   headerSrc,
