@@ -8,7 +8,7 @@ import PentaIncrement from "./CompanyWiseIncrement/PentaIncrement";
 import RPIncrement from "./CompanyWiseIncrement/RPIncrement";
 import SmartMatrixIncrement from "./CompanyWiseIncrement/SmartMatrixIncrement";
 import SmartSoftwareIncrement from "./CompanyWiseIncrement/SmartSoftwareIncrement";
-
+import NimbjaIncrement from "./CompanyWiseIncrement/NimbjaIncrement";
 // same company ids, just Increment components
 const companyComponentMap = {
   1: CubeageIncrement,
@@ -17,6 +17,7 @@ const companyComponentMap = {
   4: DevconsIncrement,
   5: RPIncrement,
   6: PentaIncrement,
+  7: NimbjaIncrement,
   8: JDITIncrement,
   10: SmartSoftwareIncrement,
 };

@@ -8,6 +8,7 @@ import PentaOffer from "./CompanyWiseOffer/PentaOffer";
 import RPOffer from "./CompanyWiseOffer/RPOffer";
 import SmartMatrixOffer from "./CompanyWiseOffer/SmartMatrixOffer";
 import SmartSoftwareOffer from "./CompanyWiseOffer/SmartSoftwareOffer";
+import NimbjaOffer from './CompanyWiseOffer/NimbjaOffer'
 
 // same company ids, Offer components
 const companyComponentMap = {
@@ -17,6 +18,7 @@ const companyComponentMap = {
   4: DevconsOffer,
   5: RPOffer,
   6: PentaOffer,
+  7: NimbjaOffer,
   8: JDITOffer,
   10: SmartSoftwareOffer,
 };
