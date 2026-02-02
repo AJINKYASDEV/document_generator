@@ -8,6 +8,7 @@ import PentaSalarySlip from "./CompanyWiseSalary/PentaSalarySlip";
 import RPSalarySlip from "./CompanyWiseSalary/RPSalarySlip";
 import SmartMatrixSalarySlip from "./CompanyWiseSalary/SmartMatrixSalarySlip";
 import SmartSoftwareSalarySlip from "./CompanyWiseSalary/SmartSoftwareSalarySlip";
+import QuickSalarySlip from "./CompanyWiseSalary/QuickSalarySlip";
 
 const companyComponentMap = {
   1: CubeageSalarySlip,
@@ -17,6 +18,7 @@ const companyComponentMap = {
   5: RPSalarySlip,
   6: PentaSalarySlip,
   8: JDISTalarySlip,
+  9: QuickSalarySlip,
   10: SmartSoftwareSalarySlip,
 };
 

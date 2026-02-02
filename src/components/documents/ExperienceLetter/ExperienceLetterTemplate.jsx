@@ -8,6 +8,7 @@ import PentaExperience from "./CompanyWiseExperience/PentaExperience";
 import RPExperience from "./CompanyWiseExperience/RPExperience";
 import SmartMatrixExperience from "./CompanyWiseExperience/SmartMatrixExperience";
 import SmartSoftwareExperience from "./CompanyWiseExperience/SmartSoftwareExperience";
+import QuickExperience from "./CompanyWiseExperience/QuickExperience";
 
 // map company shortName OR id to component
 const companyComponentMap = {
@@ -18,7 +19,9 @@ const companyComponentMap = {
   5: RPExperience,
   6: PentaExperience,
   8: JDITExperience,
+  9: QuickExperience,
   10: SmartSoftwareExperience,
+  11:QuickExperience,
 };
 
 const ExperienceLetterTemplate = ({ company, data }) => {

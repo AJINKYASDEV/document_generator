@@ -1,6 +1,7 @@
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Navbar from './Navbar';
 import ResponsiveContainer from '../common/ResponsiveContainer';
+import A4Page from '../layout/A4Page';
 
 const Layout = ({ children }) => {
   const theme = useTheme();

@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Typography,
-  Paper,
-  Button,
-  Divider,
+import {Box,Typography, Paper, Button,  Divider,
   Grid,
   useTheme,
   useMediaQuery,
@@ -41,6 +36,10 @@ import IncrementLetterTemplate from '../components/documents/IncrementLetter/Inc
 import ExperienceLetterTemplate from '../components/documents/ExperienceLetter/ExperienceLetterTemplate';
 import RelievingLetterTemplate from '../components/documents/RelievingLetter/RelievingLetteTemplate';
 import OfferLetterTemplate from '../components/documents/OfferLetter/OfferLetterTemplate';
+import InternshipTemplate from '../components/documents/InternshipLetter/InternshipTemplate';
+import AppointmentLetterTemplate from '../components/documents/AppointmentLetter/AppointmentLetterTemplate';
+import CertificationLetterTamplate from '../components/documents/CompletionCertificateLetter/certificationLetterTamplate';
+import FullAndFinalLetterTemplate  from '../components/documents/FullAndFinalLetter/CompanyWiseFullAndFinal/PentaFullAndFinal';
 
 const DocumentPreview = () => {
   const { selectedCompany } = useCompany();
@@ -75,20 +74,23 @@ const DocumentPreview = () => {
     switch (selectedDocType.template) {
       case 'salary-slip':
         return <SalarySlipTemplate data={documentData} company={selectedCompany} />;
-      // case 'internship-certificate':
-      //   return <InternshipCertificateTemplate data={documentData} company={selectedCompany} />;
+      case 'internship-certificate':
+        return <InternshipTemplate data={documentData} company={selectedCompany} />;
       case 'offer-letter':
         return <OfferLetterTemplate data={documentData} company={selectedCompany} />;
-      // case 'completion-certificate':
-        // return <CompletionCertificateTemplate data={documentData} company={selectedCompany} />;
+      case 'completion-certificate':
+        return <CertificationLetterTamplate data={documentData} company={selectedCompany} />;
       case 'increment-letter':
         return <IncrementLetterTemplate data={documentData} company={selectedCompany} />;
-      // case 'appointment-letter':
-        // return <AppointmentLetterTemplate data={documentData} company={selectedCompany} />;
+      case 'appointment-letter':
+        return <AppointmentLetterTemplate data={documentData} company={selectedCompany} />;
       case 'experience-letter':
         return <ExperienceLetterTemplate data={documentData} company={selectedCompany} />;
       case 'relieving-letter':
         return <RelievingLetterTemplate data={documentData} company={selectedCompany} />;
+      case 'FullAndFinal-letter':
+        return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
+
       // case 'salary-transaction':
         // return <SalaryTransactionTemplate data={documentData} company={selectedCompany} />;
       // case 'employment-verification':
