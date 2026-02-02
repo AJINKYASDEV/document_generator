@@ -3,20 +3,20 @@ import { Box, Typography } from "@mui/material";
 
 /**
  * Props
- * company -> selected company object from companies[]
- * data    -> form data from relieving letter form
+ * company -> Quick Management Services object
+ * data    -> form data from Relieving Letter form
  */
 
 const formatDate = (date) => {
   if (!date) return "";
   return new Date(date).toLocaleDateString("en-US", {
-    month: "long",
+     month: "long",
     day: "2-digit",
     year: "numeric",
   });
 };
 
-const PentaRelieving = ({ company, data }) => {
+const QuickRelieving = ({ company, data = {} }) => {
   return (
     <Box
       sx={{
@@ -40,39 +40,43 @@ const PentaRelieving = ({ company, data }) => {
 
       {/* ================= BODY ================= */}
       <Box
+        className="a4-content-only"
         sx={{
-          px: "30mm",   // Word left/right margin
-          pt: "20mm",   // Word top margin
-          pb: "35mm",   // Space for footer
+          px: "30mm",   // Left / Right margin (Word standard)
+          pt: "20mm",   // Top margin
+          pb: "40mm",   // Space for footer
         }}
       >
-        {/* Date (Right aligned like Word document) */}
-        <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 4 }}>
-          <Typography sx={{ fontSize: "14px" }}>
-            {formatDate(data.issueDate)}
-          </Typography>
-        </Box>
+       
 
-        {/* Reference */}
-        <Typography sx={{ fontSize: "14px", mb: 6 , fontWeight: "bold"}}>
-          <strong>Ref:</strong>{" "}
-          PENTA\\PUNHD\\RMG01\\Relieving-Letter
-          {data.employeeId ? `/${data.employeeId}` : ""}
+       
+
+        {/* Title */}
+        <Typography
+          sx={{
+            fontSize: "16px",
+            fontWeight: "bold",
+            textAlign: "center",
+            textDecoration: "underline",
+            mb: 8,
+          }}
+        >
+          Relieving Letter
         </Typography>
 
         {/* Employee Name */}
         <Typography sx={{ fontSize: "14px", fontWeight: "bold" }}>
-          {data.employeeName}
+          {data.mrms} {data.employeeName}
         </Typography>
 
         {/* Designation */}
-        <Typography sx={{ fontSize: "14px", mb: 6 }}>
+        <Typography sx={{ fontSize: "14px", mb: 6, fontWeight: "bold" }}>
           {data.designation}
         </Typography>
 
         {/* Salutation */}
-        <Typography sx={{ fontSize: "14px", mb: 3 }}>
-          Dear {data.mrms} {data.employeeName?.split(" ")[0]},
+        <Typography sx={{ fontSize: "14px", mb: 4 }}>
+          Dear {data.employeeName?.split(" ")[0]},
         </Typography>
 
         {/* Main Content */}
@@ -84,16 +88,15 @@ const PentaRelieving = ({ company, data }) => {
             mb: 10,
           }}
         >
-          With reference to your resignation letter{" "}
-          <strong>{formatDate(data.resignationDate)}</strong>, we would like to
+          With reference to your resignation letter, we would like to
           inform you that your resignation has been accepted and you are relieved
           from the company at the closing of working hours on{" "}
           <strong>{formatDate(data.lastWorkingDay)}</strong>.
         </Typography>
 
         {/* Company Name */}
-        <Typography sx={{ fontSize: "14px", mb: 3 }}>
-          For <strong>{company.name}</strong>
+        <Typography sx={{ fontSize: "14px", mb: 4 }}>
+          For <strong>{company.name?.toUpperCase()}</strong>
         </Typography>
 
         {/* ================= SIGNATURE & STAMP ================= */}
@@ -113,14 +116,11 @@ const PentaRelieving = ({ company, data }) => {
           />
 
           {/* Stamp */}
-          {company?.stamp && (
+          {company.stamp && (
             <img
               src={company.stamp}
               alt="Company Stamp"
-              style={{
-                height: "70px",
-                opacity: 0.9,
-              }}
+              style={{ height: "70px", opacity: 0.9 }}
             />
           )}
         </Box>
@@ -131,27 +131,14 @@ const PentaRelieving = ({ company, data }) => {
         </Typography>
 
         {/* HR Designation */}
-        <Typography sx={{ fontSize: "14px" }}>
-          Group Leader – Shared HR Services
+        <Typography sx={{ fontSize: "14px", fontWeight: "bold" }}>
+          Group Leader – HR Shared Services
         </Typography>
       </Box>
 
-      {/* ================= FOOTER ================= */}
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: 0,
-          width: "100%",
-        }}
-      >
-        <img
-          src={company.footer}
-          alt="Company Footer"
-          style={{ width: "100%", display: "block" }}
-        />
-      </Box>
+      
     </Box>
   );
 };
 
-export default PentaRelieving;
+export default QuickRelieving;
