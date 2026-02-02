@@ -1,37 +1,42 @@
 import React from "react";
+import PentaFullAndFinal from "./CompanyWiseFullAndFinal/PentaFullAndFinal";
+import QuickFullAndFinal from "./CompanyWiseFullAndFinal/QuickFullAndFinal";
 
-// import CubeageExperience from "./CompanyWiseExperience/CubeageExperience";
-// import JDITExperience from "./CompanyWiseExperience/JDITExperience";
-// import NeweageExperience from "./CompanyWiseExperience/NeweageExperience";
-// import PentaExperience from "./CompanyWiseExperience/PentaExperience";
+// import CubeageIncrement from "./CompanyWiseIncrement/CubeageIncrement";
+// import DevconsIncrement from "./CompanyWiseIncrement/DevconsIncrement";
+// import JDITIncrement from "./CompanyWiseIncrement/JDITIncrement";
+// import NeweageIncrement from "./CompanyWiseIncrement/NeweageIncrement";
+// import PentaIncrement from "./CompanyWiseIncrement/PentaIncrement";
+// import RPIncrement from "./CompanyWiseIncrement/RPIncrement";
+// import SmartMatrixIncrement from "./CompanyWiseIncrement/SmartMatrixIncrement";
+// import SmartSoftwareIncrement from "./CompanyWiseIncrement/SmartSoftwareIncrement";
+// import QuickIncrement from "./CompanyWiseIncrement/QuickIncrement";.
 
-// import SmartMatrixExperience from "./CompanyWiseExperience/SmartMatrixExperience";
-// import SmartSoftwareExperience from "./CompanyWiseExperience/SmartSoftwareExperience";
-import DevconsFullandFinal from "./CompanyWaiseFullandFinal/DevconsFullandFinal";
-import RPfullandfinal from "./CompanyWaiseFullandFinal/RPfullandfinal";
 
-// map company shortName OR id to component
+// same company ids, just Increment components
 const companyComponentMap = {
-//   1: CubeageExperience,
-//   2: NeweageExperience,
-//   3: SmartMatrixExperience,
-  4: DevconsFullandFinal,
-  5: RPfullandfinal,
-//   6: PentaExperience,
-//   8: JDITExperience,
-//   10: SmartSoftwareExperience,
+//   1: CubeageIncrement,
+//   2: NeweageIncrement,
+//   3: SmartMatrixIncrement,
+//   4: DevconsIncrement,
+//   5: RPIncrement,
+  6 : PentaFullAndFinal,
+//   8: JDITIncrement,
+  9: QuickFullAndFinal,
+//   10: SmartSoftwareIncrement,
+  
 };
 
-const FullandFinalLetterTemplate = ({ company, data }) => {
+const FullAndFinalLetterTemplate = ({ company, data }) => {
   if (!company) return null;
 
-  const FullandFinalComponent = companyComponentMap[company.id];
+  const FullAndFinalComponent = companyComponentMap[company.id];
 
-  if (!FullandFinalComponent) {
-    return <div>No FullandFinal template available for this company</div>;
+  if (!FullAndFinalComponent) {
+    return <div>No increment template available for this company</div>;
   }
 
-  return <FullandFinalComponent company={company} data={data} />;
+  return <FullAndFinalComponent company={company} data={data} />;
 };
 
-export default FullandFinalLetterTemplate;
+export default FullAndFinalLetterTemplate;
