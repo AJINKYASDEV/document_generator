@@ -47,7 +47,7 @@ export const generatePDF = async (element, fileName) => {
     heightLeft -= pageHeight;
 
     // Add additional pages if needed
-    while (heightLeft >= 0) {
+    while (heightLeft >= 1) {
       position = heightLeft - imgHeight;
       pdf.addPage();
       pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);

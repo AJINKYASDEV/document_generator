@@ -9,6 +9,7 @@ import RPRelieving from "./CompanyWiseRelieving/RPRelieving";
 import SmartMatrixRelieving from "./CompanyWiseRelieving/SmartMatrixRelieving";
 import SmartSoftwareRelieving from "./CompanyWiseRelieving/SmartSoftwareRelieving";
 import QuickRelieving from "./CompanyWiseRelieving/QuickRelieving";
+import NimbjaRelieving from './CompanyWiseRelieving/NimbjaRelieving'
 
 const companyComponentMap = {
   1: CubeageRelieving,
@@ -17,7 +18,7 @@ const companyComponentMap = {
   4: DevconsRelieving,
   5: RPRelieving,
   6: PentaRelieving,
-  
+  7: NimbjaRelieving, // ✅ ADD THIS
   8: JDITRelieving,
   9: QuickRelieving,
   10: SmartSoftwareRelieving,

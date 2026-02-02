@@ -15,6 +15,7 @@ import {
   useTheme,
   useMediaQuery
 } from '@mui/material';
+
 import { useCompany } from '../context/CompanyContext';
 import { useDocument } from '../context/DocumentContext';
 import { useAuth } from '../context/AuthContext';
@@ -44,12 +45,12 @@ const DocumentCreate = () => {
     // Handle navigation state from Dashboard
     if (location.state) {
       const { companyId, documentType } = location.state;
-      
+
       // Find and set the company
       if (companyId && companies.length > 0) {
         selectCompany(companyId);
       }
-      
+
       // Find and set the document type
       if (documentType && documentTypes.length > 0) {
         selectDocumentType(documentType);
@@ -69,7 +70,13 @@ const DocumentCreate = () => {
 
   const handleInputChange = (field, value) => {
     updateDocumentData(field, value);
-    
+
+
+    // ✅ NEW — Auto clear stipend if internship becomes unpaid
+    if (field === 'internshipType' && value === 'unpaid') {
+      updateDocumentData('stipend', '');
+    }
+
     // Clear error for this field if it exists
     if (formErrors[field]) {
       setFormErrors(prev => {
@@ -82,17 +89,19 @@ const DocumentCreate = () => {
 
   const validateDocumentForm = () => {
     if (!selectedDocType) return true;
-    
+
     // Create validation rules based on document type fields
     const rules = {};
     selectedDocType.fields.forEach(field => {
+      // ✅ NEW — Skip validation if field is hidden
+      if (!shouldShowField(field)) return;
       if (field.required) {
         rules[field.name] = {
           required: true,
           message: `${field.label} is required`
         };
       }
-      
+
       // Add specific validation based on field type
       if (field.type === 'email') {
         rules[field.name] = { ...rules[field.name], email: true };
@@ -102,7 +111,7 @@ const DocumentCreate = () => {
         rules[field.name] = { ...rules[field.name], number: true };
       }
     });
-    
+
     const errors = validateForm(documentData, rules);
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -110,7 +119,7 @@ const DocumentCreate = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (validateDocumentForm()) {
       navigate('/documents/preview');
     }
@@ -120,19 +129,29 @@ const DocumentCreate = () => {
     return null; // Will redirect in useEffect
   }
 
+  // ✅ NEW — Conditional field visibility
+  const shouldShowField = (field) => {
+    if (!field.dependsOn) return true;
+
+    return (
+      documentData[field.dependsOn.field] === field.dependsOn.value
+    );
+  };
+
+
   return (
     <ResponsiveContainer>
       <Paper elevation={3} sx={{ p: isMobile ? 2 : 3, mb: isMobile ? 3 : 4 }}>
-        <Typography 
-          variant={isMobile ? "h5" : "h4"} 
-          component="h1" 
+        <Typography
+          variant={isMobile ? "h5" : "h4"}
+          component="h1"
           gutterBottom
           sx={{ textAlign: isMobile ? 'center' : 'left' }}
         >
           Create {selectedDocType.name}
         </Typography>
-        <Typography 
-          variant="subtitle1" 
+        <Typography
+          variant="subtitle1"
           gutterBottom
           sx={{ textAlign: isMobile ? 'center' : 'left' }}
         >
@@ -148,10 +167,11 @@ const DocumentCreate = () => {
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: isMobile ? 2 : 3 }}>
           <Grid container spacing={isMobile ? 2 : 3}>
             {selectedDocType.fields.map((field) => (
-              <Grid 
-                item 
-                xs={12} 
-                sm={field.type === 'textarea' ? 12 : (isTablet ? 12 : 6)} 
+              
+              <Grid
+                item
+                xs={12}
+                sm={field.type === 'textarea' ? 12 : (isTablet ? 12 : 6)}
                 key={field.name}
               >
                 {field.type === 'select' ? (
@@ -216,12 +236,12 @@ const DocumentCreate = () => {
               </Grid>
             ))}
           </Grid>
-          <Box sx={{ 
-            display: 'flex', 
+          <Box sx={{
+            display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
-            justifyContent: isMobile ? 'center' : 'space-between', 
+            justifyContent: isMobile ? 'center' : 'space-between',
             gap: isMobile ? 2 : 0,
-            mt: isMobile ? 3 : 4 
+            mt: isMobile ? 3 : 4
           }}>
             <Button
               variant="outlined"
