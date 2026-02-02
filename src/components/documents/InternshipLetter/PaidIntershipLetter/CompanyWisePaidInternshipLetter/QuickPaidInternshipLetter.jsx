@@ -101,7 +101,7 @@ const QuickPaidInternshipLetter = ({ company, data }) => {
           <Typography sx={{ mb: 2, textAlign: "justify" }}>
             Your total Gross salary will be Rs.{" "}
             <strong>{formatCurrency(breakdown.annual.ctc)}</strong>{" "}
-            (<strong>{numberToWords(breakdown.annual.ctc)}</strong>) per year.
+            (<strong>{numberToWords(breakdown.annual.ctc)}</strong>) per year. 
           </Typography>
 
           <Typography sx={{ mb: 2 }}>
