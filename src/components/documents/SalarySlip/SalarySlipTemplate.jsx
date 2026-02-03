@@ -1,37 +1,27 @@
 import React from "react";
+// import PaidInternshipLetterTemplate from "./PaidIntershipLetter/PaidInternshipTemplate";
+// import UnPaidInternshipLetterTemplate from "./UnpaidIntershipLetter/UnpaidinternshipTemplate";
+import WithPFLetterTemplate from "./WithPF/CompanyWisePFLetter/WithPFLetterTemplate";
+import SalarySlipTemplate from "../../documents/SalarySlip/WithoutPF/WithoutPFLetterTemplate";
 
-import CubeageSalarySlip from "./CompanyWiseSalary/CubeageSalarySlip";
-import DevconsSalarySlip from "./CompanyWiseSalary/DevconsSalarySlip";
-import JDISTalarySlip from "./CompanyWiseSalary/JDITSalarySlip";
-import NeweageSalarySlip from "./CompanyWiseSalary/NeweageSalarySlip";
-import PentaSalarySlip from "./CompanyWiseSalary/PentaSalarySlip";
-import RPSalarySlip from "./CompanyWiseSalary/RPSalarySlip";
-import SmartMatrixSalarySlip from "./CompanyWiseSalary/SmartMatrixSalarySlip";
-import SmartSoftwareSalarySlip from "./CompanyWiseSalary/SmartSoftwareSalarySlip";
-import NimbjaSalarySlip from "./CompanyWiseSalary/NimbjaSalarySlip";
 
-const companyComponentMap = {
-  1: CubeageSalarySlip,
-  2: NeweageSalarySlip,
-  3: SmartMatrixSalarySlip,
-  4: DevconsSalarySlip,
-  5: RPSalarySlip,
-  6: PentaSalarySlip,
-  7: NimbjaSalarySlip,
-  8: JDISTalarySlip,
-  10: SmartSoftwareSalarySlip,
-};
+const SalarySlipLetterTemplate = ({ company, data }) => {
+  // 🔑 This value must come from form / documentData
+  const SalaryType = data?.salaryType; // "paid" | "unpaid"
 
-const SalarySlipTemplate = ({ company, data }) => {
-  if (!company) return null;
-
-  const SalarySlipComponent = companyComponentMap[company.id];
-
-  if (!SalarySlipComponent) {
-    return <div>No salary slip template available</div>;
+  if (!SalaryType) {
+    return <div>PFTypename type not selected</div>;
   }
 
-  return <SalarySlipComponent company={company} data={data} />;
+  if (SalaryType === "withPF") {
+    return <WithPFLetterTemplate company={company} data={data} />;
+  }
+
+  if (SalaryType === "withoutPF") {
+    return <SalarySlipTemplate company={company} data={data} />;
+  }
+
+  return <div>Invalid Salary type</div>;
 };
 
-export default SalarySlipTemplate;
+export default SalarySlipLetterTemplate;

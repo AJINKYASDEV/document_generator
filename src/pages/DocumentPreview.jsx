@@ -19,7 +19,7 @@ import ResponsiveContainer from '../components/common/ResponsiveContainer';
 import { generatePDF } from '../utils/pdfUtils'; // adjust path as needed
 
 // Templates
-import SalarySlipTemplate from '../components/documents/SalarySlip/SalarySlipTemplate';
+// import SalarySlipTemplate from '../components/documents/SalarySlip/SalarySlipTemplate';
 import IncrementLetterTemplate from '../components/documents/IncrementLetter/IncrementLetterTemplate';
 import ExperienceLetterTemplate from '../components/documents/ExperienceLetter/ExperienceLetterTemplate';
 import RelievingLetterTemplate from '../components/documents/RelievingLetter/RelievingLetteTemplate';
@@ -28,6 +28,7 @@ import AppointmentLetterTemplate from '../components/documents/AppointmentLeter/
 import InternshipLetterTemplate from '../components/documents/InternshipLetter/InternshipLetterTemplate';
 import CertificationLetterTemplate from '../components/documents/InternshipComplitionCertificate/CertificationLetterTemplate';
 import FullandFinalLetterTemplate from '../components/documents/FullandFinalLetter/FullandFinalLetterTemplate';
+import SalarySlipLetterTemplate from "../components/documents/SalarySlip/SalarySlipTemplate";
 
 
 
@@ -70,7 +71,7 @@ const DocumentPreview = () => {
   const renderDocumentTemplate = () => {
     switch (selectedDocType?.template) {
       case 'salary-slip':
-        return <SalarySlipTemplate data={documentData} company={selectedCompany} />;
+        return <SalarySlipLetterTemplate data={documentData} company={selectedCompany} />;
 
        case 'internship-certificate':
       return (
