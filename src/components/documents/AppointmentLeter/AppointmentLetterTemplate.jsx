@@ -8,6 +8,7 @@ import PentaAppointment from "./CompanyWiseAppointment/PentaAppointment";
 import RPAppointment from "./CompanyWiseAppointment/RPAppointment";
 import SmartMatrixAppointment from "./CompanyWiseAppointment/SmartmatrixAppointment";
 import SmartSoftwareAppointment from "./CompanyWiseAppointment/SmartsoftwareAppointment";
+import NimbjaAppointment from "./CompanyWiseAppointment/NimbjaAppointment";
 
 // map company shortName OR id to component
 const companyComponentMap = {
@@ -17,6 +18,7 @@ const companyComponentMap = {
   4: DevconsAppointment,
   5: RPAppointment,
   6: PentaAppointment,
+  7: NimbjaAppointment,
   8: JDITAppointment,
   10: SmartSoftwareAppointment,
 };
@@ -25,6 +27,7 @@ const AppointmentLetterTemplate = ({ company, data }) => {
   if (!company) return null;
 
   const AppointmentComponent = companyComponentMap[company.id];
+  console.log("abcd", AppointmentComponent);
 
   if (!AppointmentComponent) {
     return <div>No Appointment template available for this company</div>;

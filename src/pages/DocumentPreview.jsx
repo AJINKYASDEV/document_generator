@@ -386,7 +386,9 @@ import OfferLetterTemplate from '../components/documents/OfferLetter/OfferLetter
 import AppointmentLetterTemplate from '../components/documents/AppointmentLeter/AppointmentLetterTemplate';
 import InternshipLetterTemplate from '../components/documents/InternshipLetter/InternshipLetterTemplate';
 import CertificationLetterTemplate from '../components/documents/InternshipComplitionCertificate/CertificationLetterTemplate';
-import FullandFinalLetterTemplate from '../components/documents/FullandFinalLetter/FullandFinalLetterTemplate';
+import FullAndFinalTemplate from "../components/documents/FullAndFinal/FullAndFinalTemplate";
+// import FullandFinalLetterTemplate from '../components/documents/FullandFinalLetter/FullandFinalLetterTemplate';
+
 
 
 
@@ -466,7 +468,7 @@ const DocumentPreview = () => {
       // case 'transfer-letter':
         // return <TransferLetterTemplate data={documentData} company={selectedCompany} />;
         case 'fullandfinal-letter':
-         return <FullandFinalLetterTemplate data={documentData} company={selectedCompany} />;
+         return <FullAndFinalTemplate data={documentData} company={selectedCompany} />;
       default:
         return <Typography>Template not found</Typography>;
     }

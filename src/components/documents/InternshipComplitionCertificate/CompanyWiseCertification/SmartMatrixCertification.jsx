@@ -1,6 +1,3 @@
-
-
-
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import A4Layout from "../../../layout/A4Page";
@@ -17,13 +14,10 @@ const formatDate = (date) => {
   return `${day}/${month}/${year}`;
 };
 
-const CubeageCertification = ({ company, data }) => {
+const SmartMatrixCertification = ({ company, data }) => {
   return (
-    <A4Layout headerSrc={company.header} footerSrc={company.footer}>
-      
-    </A4Layout>
+    <A4Layout headerSrc={company.header} footerSrc={company.footer}></A4Layout>
   );
 };
 
-export default CubeageCertification;
-
+export default SmartMatrixCertification;

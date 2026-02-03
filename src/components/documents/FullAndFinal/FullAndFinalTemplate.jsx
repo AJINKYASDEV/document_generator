@@ -19,13 +19,13 @@ const companyComponentMap = {
 const FullAndFinalTemplate = ({ company, data }) => {
   if (!company) return null;
 
-  const IncrementComponent = companyComponentMap[company.id];
+  const FullAndFinalComponent = companyComponentMap[company.id];
 
-  if (!IncrementComponent) {
+  if (!FullAndFinalComponent) {
     return <div>No increment template available for this company</div>;
   }
 
-  return <IncrementComponent company={company} data={data} />;
+  return <FullAndFinalComponent company={company} data={data} />;
 };
 
 export default FullAndFinalTemplate;

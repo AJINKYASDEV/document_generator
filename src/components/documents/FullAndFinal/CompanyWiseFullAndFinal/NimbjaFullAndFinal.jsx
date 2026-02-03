@@ -100,32 +100,76 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
       <Box p="10mm">
         <Table sx={{ borderCollapse: "collapse" }}>
           <TableBody>
-
             {/* TITLE */}
             <TableRow>
-              <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
+              <TableCell
+                colSpan={4}
+                sx={{
+                  ...cell,
+                  ...bold,
+                  ...center,
+                  fontFamily: '"Segoe UI", Arial, sans-serif',
+                  fontSize: "14pt",
+                }}
+              >
                 Full & Final Settlement Statement
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
+              <TableCell
+                colSpan={4}
+                sx={{
+                  ...cell,
+                  ...bold,
+                  ...center,
+                  fontFamily: "Cambria",
+                  fontSize: "14pt",
+                }}
+              >
                 {company.name}
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={4} sx={{ ...cell, ...center }}>
+              <TableCell
+                colSpan={4}
+                sx={{
+                  ...cell,
+                  ...center,
+                  fontFamily: "Bahnschrift",
+                  fontSize: "12pt",
+                }}
+              >
                 {company.address}
               </TableCell>
             </TableRow>
 
             {/* EMP DETAILS */}
             <TableRow>
-              <TableCell sx={cell}>Name of the employee</TableCell>
-              <TableCell sx={cell}>{data.employeeName}</TableCell>
-              <TableCell sx={cell}>F&F Date</TableCell>
-              <TableCell sx={cell}>{formatDate(data.date)}</TableCell>
+              <TableCell
+                sx={{ ...cell, fontFamily: "Segoe UI",  }}
+              >
+                Name of the employee
+              </TableCell>
+
+              <TableCell
+                sx={{ ...cell, fontFamily: "Segoe UI", }}
+              >
+                {data.employeeName}
+              </TableCell>
+
+              <TableCell
+                sx={{ ...cell, fontFamily: "Segoe UI",  }}
+              >
+                F&F Date
+              </TableCell>
+
+              <TableCell
+                sx={{ ...cell, fontFamily: "Segoe UI", }}
+              >
+                {formatDate(data.date)}
+              </TableCell>
             </TableRow>
 
             <TableRow>
@@ -139,7 +183,9 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
               <TableCell sx={cell}>Designation</TableCell>
               <TableCell sx={cell}>{data.designation}</TableCell>
               <TableCell sx={cell}>Date of Resignation</TableCell>
-              <TableCell sx={cell}>{formatDate(data.dateofresignation)}</TableCell>
+              <TableCell sx={cell}>
+                {formatDate(data.dateofresignation)}
+              </TableCell>
             </TableRow>
 
             <TableRow>
@@ -154,8 +200,12 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
               <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
                 Salary particulars
               </TableCell>
-              <TableCell sx={{ ...cell, ...bold, ...center }}>For the month</TableCell>
-              <TableCell sx={{ ...cell, ...center }}>{formatMonth(data.month)}</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...center }}>
+                For the month
+              </TableCell>
+              <TableCell sx={{ ...cell, ...center }}>
+                {formatMonth(data.month)}
+              </TableCell>
             </TableRow>
 
             <TableRow>
@@ -167,7 +217,9 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
 
             {/* EARNINGS */}
             <TableRow>
-              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Earnings</TableCell>
+              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
+                Earnings
+              </TableCell>
               <TableCell sx={{ ...cell, ...bold, ...center }}>Actual</TableCell>
               <TableCell sx={{ ...cell, ...bold, ...center }}>Earned</TableCell>
             </TableRow>
@@ -181,16 +233,28 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
               ["Performance Bonus", pfAllowance],
             ].map(([label, val]) => (
               <TableRow key={label}>
-                <TableCell colSpan={2} sx={cell}>{label}</TableCell>
-                <TableCell sx={{ ...cell, ...right }}>{formatAmt(val)}</TableCell>
-                <TableCell sx={{ ...cell, ...right }}>{formatAmt(earned(val))}</TableCell>
+                <TableCell colSpan={2} sx={cell}>
+                  {label}
+                </TableCell>
+                <TableCell sx={{ ...cell, ...right }}>
+                  {formatAmt(val)}
+                </TableCell>
+                <TableCell sx={{ ...cell, ...right }}>
+                  {formatAmt(earned(val))}
+                </TableCell>
               </TableRow>
             ))}
 
             <TableRow>
-              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Total</TableCell>
-              <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(totalActual)}</TableCell>
-              <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(totalEarned)}</TableCell>
+              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
+                Total
+              </TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...right }}>
+                {formatAmt(totalActual)}
+              </TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...right }}>
+                {formatAmt(totalEarned)}
+              </TableCell>
             </TableRow>
 
             {/* DEDUCTIONS */}
@@ -201,21 +265,31 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} sx={cell}>Professional Tax</TableCell>
+              <TableCell colSpan={2} sx={cell}>
+                Professional Tax
+              </TableCell>
               <TableCell sx={cell}></TableCell>
               <TableCell sx={{ ...cell, ...right }}>{formatAmt(pt)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} sx={cell}>Others</TableCell>
+              <TableCell colSpan={2} sx={cell}>
+                Others
+              </TableCell>
               <TableCell sx={cell}></TableCell>
-              <TableCell sx={{ ...cell, ...right }}>{formatAmt(others)}</TableCell>
+              <TableCell sx={{ ...cell, ...right }}>
+                {formatAmt(others)}
+              </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Total Deductions</TableCell>
+              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
+                Total Deductions
+              </TableCell>
               <TableCell sx={cell}></TableCell>
-              <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(totalDeductions)}</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...right }}>
+                {formatAmt(totalDeductions)}
+              </TableCell>
             </TableRow>
 
             {/* OTHER EARNINGS */}
@@ -224,9 +298,11 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
                 Other Earnings
               </TableCell>
             </TableRow>
-            
+
             <TableRow>
-              <TableCell colSpan={2} sx={cell}>Leave encashment (Days)</TableCell>
+              <TableCell colSpan={2} sx={cell}>
+                Leave encashment (Days)
+              </TableCell>
               <TableCell sx={{ ...cell, ...right }}>
                 {formatAmt(data.leaveencashment)}
               </TableCell>
@@ -234,7 +310,9 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} sx={cell}>Total (Days)</TableCell>
+              <TableCell colSpan={2} sx={cell}>
+                Total (Days)
+              </TableCell>
               <TableCell sx={cell}></TableCell>
               <TableCell sx={{ ...cell, ...right }}>
                 {formatAmt(totalEarned)}
@@ -242,33 +320,44 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Net Payable (Rs)</TableCell>
+              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
+                Net Payable (Rs)
+              </TableCell>
               <TableCell sx={cell}></TableCell>
-              <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(netPay)}</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...right }}>
+                {formatAmt(netPay)}
+              </TableCell>
             </TableRow>
 
             <TableRow>
               <TableCell sx={cell}>Amount in Words</TableCell>
-              <TableCell colSpan={3} sx={cell}>{numberToWords(netPay)}</TableCell>
+              <TableCell colSpan={3} sx={cell}>
+                {numberToWords(netPay)}
+              </TableCell>
             </TableRow>
 
             {/* SIGNATURE */}
             <TableRow>
               <TableCell sx={{ ...cell, ...center }}></TableCell>
               <TableCell sx={{ ...cell, ...center }}>
-                {company.stamp && <img src={company.stamp} height={60} alt="" />}
+                {company.stamp && (
+                  <img src={company.stamp} height={60} alt="" />
+                )}
               </TableCell>
               <TableCell colSpan={2} sx={{ ...cell, ...center }}>
-                {company.signature && <img src={company.signature} height={45} alt="" />}
+                {company.signature && (
+                  <img src={company.signature} height={45} alt="" />
+                )}
               </TableCell>
             </TableRow>
 
             <TableRow>
               <TableCell sx={{ ...cell, ...center }}>Prepared By</TableCell>
               <TableCell sx={{ ...cell, ...center }}>Verified By</TableCell>
-              <TableCell colSpan={2} sx={{ ...cell, ...center }}>Approved By</TableCell>
+              <TableCell colSpan={2} sx={{ ...cell, ...center }}>
+                Approved By
+              </TableCell>
             </TableRow>
-
           </TableBody>
         </Table>
       </Box>

@@ -53,7 +53,7 @@ const formatOneCurrency = (salary) => {
     ? valueInLakhs.toString()
     : valueInLakhs.toFixed(1);
 };
-const NimbjaAppointment = ({ data, company }) => {
+const NimbjaAppointment1 = ({ data, company }) => {
   if (!data || !company) return null;
 
   return (
@@ -683,11 +683,11 @@ const NimbjaAppointment = ({ data, company }) => {
             </>
           );
         })()}
-      </A4Page>
+      </A4Page> 
     </>
   );
 };
 
-export default NimbjaAppointment;
+export default NimbjaAppointment1;
 
 
