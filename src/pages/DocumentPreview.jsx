@@ -453,6 +453,9 @@ const DocumentPreview = () => {
         return <ExperienceLetterTemplate data={documentData} company={selectedCompany} />;
       case 'relieving-letter':
         return <RelievingLetterTemplate data={documentData} company={selectedCompany} />;
+      // case 'FullAndFinal-letter':
+      //   return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
+
       // case 'salary-transaction':
       // return <SalaryTransactionTemplate data={documentData} company={selectedCompany} />;
       // case 'employment-verification':
