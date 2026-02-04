@@ -1,6 +1,7 @@
 import React from "react";
 import DevconsSalarySlip from "./DevconsSalarySlip";
 import RPSalarySlip from "./RPSalarySlip";
+import NimbjaSalarySlip from "./NimbjaSalarySlip";
 // import CubeageUnPaidInternshipLetter from "./CompanyWiseUnPaidInternshipLetter/CubeageUnPaidInternshipLetter";
 // import JDITUnPaidInternshipLetter from "./CompanyWiseUnPaidInternshipLetter/JDITUnPaidInternshipLetter";
 // import NeweageUnPaidInternshipLetter from "./CompanyWiseUnPaidInternshipLetter/NeweageUnPaidInternshipLetter";
@@ -20,7 +21,7 @@ const companyComponentMap = {
   4: DevconsSalarySlip,
   5: RPSalarySlip,
 //   6: PentaUnPaidInternshipLetter,
-//   7: NimbjaUnPaidInternshipLetter,
+  7: NimbjaSalarySlip,
 //   8: JDITUnPaidInternshipLetter,
 //   9: QuickUnPaidInternshipLetter,
 //   10:SmartSoftwareUnPaidInternshipLetter,

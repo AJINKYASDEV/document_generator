@@ -6,9 +6,9 @@ import React from "react";
 // import PentaSalarySlip from "./CompanyWiseSalary/PentaSalarySlip";
 import DevconsSalarySlip from "../WithoutPF/CompanyWisePFLetter/DevconsSalarySlip";
 import RPSalarySlip from "../WithoutPF/CompanyWisePFLetter/RPSalarySlip";
+import NimbjaSalarySlip from "../WithoutPF/CompanyWisePFLetter/NimbjaSalarySlip";
 // import SmartMatrixSalarySlip from "./CompanyWiseSalary/SmartMatrixSalarySlip";
 // import SmartSoftwareSalarySlip from "./CompanyWiseSalary/SmartSoftwareSalarySlip";
-// import NimbjaSalarySlip from "./CompanyWiseSalary/NimbjaSalarySlip";
 
 const companyComponentMap = {
   // 1: CubeageSalarySlip,
@@ -17,7 +17,7 @@ const companyComponentMap = {
   4: DevconsSalarySlip,
   5: RPSalarySlip,
   // 6: PentaSalarySlip,
-  // 7: NimbjaSalarySlip,
+   7: NimbjaSalarySlip,
   // 8: JDISTalarySlip,
   // 10: SmartSoftwareSalarySlip,
 };
