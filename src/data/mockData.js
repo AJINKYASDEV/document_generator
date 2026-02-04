@@ -80,6 +80,7 @@ import Penta_footer from "../assets/images/Penta/Penta_footer.png"
 import Penta_signature from "../assets/images/Penta/Penta_sign.png"
 import Penta_stamp from "../assets/images/Penta/Penta_stamp.png"
 import Penta_watermark from "../assets/images/Penta/Penta_watermark.png"
+import penta_jayabharti_sign from "../assets/images/Penta/jayabharti_sign.png"
 
 //Nimbja( Watermark Pending)
 import Nimbja_header from "../assets/images/Nimbja/Nimbja_header.png" 
@@ -92,6 +93,7 @@ import Nimbja_CEO from '../assets/images/Nimbja/Nimbja_CEO.png'
 //QM  (Footer watermark Pending)
 import QMS_Header from "../assets/images/QMS/QMS_Header.png"
 import QMS_Sign from "../assets/images/QMS/QMS_Sign.png"
+import satish_ingole_sign from "../assets/images/QMS/satish_ingole_sign.png"
 import QMS_Stamp from "../assets/images/QMS/QMS_Stamp.png"
 
 
@@ -262,6 +264,7 @@ export const companies = [
     header: Penta_header,
     footer: Penta_footer,
     signature: Penta_signature,
+    jaya_sign: penta_jayabharti_sign,
     stamp: Penta_stamp,
     watermark: Penta_watermark,
     headerImage: Penta_header,
@@ -275,6 +278,7 @@ export const companies = [
     city: "Pune",
     regNo: "CIN: U72900MH2022PTC388125",
     hrName: "Neeta Dere",
+    ceoName: "Jaya Bharati",
     brandColors: {
       primary: "#607D8B",
       secondary: "#455A64",
@@ -325,6 +329,7 @@ export const companies = [
         header: jdit_header,
         footer: jdit_footer,
         signature: jdit_signature,
+        sign: jdit_sweety_sign,
         // signature: jdit_Signature, 
         incrementSignature: ajaySignature,        // Normal letters
         stamp: jdit_stamp,
@@ -349,37 +354,37 @@ export const companies = [
             hueRotate: 0
         }
     },
-  // Quick Management Services
-  {
-    id: 9,
-    name: "Quick Management Services",
-    shortName: "Quick Management",
-    logo: qmslogo,
-    header: QMS_Header,
-    footer: placeholderFooter,
-    signature: QMS_Sign,
-    stamp: QMS_Stamp,
-    watermark: placeholderWatermark,
-    headerImage: QMS_Header,
-    footerImage: placeholderFooter,
-    watermarkImage: placeholderWatermark,
-    address:
-      "Quick Management Services 203,Changbhale Heights, Jawalkar Nagar, near Kalpataru Society, Phase-3, Pimple Gurav, Pune, Maharashtra 411061",
-    email: "hr@quickmanagementservices.com",
-    phone: "+91 7066521234",
-    website: "https://www.quickmanagementservices.com/",
-    city: "Pune",
-    regNo: "CIN: U74140WB2009PLC135775",
-    hrName: "Subhash Sarkate",
-    brandColors: {
-      primary: "#E91E63",
-      secondary: "#C2185B",
-      accent: "#F48FB1",
-      textColor: "#880E4F",
-      watermarkOpacity: 0.05,
-      hueRotate: 315,
+    // Quick Management Services
+    {
+        id: 9,
+        name: 'Quick Management Services',
+        shortName: 'Quick Management',
+        logo: qmslogo,
+        header: QMS_Header,
+        // footer: placeholderFooter,
+        signature: QMS_Sign,
+        satish_sign: satish_ingole_sign,
+        stamp: QMS_Stamp,
+        // watermark: placeholderWatermark,
+        headerImage: QMS_Header,
+        footerImage: placeholderFooter,
+        address: 'Quick Management Services 404,Changbhale Heights, Jawalkar Nagar, near Kalpataru Society, Phase-3, Pimple Gurav, Pune, Maharashtra 411061',
+        email: 'hr@quickmanagementservices.com',
+        phone: '+91 7066521234',
+        website: 'https://www.quickmanagementservices.com/',
+        city: 'Pune',
+        regNo: 'CIN: U74140WB2009PLC135775',
+        hrName: 'Subhash Sarkate',
+        ceoName: 'Satish Ingole',
+        brandColors: {
+            primary: '#E91E63',
+            secondary: '#C2185B',
+            accent: '#F48FB1',
+            textColor: '#880E4F',
+            watermarkOpacity: 0.05,
+            hueRotate: 315
+        }
     },
-  },
     // Smart Software Services
     {
         id: 10,
@@ -485,6 +490,7 @@ export const documentTypes = [
             { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
             { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
             { name: 'address', label: 'Address', type: 'textarea', required: true },
+            { name: 'employeeId', label: 'EmployeeId', type: 'text', required: true },
             { name: 'position', label: 'Position', type: 'text', required: true },
             { name: 'department', label: 'Department', type: 'text', required: true },
            
@@ -632,6 +638,24 @@ export const documentTypes = [
             { name: 'validTill', label: 'Valid Till', type: 'date', required: false }
         ]
     },
+    // {
+    //     id: 11,
+    //     name: 'Internship Certificate',
+    //     template: 'internship-certificate',
+    //     fields: [
+    //         { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+    //         { name: 'internName', label: 'Intern Name', type: 'text', required: true },
+    //         { name: 'field', label: 'Field of Study', type: 'text', required: true },
+    //         { name: 'startDate', label: 'Start Date', type: 'date', required: true },
+    //         { name: 'endDate', label: 'End Date', type: 'date', required: true },
+    //         // { name: 'department', label: 'Department', type: 'text', required: true },
+    //         // { name: 'projectName', label: 'Project Name', type: 'text', required: true },
+    //         // { name: 'performance', label: 'Performance', type: 'select', options: ['Excellent', 'Very Good', 'Good', 'Satisfactory'], required: true },
+    //         // { name: 'mentorName', label: 'Mentor Name', type: 'text', required: false },
+    //         { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
+    //     ]
+    // },
+
     {
         id: 11,
         name: 'Internship Certificate',
@@ -658,6 +682,14 @@ export const documentTypes = [
                 type: 'text',
                 required: true
             },
+
+            {
+                name: 'address',
+                label: 'Address',
+                type: 'textarea',
+                required: false
+            },
+
 
             // ✅ NEW — Internship Type
             {
