@@ -6,13 +6,13 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import A4Layout from "../../../layout/A4Page";
+import A4Layout from "../../../../layout/A4Page";
 
 import {
   getProfessionalTax,
   numberToWords,
   formatCurrency,
-} from "../../../../utils/salaryCalculations";
+} from "../../../../../utils/salaryCalculations";
 
 /* ================= DATE FORMAT ================= */
 const formatDate = (date) =>

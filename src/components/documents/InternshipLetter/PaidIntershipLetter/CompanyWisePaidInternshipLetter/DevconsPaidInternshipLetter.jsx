@@ -53,7 +53,7 @@ const DevconsInternshipWithAnnexure = ({ company, data }) => {
     { name: "Basic", monthly: basicMonthly, annual: basicAnnual },
     { name: "House Rent Allowance", monthly: hraMonthly, annual: hraAnnual },
     { name: "Dearness Allowance", monthly: daMonthly, annual: daAnnual },
-    { name: "Special Allowance", monthly: specialMonthly, annual: specialAnnual },
+    { name: "Special Allowance", monthly: specialMonthly, annual: specialAnnual},
     { name: "Food Allowance", monthly: foodMonthly, annual: foodAnnual },
     { name: "Misc. Allowance", monthly: miscMonthly, annual: miscAnnual },
   ];

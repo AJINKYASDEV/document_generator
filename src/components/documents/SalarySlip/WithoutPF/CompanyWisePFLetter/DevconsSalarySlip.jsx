@@ -9,9 +9,9 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import A4Page from "../../../layout/A4Page";
+import A4Page from "../../../../layout/A4Page";
 
-import { formatCurrency, getProfessionalTax } from "../../../../utils/salaryCalculations";
+import { formatCurrency, getProfessionalTax } from "../../../../../utils/salaryCalculations";
 
 /* 🔢 Number to Words (Indian System) */
 const numberToWords = (num = 0) => {

@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@mui/material";
 
-import { formatCurrency, getProfessionalTax } from "../../../../utils/salaryCalculations";
+import { formatCurrency, getProfessionalTax } from "../../../../../utils/salaryCalculations";
 
 /* 🔢 Number to Words (Indian System) */
 const numberToWords = (num = 0) => {

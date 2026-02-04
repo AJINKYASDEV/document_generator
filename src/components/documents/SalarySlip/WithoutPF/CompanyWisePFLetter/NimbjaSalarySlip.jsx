@@ -9,12 +9,12 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import A4Page from "../../../layout/A4Page";
-import signature from "../../../../assets/images/Nimbja/Nimbja_signature.png";
+import A4Page from "../../../../layout/A4Page";
+import signature from "../../../../../assets/images/Nimbja/Nimbja_signature.png";
 import {
   formatCurrency,
   getProfessionalTax,
-} from "../../../../utils/salaryCalculations";
+} from "../../../../../utils/salaryCalculations";
 
 /* 🔢 Number to Words (Indian system – up to Crores) */
 const numberToWords = (num) => {
