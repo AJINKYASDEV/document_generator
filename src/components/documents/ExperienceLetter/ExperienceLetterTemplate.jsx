@@ -8,6 +8,7 @@ import PentaExperience from "./CompanyWiseExperience/PentaExperience";
 import RPExperience from "./CompanyWiseExperience/RPExperience";
 import SmartMatrixExperience from "./CompanyWiseExperience/SmartMatrixExperience";
 import SmartSoftwareExperience from "./CompanyWiseExperience/SmartSoftwareExperience";
+import QuickExperience from "./CompanyWiseExperience/QuickExperience";
 import NimbjaExperience from "./CompanyWiseExperience/NimbjaExperience";
 
 
@@ -21,7 +22,9 @@ const companyComponentMap = {
   6: PentaExperience,
   7: NimbjaExperience,
   8: JDITExperience,
+  9: QuickExperience,
   10: SmartSoftwareExperience,
+  11:QuickExperience,
 };
 
 const ExperienceLetterTemplate = ({ company, data }) => {
