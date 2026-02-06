@@ -329,7 +329,11 @@ export const companies = [
         header: jdit_header,
         footer: jdit_footer,
         signature: jdit_signature,
+<<<<<<< HEAD
         sign: jdit_signature,
+=======
+        sign: ajaySignature,
+>>>>>>> bd5f0a3490efe520255a789b935744c6359494ed
         // signature: jdit_Signature, 
         incrementSignature: ajaySignature,        // Normal letters
         stamp: jdit_stamp,
@@ -439,6 +443,13 @@ export const documentTypes = [
             { name: 'mode', label: 'Mode Bank', type: 'text', required: true },
             { name: 'workdays', label: 'Total Workdays', type: 'number', required: true },
             { name: 'dob', label: 'Date of Birth', type: 'date', required: true },
+            {
+                name: 'salaryType',
+                label: 'Select Type',
+                type: 'select',
+                options: ['withPF', 'withoutPF'],
+                required: true
+            },
             { name: 'accountNo', label: 'Account Number', type: 'text', required: true },
             // { name: 'basicSalary', label: 'Basic Salary', type: 'number', required: true },
             // { name: 'hra', label: 'HRA', type: 'number', required: true },
@@ -486,6 +497,7 @@ export const documentTypes = [
             { name: 'employeeId', label: 'EmployeeId', type: 'text', required: true },
             { name: 'position', label: 'Position', type: 'text', required: true },
             { name: 'department', label: 'Department', type: 'text', required: true },
+           
             { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
             { name: 'probationPeriod', label: 'Probation Period (months)', type: 'number', required: true },
             { name: 'salary', label: 'Annual Salary (CTC)', type: 'number', required: true },

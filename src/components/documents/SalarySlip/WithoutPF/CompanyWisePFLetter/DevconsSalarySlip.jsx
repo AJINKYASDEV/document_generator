@@ -9,9 +9,9 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import A4Page from "../../../layout/A4Page";
+import A4Page from "../../../../layout/A4Page";
 
-import { formatCurrency, getProfessionalTax } from "../../../../utils/salaryCalculations";
+import { formatCurrency, getProfessionalTax } from "../../../../../utils/salaryCalculations";
 
 /* 🔢 Number to Words (Indian System) */
 const numberToWords = (num = 0) => {
@@ -213,7 +213,7 @@ const netPay = round2(totalEarning - totalDeduction);
               <TableCell />
             </TableRow>
 
-            <TableRow>
+            <TableRow>  
               <TableCell sx={{ fontWeight: 600 }}>FOOD ALLOWANCE</TableCell>
               <TableCell align="right">{formatCurrency(food)}</TableCell>
               <TableCell />
@@ -267,3 +267,5 @@ const netPay = round2(totalEarning - totalDeduction);
 };
 
 export default DevconsSalarySlip;
+
+

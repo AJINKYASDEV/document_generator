@@ -59,21 +59,19 @@ const DevconsProjectCompletion = ({ company, data }) => {
             <strong>{formatDate(data.completionDate)}</strong>.
           </Typography>
 
-          <Typography sx={{ mb: 2, textAlign: "justify" }}>
+          <Typography sx={{ mb: 9, textAlign: "justify" }}>
             During the internship, {pronouns.subject.toLowerCase()} has demonstrated{" "}
             {pronouns.possessive} skills with self-motivation to learn new skills.{" "}
             {pronouns.possessive.charAt(0).toUpperCase() +
               pronouns.possessive.slice(1)}{" "}
             performance exceeded our expectations and {pronouns.subject.toLowerCase()} was
-            able to complete the given tasks on time.
-          </Typography>
-
-
-          <Typography sx={{ mb: 7, textAlign: "justify" }}>
-            {pronouns.subject} was designated as <strong>{data.role}</strong> with project
+            able to complete the given tasks on time. {pronouns.subject} was designated as <strong>{data.role}</strong> with project
             named <strong>{data.projectName}</strong>. We wish {pronouns.object} all the
             best for {pronouns.possessive} upcoming career.
           </Typography>
+
+
+          
 
 
           {/* SIGN OFF */}
