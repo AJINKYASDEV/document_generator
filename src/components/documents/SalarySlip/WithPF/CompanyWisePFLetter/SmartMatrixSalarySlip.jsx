@@ -9,12 +9,12 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import A4Page from "../../../layout/A4Page";
-import signature from "../../../../assets/images/Nimbja/Nimbja_signature.png";
+import A4Page from "../../../../layout/A4Page";
+import signature from "../../../../../assets/images/Nimbja/Nimbja_signature.png";
 import {
   formatCurrency,
   getProfessionalTax,
-} from "../../../../utils/salaryCalculations";
+} from "../../../../../utils/salaryCalculations";
 
 /* 🔢 Number to Words (Indian system – up to Crores) */
 const numberToWords = (num) => {
@@ -92,7 +92,7 @@ const numberToWords = (num) => {
   return `${inWords(Math.round(num))} Rupees Only`;
 };
 
-const NimbjaSalarySlip = ({ data, company }) => {
+const SmartMatrixSalarySlip = ({ data, company }) => {
   /* ===== EMPLOYEE DETAILS ===== */
   const name = data.employeeName || "-";
   const empId = data.employeeId || "-";
@@ -163,7 +163,7 @@ const NimbjaSalarySlip = ({ data, company }) => {
           border: "1.5px solid black",
           borderRadius: 0,
           mt: "5mm",
-          
+
           mb: "15mm", // ⬅️ ADD THIS (lifts content away from footer)
           boxShadow: "none",
           "& .MuiTableCell-root": {
@@ -271,7 +271,7 @@ const NimbjaSalarySlip = ({ data, company }) => {
 
             <TableRow>
               <TableCell sx={{ fontWeight: "bold", whiteSpace: "nowrap" }}>
-                Basic 
+                Basic
               </TableCell>
               <TableCell align="right">{formatCurrency(basic)}</TableCell>
               <TableCell></TableCell>
@@ -382,4 +382,4 @@ const NimbjaSalarySlip = ({ data, company }) => {
   );
 };
 
-export default NimbjaSalarySlip;
+export default SmartMatrixSalarySlip;

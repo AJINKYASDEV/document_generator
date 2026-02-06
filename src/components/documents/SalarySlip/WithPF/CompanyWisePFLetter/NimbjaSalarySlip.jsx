@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Box,
   Typography,
   Table,
   TableBody,
@@ -9,9 +8,8 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import A4Page from "../../../layout/A4Page";
-
-import { formatCurrency, getProfessionalTax } from "../../../../utils/salaryCalculations";
+import A4Page from "../../../../layout/A4Page";
+import { formatCurrency, getProfessionalTax } from "../../../../../utils/salaryCalculations";
 
 /* 🔢 Number to Words (Indian System) */
 const numberToWords = (num = 0) => {
@@ -35,10 +33,8 @@ const numberToWords = (num = 0) => {
 };
 
 const DevconsSalarySlip = ({ company = {}, data = {} }) => {
+  const round2 = (n) => Number(n.toFixed(2));
 
-   const round2 = (num) => Number(num.toFixed(2));
-
-  /* ===== EMPLOYEE DETAILS ===== */
   const {
     employeeName = "-",
     employeeId = "-",
@@ -53,65 +49,36 @@ const DevconsSalarySlip = ({ company = {}, data = {} }) => {
     month = "2025-02",
     totalSalary = 0,
     otherDeduction = 2000,
+    bankName = "Union Bank",
+    accountNo = "-",
   } = data;
 
-  /* ===== MONTH FORMAT ===== */
   const [year, monthNum] = month.split("-");
-  const monthName = new Date(year, monthNum - 1).toLocaleString("en-IN", { month: "long" });
-  const salaryMonth = `${monthName} ${year}`;
+  const salaryMonth = `${new Date(year, monthNum - 1).toLocaleString("en-IN", { month: "long" })} ${year}`;
 
-  /* ===== MONTHLY SALARY LOGIC (PERCENTAGE-WISE) ===== */
+  /* Salary breakup */
+  const monthlyGross = round2(totalSalary);
+  const basic = round2(monthlyGross * 0.4);
+  const hra = round2(monthlyGross * 0.18);
+  const da = round2(monthlyGross * 0.12);
+  const special = round2(monthlyGross * 0.16);
+  const food = round2(monthlyGross * 0.06);
+  const misc = round2(monthlyGross * 0.08);
 
-const monthlyGross = round2(Number(totalSalary || 0));
-
-// Percentages (TOTAL = 100%)
-const PERCENT = {
-  basic: 0.40,
-  hra: 0.18,
-  da: 0.12,
-  special: 0.16,
-  food: 0.06,
-  misc: 0.08,
-};
-
-// Monthly breakup
-const basic      = round2(monthlyGross * PERCENT.basic);
-const hra        = round2(monthlyGross * PERCENT.hra);
-const conveyance = round2(monthlyGross * PERCENT.da);     // DA
-const special    = round2(monthlyGross * PERCENT.special);
-const food       = round2(monthlyGross * PERCENT.food);
-const others     = round2(monthlyGross * PERCENT.misc);
-
-// Totals
-const totalEarning =
-  basic +
-  hra +
-  conveyance +
-  special +
-  food +
-  others;
-
-// Deductions
-const pt = getProfessionalTax(month, totalEarning);
-const totalDeduction = round2(pt + Number(otherDeduction || 0));
-const netPay = round2(totalEarning - totalDeduction);
-
+  const totalEarning = basic + hra + da + special + food + misc;
+  const pt = getProfessionalTax(month, totalEarning);
+  const totalDeduction = round2(pt + Number(otherDeduction));
+  const netPay = round2(totalEarning - totalDeduction);
 
   return (
-    <A4Page
-      headerSrc={company.header}
-      footerSrc={company.footer}
-      watermarkSrc={company.watermark}
-      contentTop="45mm"
-      contentBottom="30mm"
-    >
+    <A4Page headerSrc={company.header} footerSrc={company.footer} watermarkSrc={company.watermark}>
       <TableContainer
         component={Paper}
         sx={{
           border: "1.5px solid black",
           borderRadius: 0,
-          mt: "5mm",
           boxShadow: "none",
+          mt: 2,
           "& .MuiTableCell-root": {
             border: "1px solid black",
             fontSize: "11pt",
@@ -121,6 +88,7 @@ const netPay = round2(totalEarning - totalDeduction);
       >
         <Table size="small">
           <TableBody>
+
             {/* HEADER */}
             <TableRow>
               <TableCell colSpan={4} align="center" sx={{ fontWeight: "bold", fontSize: "14pt" }}>
@@ -129,9 +97,7 @@ const netPay = round2(totalEarning - totalDeduction);
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={4} align="center" sx={{ fontWeight: "bold" }}>
-                {company.address}
-              </TableCell>
+              <TableCell colSpan={4} align="center">{company.address}</TableCell>
             </TableRow>
 
             <TableRow>
@@ -140,40 +106,54 @@ const netPay = round2(totalEarning - totalDeduction);
               </TableCell>
             </TableRow>
 
-            {/* EMPLOYEE DETAILS */}
+            {/* EMP DETAILS */}
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>Employee Name</TableCell>
+              <TableCell>Employee Name</TableCell>
               <TableCell>{employeeName}</TableCell>
               <TableCell>Employee ID</TableCell>
               <TableCell>{employeeId}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>Gender</TableCell>
+              <TableCell>Gender</TableCell>
               <TableCell>{gender}</TableCell>
               <TableCell>Department</TableCell>
               <TableCell>{department}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>DOJ</TableCell>
+              <TableCell>DOJ</TableCell>
               <TableCell>{doj}</TableCell>
-              <TableCell>PAN</TableCell>
+              <TableCell>PAN Number</TableCell>
               <TableCell>{pan}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>Designation</TableCell>
+              <TableCell>Designation</TableCell>
               <TableCell>{designation}</TableCell>
               <TableCell>DOB</TableCell>
               <TableCell>{dob}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>Mode</TableCell>
+              <TableCell>Mode</TableCell>
               <TableCell>{mode}</TableCell>
               <TableCell>Working Days</TableCell>
               <TableCell>{workdays}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>Of India</TableCell>
+              <TableCell>{bankName}</TableCell>
+              <TableCell />
+              <TableCell />
+            </TableRow>
+
+            <TableRow>
+              <TableCell>Bank Account No.</TableCell>
+              <TableCell>{accountNo}</TableCell>
+              <TableCell />
+              <TableCell />
             </TableRow>
 
             {/* EARNINGS HEADER */}
@@ -186,43 +166,43 @@ const netPay = round2(totalEarning - totalDeduction);
 
             {/* EARNINGS */}
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>BASIC</TableCell>
+              <TableCell>BASIC</TableCell>
               <TableCell align="right">{formatCurrency(basic)}</TableCell>
               <TableCell>PT</TableCell>
               <TableCell align="right">{formatCurrency(pt)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>HRA</TableCell>
+              <TableCell>HRA</TableCell>
               <TableCell align="right">{formatCurrency(hra)}</TableCell>
               <TableCell>Other Deduction</TableCell>
               <TableCell align="right">{formatCurrency(otherDeduction)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>DEARNESS ALLOWANCE</TableCell>
-              <TableCell align="right">{formatCurrency(conveyance)}</TableCell>
+              <TableCell>DEARNESS ALLOWANCE</TableCell>
+              <TableCell align="right">{formatCurrency(da)}</TableCell>
               <TableCell />
               <TableCell />
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>SPECIAL ALLOWANCE</TableCell>
+              <TableCell>SPECIAL ALLOWANCE</TableCell>
               <TableCell align="right">{formatCurrency(special)}</TableCell>
               <TableCell />
               <TableCell />
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>FOOD ALLOWANCE</TableCell>
+              <TableCell>FOOD ALLOWANCE</TableCell>
               <TableCell align="right">{formatCurrency(food)}</TableCell>
               <TableCell />
               <TableCell />
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>MISC ALLOWANCE</TableCell>
-              <TableCell align="right">{formatCurrency(others)}</TableCell>
+              <TableCell>MISC ALLOWANCE</TableCell>
+              <TableCell align="right">{formatCurrency(misc)}</TableCell>
               <TableCell />
               <TableCell />
             </TableRow>
@@ -259,6 +239,7 @@ const netPay = round2(totalEarning - totalDeduction);
                 <Typography fontWeight="bold">Signature</Typography>
               </TableCell>
             </TableRow>
+
           </TableBody>
         </Table>
       </TableContainer>
