@@ -1,77 +1,190 @@
 import React from "react";
-import { Box, Table, TableBody, TableCell, TableRow, Typography,} from "@mui/material";
+import {
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Typography,
+} from "@mui/material";
 
-/* ---------- STYLES ---------- */
+/* ---------------- COLORS ---------------- */
+const headerBg = "#EAF4FB";
+const sectionBg = "#F3F6F8";
+const totalBg = "#E1EEF9";
+
+/* ---------------- STYLES ---------------- */
 const cell = {
   border: "1px solid #000",
-  padding: "6px",
+  padding: "4px",
   fontSize: "12px",
+  lineHeight: 1.2,
 };
 
 const bold = { fontWeight: "bold" };
 const center = { textAlign: "center" };
 
-/* ---------- UTILS ---------- */
+/* ---------------- DATE UTILS ---------------- */
+const getDaysInMonth = (monthValue) => {
+  if (!monthValue) return 0;
+  const date = new Date(`${monthValue}-01`);
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+};
+
 const formatDate = (d) =>
   d ? new Date(d).toLocaleDateString("en-GB") : "";
 
-const formatMonth = (m) =>
-  m
-    ? new Date(`${m}-01`).toLocaleDateString("en-US", { month: "long" })
-    : "";
+const formatMonth = (v) => {
+  if (!v) return "";
+  const d = new Date(`${v}-01`);
+  return d.toLocaleDateString("en-US", { month: "long" });
+};
 
-const money = (n) =>
-  Number(n || 0).toLocaleString("en-IN", { minimumFractionDigits: 2 });
+const numberFormat = (n) =>
+  Number(n || 0).toLocaleString("en-IN", {
+    minimumFractionDigits: 2,
+  });
 
-/* ---------- COMPONENT ---------- */
-const QuickFullAndFinal = ({ company, data }) => {
-  const totalDays = new Date(
-    new Date(`${data.month}-01`).getFullYear(),
-    new Date(`${data.month}-01`).getMonth() + 1,
-    0
-  ).getDate();
+/* ---------------- SALARY BREAKUP ---------------- */
+const getSalaryBreakup = (totalSalary = 0) => {
+  const basic = +(totalSalary * 0.4).toFixed(2);
+  const hra = +(totalSalary * 0.18).toFixed(2);
+  const da = +(totalSalary * 0.12).toFixed(2);
+  const special = +(totalSalary * 0.16).toFixed(2);
+  const food = +(totalSalary * 0.06).toFixed(2);
+  const misc = +(
+    totalSalary -
+    (basic + hra + da + special + food)
+  ).toFixed(2);
 
-  const paidRatio = data.paidDays / totalDays;
+  return {
+    basic,
+    hra,
+    da,
+    special,
+    food,
+    misc,
+    pt: 200,
+    other: 2000,
+  };
+};
 
-  const basic = data.totalSalary * 0.4;
-  const hra = data.totalSalary * 0.18;
-  const conveyance = data.totalSalary * 0.12;
-  const special = data.totalSalary * 0.16;
-  const medical = data.totalSalary * 0.06;
+/* ---------------- NUMBER TO WORDS ---------------- */
+const numberToWords = (num) => {
+  if (!num) return "Zero Only";
 
-  const earnings = [
-    ["Basic Salary", basic],
-    ["HRA", hra],
-    ["Conveyance Allowance", conveyance],
-    ["Medical Allowance", medical],
-    ["Special Allowance", special],
+  const a = [
+    "", "One", "Two", "Three", "Four", "Five", "Six",
+    "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+    "Thirteen", "Fourteen", "Fifteen", "Sixteen",
+    "Seventeen", "Eighteen", "Nineteen",
+  ];
+  const b = [
+    "", "", "Twenty", "Thirty", "Forty",
+    "Fifty", "Sixty", "Seventy", "Eighty", "Ninety",
   ];
 
-  const earnedTotal = earnings.reduce(
-    (sum, [, v]) => sum + v * paidRatio,
+  const inWords = (n) => {
+    if (n < 20) return a[n];
+    if (n < 100)
+      return b[Math.floor(n / 10)] + (n % 10 ? " " + a[n % 10] : "");
+    if (n < 1000)
+      return (
+        a[Math.floor(n / 100)] +
+        " Hundred" +
+        (n % 100 ? " " + inWords(n % 100) : "")
+      );
+    if (n < 100000)
+      return (
+        inWords(Math.floor(n / 1000)) +
+        " Thousand" +
+        (n % 1000 ? " " + inWords(n % 1000) : "")
+      );
+    if (n < 10000000)
+      return (
+        inWords(Math.floor(n / 100000)) +
+        " Lakh" +
+        (n % 100000 ? " " + inWords(n % 100000) : "")
+      );
+    return (
+      inWords(Math.floor(n / 10000000)) + " Crore"
+    );
+  };
+
+  return inWords(Math.round(num)) + " Rs Only";
+};
+
+/* ---------------- COMPONENT ---------------- */
+const QuickFullAndFinal = ({ company, data }) => {
+  /* ---- Days ---- */
+  const totalDays = getDaysInMonth(data.month);
+  const paidDays = Number(data.paiddays || 0);
+  const paidRatio = totalDays ? paidDays / totalDays : 0;
+
+  /* ---- Salary ---- */
+  const totalSalary = Number(data.totalSalary || 0);
+  const salary = getSalaryBreakup(totalSalary);
+
+  /* ---- Earnings ---- */
+  const earnings = [
+    ["Basic Salary", salary.basic],
+    ["HRA", salary.hra],
+    ["Dearness Allowance", salary.da],
+    ["Special Allowance", salary.special],
+    ["Food Allowance", salary.food],
+    ["Misc Allowance", salary.misc],
+  ];
+
+  const earningsTotal = earnings.reduce(
+    (sum, [, val]) => sum + val,
     0
   );
 
-  const deductions = 2200;
-  const netPay = earnedTotal - deductions + Number(data.leaveEncashment || 0);
+  const earnedTotal = earnings.reduce(
+    (sum, [, val]) => sum + val * paidRatio,
+    0
+  );
+
+  /* ---- Deductions ---- */
+  const deductionsTotal = salary.pt + salary.other;
+
+  /* ---- Other Earnings ---- */
+  const leaveEncashment = Number(data.leaveencashment || 0);
+
+  /* ---- Net Pay ---- */
+  const netPay =
+    earnedTotal - deductionsTotal + leaveEncashment;
 
   return (
     <Box
       sx={{
         width: "210mm",
         height: "297mm",
-        background: "#fff",
         position: "relative",
         fontFamily: "Cambria, serif",
+        backgroundColor: "#fff",
       }}
     >
       {/* HEADER */}
-      <img src={company.header} width="100%" alt="header" />
+      {company.header && (
+        <Box sx={{ position: "absolute", top: 0, width: "100%" }}>
+          <img src={company.header} width="100%" alt="header" />
+        </Box>
+      )}
 
       {/* CONTENT */}
-      <Box sx={{ padding: "20mm" }}>
-        <Table>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50mm",
+          bottom: "40mm",
+          left: "12mm",
+          right: "12mm",
+        }}
+      >
+        <Table sx={{ borderCollapse: "collapse" }}>
           <TableBody>
+
             <TableRow>
               <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
                 Full & Final Settlement Statement
@@ -79,9 +192,13 @@ const QuickFullAndFinal = ({ company, data }) => {
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={4} sx={{ ...cell, ...center }}>
+              <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
                 {company.name}
-                <br />
+              </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell colSpan={4} sx={{ ...cell, ...center }}>
                 {company.address}
               </TableCell>
             </TableRow>
@@ -90,7 +207,7 @@ const QuickFullAndFinal = ({ company, data }) => {
               <TableCell sx={{ ...cell, ...bold }}>Employee Name</TableCell>
               <TableCell sx={cell}>{data.employeeName}</TableCell>
               <TableCell sx={{ ...cell, ...bold }}>F&F Date</TableCell>
-              <TableCell sx={cell}>{formatDate(data.ffDate)}</TableCell>
+              <TableCell sx={cell}>{formatDate(data.date)}</TableCell>
             </TableRow>
 
             <TableRow>
@@ -101,6 +218,22 @@ const QuickFullAndFinal = ({ company, data }) => {
             </TableRow>
 
             <TableRow>
+              <TableCell sx={{ ...cell, ...bold }}>Designation</TableCell>
+              <TableCell sx={cell}>{data.designation}</TableCell>
+              <TableCell sx={{ ...cell, ...bold }}>Date of Resignation</TableCell>
+              <TableCell sx={cell}>{formatDate(data.dateofresignation)}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell sx={{ ...cell, ...bold }}>Department</TableCell>
+              <TableCell sx={cell}>{data.department}</TableCell>
+              <TableCell sx={{ ...cell, ...bold }}>Date of Leaving</TableCell>
+              <TableCell sx={cell}>{formatDate(data.dateofleaving)}</TableCell>
+            </TableRow>
+
+
+
+            <TableRow>
               <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
                 Salary Particulars
               </TableCell>
@@ -108,41 +241,98 @@ const QuickFullAndFinal = ({ company, data }) => {
               <TableCell sx={cell}>{formatMonth(data.month)}</TableCell>
             </TableRow>
 
-            <TableRow>
+            <TableRow sx={{ backgroundColor: sectionBg }}>
               <TableCell sx={{ ...cell, ...bold }}>Total Days</TableCell>
               <TableCell sx={cell}>{totalDays}</TableCell>
               <TableCell sx={{ ...cell, ...bold }}>Paid Days</TableCell>
-              <TableCell sx={cell}>{data.paidDays}</TableCell>
+              <TableCell sx={cell}>{paidDays}</TableCell>
             </TableRow>
 
-            <TableRow>
-              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
-                Earnings
-              </TableCell>
-              <TableCell sx={{ ...cell, ...bold }}>Actual</TableCell>
-              <TableCell sx={{ ...cell, ...bold }}>Earned</TableCell>
+
+            <TableRow sx={{ backgroundColor: headerBg }}>
+              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Earnings</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...center }}>Actual</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...center }}>Earned</TableCell>
             </TableRow>
 
-            {earnings.map(([label, value]) => (
-              <TableRow key={label}>
+            {earnings.map(([label, val], i) => (
+              <TableRow key={i}>
                 <TableCell colSpan={2} sx={cell}>{label}</TableCell>
-                <TableCell sx={cell}>{money(value)}</TableCell>
-                <TableCell sx={cell}>{money(value * paidRatio)}</TableCell>
+                <TableCell sx={cell}>{numberFormat(val)}</TableCell>
+                <TableCell sx={cell}>
+                  {numberFormat(val * paidRatio)}
+                </TableCell>
               </TableRow>
             ))}
 
-            <TableRow>
-              <TableCell colSpan={3} sx={{ ...cell, ...bold }}>
-                Net Payable
+            <TableRow sx={{ backgroundColor: totalBg }}>
+              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
+                Total Earnings
               </TableCell>
               <TableCell sx={{ ...cell, ...bold }}>
-                {money(netPay)}
+                {numberFormat(earningsTotal)}
+              </TableCell>
+              <TableCell sx={{ ...cell, ...bold }}>
+                {numberFormat(earnedTotal)}
+              </TableCell>
+            </TableRow>
+
+            <TableRow sx={{ backgroundColor: sectionBg }}>
+              <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
+                Less Deductions (-)
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={4} sx={cell}>
-                Amount in Words: <b>{money(netPay)} Only</b>
+              <TableCell sx={cell}>Professional Tax</TableCell>
+              <TableCell colSpan={2} sx={cell}></TableCell>
+              <TableCell sx={cell}>{numberFormat(salary.pt)}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell sx={cell}>Other</TableCell>
+              <TableCell colSpan={2} sx={cell}></TableCell>
+              <TableCell sx={cell}>{numberFormat(salary.other)}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell sx={{ ...cell, ...bold }}>Total Deductions</TableCell>
+              <TableCell colSpan={2} sx={cell}></TableCell>
+              <TableCell sx={{ ...cell, ...bold }}>
+                {numberFormat(deductionsTotal)}
+              </TableCell>
+            </TableRow>
+
+            <TableRow sx={{ backgroundColor: sectionBg }}>
+              <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
+                Other Earnings
+              </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell sx={cell}>Leave encashment (Dys)</TableCell>
+              <TableCell colSpan={2} sx={cell}></TableCell>
+              <TableCell sx={cell}>{numberFormat(data.leaveencashment)}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell sx={cell}>Total</TableCell>
+              <TableCell colSpan={2} sx={cell}></TableCell>
+              <TableCell sx={cell}>{numberFormat(data.totalSalary)}</TableCell>
+            </TableRow>
+
+            <TableRow sx={{ backgroundColor: totalBg }}>
+              <TableCell sx={{ ...cell, ...bold }}>Net Payable (Rs)</TableCell>
+              <TableCell colSpan={2} sx={cell}></TableCell>
+              <TableCell sx={{ ...cell, ...bold }}>
+                {numberFormat(netPay)}
+              </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell sx={{ ...cell, ...bold }}>Amount in Words</TableCell>
+              <TableCell colSpan={3} sx={cell}>
+                {numberToWords(netPay)}
               </TableCell>
             </TableRow>
 
@@ -151,19 +341,22 @@ const QuickFullAndFinal = ({ company, data }) => {
                 Prepared By
               </TableCell>
               <TableCell sx={{ ...cell, ...center }}>
-                <img src={company.stamp} height={40} alt="stamp" />
+                <img src={company.stamp} height={50} alt="stamp" />
                 <br />
                 Verified By
               </TableCell>
               <TableCell colSpan={2} sx={{ ...cell, ...center }}>
-                <img src={company.signature} height={35} alt="sign" />
+                <img src={company.signature} height={45} alt="sign" />
                 <br />
                 Approved By
               </TableCell>
             </TableRow>
+
           </TableBody>
         </Table>
       </Box>
+
+    
     </Box>
   );
 };

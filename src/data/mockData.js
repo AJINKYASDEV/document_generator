@@ -329,7 +329,11 @@ export const companies = [
         header: jdit_header,
         footer: jdit_footer,
         signature: jdit_signature,
+<<<<<<< HEAD
+        sign: jdit_signature,
+=======
         sign: ajaySignature,
+>>>>>>> bd5f0a3490efe520255a789b935744c6359494ed
         // signature: jdit_Signature, 
         incrementSignature: ajaySignature,        // Normal letters
         stamp: jdit_stamp,
@@ -834,7 +838,7 @@ export const documentTypes = [
             { name: 'dateofresignation', label: 'Date of Resignation', type: 'date', required: true },
             { name: 'dateofleaving', label: 'Date of Leaving', type: 'date',  required: true },
              { name:'leaveencashment' , label:'Leave encashment', type:'number', required: true},
-              { name: 'paiddays', label: 'Paid days ', type: 'number', required: true },
+            { name: 'paiddays', label: 'Paid days ', type: 'number', required: true },
             //{ name: 'mode', label: 'Mode Bank', type: 'text', required: true },
             { name: 'workdays', label: 'Total Day in the month', type: 'number', required: true },
             //{ name: 'dob', label: 'Date of Birth', type: 'date', required: true },
