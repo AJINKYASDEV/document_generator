@@ -476,7 +476,7 @@ const NimbjaAppointment1 = ({ data, company }) => {
 
           /* ===== SOURCE OF TRUTH ===== */
           const annualCTC = round0(
-            Number(data.salary || data.ctc || data.annualSalary || 0),
+            Number(data.totalsalary || data.ctc || data.annualSalary || 0),
           );
 
           const grossMonthly = round2(annualCTC / 12);
