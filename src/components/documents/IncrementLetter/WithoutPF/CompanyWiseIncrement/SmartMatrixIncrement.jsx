@@ -1009,11 +1009,11 @@ import {
   TableBody,
   Paper,
 } from "@mui/material";
-import A4Layout from "../../../layout/A4Page";
+import A4Layout from "../../../../layout/A4Page";
 import {
   generateAnnexureSalaryStructure,
   formatCurrency,
-} from "../../../../utils/salaryCalculations";
+} from "../../../../../utils/salaryCalculations";
 
 /* ================= DATE FORMAT ================= */
 const formatDate = (date) => {

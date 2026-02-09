@@ -389,11 +389,11 @@ import {
   TableBody,
   Grid,
 } from "@mui/material";
-import A4Layout from "../../../layout/A4Page";
+import A4Layout from "../../../../layout/A4Page";
 import {
   generateOfferLetterComponents,
   formatCurrency,
-} from "../../../../utils/salaryCalculations";
+} from "../../../../../utils/salaryCalculations";
 
 /* ================= NUMBER TO WORDS ================= */
 const numberToWords = (num) => {

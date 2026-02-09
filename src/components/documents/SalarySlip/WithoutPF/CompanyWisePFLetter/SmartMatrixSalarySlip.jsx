@@ -626,15 +626,15 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import A4Page from "../../../layout/A4Page";
+import A4Page from "../../../../layout/A4Page";
 import {
   formatCurrency,
   getProfessionalTax,
   numberToWords,
-} from "../../../../utils/salaryCalculations";
+} from "../../../../../utils/salaryCalculations";
 
-import stampImg from "../../../../assets/images/smartmatrix/smartmatrix_stamp.png";
-import signImg from "../../../../assets/images/smartmatrix/smartmatrix_signature.png";
+import stampImg from "../../../../../assets/images/smartmatrix/Smartmatrix_stamp.png";
+import signImg from "../../../../../assets/images/smartmatrix/Smartmatrix_signature.png";
 
 /* ================= WORD STYLES ================= */
 const FONT = "Cambria, 'Times New Roman', serif";

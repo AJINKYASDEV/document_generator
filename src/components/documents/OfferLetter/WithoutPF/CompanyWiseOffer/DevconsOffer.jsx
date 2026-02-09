@@ -13,8 +13,8 @@ import {
 
 import {
   formatCurrency,
-} from "../../../../utils/salaryCalculations";
-import A4Page from "../../../layout/A4Page";
+} from "../../../../../utils/salaryCalculations";
+import A4Page from "../../../../layout/A4Page";
 const DevconsOffer = ({ company, data }) => {
   if (!company || !data) return null;
 

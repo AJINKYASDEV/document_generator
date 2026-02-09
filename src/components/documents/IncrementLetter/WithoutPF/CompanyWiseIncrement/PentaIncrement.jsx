@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Table, TableBody, TableCell, TableRow, } from "@mui/material";
 
-import { formatCurrency, } from "../../../../utils/salaryCalculations";
+import { formatCurrency, } from "../../../../../utils/salaryCalculations";
 
 const PentaIncrement = ({ company, data }) => {
   /* ================= SALARY LOGIC (DEVCONS – CUSTOM ANNEXURE) ================= */

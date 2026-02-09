@@ -74,8 +74,8 @@ import {
   TableHead,
   TableContainer,
 } from "@mui/material";
-import A4Layout from "../../../layout/A4Page";
-import { formatCurrency, generateOfferLetterComponents, numberToWords } from "../../../../utils/salaryCalculations";
+import A4Layout from "../../../../layout/A4Page";
+import { formatCurrency, generateOfferLetterComponents, numberToWords } from "../../../../../utils/salaryCalculations";
 
 /* ================= DATE FORMAT ================= */
 const formatDate = (date) =>

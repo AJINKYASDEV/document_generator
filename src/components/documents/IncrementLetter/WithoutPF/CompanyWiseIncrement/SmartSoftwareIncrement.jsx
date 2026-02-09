@@ -11,7 +11,7 @@ import {
   Paper,
 } from "@mui/material";
 
-import { generateSalaryComponents } from "../../../../utils/salaryCalculations";
+import { generateSalaryComponents } from "../../../../../utils/salaryCalculations";
 
 /* ================= DATE FORMAT ================= */
 const formatDate = (date) =>
