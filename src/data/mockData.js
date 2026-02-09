@@ -476,6 +476,13 @@ export const documentTypes = [
             { name: 'reportingManager', label: 'Reporting Manager', type: 'text', required: true },
             { name: 'noticePeriod', label: 'Notice Period', type: 'text', required: false },
             { name: 'offerValidTill', label: 'Offer Valid Till', type: 'date', required: true },
+             {
+                name: 'offerType',
+                label: 'Offer Type',
+                type: 'select',
+                options: ['withPF', 'withoutPF'],
+                required: true
+            },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
             // { name: 'benefits', label: 'Benefits & Perks', type: 'textarea', required: false },
             // { name: 'documentsRequired', label: 'Documents Required', type: 'textarea', required: false }
