@@ -329,11 +329,7 @@ export const companies = [
         header: jdit_header,
         footer: jdit_footer,
         signature: jdit_signature,
-<<<<<<< HEAD
-        sign: jdit_signature,
-=======
         sign: ajaySignature,
->>>>>>> bd5f0a3490efe520255a789b935744c6359494ed
         // signature: jdit_Signature, 
         incrementSignature: ajaySignature,        // Normal letters
         stamp: jdit_stamp,
