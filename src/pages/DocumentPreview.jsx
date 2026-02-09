@@ -27,10 +27,11 @@ import RelievingLetterTemplate from '../components/documents/RelievingLetter/Rel
 import AppointmentLetterTemplate from '../components/documents/AppointmentLeter/AppointmentLetterTemplate';
 import InternshipLetterTemplate from '../components/documents/InternshipLetter/InternshipLetterTemplate';
 import CertificationLetterTemplate from '../components/documents/InternshipComplitionCertificate/CertificationLetterTemplate';
-import FullandFinalLetterTemplate from '../components/documents/FullAndFinalLetter/FullAndFinalLetterTemplate';
+//import FullandFinalLetterTemplate from '../components/documents/FullAndFinalLetter/FullAndFinalLetterTemplate';
 import SalarySlipLetterTemplate from "../components/documents/SalarySlip/SalarySlipTemplate";
 import IncrementTemplate from "../components/documents/IncrementLetter/IncrementTemplate";
 import OfferTemplate from "../components/documents/OfferLetter/OfferLetterTemplate";
+//import FullAndFinalLetterTemplate from "../components/documents/FullAndFinalLetter/FullAndFinalLetterTemplate";
 
 
 
@@ -112,8 +113,8 @@ const DocumentPreview = () => {
       // return <TerminationLetterTemplate data={documentData} company={selectedCompany} />;
       // case 'transfer-letter':
         // return <TransferLetterTemplate data={documentData} company={selectedCompany} />;
-        case 'fullandfinal-letter':
-         return <FullandFinalLetterTemplate data={documentData} company={selectedCompany} />;
+        //case 'fullandfinal-letter':
+         //return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
       default:
         return <Typography>Template not found</Typography>;
     }

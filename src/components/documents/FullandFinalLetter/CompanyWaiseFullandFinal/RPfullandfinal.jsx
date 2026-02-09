@@ -82,7 +82,7 @@ const numberToWords = (num = 0) => {
 };
 
 /* ================== COMPONENT ================== */
-const RPFullandFinal = ({ company = {}, data = {} }) => {
+const RPFullAndFinal = ({ company = {}, data = {} }) => {
   const totalDays = Number(data.workdays || ' ');
   const paidDays = Number(data.paiddays || 0);
   const ratio = paidDays / totalDays;
@@ -305,5 +305,5 @@ const RPFullandFinal = ({ company = {}, data = {} }) => {
   );
 };
 
-export default RPFullandFinal;
+export default RPFullAndFinal;
 
