@@ -27,7 +27,7 @@ import RelievingLetterTemplate from '../components/documents/RelievingLetter/Rel
 import AppointmentLetterTemplate from '../components/documents/AppointmentLeter/AppointmentLetterTemplate';
 import InternshipLetterTemplate from '../components/documents/InternshipLetter/InternshipLetterTemplate';
 import CertificationLetterTemplate from '../components/documents/InternshipComplitionCertificate/CertificationLetterTemplate';
-import FullandFinalLetterTemplate from '../components/documents/FullandFinalLetter/FullandFinalLetterTemplate';
+import FullandFinalLetterTemplate from '../components/documents/FullAndFinalLetter/FullAndFinalLetterTemplate';
 import SalarySlipLetterTemplate from "../components/documents/SalarySlip/SalarySlipTemplate";
 import IncrementTemplate from "../components/documents/IncrementLetter/IncrementTemplate";
 import OfferTemplate from "../components/documents/OfferLetter/OfferLetterTemplate";
