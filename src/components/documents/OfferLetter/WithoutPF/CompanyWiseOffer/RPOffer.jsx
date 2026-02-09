@@ -12,9 +12,9 @@ import {
 import {
   calculateSalaryBreakdown,
   formatCurrency,
-} from "../../../../utils/salaryCalculations";
+} from "../../../../../utils/salaryCalculations";
 
-import A4Page from "../../../layout/A4Page";
+import A4Page from "../../../../layout/A4Page";
 
 const RPOffer = ({ company, data }) => {
   if (!company || !data) return null;

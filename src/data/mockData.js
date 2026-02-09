@@ -577,6 +577,13 @@ export const documentTypes = [
                 suffix: '%'
             },
             { name: 'effectiveDate', label: 'Effective Date', type: 'date', required: true },
+            {
+                name: 'incrementType',
+                label: 'Increment Type',
+                type: 'select',
+                options: ['withPF', 'withoutPF'],
+                required: true
+            },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
             // { name: 'reason', label: 'Reason for Increment', type: 'textarea', required: false }
         ]

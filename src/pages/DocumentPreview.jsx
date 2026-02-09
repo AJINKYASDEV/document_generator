@@ -20,7 +20,7 @@ import { generatePDF } from '../utils/pdfUtils'; // adjust path as needed
 
 // Templates
 // import SalarySlipTemplate from '../components/documents/SalarySlip/SalarySlipTemplate';
-import IncrementLetterTemplate from '../components/documents/IncrementLetter/IncrementLetterTemplate';
+//import IncrementLetterTemplate from '../components/documents/IncrementLetter/IncrementLetterTemplate';
 import ExperienceLetterTemplate from '../components/documents/ExperienceLetter/ExperienceLetterTemplate';
 import RelievingLetterTemplate from '../components/documents/RelievingLetter/RelievingLetteTemplate';
 import OfferLetterTemplate from '../components/documents/OfferLetter/OfferLetterTemplate';
@@ -29,6 +29,7 @@ import InternshipLetterTemplate from '../components/documents/InternshipLetter/I
 import CertificationLetterTemplate from '../components/documents/InternshipComplitionCertificate/CertificationLetterTemplate';
 import FullandFinalLetterTemplate from '../components/documents/FullandFinalLetter/FullandFinalLetterTemplate';
 import SalarySlipLetterTemplate from "../components/documents/SalarySlip/SalarySlipTemplate";
+import IncrementTemplate from "../components/documents/IncrementLetter/IncrementTemplate";
 
 
 
@@ -86,7 +87,7 @@ const DocumentPreview = () => {
          return <CertificationLetterTemplate data={documentData} company={selectedCompany} />;
 
       case 'increment-letter':
-        return <IncrementLetterTemplate data={documentData} company={selectedCompany} />;
+        return <IncrementTemplate data={documentData} company={selectedCompany} />;
       case 'appointment-letter':
         return <AppointmentLetterTemplate data={documentData} company={selectedCompany} />;
       case 'experience-letter':

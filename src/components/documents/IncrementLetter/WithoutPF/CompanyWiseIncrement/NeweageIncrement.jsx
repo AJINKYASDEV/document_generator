@@ -108,7 +108,7 @@ import {
   TableCell,
   TableBody,
 } from "@mui/material";
-import A4Layout from "../../../layout/A4Page";
+import A4Layout from "../../../../layout/A4Page";
 import { calculateIncrement, formatCurrency, numberToWords } from "../../../../utils/salaryCalculations";
 
 /* ================= DATE FORMAT ================= */

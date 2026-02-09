@@ -2,7 +2,6 @@ import React from "react";
 import DevconsSalarySlip from "./DevconsSalarySlip";
 import RPSalarySlip from "./RPSalarySlip";
 import NimbjaSalarySlip from "./NimbjaSalarySlip";
-import SmartMatrixSalarySlip from "./SmartMatrixSalarySlip"
 // import CubeageUnPaidInternshipLetter from "./CompanyWiseUnPaidInternshipLetter/CubeageUnPaidInternshipLetter";
 // import JDITUnPaidInternshipLetter from "./CompanyWiseUnPaidInternshipLetter/JDITUnPaidInternshipLetter";
 // import NeweageUnPaidInternshipLetter from "./CompanyWiseUnPaidInternshipLetter/NeweageUnPaidInternshipLetter";
@@ -16,16 +15,19 @@ import SmartMatrixSalarySlip from "./SmartMatrixSalarySlip"
 
 // same company ids, just Increment components
 const companyComponentMap = {
-  //   1: CubeageUnPaidInternshipLetter,
-  //   2: NeweageUnPaidInternshipLetter,
-    3: SmartMatrixSalarySlip,
+//   1: CubeageUnPaidInternshipLetter,
+//   2: NeweageUnPaidInternshipLetter,
+//   3: SmartMatrixUnPaidInternshipLetter,
   4: DevconsSalarySlip,
   5: RPSalarySlip,
-  //   6: PentaUnPaidInternshipLetter,
+//   6: PentaUnPaidInternshipLetter,
   7: NimbjaSalarySlip,
-  //   8: JDITUnPaidInternshipLetter,
-  //   9: QuickUnPaidInternshipLetter,
-  //   10:SmartSoftwareUnPaidInternshipLetter,
+//   8: JDITUnPaidInternshipLetter,
+//   9: QuickUnPaidInternshipLetter,
+//   10:SmartSoftwareUnPaidInternshipLetter,
+  
+  
+  
 };
 
 const WithPFLetterTemplate = ({ company, data }) => {

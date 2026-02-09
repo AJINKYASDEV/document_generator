@@ -1094,14 +1094,14 @@ import {
   TableContainer,
   Paper,
 } from "@mui/material";
-import A4Layout from "../../../layout/A4Page";
+import A4Layout from "../../../../layout/A4Page";
 
 /* ================= SALARY UTILITIES ================= */
 import {
   generateOfferLetterComponents,
   formatCurrency,
   numberToWords,
-} from "../../../../utils/salaryCalculations";
+} from "../../../../../utils/salaryCalculations";
 
 /* ================= COMMON TEXT ================= */
 const TEXT = {
