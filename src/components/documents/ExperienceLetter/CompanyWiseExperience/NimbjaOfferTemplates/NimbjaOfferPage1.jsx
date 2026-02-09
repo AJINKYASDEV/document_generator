@@ -612,7 +612,7 @@ const NimbjaOfferPage1 = ({ company, data }) => {
                 fontFamily: '"Bahnschrift", "Segoe UI", sans-serif', // 🔑 ADDED
               }}
             >
-              <strong>Signature :</strong> _________________________
+              <strong>Signature :</strong> _________________________ 
             </Typography>
 
             <Typography
@@ -631,10 +631,4 @@ const NimbjaOfferPage1 = ({ company, data }) => {
 };
 
 export default NimbjaOfferPage1;
-
-
-
-
-
-
 
