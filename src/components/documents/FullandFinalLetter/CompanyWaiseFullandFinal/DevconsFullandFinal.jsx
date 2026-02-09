@@ -83,7 +83,7 @@ const numberToWords = (num = 0) => {
 
 
 /* ================== COMPONENT ================== */
-const DevconsFullFinal = ({ company = {}, data = {} }) => {
+const DevconsFullAndFinal = ({ company = {}, data = {} }) => {
   const totalDays = Number(data.workdays || ' ');
   const paidDays = Number(data.paiddays || 0);
   const ratio = paidDays / totalDays;
@@ -306,5 +306,5 @@ const DevconsFullFinal = ({ company = {}, data = {} }) => {
   );
 };
 
-export default DevconsFullFinal;
+export default DevconsFullAndFinal;
 
