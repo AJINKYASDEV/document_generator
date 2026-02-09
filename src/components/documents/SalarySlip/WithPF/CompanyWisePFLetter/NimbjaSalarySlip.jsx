@@ -9,7 +9,7 @@ import {
   Paper,
 } from "@mui/material";
 import A4Page from "../../../../layout/A4Page";
-import { formatCurrency } from "../../../../../utils/salaryCalculations";
+import { formatCurrency,getProfessionalTax } from "../../../../../utils/salaryCalculations";
 
 /* ================= HELPERS ================= */
 const num = (v) => Number(v) || 0;
@@ -56,7 +56,14 @@ const NimbjaSalarySlip = ({ company = {}, data = {} }) => {
     accountNo = "-",
     month = "-",
     totalSalary = 0, // ✅ GROSS SALARY
+    otherDeduction = 2000,
   } = data;
+
+
+  /* ===== MONTH FORMAT ===== */
+  const [year, monthNum] = month.split("-");
+  const monthName = new Date(year, monthNum - 1).toLocaleString("en-IN", { month: "long" });
+  const salaryMonth = `${monthName} ${year}`;
 
   /* ================= EARNINGS BREAKUP (100%) ================= */
   const monthlyGross = round2(totalSalary);
@@ -82,13 +89,14 @@ const NimbjaSalarySlip = ({ company = {}, data = {} }) => {
 
   /* ================= DEDUCTIONS ================= */
   const PF = 3750;
-  const PT = 200;
-  const OTHER_DEDUCTION = 2000;
+  // const PT = 200;
+  // const OTHER_DEDUCTION = 2000;
 
-  const totalDeduction = PF + PT + OTHER_DEDUCTION;
 
   /* ================= NET PAY ================= */
-  const netPay = totalEarning - totalDeduction;
+const pt = getProfessionalTax(month, totalEarning);
+const totalDeduction = round2(PF + pt + Number(otherDeduction || 0));
+const netPay = round2(totalEarning - totalDeduction);
 
   return (
     <A4Page headerSrc={company.header} footerSrc={company.footer}>
@@ -122,7 +130,7 @@ const NimbjaSalarySlip = ({ company = {}, data = {} }) => {
 
             <TableRow>
               <TableCell colSpan={4} align="center" sx={{ fontWeight: "bold" }}>
-                Salary Slip {month}
+                Salary Slip {salaryMonth}
               </TableCell>
             </TableRow>
 
@@ -195,14 +203,14 @@ const NimbjaSalarySlip = ({ company = {}, data = {} }) => {
               <TableCell>HRA</TableCell>
               <TableCell align="right">{formatCurrency(HRA)}</TableCell>
               <TableCell>PT</TableCell>
-              <TableCell align="right">{formatCurrency(PT)}</TableCell>
+              <TableCell align="right">{formatCurrency(pt)}</TableCell>
             </TableRow>
 
             <TableRow>
               <TableCell>DEARNESS ALLOWANCE</TableCell>
               <TableCell align="right">{formatCurrency(DA)}</TableCell>
               <TableCell>Other Deduction</TableCell>
-              <TableCell align="right">{formatCurrency(OTHER_DEDUCTION)}</TableCell>
+              <TableCell align="right">{formatCurrency(totalDeduction)}</TableCell>
             </TableRow>
 
             <TableRow>

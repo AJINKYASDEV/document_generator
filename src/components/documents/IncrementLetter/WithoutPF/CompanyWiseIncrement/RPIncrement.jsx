@@ -8,14 +8,14 @@ import {
   TableRow,
 } from "@mui/material";
 
-import raj from '../../../../assets/images/rp/rajparekh.png';
-import A4Page from '../../../layout/A4Page';
+import raj from '../../../../../assets/images/rp/rajparekh.png';
+import A4Page from '../../../../layout/A4Page';
 
 
 import {
 
   formatCurrency,
-} from "../../../../utils/salaryCalculations";
+} from "../../../../../utils/salaryCalculations";
 
 const RPIncrement = ({ company, data }) => {
 

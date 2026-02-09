@@ -1308,7 +1308,7 @@
 
 
 import React from "react";
-import { formatCurrency } from "../../../../utils/salaryCalculations";
+import { formatCurrency } from "../../../../../utils/salaryCalculations";
 
 /* ================= DATE FORMAT ================= */
 const formatDate = (date) => {

@@ -9,8 +9,8 @@ import {
   TableCell,
   TableBody,
 } from "@mui/material";
-import A4Layout from "../../../layout/A4Page";
-import { generateOfferLetterComponents, formatCurrency } from "../../../../utils/salaryCalculations";
+import A4Layout from "../../../../layout/A4Page";
+import { generateOfferLetterComponents, formatCurrency } from "../../../../../utils/salaryCalculations";
 
 /* ================= DATE FORMAT ================= */
 const formatDate = (date) =>
