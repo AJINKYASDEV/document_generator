@@ -507,6 +507,13 @@ export const documentTypes = [
             { name: 'workLocation', label: 'Work Location', type: 'text', required: true },
             { name: 'reportingManager', label: 'Reporting Manager', type: 'text', required: true },
             { name: 'workHours', label: 'Work Hours', type: 'text', required: false },
+            {
+                name: 'appointmentType',
+                label: 'Appointment Type',
+                type: 'select',
+                options: ['withPF', 'withoutPF'],
+                required: true
+            },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
         ]
     },

@@ -8,7 +8,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import A4Page from "../../../layout/A4Page";
+import A4Page from "../../../../layout/A4Page";
 
 /* ================= HELPERS ================= */
 const formatDate = (date) =>

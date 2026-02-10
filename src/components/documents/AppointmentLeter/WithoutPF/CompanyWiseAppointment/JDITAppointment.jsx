@@ -1,23 +1,15 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import A4Page from "../../../layout/A4Page";
+import { Box, Typography, Table, TableBody, TableCell, TableHead, TableRow, } from "@mui/material";
+import A4Page from "../../../../layout/A4Page";
 
 /* ================= HELPERS ================= */
 const formatDate = (date) =>
   date
     ? new Date(date).toLocaleDateString("en-US", {
-        month: "long",
-        day: "2-digit",
-        year: "numeric",
-      })
+      month: "long",
+      day: "2-digit",
+      year: "numeric",
+    })
     : "";
 
 const round2 = (n) => Number(Number(n || 0).toFixed(2));
@@ -41,29 +33,27 @@ const generateSalaryBreakup = (annualCTC) => {
   );
 
   return [
-    ["Basic Salary", basic / 12, basic],
-    ["House Rent Allowance (HRA)", hra / 12, hra],
-    ["Dearness Allowance (DA)", da / 12, da],
+    ["Basic", basic / 12, basic],
+    ["House Rent Allowance", hra / 12, hra],
+    ["Dearness Allowance", da / 12, da],
     ["Special Allowance", special / 12, special],
     ["Food Allowance", food / 12, food],
-    ["Miscellaneous Allowance", misc / 12, misc],
+    ["Misc. Allowance", misc / 12, misc],
   ];
 };
 
 /* ================= MAIN COMPONENT ================= */
-const NeweageAppointment = ({ company, data }) => {
+const JDITAppointment = ({ company, data }) => {
   if (!company || !data) return null;
 
   const firstName = data.employeeName?.split(" ")[0] || "";
   const annualCTC = Number(data.salary || 0);
   const salaryRows = generateSalaryBreakup(annualCTC);
 
-  /* ================= TERMS & CONDITIONS ================= */
- const terms = [
-    <>
-      Your Designation will be <strong>"{data.position}"</strong>.
-    </>,
-    <>Your total emoluments will be <strong>Rs. {annualCTC / 100000  } </strong>Lakhs per annum.</>,
+  /* ================= TERMS ================= */
+  const terms = [
+    <> Your Designation will be <strong>"{data.position}"</strong>.   </>,
+    <>Your total emoluments will be <strong>Rs. {annualCTC / 100000} </strong>Lakhs per annum.</>,
     `Full details of your pay package are given in the enclosure to this letter. However, please note that, LTA is payable after completion of one year of service, subject to your getting confirmed in the service. If the company provides accommodation/transit accommodation, appropriate deductions will be made for the same, as per the rules applicable. `,
     `Whilst you are located abroad, the terms applicable will be intimated to you at the relevant point of time.`,
     `You shall be due for salary revision not before one year from your date of joining.`,
@@ -82,148 +72,168 @@ const NeweageAppointment = ({ company, data }) => {
     `The Company reserves the right to transfer you to any of our offices/ factories/ establishments/ group companies, whether now in existence or to be set hereafter. However, your present posting will be at Pune.`,
     `You are requested to sign and return the duplicate copy of this letter as a token of your acceptance of the above terms and conditions.`,
   ];
-
-
   return (
     <>
       {/* ================= PAGE 1 ================= */}
-<A4Page headerSrc={company.headerImage} footerSrc={company.footerImage}>
-  <Box sx={{ mt: 2 }}>
-    <Typography align="right" fontSize={14}>
-      {formatDate(data.issueDate)}
-    </Typography>
-
-    <Typography fontSize={14} mt={1}>
-      <strong>Ref:</strong> NEW/HR/APPT/
-      {String(data.employeeId).padStart(4, "0")}
-    </Typography>
-
-    <Typography fontSize={14} mt={1}>
-      {data.mrms} {data.employeeName}
-      <br />
-      <span style={{ maxWidth: 300, display: "inline-block" }}>
-        {data.address}
-      </span>
-    </Typography>
-
-    <Typography fontSize={14} mt={1}>
-      Dear {data.employeeName},
-    </Typography>
-
-    <Typography align="center" fontWeight={700} mt={1} mb={1}>
-      LETTER OF APPOINTMENT
-    </Typography>
-
-      <Typography mt={2} fontSize={15} textAlign="justify">
-                          Further to your acceptance, Offer dated {" "}
-                          <b>{formatDate(data. issueDate)}</b>, we are pleased to appoint you in our organization with effect from  <b>{formatDate(data.joiningDate)} </b>,under the terms and conditions given below: -
-                        </Typography>
-     
-
-    {/* TERMS 1–9 */}
-    <Box component="ol" sx={{ pl: 3, mt: 1 }}>
-      {terms.slice(0, 10).map((t, i) => (
-        <li key={i}>
-          <Typography fontSize={14} textAlign="justify" mb={0.5}>
-            {t}
+      <A4Page
+        headerSrc={company.headerImage}
+        footerSrc={company.footer}>
+        <Box sx={{ mt: -5 }}>
+          <Typography align="right" fontSize={14} >
+            {formatDate(data.issueDate)}
           </Typography>
-        </li>
-      ))}
-    </Box>
-  </Box>
-</A4Page>
 
+          <Typography fontSize={14} >
+            <strong>Ref:</strong> JDIT/HR/APPT/
+            {String(data.employeeId).padStart(4, "0")}
+          </Typography>
+
+          <Typography fontSize={14} >
+            {data.mrms} {data.employeeName}
+            <br />
+            <span style={{ maxWidth: 280, display: "inline-block" }}>
+              {data.address}
+            </span>
+          </Typography>
+
+          <Typography fontSize={14} mt={1}>
+            Dear {firstName},
+          </Typography>
+
+          <Typography
+            align="center"
+            fontWeight={700}
+            mt={2}
+            mb={2}
+          >
+            LETTER OF APPOINTMENT
+          </Typography>
+
+          {/* ✅ FIXED SENTENCE */}
+         
+         <Typography mt={2} fontSize={15} textAlign="justify">
+                     Further to your acceptance, Offer dated {" "}
+                     <b>{formatDate(data. issueDate)}</b>, we are pleased to appoint you in our organization with effect from  <b>{formatDate(data.joiningDate)} </b>,under the terms and conditions given below: -
+                   </Typography>
+
+          <Box component="ol" start={1} sx={{ pl: 3, mt: 1 }}>
+            {terms.slice(0, 11).map((t, i) => (
+              <li key={i}>
+                <Typography fontSize={14} textAlign="justify" mb={1}>
+                  {t}
+                </Typography>
+              </li>
+            ))}
+          </Box>
+
+        </Box>
+      </A4Page>
 
       {/* ================= PAGE 2 ================= */}
-<A4Page headerSrc={company.headerImage} footerSrc={company.footerImage}>
-  <Box sx={{ mt: 2 }}>
-    {/* TERMS 10–END */}
-    <Box component="ol" start={11} sx={{ pl: 3 }}>
-      {terms.slice(9).map((t, i) => (
-        <li key={i}>
-          <Typography fontSize={14} textAlign="justify" mb={1}>
-            {t}
+      <A4Page headerSrc={company.headerImage}
+        footerSrc={company.footer}>
+        <Box sx={{ mt: 2 }}>
+          <Box component="ol" start={12} sx={{ pl: 3 }}>
+            {terms.slice(8).map((t, i) => (
+              <li key={i}>
+                <Typography fontSize={14} textAlign="justify" mb={1}>
+                  {t}
+                </Typography>
+              </li>
+            ))}
+          </Box>
+          <Typography fontSize={14}>
+            Kindly sign and return the duplicate copy as acceptance.
           </Typography>
-        </li>
-      ))}
-    </Box>
 
-    <Typography fontSize={14} mt={2}>
-      Kindly sign and return the duplicate copy of this letter as acceptance
-      of the above terms and conditions.
-    </Typography>
+          <Box
+            sx={{
+              mt: 4,
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            {/* COMPANY */}
+            <Box>
+              <Typography fontSize={15}>Yours faithfully,</Typography>
+              <Typography fontWeight={700} fontSize={15}>
+                For {company.name}
+              </Typography>
 
-    <Box sx={{ mt: 2, display: "flex", justifyContent: "space-between" }}>
-      {/* COMPANY */}
-      <Box>
-        <Typography fontSize={15}>Yours faithfully,</Typography>
-        <Typography fontWeight={700} fontSize={15}>
-          For {company.name}
-        </Typography>
+              <Box sx={{ display: "flex", gap: 3, mt: 2 }}>
+                {company.   sign && (
+                  <img src={company.sign} alt="sign" height={45} />
+                )}
+                {company.stamp && (
+                  <img src={company.stamp} alt="stamp" height={80} />
+                )}
+              </Box>
 
-        <Box sx={{ display: "flex", gap: 2, mt: 1 }}>
-          {company.signature && (
-            <img src={company.signature} alt="signature" height={60} />
-          )}
-          {company.stamp && (
-            <img src={company.stamp} alt="stamp" height={80} />
-          )}
+              <Typography fontWeight={600} mt={-3}>
+                {company.hrName}
+              </Typography>
+              <Typography fontSize={13}>
+                <strong>HR Department</strong>
+              </Typography>
+            </Box>
+
+            {/* ACCEPTANCE */}
+            <Box>
+              <Typography fontWeight={600}>I ACCEPT</Typography>
+              <Typography mt={1}>Signature: _____________</Typography>
+              <Typography mt={4}>Name: {data.employeeName}</Typography>
+              <Typography mt={1}>Date: _____________</Typography>
+              {/* <Typography align="right" fontSize={14}>
+                {formatDate(data.issueDate)}
+              </Typography> */}
+
+            </Box>
+          </Box>
         </Box>
-
-        <Typography fontWeight={600} mt={-3}>
-          {company.hrName}
-        </Typography>
-        <Typography fontSize={13}>
-          <strong>HR Department</strong>
-        </Typography>
-      </Box>
-
-      {/* ACCEPTANCE */}
-      <Box>
-        <Typography fontWeight={600}>I ACCEPT</Typography>
-        <Typography mt={1}>Signature: ______________</Typography>
-        <Typography mt={4}>Name: {data.employeeName}</Typography>
-        <Typography mt={1}>Date: ______________</Typography>
-      </Box>
-    </Box>
-  </Box>
-</A4Page>
-
+      </A4Page>
 
       {/* ================= PAGE 3 ================= */}
-      <A4Page headerSrc={company.headerImage} footerSrc={company.footerImage}>
+      <A4Page
+        headerSrc={company.headerImage}
+        footerSrc={company.footer}>
+           <Typography align="right" fontSize={14} marginTop={2}>
+                {formatDate(data.issueDate)}
+              </Typography>
         <Typography align="center" fontWeight={700} mb={3}>
-          Salary Structure – Break Up
+          Salary Structure - Break Up
         </Typography>
 
+        {/* INFO BLOCK */}
         <Box
           sx={{
             display: "grid",
             gridTemplateColumns: "150px 10px auto",
             rowGap: 1,
-            fontSize: 14,
+            fontSize: "14px",
           }}
         >
-          <Typography fontWeight="bold">Employee Name</Typography>
-          <Typography>:</Typography>
+          <Typography fontWeight="bold">Name</Typography>
+          <Typography fontWeight="bold">:</Typography>
           <Typography>{data.mrms} {data.employeeName}</Typography>
 
           <Typography fontWeight="bold">Designation</Typography>
-          <Typography>:</Typography>
+          <Typography fontWeight="bold">:</Typography>
           <Typography>{data.position}</Typography>
 
           <Typography fontWeight="bold">Date of Joining</Typography>
-          <Typography>:</Typography>
+          <Typography fontWeight="bold">:</Typography>
           <Typography>{formatDate(data.joiningDate)}</Typography>
 
           <Typography fontWeight="bold">Employee ID</Typography>
-          <Typography>:</Typography>
+          <Typography fontWeight="bold">:</Typography>
           <Typography>{String(data.employeeId).padStart(4, "0")}</Typography>
         </Box>
 
+        {/* SALARY TABLE */}
         <Table
           sx={{
-            mt: 3,
+            mt: 2,
+            width: "100%",
             border: "1px solid #000",
             "& th, & td": {
               border: "1px solid #000",
@@ -233,10 +243,10 @@ const NeweageAppointment = ({ company, data }) => {
           }}
         >
           <TableHead>
-            <TableRow sx={{ backgroundColor: "#3dd6f1" }}>
-              <TableCell><b>Salary Component</b></TableCell>
-              <TableCell><b>Per Month (₹)</b></TableCell>
-              <TableCell><b>Per Annum (₹)</b></TableCell>
+            <TableRow sx={{ backgroundColor: "#a75758" }}>
+              <TableCell align="left"><b>Salary Components</b></TableCell>
+              <TableCell align="left"><b>Per Month</b></TableCell>
+              <TableCell align="left"><b>Per Annum</b></TableCell>
             </TableRow>
           </TableHead>
 
@@ -249,8 +259,8 @@ const NeweageAppointment = ({ company, data }) => {
               </TableRow>
             ))}
 
-            <TableRow sx={{ backgroundColor: "#3dd6f1" }}>
-              <TableCell><b>Gross Salary</b></TableCell>
+            <TableRow sx={{ backgroundColor: "#a75758" }}>
+              <TableCell><b>Monthly Gross Salary</b></TableCell>
               <TableCell><b>{formatCurrency(annualCTC / 12)}</b></TableCell>
               <TableCell><b>{formatCurrency(annualCTC)}</b></TableCell>
             </TableRow>
@@ -261,4 +271,4 @@ const NeweageAppointment = ({ company, data }) => {
   );
 };
 
-export default NeweageAppointment;
+export default JDITAppointment;
