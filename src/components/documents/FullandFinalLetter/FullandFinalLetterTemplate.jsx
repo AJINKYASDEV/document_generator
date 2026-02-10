@@ -13,8 +13,8 @@ import PentaFullAndFinal from "./CompanyWaiseFullandFinal/PentaFullAndFinal";
  import QuickFullAndFinal from "./CompanyWaiseFullandFinal/QuickFullAndFinal";
 import   NimbjaFullAndFinal from "./CompanyWaiseFullandFinal/NimbjaFullAndFinal";
 import SmartMatrixFullAndFinal from "./CompanyWaiseFullandFinal/SmartMatrixFullAndFinal";
-//import DevconsFullAndFinal from "./CompanyWaiseFullandFinal/DevconsFullandFinal";
-//import RPFullAndFinal from "./CompanyWaiseFullandFinal/RPfullandfinal";
+import DevconsFullAndFinal from "./CompanyWaiseFullandFinal/DevconsFullandFinal";
+import RPFullAndFinal from "./CompanyWaiseFullandFinal/RPfullandfinal";
 
 
 
@@ -23,8 +23,8 @@ const companyComponentMap = {
    1: CubeageFullAndFinal,
    //2: NeweageIncrement,
   3: SmartMatrixFullAndFinal,
-  // 4: DevconsFullAndFinal,
-   //5: RPFullAndFinal,
+   4: DevconsFullAndFinal,
+   5: RPFullAndFinal,
   6 : PentaFullAndFinal,
   7: NimbjaFullAndFinal,
 //   8: JDITIncrement,
@@ -39,7 +39,7 @@ const FullAndFinalLetterTemplate = ({ company, data }) => {
   const FullAndFinalComponent = companyComponentMap[company.id];
 
   if (!FullAndFinalComponent) {
-    return <div>No increment template available for this company</div>;
+    return <div>No FullAndFinal template available for this company</div>;
   }
 
   return <FullAndFinalComponent company={company} data={data} />;
