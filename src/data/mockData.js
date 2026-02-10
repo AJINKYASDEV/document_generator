@@ -208,7 +208,7 @@ export const companies = [
     footerImage: devcons_footer,
     watermarkImage: placeholderWatermark,
     address:
-      "Office No. 4-B, Ganesham Commercial - A, Survey No. 21/18-21/24, BRTS Road, Pimple Saudagar, Pune- 411027",
+      "Office No- 4A, Second Floor, Ganesham Wing A, On BRTS Road,Pimple Saudagar Pune- 411027",
     email: " hr@devconsoftware.com",
     phone: "+91 9112106565",
     website: "https://www.devconsoftware.com/",
@@ -239,7 +239,7 @@ export const companies = [
     footerImage: rp_footer,
     watermarkImage: placeholderWatermark,
     address:
-      "Address : 401/402,4th Floor,Sai Villa Commercial Appartment,Sr No 166,Malwadi road, Opps. to Sahyadri Hospital, Hadapsar,Pune-411028",
+      "Address : 401,4th Floor,Sai Villa Commercial Appartment,Sr No 166,Malwadi road, Opps. to Sahyadri Hospital, Hadapsar,Pune-411028",
     email: " hr@rpbsolution.com",
     phone: "+91 9284888739",
     website: "https://www.rpbsolution.com/",
@@ -507,6 +507,13 @@ export const documentTypes = [
             { name: 'workLocation', label: 'Work Location', type: 'text', required: true },
             { name: 'reportingManager', label: 'Reporting Manager', type: 'text', required: true },
             { name: 'workHours', label: 'Work Hours', type: 'text', required: false },
+            {
+                name: 'appointmentType',
+                label: 'Appointment Type',
+                type: 'select',
+                options: ['withPF', 'withoutPF'],
+                required: true
+            },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
         ]
     },
@@ -849,6 +856,13 @@ export const documentTypes = [
             { name: 'dateofleaving', label: 'Date of Leaving', type: 'date',  required: true },
              { name:'leaveencashment' , label:'Leave encashment', type:'number', required: true},
             { name: 'paiddays', label: 'Paid days ', type: 'number', required: true },
+            {
+                name: 'fullandfinalType',
+                label: 'FullAndFinal Type',
+                type: 'select',
+                options: ['withPF', 'withoutPF'],
+                required: true
+            },
             //{ name: 'mode', label: 'Mode Bank', type: 'text', required: true },
             { name: 'workdays', label: 'Total Day in the month', type: 'number', required: true },
             //{ name: 'dob', label: 'Date of Birth', type: 'date', required: true },

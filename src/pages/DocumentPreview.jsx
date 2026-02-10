@@ -24,13 +24,15 @@ import { generatePDF } from '../utils/pdfUtils'; // adjust path as needed
 import ExperienceLetterTemplate from '../components/documents/ExperienceLetter/ExperienceLetterTemplate';
 import RelievingLetterTemplate from '../components/documents/RelievingLetter/RelievingLetteTemplate';
 // import OfferLetterTemplate from '../components/documents/OfferLetter/OfferLetterTemplate';
-import AppointmentLetterTemplate from '../components/documents/AppointmentLeter/AppointmentLetterTemplate';
+//import AppointmentLetterTemplate from '../components/documents/AppointmentLeter/WithoutPF/WithoutPFAppointmentLetterTemplate';
 import InternshipLetterTemplate from '../components/documents/InternshipLetter/InternshipLetterTemplate';
 import CertificationLetterTemplate from '../components/documents/InternshipComplitionCertificate/CertificationLetterTemplate';
 //import FullandFinalLetterTemplate from '../components/documents/FullAndFinalLetter/FullAndFinalLetterTemplate';
 import SalarySlipLetterTemplate from "../components/documents/SalarySlip/SalarySlipTemplate";
 import IncrementTemplate from "../components/documents/IncrementLetter/IncrementTemplate";
 import OfferTemplate from "../components/documents/OfferLetter/OfferLetterTemplate";
+import FullAndFinalLetterTemplate from "../components/documents/FullandFinalLetter/FullandFinalLetterTemplate";
+import AppointmentLetterTemplate from "../components/documents/AppointmentLeter/AppointmentLetterTemplate";
 //import FullAndFinalLetterTemplate from "../components/documents/FullAndFinalLetter/FullAndFinalLetterTemplate";
 
 
@@ -96,8 +98,8 @@ const DocumentPreview = () => {
         return <ExperienceLetterTemplate data={documentData} company={selectedCompany} />;
       case 'relieving-letter':
         return <RelievingLetterTemplate data={documentData} company={selectedCompany} />;
-      // case 'FullAndFinal-letter':
-      //   return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
+       //case 'FullAndFinal-letter':
+        // return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
 
       // case 'salary-transaction':
       // return <SalaryTransactionTemplate data={documentData} company={selectedCompany} />;
@@ -113,8 +115,8 @@ const DocumentPreview = () => {
       // return <TerminationLetterTemplate data={documentData} company={selectedCompany} />;
       // case 'transfer-letter':
         // return <TransferLetterTemplate data={documentData} company={selectedCompany} />;
-        //case 'fullandfinal-letter':
-         //return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
+        case 'fullandfinal-letter':
+         return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
       default:
         return <Typography>Template not found</Typography>;
     }

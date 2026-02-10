@@ -1,39 +1,25 @@
 import React from "react";
+import WithPFAppointmentLetterTemplate from "./WithPF/WithPFAppointmentLetterTemplate";
+import WithoutPFAppointmentLetterTemplate from "./WithoutPF/WithoutPFAppointmentLetterTemplate";
 
-import CubeageAppointment from "./CompanyWiseAppointment/CubeageAppointment";
-import DevconsAppointment from "./CompanyWiseAppointment/DevconsAppointment";
-import JDITAppointment from "./CompanyWiseAppointment/JDITAppointment";
-import NeweageAppointment from "./CompanyWiseAppointment/NeweageAppointment";
-import PentaAppointment from "./CompanyWiseAppointment/PentaAppointment";
-import RPAppointment from "./CompanyWiseAppointment/RPAppointment";
-import SmartMatrixAppointment from "./CompanyWiseAppointment/SmartmatrixAppointment";
-import SmartSoftwareAppointment from "./CompanyWiseAppointment/SmartsoftwareAppointment";
-import NimbjaAppointment from "./CompanyWiseAppointment/NimbjaAppointment";
-
-// map company shortName OR id to component
-const companyComponentMap = {
-  1: CubeageAppointment,
-  2: NeweageAppointment,
-  3: SmartMatrixAppointment,
-  4: DevconsAppointment,
-  5: RPAppointment,
-  6: PentaAppointment,
-  7: NimbjaAppointment,
-  8: JDITAppointment,
-  10: SmartSoftwareAppointment,
-};
 
 const AppointmentLetterTemplate = ({ company, data }) => {
-  if (!company) return null;
+  // 🔑 This value must come from form / documentData
+  const AppointmentType = data?.appointmentType; // "paid" | "unpaid"
 
-  const AppointmentComponent = companyComponentMap[company.id];
-  console.log("abcd", AppointmentComponent);
-
-  if (!AppointmentComponent) {
-    return <div>No Appointment template available for this company</div>;
+  if (!AppointmentType) {
+    return <div>appointment type not selected</div>;
   }
 
-  return <AppointmentComponent company={company} data={data} />;
+  if (AppointmentType === "withPF") {
+    return <WithPFAppointmentLetterTemplate company={company} data={data} />;
+  }
+
+  if (AppointmentType === "withoutPF") {
+    return <WithoutPFAppointmentLetterTemplate company={company} data={data} />;
+  }
+
+  return <div>Invalid Appointment type</div>;
 };
 
 export default AppointmentLetterTemplate;

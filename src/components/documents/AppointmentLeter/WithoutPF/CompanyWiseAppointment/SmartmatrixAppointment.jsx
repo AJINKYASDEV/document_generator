@@ -11,8 +11,8 @@ import {
   TableCell,
   TableContainer,
 } from "@mui/material";
-import A4Page from "../../../layout/A4Page";
-import { formatCurrency } from "../../../../utils/salaryCalculations";
+import A4Page from "../../../../layout/A4Page";
+import { formatCurrency } from "../../../../../utils/salaryCalculations";
 
 
 // ================= TABLE CELL STYLES =================
