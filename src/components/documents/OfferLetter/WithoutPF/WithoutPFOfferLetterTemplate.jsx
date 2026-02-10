@@ -1,15 +1,15 @@
 import React from "react";
 
-import CubeageOffer from "./CompanyWiseOffer/CubeageOffer";
-import DevconsOffer from "./CompanyWiseOffer/DevconsOffer";
-import JDITOffer from "./CompanyWiseOffer/JDITOffer";
-import NeweageOffer from "./CompanyWiseOffer/NeweageOffer";
-import PentaOffer from "./CompanyWiseOffer/PentaOffer";
-import RPOffer from "./CompanyWiseOffer/RPOffer";
-import SmartMatrixOffer from "./CompanyWiseOffer/SmartMatrixOffer";
-import SmartSoftwareOffer from "./CompanyWiseOffer/SmartSoftwareOffer";
-import QuickManagementOffer from "./CompanyWiseOffer/QuickManagementOffer";
-import NimbjaOffer from './CompanyWiseOffer/NimbjaOffer'
+import CubeageOffer from "../WithoutPF/CompanyWiseOffer/CubeageOffer";
+import DevconsOffer from "../WithoutPF/CompanyWiseOffer/DevconsOffer";
+import JDITOffer from "../WithoutPF/CompanyWiseOffer/JDITOffer";
+import NeweageOffer from "../WithoutPF/CompanyWiseOffer/NeweageOffer";
+import PentaOffer from "../WithoutPF/CompanyWiseOffer/PentaOffer";
+import RPOffer from "../WithoutPF/CompanyWiseOffer/RPOffer";
+import SmartMatrixOffer from "../WithoutPF/CompanyWiseOffer/SmartMatrixOffer";
+import SmartSoftwareOffer from "../WithoutPF/CompanyWiseOffer/SmartSoftwareOffer";
+import QuickManagementOffer from "../WithoutPF/CompanyWiseOffer/QuickManagementOffer";
+import NimbjaOffer from '../WithoutPF/CompanyWiseOffer/NimbjaOffer'
 
 // same company ids, Offer components
 const companyComponentMap = {
@@ -25,7 +25,7 @@ const companyComponentMap = {
   10: SmartSoftwareOffer,
 };
 
-const OfferLetterTemplate = ({ company, data }) => {
+const WithoutPFOfferLetterTemplate = ({ company, data }) => {
   
   if (!company) return null;
 
@@ -38,4 +38,4 @@ const OfferLetterTemplate = ({ company, data }) => {
   return <OfferComponent company={company} data={data} />;
 };
 
-export default OfferLetterTemplate;
+export default WithoutPFOfferLetterTemplate;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import {
   Box,
   Button,
@@ -27,6 +28,8 @@ import { useAuth } from "../context/AuthContext";
 import { validateForm } from '../utils/validationUtils';
 
 const Login = () => {
+
+  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -280,9 +283,22 @@ const Login = () => {
               {isLoading ? 'Signing In...' : 'Sign In'}
             </Button>
 
+           <Typography variant="body2" align="center" color="text.secondary">
+      Don’t have an account?{" "}
+      <Link
+        component="button"
+        underline="hover"
+        onClick={() => navigate("/signup")}
+        sx={{ fontWeight: 500 }}
+      >
+        Sign Up
+      </Link>
+    </Typography>
+
             <Typography variant="body2" align="center" color="text.secondary">
               © {new Date().getFullYear()} DocGenPro — All Rights Reserved
             </Typography>
+             
           </Box>
         </Paper>
       </Box>
