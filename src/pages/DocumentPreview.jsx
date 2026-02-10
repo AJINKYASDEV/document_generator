@@ -98,8 +98,8 @@ const DocumentPreview = () => {
         return <ExperienceLetterTemplate data={documentData} company={selectedCompany} />;
       case 'relieving-letter':
         return <RelievingLetterTemplate data={documentData} company={selectedCompany} />;
-       case 'FullAndFinal-letter':
-         return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
+       //case 'FullAndFinal-letter':
+        // return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
 
       // case 'salary-transaction':
       // return <SalaryTransactionTemplate data={documentData} company={selectedCompany} />;
@@ -115,8 +115,8 @@ const DocumentPreview = () => {
       // return <TerminationLetterTemplate data={documentData} company={selectedCompany} />;
       // case 'transfer-letter':
         // return <TransferLetterTemplate data={documentData} company={selectedCompany} />;
-        //case 'fullandfinal-letter':
-         //return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
+        case 'fullandfinal-letter':
+         return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
       default:
         return <Typography>Template not found</Typography>;
     }
