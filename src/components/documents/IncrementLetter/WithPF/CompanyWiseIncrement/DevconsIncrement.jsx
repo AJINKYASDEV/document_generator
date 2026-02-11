@@ -1,11 +1,302 @@
-import React from 'react'
+import React from "react";
+import {
+  Box,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@mui/material";
 
-const DevconsIncrement = () => {
+import { formatCurrency } from "../../../../../utils/salaryCalculations";
+
+const DevconsIncrement = ({ company, data }) => {
+  /* ================= SALARY LOGIC ================= */
+
+  const round2 = (num) => Number(num.toFixed(2));
+
+  const annualCTC = round2(Number(data.newCTC || 0));
+
+  const basicAnnual = round2(annualCTC * 0.40);
+  const hraAnnual = round2(annualCTC * 0.18);
+  const daAnnual = round2(annualCTC * 0.12);
+  const specialAnnual = round2(annualCTC * 0.16);
+  const foodAnnual = round2(annualCTC * 0.06);
+
+  const usedAnnual =
+    basicAnnual +
+    hraAnnual +
+    daAnnual +
+    specialAnnual +
+    foodAnnual;
+
+  const miscAnnual = round2(annualCTC - usedAnnual);
+
+  const basicMonthly = round2(basicAnnual / 12);
+  const hraMonthly = round2(hraAnnual / 12);
+  const daMonthly = round2(daAnnual / 12);
+  const specialMonthly = round2(specialAnnual / 12);
+  const foodMonthly = round2(foodAnnual / 12);
+  const miscMonthly = round2(miscAnnual / 12);
+
+  const totalMonthly = round2(
+    basicMonthly +
+      hraMonthly +
+      daMonthly +
+      specialMonthly +
+      foodMonthly +
+      miscMonthly
+  );
+
+  const totalAnnual = round2(
+    basicAnnual +
+      hraAnnual +
+      daAnnual +
+      specialAnnual +
+      foodAnnual +
+      miscAnnual
+  );
+
+  /* ================= PF (STATIC ADDED) ================= */
+
+  const pfMonthly = 3750;
+  const pfAnnual = pfMonthly * 12;
+
   return (
-    <div>
-      DevconsIncrement - withPF
-    </div>
-  )
-}
+    <>
+      {/* =====================================================
+          PAGE 1 – DEVCONS INCREMENT LETTER (UNCHANGED)
+      ====================================================== */}
+      <Box
+              sx={{
+                width: "210mm",
+                minHeight: "297mm",
+                backgroundColor: "#fff",
+                display: "flex",
+                flexDirection: "column",
+                fontFamily: `"Bahnschrift", "Segoe UI", Arial, sans-serif`,
+                "& *": {
+                  fontFamily: `"Bahnschrift", "Segoe UI", Arial, sans-serif`,
+                },
+                pageBreakAfter: "always",
+              }}
+            >
+              {company?.headerImage && (
+                <img src={company.headerImage} alt="Header" style={{ width: "100%" }} />
+              )}
+      
+              <Box sx={{ px: "25mm", py: "22mm", flexGrow: 1, fontSize: "14px", lineHeight: 1.8, color: "#000" }}>
+                <Typography sx={{ textAlign: "right", mb: 6 }}>
+                  {new Date(data.issueDate).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "2-digit",
+                    year: "numeric",
+                  })}
+                </Typography>
+      
+                <Typography sx={{ mb: 4 }}>Dear {data.employeeName},</Typography>
+      
+                <Typography sx={{ mb: 4, textAlign: "justify" }}>
+                  In recognition of your previous years of service with{" "}
+                  <strong>{company.name}</strong>, we are pleased to offer you a salary
+                  increment effective{" "}
+                  <strong>
+                    {new Date(data.effectiveDate).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "2-digit",
+                      year: "numeric",
+                    })}
+                  </strong>
+                  . Your salary will increase to{" "}
+                  <strong>{formatCurrency(data.newCTC)}</strong> per annum.
+                </Typography>
+      
+                <Typography sx={{ mb: 4, textAlign: "justify" }}>
+                  Your loyalty and commitment to the company over the years have been
+                  invaluable and this increment is a token of our appreciation.
+                  We look forward to many more years of your dedication and contribution.
+                </Typography>
+      
+                <Typography sx={{ mb: 8 }}>
+                  Once again, thank you for being such a reliable member of our team.
+                </Typography>
+      
+                <Typography sx={{ mb: 6 }}>Yours Sincerely,</Typography>
+      
+                <Box sx={{ display: "flex", alignItems: "center", gap: 4, mb: 2 }}>
+                  {company?.signature && (
+                    <img src={company.dilipSignature} alt="Signature" style={{ height: 60 }} />
+                  )}
+                  {company?.stamp && (
+                    <img src={company.stamp} alt="Stamp" style={{ height: 110 }} />
+                  )}
+                </Box>
+      
+                <Typography sx={{ fontWeight: 600 }}>
+                  CEO & Managing Director
+                </Typography>
+              </Box>
+      
+              {company?.footerImage && (
+                <img src={company.footerImage} alt="Footer" style={{ width: "100%" }} />
+              )}
+            </Box>
 
-export default DevconsIncrement
+      {/* ======================================================
+          PAGE 2 – SALARY ANNEXURE
+      ====================================================== */}
+      <Box
+        sx={{
+          width: "210mm",
+          minHeight: "297mm",
+          backgroundColor: "#fff",
+          display: "flex",
+          flexDirection: "column",
+          pageBreakBefore: "always",
+          fontFamily: `"Bahnschrift", "Segoe UI", Arial, sans-serif`,
+          color: "#000",
+        }}
+      >
+        {company?.headerImage && (
+          <img src={company.headerImage} alt="Header" style={{ width: "100%" }} />
+        )}
+
+        <Box sx={{ px: "25mm", pt: "20mm", pb: "22mm", flexGrow: 1 }}>
+          <Typography
+            align="center"
+            fontWeight={600}
+            mb={8}
+            sx={{ textDecoration: "underline" }}
+          >
+            Salary Annexure
+          </Typography>
+
+          <Box mb={6} fontSize="13px">
+            <Typography sx={{ fontWeight: 500 }}>
+              Employee Code : {data.employeeId}
+            </Typography>
+            <Typography sx={{ fontWeight: 500 }}>
+              Employee Name : {data.employeeName}
+            </Typography>
+            <Typography sx={{ fontWeight: 500 }}>
+              Effective Date :{" "}
+              {new Date(data.effectiveDate).toLocaleDateString("en-US", {
+                month: "long",
+                day: "2-digit",
+                year: "numeric",
+              })}
+            </Typography>
+          </Box>
+
+          <Table
+            sx={{
+              width: "100%",
+              border: "1px solid #000",
+              borderCollapse: "collapse",
+              "& th, & td": {
+                border: "1px solid #000",
+                padding: "4px 6px",
+                fontSize: "15px",
+                fontFamily: `"Times New Roman", Times, serif`,
+                lineHeight: 1.2,
+              },
+            }}
+          >
+            <TableBody>
+              <TableRow sx={{ backgroundColor: "#f2b705" }}>
+                <TableCell sx={{ fontWeight: 700 }} align="right">
+                  Monthly Component 
+                </TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>
+                  Amount (Rs.)
+                </TableCell>
+                <TableCell sx={{ fontWeight: 700 }} align="right">
+                  Yearly Component 
+                </TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>
+                  Amount (Rs.)
+                </TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>Basic</TableCell>
+                <TableCell align="right">{basicMonthly}</TableCell>
+                <TableCell></TableCell>
+                <TableCell align="right">{basicAnnual}</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>House Rent Allowance</TableCell>
+                <TableCell align="right">{hraMonthly}</TableCell>
+                <TableCell></TableCell>
+                <TableCell align="right">{hraAnnual}</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>Dearness Allowance</TableCell>
+                <TableCell align="right">{daMonthly}</TableCell>
+                <TableCell></TableCell>
+                <TableCell align="right">{daAnnual}</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>Special Allowance</TableCell>
+                <TableCell align="right">{specialMonthly}</TableCell>
+                <TableCell></TableCell>
+                <TableCell align="right">{specialAnnual}</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>Food Allowance</TableCell>
+                <TableCell align="right">{foodMonthly}</TableCell>
+                <TableCell></TableCell>
+                <TableCell align="right">{foodAnnual}</TableCell>
+              </TableRow>
+
+              {/* <TableRow>
+                <TableCell>Misc. Allowance</TableCell>
+                <TableCell align="right">{miscMonthly}</TableCell>
+                <TableCell></TableCell>
+                <TableCell align="right">{miscAnnual}</TableCell>
+              </TableRow> */}
+
+              {/* ===== PF ROW ADDED ===== */}
+              <TableRow>
+                <TableCell>Provident Fund (PF)</TableCell>
+                <TableCell align="right">{pfMonthly}</TableCell>
+                <TableCell></TableCell>
+                <TableCell align="right">{pfAnnual}</TableCell>
+              </TableRow>
+
+              <TableRow sx={{ backgroundColor: "#f2b705" }}>
+                <TableCell sx={{ fontWeight: 700 }}>
+                  Monthly Gross
+                </TableCell>
+                <TableCell sx={{ fontWeight: 700 }} align="right">
+                  {totalMonthly}
+                </TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>
+                  Annual CTC
+                </TableCell>
+                <TableCell sx={{ fontWeight: 700 }} align="right">
+                  {totalAnnual}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+
+          <Typography mt={6} fontSize="15px" fontWeight={500}>
+            Please note that the details in this communication are confidential
+            and you are requested not to share the same with others.
+          </Typography>
+        </Box>
+
+        {company?.footerImage && (
+          <img src={company.footerImage} alt="Footer" style={{ width: "100%" }} />
+        )}
+      </Box>
+    </>
+  );
+};
+
+export default DevconsIncrement;
