@@ -233,7 +233,7 @@ const PentaAppointment = ({ company, data }) => {
         >
           <Typography fontWeight="bold">Name</Typography>
           <Typography fontWeight="bold">:</Typography>
-          <Typography>{data.mrms} {data.employeeName}</Typography>
+          <Typography >{data.mrms} {data.employeeName}</Typography>
 
           <Typography fontWeight="bold">Designation</Typography>
           <Typography fontWeight="bold">:</Typography>
@@ -243,7 +243,7 @@ const PentaAppointment = ({ company, data }) => {
           <Typography fontWeight="bold">:</Typography>
           <Typography>{formatDate(data.joiningDate)}</Typography>
 
-          <Typography fontWeight="bold">EMP ID</Typography>
+          <Typography fontWeight="bold" marginBottom={2}>Employee ID</Typography>
           <Typography fontWeight="bold">:</Typography>
           <Typography>{String(data.employeeId).padStart(4, "0")}</Typography>
         </Box>
