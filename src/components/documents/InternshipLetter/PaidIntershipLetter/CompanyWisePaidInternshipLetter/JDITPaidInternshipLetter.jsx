@@ -21,10 +21,10 @@ import {
 const formatDate = (date) =>
   date
     ? new Date(date).toLocaleDateString("en-US", {
-        month: "long",
-        day: "2-digit",
-        year: "numeric",
-      })
+      month: "long",
+      day: "2-digit",
+      year: "numeric",
+    })
     : "—";
 
 const TEXT = {
@@ -39,7 +39,7 @@ const JDITPaidInternshipLetter = ({
   address = "—",
   internshipRole = "Trainee Full Stack Developer",
   joiningDate,
-    issueDate,
+  issueDate,
   stipend = 0,
   companyName = "JDIT Business Solutions Pvt. Ltd.",
 }) => {
@@ -50,8 +50,8 @@ const JDITPaidInternshipLetter = ({
     title === "mr."
       ? { prefix: "Mr.", subject: "he", possessive: "his" }
       : title === "mx."
-      ? { prefix: "Mx.", subject: "they", possessive: "their" }
-      : { prefix: "Ms.", subject: "she", possessive: "her" };
+        ? { prefix: "Mx.", subject: "they", possessive: "their" }
+        : { prefix: "Ms.", subject: "she", possessive: "her" };
 
   /* ================= SALARY ================= */
   const monthlyStipend = Number(data?.stipend ?? stipend) || 0;
@@ -89,7 +89,7 @@ const JDITPaidInternshipLetter = ({
     <>
       {/* ================= PAGE 1 ================= */}
       <A4Page headerSrc={company?.header} footerSrc={company?.footer}>
-        <Box sx={{ p: 4 }}>
+        <Box sx={{ pb: 4, pl: 4, pr: 4 }}>
           <Typography sx={{ ...TEXT, mb: 3 }}>
             {formatDate(data.issueDate)}
           </Typography>
@@ -136,7 +136,7 @@ const JDITPaidInternshipLetter = ({
           </Typography>
 
           <Typography sx={{ ...TEXT, mt: 2 }}>
-            We welcome {pronouns.subject} to the <b>{companyName}</b> family and
+            We welcome {pronouns.subject} to the <b>{company.name}</b> family and
             hope this association marks the beginning of a long and mutually
             beneficial relationship.
           </Typography>
@@ -151,32 +151,54 @@ const JDITPaidInternshipLetter = ({
           </Typography>
 
           <Typography sx={{ ...TEXT, mt: 3 }}>
-            <b>For {companyName}</b>
+            <b>For {company.name}</b>
           </Typography>
 
           <Box
+            
+          >
+
+            <Box sx={{ display: "flex", gap: "20px", alignItems: "flex-end" }}>
+              {company?.signature && (
+                <Box
+                  component="img"
+                  src={company.signature}
+                  sx={{ height: "50px" }}
+                />
+              )}
+              {company?.stamp && (
+                <Box
+                  component="img"
+                  src={company.stamp}
+                  sx={{ height: "100px" }}
+                />
+              )}
+            </Box>
+            <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
               mt: 4,
             }}
-          >
-            <Box>
-              <Typography sx={{ ...TEXT }}>
-                <b>Sweety Khade</b>
-              </Typography>
-              <Typography sx={{ ...TEXT }}>
-                HR Department, Pune
-              </Typography>
-            </Box>
+            >
 
-            <Box>
-              <Typography sx={{ ...TEXT }}>
-                Signature: ___________________
-              </Typography>
-              <Typography sx={{ ...TEXT, mt: 1 }}>
-                Candidate Name: {employeeName}
-              </Typography>
+              <Box>
+                <Typography sx={{ ...TEXT }}>
+                  <b>Sweety Khade</b>
+                </Typography>
+                <Typography sx={{ ...TEXT }}>
+                  HR Department, Pune
+                </Typography>
+              </Box>
+
+              <Box>
+                <Typography sx={{ ...TEXT }}>
+                  Signature: ___________________
+                </Typography>
+                <Typography sx={{ ...TEXT, mt: 1 }}>
+                  Candidate Name: {data.employeeName}
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -195,83 +217,83 @@ const JDITPaidInternshipLetter = ({
           </Typography>
 
           <Table
-  size="small"
-  sx={{
-    width: "100%",
-    border: "1px solid black",
-    borderCollapse: "collapse",
-  }}
->
-  <TableHead>
-    <TableRow sx={{ backgroundColor: "#000000ff" }}>
-      <TableCell
-        sx={{
-          border: "1px solid black",
-          fontWeight: 700,
-          color: "#df1c1cff", // 👈 red text
-        }}
-      >
-        Salary Components
-      </TableCell>
+            size="small"
+            sx={{
+              width: "100%",
+              border: "1px solid black",
+              borderCollapse: "collapse",
+            }}
+          >
+            <TableHead>
+              <TableRow sx={{ backgroundColor: "#000000ff", color: "#df1c1cff !important" }}>
+                <TableCell
+                  sx={{
+                    border: "1px solid black",
+                    fontWeight: 700,
+                    color: "#df1c1cff !important", // 👈 red text
+                  }}
+                >
+                  Salary Components
+                </TableCell>
 
-      <TableCell
-        align="right"
-        sx={{
-          border: "1px solid black",
-          fontWeight: 700,
-          color: "#df1c1cff", // 👈 red text
-        }}
-      >
-        Per Month (Rs.)
-      </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{
+                    border: "1px solid black",
+                    fontWeight: 700,
+                    color: "#df1c1cff !important", // 👈 red text
+                  }}
+                >
+                  Per Month (Rs.)
+                </TableCell>
 
-      <TableCell
-        align="right"
-        sx={{
-          border: "1px solid black",
-          fontWeight: 700,
-          color: "#df1c1cff", // 👈 red text
-        }}
-      >
-        Per Annum (Rs.)
-      </TableCell>
-    </TableRow>
-  </TableHead>
+                <TableCell
+                  align="right"
+                  sx={{
+                    border: "1px solid black",
+                    fontWeight: 700,
+                    color: "#df1c1cff !important", // 👈 red text
+                  }}
+                >
+                  Per Annum (Rs.)
+                </TableCell>
+              </TableRow>
+            </TableHead>
 
-  <TableBody>
-    {salaryComponents.map((row, index) => (
-      <TableRow key={index}>
-        <TableCell sx={{ border: "1px solid black" }}>
-          {row.name}
-        </TableCell>
-        <TableCell align="right" sx={{ border: "1px solid black" }}>
-          {formatCurrency(row.monthly)}
-        </TableCell>
-        <TableCell align="right" sx={{ border: "1px solid black" }}>
-          {formatCurrency(row.annual)}
-        </TableCell>
-      </TableRow>
-    ))}
+            <TableBody>
+              {salaryComponents.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell sx={{ border: "1px solid black" }}>
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right" sx={{ border: "1px solid black" }}>
+                    {formatCurrency(row.monthly)}
+                  </TableCell>
+                  <TableCell align="right" sx={{ border: "1px solid black" }}>
+                    {formatCurrency(row.annual)}
+                  </TableCell>
+                </TableRow>
+              ))}
 
-    <TableRow>
-      <TableCell sx={{ border: "1px solid black", fontWeight: 700 }}>
-        Total Monthly Gross Salary
-      </TableCell>
-      <TableCell
-        align="right"
-        sx={{ border: "1px solid black", fontWeight: 700 }}
-      >
-        {formatCurrency(totalMonthly)}
-      </TableCell>
-      <TableCell
-        align="right"
-        sx={{ border: "1px solid black", fontWeight: 700 }}
-      >
-        {formatCurrency(totalAnnual)}
-      </TableCell>
-    </TableRow>
-  </TableBody>
-</Table>
+              <TableRow>
+                <TableCell sx={{ border: "1px solid black", fontWeight: 700 }}>
+                  Total Monthly Gross Salary
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: "1px solid black", fontWeight: 700 }}
+                >
+                  {formatCurrency(totalMonthly)}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ border: "1px solid black", fontWeight: 700 }}
+                >
+                  {formatCurrency(totalAnnual)}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
 
         </Box>
       </A4Page>

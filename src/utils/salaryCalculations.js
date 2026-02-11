@@ -256,7 +256,7 @@ export const generateSalaryComponents = (ctc) => {
       annual: breakdown.annual.conveyanceAllowance,
     },
     {
-      name: "Medical Allowance",
+      name: "Food Allowance",
       monthly: breakdown.monthly.medicalAllowance,
       annual: breakdown.annual.medicalAllowance,
     },

@@ -1,6 +1,9 @@
 import React from "react";
 import PentaFullAndFinal from "./CompanyWiseFullAndFinal/PentaFullAndFinal";
 import QuickFullAndFinal from "./CompanyWiseFullAndFinal/QuickFullAndFinal";
+import JditFullandFinal from "./CompanyWaiseFullandFinal/JditFullAndFinal";
+import NeweageFullAndFinal from "./CompanyWaiseFullandFinal/NeweageFullandFinal";
+import SmartSoftwareFullAndFinal from "./CompanyWaiseFullandFinal/SmartSoftwareFullandFinal";  
 
 // import CubeageIncrement from "./CompanyWiseIncrement/CubeageIncrement";
 // import DevconsIncrement from "./CompanyWiseIncrement/DevconsIncrement";
@@ -16,14 +19,14 @@ import QuickFullAndFinal from "./CompanyWiseFullAndFinal/QuickFullAndFinal";
 // same company ids, just Increment components
 const companyComponentMap = {
 //   1: CubeageIncrement,
-//   2: NeweageIncrement,
+  2: NeweageFullAndFinal,
 //   3: SmartMatrixIncrement,
 //   4: DevconsIncrement,
 //   5: RPIncrement,
   6 : PentaFullAndFinal,
-//   8: JDITIncrement,
+  8: JditFullandFinal,
   9: QuickFullAndFinal,
-//   10: SmartSoftwareIncrement,
+  10: SmartSoftwareFullAndFinal,
   
 };
 
