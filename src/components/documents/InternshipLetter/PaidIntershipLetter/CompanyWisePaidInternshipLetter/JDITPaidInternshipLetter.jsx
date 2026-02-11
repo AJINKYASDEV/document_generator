@@ -1,274 +1,301 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Box,
   Typography,
   Table,
-  TableHead,
-  TableRow,
-  TableCell,
   TableBody,
+  TableCell,
+  TableHead,
+
+  TableRow,
 } from "@mui/material";
+import A4Page from "../../../../layout/A4Page";
 
-/* ===================== A4 PAGE LAYOUT ===================== */
-const A4Page = ({ children, headerSrc, footerSrc }) => (
-  <Box
-    sx={{
-      width: "210mm",
-      minHeight: "297mm",
-      backgroundColor: "#fff",
-      fontFamily: `"Times New Roman", Times, serif`,
-      position: "relative",
-      mx: "auto",
-      pageBreakAfter: "always",
-    }}
-  >
-    {headerSrc && (
-      <img src={headerSrc} alt="Header" style={{ width: "100%" }} />
-    )}
+/* ================= SALARY UTILITIES ================= */
+import {
+  formatCurrency,
+  numberToWords,
+} from "../../../../../utils/salaryCalculations";
 
-    {children}
-
-    {footerSrc && (
-      <Box sx={{ position: "absolute", bottom: 0, width: "100%" }}>
-        <img src={footerSrc} alt="Footer" style={{ width: "100%" }} />
-      </Box>
-    )}
-  </Box>
-);
-
-/* ===================== HELPERS ===================== */
+/* ================= DATE FORMAT ================= */
 const formatDate = (date) =>
   date
     ? new Date(date).toLocaleDateString("en-US", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      })
-    : "";
+      month: "long",
+      day: "2-digit",
+      year: "numeric",
+    })
+    : "—";
 
-const formatCurrency = (value) =>
-  Number(value || 0).toLocaleString("en-IN");
-
-/* ===================== SALARY STRUCTURE (JDIT STYLE) ===================== */
-const generateSalaryComponents = (monthlyStipend) => {
-  const basic = monthlyStipend * 0.4;
-  const hra = monthlyStipend * 0.2;
-  const conveyance = monthlyStipend * 0.1;
-  const special = monthlyStipend * 0.2;
-  const medical = monthlyStipend * 0.1;
-
-  return [
-    { name: "Basic", monthly: basic, annual: basic * 12 },
-    { name: "House Rent Allowance", monthly: hra, annual: hra * 12 },
-    { name: "Conveyance Allowance", monthly: conveyance, annual: conveyance * 12 },
-    { name: "Special Allowance", monthly: special, annual: special * 12 },
-    { name: "Food Allowance", monthly: medical, annual: medical * 12 },
-  ];
+const TEXT = {
+  fontSize: "14px",
+  lineHeight: 1.8,
 };
 
-const calculateTotals = (components) => {
-  const monthly = components.reduce((sum, c) => sum + c.monthly, 0);
-  const annual = components.reduce((sum, c) => sum + c.annual, 0);
-  return { monthly, annual };
-};
+const JDITPaidInternshipLetter = ({
+  company,
+  data = {},
+  employeeName = "—",
+  address = "—",
+  internshipRole = "Trainee Full Stack Developer",
+  joiningDate,
+  issueDate,
+  stipend = 0,
+  companyName = "JDIT Business Solutions Pvt. Ltd.",
+}) => {
+  /* ================= PRONOUNS ================= */
+  const title = (data?.mrms || "ms.").toLowerCase();
 
-/* =====================================================
-   MAIN COMPONENT — JDIT PAID INTERNSHIP LETTER
-===================================================== */
-const JDITPaidInternshipLetter = ({ company, data }) => {
-  if (!company || !data) return null;
+  const pronouns =
+    title === "mr."
+      ? { prefix: "Mr.", subject: "he", possessive: "his" }
+      : title === "mx."
+        ? { prefix: "Mx.", subject: "they", possessive: "their" }
+        : { prefix: "Ms.", subject: "she", possessive: "her" };
 
-  const salaryComponents = generateSalaryComponents(data.stipend);
-  const totals = calculateTotals(salaryComponents);
+  /* ================= SALARY ================= */
+  const monthlyStipend = Number(data?.stipend ?? stipend) || 0;
+  const annualStipend = monthlyStipend * 12;
+
+  /* ================= SALARY BREAKUP (DYNAMIC %) ================= */
+  const salaryComponents = useMemo(() => {
+    const breakup = [
+      { name: "Basic", percent: 40 },
+      { name: "House Rent Allowance", percent: 18 },
+      { name: "Dearness Allowance", percent: 12 },
+      { name: "Special Allowance", percent: 16 },
+      { name: "Food Allowance", percent: 6 },
+      { name: "Misc. Allowance", percent: 8 },
+    ];
+
+    return breakup.map((item) => {
+      const monthly = Math.round((monthlyStipend * item.percent) / 100);
+      return {
+        name: item.name,
+        monthly,
+        annual: monthly * 12,
+      };
+    });
+  }, [monthlyStipend]);
+
+  const totalMonthly = salaryComponents.reduce(
+    (sum, row) => sum + row.monthly,
+    0
+  );
+
+  const totalAnnual = totalMonthly * 12;
 
   return (
     <>
-      {/* ===================== PAGE 1 ===================== */}
-      <A4Page headerSrc={company.header} footerSrc={company.footer}>
-        <Box sx={{ px: "12mm", pt: "4mm", fontSize: "14px", lineHeight: 1.6 }}>
-          {/* DATE */}
-          <Typography align="right" sx={{ mb: 3 }}>
+      {/* ================= PAGE 1 ================= */}
+      <A4Page headerSrc={company?.header} footerSrc={company?.footer}>
+        <Box sx={{ pb: 4, pl: 4, pr: 4 }}>
+          <Typography sx={{ ...TEXT, mb: 3 }}>
             {formatDate(data.issueDate)}
           </Typography>
 
-          {/* NAME & ADDRESS */}
-          <Typography sx={{ mb: 1 }}>
-            <strong>Name :</strong> {data.mrms} {data.employeeName}
+          <Typography sx={{ ...TEXT }}>
+            <b>Name</b> &nbsp;&nbsp;&nbsp;&nbsp;: {pronouns.prefix} {data.employeeName}
           </Typography>
 
-          <Typography sx={{ mb: 2 }}>
-            <strong>Address :</strong> {data.address}
+          <Typography sx={{ ...TEXT, mt: 1 }}>
+            <b>Address</b> &nbsp;&nbsp;: {data.address}
           </Typography>
 
-          {/* SUBJECT */}
-          <Typography sx={{ mb: 3 }}>
-            <strong>Subject :</strong> Letter of intent for the position of
-            Internship as a <strong>{data.designation}</strong>
+          <Typography sx={{ ...TEXT, mt: 3 }}>
+            <b>
+              Subject : Letter of intent for the position of Internship as a{" "}
+              {data.designation}
+            </b>
           </Typography>
 
-          {/* GREETING */}
-          <Typography sx={{ mb: 2 }}>
+          <Typography sx={{ ...TEXT, mt: 4 }}>
             Dear {data.employeeName},
           </Typography>
 
-          {/* BODY */}
-          <Typography sx={{ mb: 2, textAlign: "justify" }}>
-            We are pleased to offer you the Internship for the position of{" "}
-            <strong>{data.designation}</strong>. As discussed, you are requested
-            to join on <strong>{formatDate(data.startDate)}</strong>.
+          <Typography sx={{ ...TEXT, mt: 2 }}>
+            We are pleased to offer you the Internship position of{" "}
+            <b>{data.designation}</b>. As discussed by us, you are requested to join
+            on <b>{formatDate(data.startDate)}</b>.
           </Typography>
 
-          <Typography sx={{ mb: 2, textAlign: "justify" }}>
-            If there is any change in the date of joining, the same can be taken
-            under consideration. Your total Gross Salary will be Rs.{" "}
-            <strong>{formatCurrency(totals.annual)}</strong> per year.
+          <Typography sx={{ ...TEXT, mt: 2 }}>
+            If there is any change in the date of joining, the same may be taken
+            under consideration. Your total gross salary will be Rs.{" "}
+            <b>{formatCurrency(totalAnnual)}</b> (
+            <b>{numberToWords(totalAnnual)}</b>) per year.
           </Typography>
 
-          <Typography sx={{ mb: 2 }}>
+          <Typography sx={{ ...TEXT, mt: 2 }}>
             Subject to various deductions as per company and government policy.
           </Typography>
 
-          <Typography sx={{ mb: 3, textAlign: "justify" }}>
-            We welcome you to <strong>{company.name}</strong> family and hope
-            this would be the beginning of a long and mutually beneficial
-            association.
+          <Typography sx={{ ...TEXT, mt: 2 }}>
+            The roles and responsibilities and other terms and conditions of your
+            employment will be specified in your letter of appointment.
           </Typography>
 
-          <Typography sx={{ mb: 4 }}>
-            Kindly acknowledge the duplicate copy of this letter as acceptance
-            of this offer.
+          <Typography sx={{ ...TEXT, mt: 2 }}>
+            We welcome {pronouns.subject} to the <b>{company.name}</b> family and
+            hope this association marks the beginning of a long and mutually
+            beneficial relationship.
           </Typography>
 
-          {/* SIGN OFF */}
-          <Typography>Yours Sincerely,</Typography>
-          <Typography sx={{ fontWeight: 700, mb: 3 }}>
-            For {company.name.toUpperCase()}
+          <Typography sx={{ ...TEXT, mt: 2 }}>
+            Kindly acknowledge the duplicate copy of this letter as acceptance of
+            this offer.
           </Typography>
 
-          {/* SIGNATURE SECTION */}
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            {/* HR */}
-            <Box>
-              <Box sx={{ display: "flex", gap: 1 , mt: 8 }}>
-                {company.sign && (
-                  <img src={company.sign} alt="HR Sign" height={45} />
-                )}
-                {company.stamp && (
-                  <img src={company.stamp} alt="Stamp" height={90} />
-                )}
-              </Box>
-              <Typography sx={{ fontWeight: 600 }}>
-                {company.hrName}
-              </Typography>
-              <Typography><strong> HR Department Pune </strong> </Typography>
+          <Typography sx={{ ...TEXT, mt: 4 }}>
+            Yours Sincerely,
+          </Typography>
+
+          <Typography sx={{ ...TEXT, mt: 3 }}>
+            <b>For {company.name}</b>
+          </Typography>
+
+          <Box
+            
+          >
+
+            <Box sx={{ display: "flex", gap: "20px", alignItems: "flex-end" }}>
+              {company?.signature && (
+                <Box
+                  component="img"
+                  src={company.signature}
+                  sx={{ height: "50px" }}
+                />
+              )}
+              {company?.stamp && (
+                <Box
+                  component="img"
+                  src={company.stamp}
+                  sx={{ height: "100px" }}
+                />
+              )}
             </Box>
+            <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              mt: 4,
+            }}
+            >
 
-            {/* CANDIDATE */}
-            <Box sx={{ minWidth: 260 }}>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 15 }}>
-                <Typography sx={{ mr: 1 }}>Signature :</Typography>
-                <Box sx={{ flexGrow: 1, borderBottom: "1px solid #000" }} />
+              <Box>
+                <Typography sx={{ ...TEXT }}>
+                  <b>Sweety Khade</b>
+                </Typography>
+                <Typography sx={{ ...TEXT }}>
+                  HR Department, Pune
+                </Typography>
               </Box>
-              <Typography sx={{ mt: 1 }}>
-                Candidate Name : {data.employeeName}
-              </Typography>
+
+              <Box>
+                <Typography sx={{ ...TEXT }}>
+                  Signature: ___________________
+                </Typography>
+                <Typography sx={{ ...TEXT, mt: 1 }}>
+                  Candidate Name: {data.employeeName}
+                </Typography>
+              </Box>
             </Box>
           </Box>
-
-          <Typography sx={{ mt: 6, textAlign: "center", fontWeight: 600 }}>
-            Enclosures: Annexure A – Salary Structure
-          </Typography>
         </Box>
       </A4Page>
 
-      {/* ===================== PAGE 2 ===================== */}
-      <A4Page headerSrc={company.header} footerSrc={company.footer}>
-        <Box sx={{ px: "25mm", pt: "40mm", fontSize: "14px" }}>
-          <Typography align="center" sx={{ fontWeight: 700, mb: 3 }}>
-            Annexure A – Salary Structure
+      {/* ================= PAGE 2 ================= */}
+      <A4Page headerSrc={company?.header} footerSrc={company?.footer}>
+        <Box sx={{ p: 4 }}>
+          <Typography
+            align="center"
+            sx={{ fontSize: "16px", fontWeight: 700, mb: 3 }}
+          >
+            ANNEXURE – A
+            <br />
+            SALARY STRUCTURE
           </Typography>
 
           <Table
             size="small"
             sx={{
-              border: "1px solid #000",
-              "& th, & td": {
-                border: "1px solid #000",
-                py: "4px",
-              },
-              "& th": {
-                backgroundColor: "#080504",
-                fontWeight: 700,
-              },
+              width: "100%",
+              border: "1px solid black",
+              borderCollapse: "collapse",
             }}
           >
             <TableHead>
-              <TableRow>
-                <TableCell sx={{ color: "#d32f2f", fontWeight: 700,}}>Salary Components</TableCell>
-                <TableCell  sx={{ color: "#d32f2f", align:"right"}}>Per Month (Rs.)</TableCell>
-                <TableCell sx={{color: "#d32f2f", align:"right"}}>Per Annum (Rs.)</TableCell>
+              <TableRow sx={{ backgroundColor: "#000000ff", color: "#df1c1cff !important" }}>
+                <TableCell
+                  sx={{
+                    border: "1px solid black",
+                    fontWeight: 700,
+                    color: "#df1c1cff !important", // 👈 red text
+                  }}
+                >
+                  Salary Components
+                </TableCell>
+
+                <TableCell
+                  align="right"
+                  sx={{
+                    border: "1px solid black",
+                    fontWeight: 700,
+                    color: "#df1c1cff !important", // 👈 red text
+                  }}
+                >
+                  Per Month (Rs.)
+                </TableCell>
+
+                <TableCell
+                  align="right"
+                  sx={{
+                    border: "1px solid black",
+                    fontWeight: 700,
+                    color: "#df1c1cff !important", // 👈 red text
+                  }}
+                >
+                  Per Annum (Rs.)
+                </TableCell>
               </TableRow>
             </TableHead>
 
             <TableBody>
-              {salaryComponents.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell align="right">
+              {salaryComponents.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell sx={{ border: "1px solid black" }}>
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right" sx={{ border: "1px solid black" }}>
                     {formatCurrency(row.monthly)}
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" sx={{ border: "1px solid black" }}>
                     {formatCurrency(row.annual)}
                   </TableCell>
                 </TableRow>
               ))}
 
               <TableRow>
-                <TableCell sx={{ fontWeight: 700 }}>
+                <TableCell sx={{ border: "1px solid black", fontWeight: 700 }}>
                   Total Monthly Gross Salary
                 </TableCell>
-                <TableCell align="right" sx={{ fontWeight: 700 }}>
-                  {formatCurrency(totals.monthly)}
+                <TableCell
+                  align="right"
+                  sx={{ border: "1px solid black", fontWeight: 700 }}
+                >
+                  {formatCurrency(totalMonthly)}
                 </TableCell>
-                <TableCell align="right" sx={{ fontWeight: 700 }}>
-                  {formatCurrency(totals.annual)}
+                <TableCell
+                  align="right"
+                  sx={{ border: "1px solid black", fontWeight: 700 }}
+                >
+                  {formatCurrency(totalAnnual)}
                 </TableCell>
               </TableRow>
             </TableBody>
           </Table>
-          
 
-           {/* SIGNATURE SECTION */}
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            {/* HR */}
-            <Box>
-              <Box sx={{ display: "flex", gap: 1 , mt: 10}}>
-                {company.sign && (
-                  <img src={company.sign} alt="HR Sign" height={45} />
-                )}
-                {company.stamp && (
-                  <img src={company.stamp} alt="Stamp" height={90} />
-                )}
-              </Box>
-              <Typography sx={{ fontWeight: 600 }}>
-                {company.hrName}
-              </Typography>
-              <Typography><strong>HR Department Pune</strong></Typography>
-            </Box>
-
-            {/* CANDIDATE */}
-            <Box sx={{ minWidth: 260 }}>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 19 }}>
-                <Typography sx={{ mr: 1 }}>Signature :</Typography>
-                <Box sx={{ flexGrow: 1, borderBottom: "1px solid #000" }} />
-              </Box>
-              <Typography sx={{ mt: 1 }}>
-                Candidate Name : {data.employeeName}
-              </Typography>
-            </Box>
-          </Box>
         </Box>
-         
       </A4Page>
     </>
   );

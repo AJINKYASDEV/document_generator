@@ -110,6 +110,7 @@ import {
 } from "@mui/material";
 import A4Layout from "../../../../layout/A4Page";
 import { calculateIncrement, formatCurrency, numberToWords } from "../../../../utils/salaryCalculations";
+import KritiSign from "../../../../assets/images/Newagecloud/Kirti Kumar.png";
 
 /* ================= DATE FORMAT ================= */
 const formatDate = (date) =>
@@ -258,7 +259,7 @@ const NeweageIncrement = ({ company, data }) => {
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", mb: 2, marginRight: "-20px" }}>
           <Box>
 
-            <img src={company.signature} alt="Signature" style={{ height: '50px' }} />
+            <img src={KritiSign} alt="Signature" style={{ height: '50px' }} />
             <img src={company.stamp} alt="Stamp" style={{ height: '100px' }} />
 
             <Typography sx={{ ...TEXT, fontWeight: "bold" }}>
