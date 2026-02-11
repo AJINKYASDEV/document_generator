@@ -53,7 +53,7 @@ const cell = {
   padding: "4px 6px",
 };
 
-const right = { textAlign: "right" };
+const right = { textAlign: "right" };       
 
 /* ================== UTILS ================== */
 const formatDate = (d) =>

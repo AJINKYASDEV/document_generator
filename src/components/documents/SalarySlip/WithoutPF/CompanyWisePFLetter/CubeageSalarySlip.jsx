@@ -9,8 +9,8 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import A4Page from "../../../layout/A4Page";
-import { formatCurrency, getProfessionalTax } from "../../../../utils/salaryCalculations";
+import A4Page from "../../../../layout/A4Page";
+import { formatCurrency, getProfessionalTax } from "../../../../../utils/salaryCalculations";
 
 /* 🔢 Utility — Convert number to words */
 const numberToWords = (num) => {

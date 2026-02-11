@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import PentaFullAndFinal from "./CompanyWiseFullAndFinal/PentaFullAndFinal";
 import QuickFullAndFinal from "./CompanyWiseFullAndFinal/QuickFullAndFinal";
 import JditFullandFinal from "./CompanyWaiseFullandFinal/JditFullAndFinal";
@@ -29,17 +30,31 @@ const companyComponentMap = {
   10: SmartSoftwareFullAndFinal,
   
 };
+=======
+import WithoutPFFullAndFinalLetterTemplate from "./WithoutPF/WithoutPFFullAndFinalLetterTemplate";
+import WithPFFullAndFinalLetterTemplate from "./WithPF/WithPFFullAndFinalLetterTemplate";
+
+
+
+>>>>>>> a4e0d8c4a8a5ccaaddf7bfb833701e5c9be319f3
 
 const FullAndFinalLetterTemplate = ({ company, data }) => {
-  if (!company) return null;
+  // 🔑 This value must come from form / documentData
+  const FullAndFinalType = data?.fullandfinalType; // "paid" | "unpaid"
 
-  const FullAndFinalComponent = companyComponentMap[company.id];
-
-  if (!FullAndFinalComponent) {
-    return <div>No increment template available for this company</div>;
+  if (!FullAndFinalType) {
+    return <div>FullAndFinal type not selected</div>;
   }
 
-  return <FullAndFinalComponent company={company} data={data} />;
+  if (FullAndFinalType === "withPF") {
+    return <WithPFFullAndFinalLetterTemplate company={company} data={data} />;
+  }
+
+  if (FullAndFinalType === "withoutPF") {
+    return <WithoutPFFullAndFinalLetterTemplate company={company} data={data} />;
+  }
+
+  return <div>Invalid FullAndFinal type</div>;
 };
 
 export default FullAndFinalLetterTemplate;
