@@ -6,6 +6,9 @@ import React from "react";
 // import NeweageExperience from "./CompanyWiseExperience/NeweageExperience";
 // import PentaExperience from "./CompanyWiseExperience/PentaExperience";
 // import RPExperience from "./CompanyWiseExperience/RPExperience";
+import NeweageCertification from "./CompanyWiseCertification/NeweageCertification";
+import JditCertification from "./CompanyWiseCertification/JditCertification";
+import SmartSoftwareCertification from "./CompanyWiseCertification/SmartSoftwareCertification";
 import DevconsCertification from "./CompanyWiseCertification/DevconsCertification";
 import RPCertification from "./CompanyWiseCertification/RPCertification";
 import CubeageCertification from "./CompanyWiseCertification/CubeageCertification";
@@ -15,13 +18,13 @@ import CubeageCertification from "./CompanyWiseCertification/CubeageCertificatio
 // map company shortName OR id to component
 const companyComponentMap = {
   1: CubeageCertification,
-//   2: NeweageExperience,
+  2: NeweageCertification,
 //   3: SmartMatrixExperience,
   4: DevconsCertification,
   5: RPCertification,
 //   6: PentaExperience,
-//   8: JDITExperience,
-//   10: SmartSoftwareExperience,
+  8: JditCertification,
+  10: SmartSoftwareCertification,
 };
 
 const CertificationLetterTemplate = ({ company, data }) => {

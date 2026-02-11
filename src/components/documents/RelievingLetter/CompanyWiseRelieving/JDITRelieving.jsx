@@ -43,6 +43,10 @@ const JDITRelieving = ({ company, data }) => {
       footerSrc={company.footerImage}
       watermarkSrc={company.watermarkImage}
     >
+      <Typography align="right" sx={{ mb: 3, textDecorationLine: "underline", fontWeight: "bold" }}>
+        Relieving Letter
+      </Typography>
+
       {/* ================= DATE ================= */}
       <Typography align="right" sx={{ mb: 3 }}>
         {formatDate(issueDate)}
@@ -57,9 +61,8 @@ const JDITRelieving = ({ company, data }) => {
       <Typography sx={{ mb: 3, textAlign: "justify" }}>
         This letter is to formally acknowledge that{" "}
         <b>{mrms ? `${mrms} ${employeeName}` : employeeName}</b> has been
-        relieved from duties with <b>JDIT SOFTWARE SOLUTIONS PVT. LTD.</b> as
-        of <b>{formatDate(joiningDate)}</b>. {pronouns.subject} joined our
-        organization on and served as{" "}
+        relieved from duties with <b>JDIT SOFTWARE SOLUTIONS PVT. LTD.</b> {pronouns.subject} joined our
+        organization on <b>{formatDate(joiningDate)}</b> and served as{" "}
         <b>{designation}</b> until <b>{formatDate(lastWorkingDay)}</b>.
       </Typography>
 

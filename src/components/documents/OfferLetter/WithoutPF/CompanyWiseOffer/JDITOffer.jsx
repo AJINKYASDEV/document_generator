@@ -131,108 +131,108 @@ const JDITOffer = ({ company, data }) => {
   return (
     <>
       {/* ================= PAGE 1 ================= */}
-     <A4Layout headerSrc={company.headerImage} footerSrc={company.footerImage}>
+      <A4Layout headerSrc={company.headerImage} footerSrc={company.footerImage}>
 
-  {/* ================= COMPANY HEADER ================= */}
-  <Typography align="center" sx={{ ...TEXT, fontWeight: "bold" }}>
-    JDIT Software Solutions Pvt. Ltd.
-  </Typography>
+        {/* ================= COMPANY HEADER ================= */}
+        <Typography align="center" sx={{ ...TEXT, fontWeight: "bold" }}>
+          JDIT Software Solutions Pvt. Ltd.
+        </Typography>
 
-  <Typography align="center" sx={TEXT}>
-    301 A, 3rd Floor, Sai Villa Commercial Appartment, Sr No 166, Malwadi Road,
-  </Typography>
-  <Typography align="center" sx={TEXT}>
-    Opp. to Sahyadri Hospital, Hadapsar, Pune - 411028
-  </Typography>
-  <Typography align="center" sx={{ ...TEXT, mb: 2 }}>
-    Telephone: 020-27212597, URL: www.jditbs.com
-  </Typography>
+        <Typography align="center" sx={TEXT}>
+          301 A, 3rd Floor, Sai Villa Commercial Appartment, Sr No 166, Malwadi Road,
+        </Typography>
+        <Typography align="center" sx={TEXT}>
+          Opp. to Sahyadri Hospital, Hadapsar, Pune - 411028
+        </Typography>
+        <Typography align="center" sx={{ ...TEXT, mb: 2 }}>
+          Telephone: 020-27212597, URL: www.jditbs.com
+        </Typography>
 
-  {/* ================= TITLE ================= */}
-  <Typography align="center" sx={{ ...TEXT, fontWeight: "bold", mb: 1 }}>
-    EMPLOYMENT OFFER
-  </Typography>
+        {/* ================= TITLE ================= */}
+        <Typography align="center" sx={{ ...TEXT, fontWeight: "bold", mb: 1 }}>
+          EMPLOYMENT OFFER
+        </Typography>
 
-  {/* ---- thin line below title ---- */}
-  <Box
-    sx={{
-      width: "180px",
-      height: "1px",
-      backgroundColor: "#000",
-      margin: "0 auto 14px",
-    }}
-  />
+        {/* ---- thin line below title ---- */}
+        <Box
+          sx={{
+            width: "180px",
+            height: "1px",
+            backgroundColor: "#000",
+            margin: "0 auto 14px",
+          }}
+        />
 
-  {/* ================= AGREEMENT BLOCK ================= */}
-  <Typography align="center" sx={TEXT}>
-    This agreement is made on <b>{formatDate(issueDate)}</b> at {location}.
-  </Typography>
+        {/* ================= AGREEMENT BLOCK ================= */}
+        <Typography align="center" sx={TEXT}>
+          This agreement is made on <b>{formatDate(issueDate)}</b> at {location}.
+        </Typography>
 
-  <Typography align="center" sx={TEXT}>Between</Typography>
+        <Typography align="center" sx={TEXT}>Between</Typography>
 
-  <Typography align="center" sx={TEXT}>
-    JDIT Software Solutions (hereinafter referred to as ‘JDIT’ or ‘Company’)
-  </Typography>
+        <Typography align="center" sx={TEXT}>
+          JDIT Software Solutions (hereinafter referred to as ‘JDIT’ or ‘Company’)
+        </Typography>
 
-  <Typography align="center" sx={TEXT}>And</Typography>
+        <Typography align="center" sx={TEXT}>And</Typography>
 
-  <Typography align="center" sx={{ ...TEXT, fontWeight: "bold", mb: 2 }}>
-    {candidateName}
-  </Typography>
+        <Typography align="center" sx={{ ...TEXT, fontWeight: "bold", mb: 2 }}>
+          {candidateName}
+        </Typography>
 
-  {/* ---- full width divider like screenshot ---- */}
-  <Box
-    sx={{
-      borderBottom: "1px solid #000",
-      mb: 2,
-    }}
-  />
+        {/* ---- full width divider like screenshot ---- */}
+        <Box
+          sx={{
+            borderBottom: "1px solid #000",
+            mb: 2,
+          }}
+        />
 
-  {/* ================= OFFER DETAILS ================= */}
-  <Box sx={{ ...TEXT, mb: 3 }}>
-    {employeeId && (
-      <Typography sx={{ mb: 1 }}>
-        ➢ Offer ID / Employee ID: <b>{employeeId}</b>
-      </Typography>
-    )}
-    <Typography sx={{ mb: 1 }}>
-      ➢ Position: <b>{position}</b>
-    </Typography>
-    <Typography sx={{ mb: 1 }}>
-      ➢ Employee’s Name: <b>{candidateName}</b>
-    </Typography>
-    <Typography sx={{ mb: 1 }}>
-      ➢ Business / Work Hours per Day: As per business requirement of the client.
-    </Typography>
-    <Typography sx={{ mb: 1 }}>
-      ➢ Payment Date of Salary: On the 7th Working day of the next month.
-    </Typography>
-  </Box>
+        {/* ================= OFFER DETAILS ================= */}
+        <Box sx={{ ...TEXT, mb: 3 }}>
+          {employeeId && (
+            <Typography sx={{ mb: 1 }}>
+              ➢ Offer ID / Employee ID: <b>{employeeId}</b>
+            </Typography>
+          )}
+          <Typography sx={{ mb: 1 }}>
+            ➢ Position: <b>{position}</b>
+          </Typography>
+          <Typography sx={{ mb: 1 }}>
+            ➢ Employee’s Name: <b>{candidateName}</b>
+          </Typography>
+          <Typography sx={{ mb: 1 }}>
+            ➢ Business / Work Hours per Day: As per business requirement of the client.
+          </Typography>
+          <Typography sx={{ mb: 1 }}>
+            ➢ Payment Date of Salary: On the 7th Working day of the next month.
+          </Typography>
+        </Box>
 
-  {/* ================= NOTICE PERIOD ================= */}
-  <Typography sx={{ ...TEXT, mb: 3 }}>
-    ➢ <b>Notice Period:</b> A notice of 1 month is required if you wish to resign
-    or terminate this contract. Notice period is considered to start from the
-    point when the written communication is received from the Client / Company /
-    You. However when the client ends the contract without notice to JDIT, same
-    clause is applicable to you as well. When situations warrant, as in the case
-    of breach of policies, the company may decide to terminate the contract with
-    immediate effect.
-  </Typography>
+        {/* ================= NOTICE PERIOD ================= */}
+        <Typography sx={{ ...TEXT, mb: 3 }}>
+          ➢ <b>Notice Period:</b> A notice of 1 month is required if you wish to resign
+          or terminate this contract. Notice period is considered to start from the
+          point when the written communication is received from the Client / Company /
+          You. However when the client ends the contract without notice to JDIT, same
+          clause is applicable to you as well. When situations warrant, as in the case
+          of breach of policies, the company may decide to terminate the contract with
+          immediate effect.
+        </Typography>
 
-  {/* ================= COMPENSATION ================= */}
-  <Typography sx={{ ...TEXT, fontWeight: "bold", mb: 1 }}>
-    Compensation Structure:
-  </Typography>
+        {/* ================= COMPENSATION ================= */}
+        <Typography sx={{ ...TEXT, fontWeight: "bold", mb: 1 }}>
+          Compensation Structure:
+        </Typography>
 
-  <Typography sx={TEXT}>
-    Compensation is strictly confidential between the employee and the employer.
-    It has been determined based on various factors such as employee job, skills,
-    specific background and professional merit. This information and any changes
-    therein should be treated as personal and confidential.
-  </Typography>
+        <Typography sx={TEXT}>
+          Compensation is strictly confidential between the employee and the employer.
+          It has been determined based on various factors such as employee job, skills,
+          specific background and professional merit. This information and any changes
+          therein should be treated as personal and confidential.
+        </Typography>
 
-</A4Layout>
+      </A4Layout>
 
 
 
@@ -255,11 +255,20 @@ const JDITOffer = ({ company, data }) => {
               border: "1px solid #333",       // 🔽 thinner outer border
               borderCollapse: "collapse",
               width: "100%",
-              color: "#ffff",
+              color: "#ffff !important",
             }}
           >
             <TableHead>
-              <TableRow sx={{ backgroundColor: "#000" }}>
+              <TableRow sx={{
+                backgroundColor: "#000 !important",
+                "& th": {
+                  color: "#fff !important",
+                  fontWeight: 600,
+                  fontSize: "10pt",
+                  border: "1px solid #333",
+                  py: "0.4mm",
+                },
+              }}>
                 <TableCell
                   sx={{
                     fontWeight: 600,
@@ -340,14 +349,23 @@ const JDITOffer = ({ company, data }) => {
               ))}
 
               {/* Totals Row */}
-              <TableRow sx={{ backgroundColor: "#000" }}>
+              <TableRow sx={{
+                backgroundColor: "#000 !important",
+                "& td": {
+                  color: "#fff !important",
+                  fontWeight: 600,
+                  fontSize: "10pt",
+                  border: "1px solid #333",
+                  py: "0.4mm",
+                },
+              }}>
                 <TableCell
                   sx={{
                     fontWeight: 600,
                     border: "1px solid #333",
                     fontSize: "10pt",
                     py: "0.4mm",
-                    color: "#fff !important",
+                    // color: "#fff !important",
                   }}
                 >
                   Total Monthly Gross Salary
@@ -360,7 +378,7 @@ const JDITOffer = ({ company, data }) => {
                     border: "1px solid #333",
                     fontSize: "10pt",
                     py: "0.4mm",
-                    color: "#fff !important",
+                    // color: "#fff !important",
                   }}
                 >
                   {formatCurrency(totalMonthly)}
@@ -373,7 +391,7 @@ const JDITOffer = ({ company, data }) => {
                     border: "1px solid #333",
                     fontSize: "10pt",
                     py: "0.4mm",
-                    color: "#fff !important",
+                    // color: "#fff !important",
                   }}
                 >
                   {formatCurrency(totalAnnual)}
@@ -431,7 +449,7 @@ const JDITOffer = ({ company, data }) => {
           Statutory Benefits:
         </Typography>
 
-        <Typography sx={{ ...TEXT}}>
+        <Typography sx={{ ...TEXT }}>
           You will be governed as per the respective acts of Gratuity as per the rules
           in force, from time to time.
         </Typography>
@@ -449,8 +467,8 @@ const JDITOffer = ({ company, data }) => {
       <A4Layout headerSrc={company.headerImage} footerSrc={company.footerImage}>
 
         {/* ================= PAYMENT OF SALARY ================= */}
-        
-        <Typography sx={{ ...TEXT}}>
+
+        <Typography sx={{ ...TEXT }}>
           a) The employee shall be paid his/her salary on the date specified in the
           main details of this agreement. JDIT shall not be responsible for any
           delays in payment of salary of the employee caused by his or her late
@@ -459,7 +477,7 @@ const JDITOffer = ({ company, data }) => {
           him/her.
         </Typography>
 
-        <Typography sx={{ ...TEXT}}>
+        <Typography sx={{ ...TEXT }}>
           b) It is agreed by the employee, that this present engagement on contract
           shall be co-terminus with Terms of Business/Main Contract between JDIT and
           its Client where being placed in terms of this engagement. In case, same
@@ -471,11 +489,11 @@ const JDITOffer = ({ company, data }) => {
         </Typography>
 
         {/* ================= JOB ROLES ================= */}
-        <Typography sx={{ ...TEXT, fontWeight: "bold"}}>
+        <Typography sx={{ ...TEXT, fontWeight: "bold" }}>
           Job Roles & Responsibilities:
         </Typography>
 
-        <Typography sx={{ ...TEXT}}>
+        <Typography sx={{ ...TEXT }}>
           You shall be responsible for the performance of the functions expected as{" "}
           <b>{position}</b> and any additional functions and duties that may be
           assigned to you in connection with the business and operations of the
@@ -486,7 +504,7 @@ const JDITOffer = ({ company, data }) => {
         </Typography>
 
         {/* ================= TERMINATION ================= */}
-        <Typography sx={{ ...TEXT, fontWeight: "bold"}}>
+        <Typography sx={{ ...TEXT, fontWeight: "bold" }}>
           Termination of Employment:
         </Typography>
 
@@ -533,7 +551,7 @@ const JDITOffer = ({ company, data }) => {
           approved time sheet and all tax-related documents.
         </Typography>
 
-        
+
 
       </A4Layout>
 
@@ -611,124 +629,124 @@ const JDITOffer = ({ company, data }) => {
         {/* ================= SIGNATURE SECTION ================= */}
 
         {/* ================= EMPLOYEE SIGNATURE BLOCK ================= */}
-<Box sx={{ mt: 4, mb: 2 }}>
+        <Box sx={{ mt: 4, mb: 2 }}>
 
-  <Box
-    sx={{
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "flex-start",
-    }}
-  >
-    {/* ================= LEFT COLUMN ================= */}
-    <Box>
-      {/* Employee Signature */}
-      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-        <Typography sx={{ fontWeight: 600, width: "150px", fontSize: "13px" }}>
-          Employee Signature :
-        </Typography>
-        <Box
-          sx={{
-            borderBottom: "1.5px solid #000",
-            width: "180px",
-            height: "14px",
-          }}
-        />
-      </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+            }}
+          >
+            {/* ================= LEFT COLUMN ================= */}
+            <Box>
+              {/* Employee Signature */}
+              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                <Typography sx={{ fontWeight: 600, width: "150px", fontSize: "13px" }}>
+                  Employee Signature :
+                </Typography>
+                <Box
+                  sx={{
+                    borderBottom: "1.5px solid #000",
+                    width: "180px",
+                    height: "14px",
+                  }}
+                />
+              </Box>
 
-      {/* Employee Full Name */}
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography sx={{ fontWeight: 600, width: "150px", fontSize: "13px" }}>
-          Employee Full Name :
-        </Typography>
-        <Typography sx={{ fontWeight: 600, fontSize: "13px" }}>
-          {candidateName}
-        </Typography>
-      </Box>
-    </Box>
+              {/* Employee Full Name */}
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography sx={{ fontWeight: 600, width: "150px", fontSize: "13px" }}>
+                  Employee Full Name :
+                </Typography>
+                <Typography sx={{ fontWeight: 600, fontSize: "13px" }}>
+                  {candidateName}
+                </Typography>
+              </Box>
+            </Box>
 
-    {/* ================= RIGHT COLUMN ================= */}
-    <Box>
-      {/* Place */}
-      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-        <Typography sx={{ fontWeight: 600, width: "50px", fontSize: "13px" }}>
-          Place :
-        </Typography>
-        <Box
-          sx={{
-            borderBottom: "1.5px solid #000",
-            width: "180px",
-            height: "16px",
-          }}
-        />
-      </Box>
+            {/* ================= RIGHT COLUMN ================= */}
+            <Box>
+              {/* Place */}
+              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                <Typography sx={{ fontWeight: 600, width: "50px", fontSize: "13px" }}>
+                  Place :
+                </Typography>
+                <Box
+                  sx={{
+                    borderBottom: "1.5px solid #000",
+                    width: "180px",
+                    height: "16px",
+                  }}
+                />
+              </Box>
 
-      {/* Date */}
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography sx={{ fontWeight: 600, width: "40px", fontSize: "13px" }}>
-          Date :
-        </Typography>
-        <Box
-          sx={{
-            borderBottom: "1.5px solid #000",
-            width: "180px",
-            height: "16px",
-          }}
-        />
-      </Box>
-    </Box>
-  </Box>
+              {/* Date */}
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography sx={{ fontWeight: 600, width: "40px", fontSize: "13px" }}>
+                  Date :
+                </Typography>
+                <Box
+                  sx={{
+                    borderBottom: "1.5px solid #000",
+                    width: "180px",
+                    height: "16px",
+                  }}
+                />
+              </Box>
+            </Box>
+          </Box>
 
-</Box>
+        </Box>
 
         <Typography sx={{ mb: 0 }}>
-               For <b>JDIT SOFTWARE SOLUTIONS PVT. LTD.</b>
-             </Typography>
-       
-             <Box
-               sx={{
-                 display: "flex",
-                 justifyContent: "space-between",
-                 alignItems: "center",
-                 mt: 3,
-               }}
-             >
-               {/* LEFT SIDE : Signature + Stamp (ONE LINE) */}
-               <Box
-                 sx={{
-                   display: "flex",
-                   alignItems: "center",
-                   gap: 2,
-                 }}
-               >
-                 {company.signature && (
-                   <img
-                     src={company.signature}
-                     alt="Signature"
-                     style={{ height: "60px" }}
-                   />
-                 )}
-       
-                 {company.stamp && (
-                   <img
-                     src={company.stamp}
-                     alt="Stamp"
-                     style={{ height: "100px" }}
-                   />
-                 )}
-               </Box>
-             </Box>
-       
-             <Box sx={{ mt: 0 }}>
-               <Typography sx={{ fontWeight: 500 }}>
-                 {signatoryName}
-               </Typography>
-               <Typography>
-                 {signatoryDesignation}
-               </Typography>
-             </Box>
-             <Typography><b>{company.hrName}</b></Typography>
-             <Typography><b>HR Department Lead</b></Typography>
+          For <b>JDIT SOFTWARE SOLUTIONS PVT. LTD.</b>
+        </Typography>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mt: 3,
+          }}
+        >
+          {/* LEFT SIDE : Signature + Stamp (ONE LINE) */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 2,
+            }}
+          >
+            {company.signature && (
+              <img
+                src={company.signature}
+                alt="Signature"
+                style={{ height: "60px" }}
+              />
+            )}
+
+            {company.stamp && (
+              <img
+                src={company.stamp}
+                alt="Stamp"
+                style={{ height: "100px" }}
+              />
+            )}
+          </Box>
+        </Box>
+
+        <Box sx={{ mt: 0 }}>
+          <Typography sx={{ fontWeight: 500 }}>
+            {signatoryName}
+          </Typography>
+          <Typography>
+            {signatoryDesignation}
+          </Typography>
+        </Box>
+        <Typography><b>{company.hrName}</b></Typography>
+        <Typography><b>HR Department Lead</b></Typography>
 
       </A4Layout>
 
