@@ -546,7 +546,7 @@ export const documentTypes = [
             { name: 'department', label: 'Department', type: 'text', required: false},
             { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
             { name: 'lastWorkingDay', label: 'Last Working Day', type: 'date', required: true },
-            { name: 'noticePeriod', label: 'Notice Period Served', type: 'text', required:false },
+            { name: 'noticePeriod', label: 'Notice Period(Days)', type: 'text', required:false },
             { name: 'handoverStatus', label: 'Handover Status', type: 'select', options: ['Completed', 'Partially Completed', 'Not Applicable'], required: false },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
         ]
