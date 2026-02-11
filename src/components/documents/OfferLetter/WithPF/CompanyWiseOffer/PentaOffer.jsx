@@ -1,4 +1,3 @@
-
 import React from 'react'
 
 const PentaOffer = () => {
@@ -10,4 +9,3 @@ const PentaOffer = () => {
 }
 
 export default PentaOffer
-

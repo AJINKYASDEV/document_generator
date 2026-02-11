@@ -121,6 +121,8 @@ const DevconsIncrement = ({ company, data }) => {
           <Typography sx={{ mb: 4, textAlign: "justify" }}>
             Your loyalty and commitment to the company over the years have been
             invaluable and this increment is a token of our appreciation.
+            We look forward to many more years of your dedication and contribution.
+
           </Typography>
 
           <Typography sx={{ mb: 8 }}>
@@ -208,10 +210,10 @@ const DevconsIncrement = ({ company, data }) => {
           >
             <TableBody>
               <TableRow sx={{ backgroundColor: "#f2b705" }}>
-                <TableCell sx={{ fontWeight: 700 }} align="right">Amount (Rs.)</TableCell>
-                <TableCell sx={{ fontWeight: 700 }}>Yearly Component</TableCell>
-                <TableCell sx={{ fontWeight: 700 }} align="right">Amount (Rs.)</TableCell>
-                <TableCell sx={{ fontWeight: 700 }}>Monthly Component</TableCell>
+                <TableCell sx={{ fontWeight: 700 }} align="right">Monthly Component</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>Amount (Rs.)</TableCell>
+                <TableCell sx={{ fontWeight: 700 }} align="right">Yearly Component</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>Amount (Rs.)</TableCell>
               </TableRow>
 
               <TableRow>
