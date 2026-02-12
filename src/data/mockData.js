@@ -875,6 +875,36 @@ export const documentTypes = [
             // { name: 'professionalTax', label: 'Professional Tax', type: 'number', required: true },
             // { name: 'incomeTax', label: 'Income Tax', type: 'number', required: true }
         ]
+    },
+
+    {
+        id: 17,
+        name: 'Confirmation Letter',
+        template: 'confirmation-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'effectiveDate', label: 'Effective Date', type: 'date', required: true },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
+            { name: 'totalSalary', label: 'Total Salary', type: 'number', required: true },
+            // { name: 'newSalary', label: 'New Salary', type: 'number', required: true },
+            { name: 'position', label: 'Position', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: false },
+            {
+                name: 'confirmationType',
+                label: 'Confirmation Type',
+                type: 'select',
+                options: ['withPF', 'withoutPF'],
+                required: true
+            },
+
+
+
+           
+            
+           
+        ]
     }
 
 

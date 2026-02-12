@@ -33,6 +33,7 @@ import IncrementTemplate from "../components/documents/IncrementLetter/Increment
 import OfferTemplate from "../components/documents/OfferLetter/OfferLetterTemplate";
 import FullAndFinalLetterTemplate from "../components/documents/FullandFinalLetter/FullandFinalLetterTemplate";
 import AppointmentLetterTemplate from "../components/documents/AppointmentLeter/AppointmentLetterTemplate";
+import ConfirmationLetterTemplate from "../components/documents/ConfirmationLetter/ConfirmationLetterTemplate";
 //import FullAndFinalLetterTemplate from "../components/documents/FullAndFinalLetter/FullAndFinalLetterTemplate";
 
 
@@ -117,6 +118,8 @@ const DocumentPreview = () => {
         // return <TransferLetterTemplate data={documentData} company={selectedCompany} />;
         case 'fullandfinal-letter':
          return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
+         case 'confirmation-letter':
+        return <ConfirmationLetterTemplate data={documentData} company={selectedCompany} />;
       default:
         return <Typography>Template not found</Typography>;
     }
