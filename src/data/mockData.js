@@ -430,13 +430,13 @@ export const documentTypes = [
             { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
             { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
             { name: 'designation', label: 'Designation', type: 'text', required: true },
-            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: false },
             { name: 'month', label: 'Month', type: 'month', required: true },
             { name: 'totalSalary', label: 'Total Salary', type: 'number', required: true },
             { name: 'doj', label: 'Date of Joining', type: 'date', require: true },
             { name: 'pan', label: 'PAN Card Number', type: 'text', required: true },
             { name: 'gender', label: 'Gender', type: 'select', options: ['Male', 'Female', 'Other'], required: true },
-            { name: 'mode', label: 'Mode Bank', type: 'text', required: true },
+            { name: 'mode', label: 'Mode Bank', type: 'text', required: false },
             { name: 'workdays', label: 'Total Workdays', type: 'number', required: true },
             { name: 'dob', label: 'Date of Birth', type: 'date', required: true },
             {
@@ -446,7 +446,7 @@ export const documentTypes = [
                 options: ['withPF', 'withoutPF'],
                 required: true
             },
-            { name: 'accountNo', label: 'Account Number', type: 'text', required: true },
+            { name: 'accountNo', label: 'Account Number', type: 'text', required: false },
             // { name: 'basicSalary', label: 'Basic Salary', type: 'number', required: true },
             // { name: 'hra', label: 'HRA', type: 'number', required: true },
             // { name: 'conveyanceAllowance', label: 'Conveyance Allowance', type: 'number', required: true },
@@ -466,16 +466,16 @@ export const documentTypes = [
             { name: 'candidateName', label: 'Candidate Name', type: 'text', required: true },
             { name: 'address', label: 'Address', type: 'textarea', required: false },
             { name: 'position', label: 'Position', type: 'text', required: true },
-            { name: 'department', label: 'Department', type: 'text', required: true },
-            { name: 'employmentType', label: 'Employment Type', type: 'select', options: ['Full-time', 'Part-time', 'Contract', 'Internship'], required: true },
+            { name: 'department', label: 'Department', type: 'text', required: false },
+            { name: 'employmentType', label: 'Employment Type', type: 'select', options: ['Full-time', 'Part-time', 'Contract', 'Internship'], required: false },
             { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
             { name: 'probationPeriod', label: 'Probation Period (months)', type: 'number', required: false },
             { name: 'salary', label: 'Annual Salary (CTC)', type: 'number', required: true },
-            { name: 'location', label: 'Work Location', type: 'text', required: true },
+            { name: 'location', label: 'Work Location', type: 'text', required: false },
             { name: 'workHours', label: 'Work Hours', type: 'text', required: false },
-            { name: 'reportingManager', label: 'Reporting Manager', type: 'text', required: true },
+            { name: 'reportingManager', label: 'Reporting Manager', type: 'text', required: false},
             { name: 'noticePeriod', label: 'Notice Period', type: 'text', required: false },
-            { name: 'offerValidTill', label: 'Offer Valid Till', type: 'date', required: true },
+            { name: 'offerValidTill', label: 'Offer Valid Till', type: 'date', required: false },
              {
                 name: 'offerType',
                 label: 'Offer Type',
@@ -499,7 +499,7 @@ export const documentTypes = [
             { name: 'address', label: 'Address', type: 'textarea', required: true },
             { name: 'employeeId', label: 'EmployeeId', type: 'text', required: true },
             { name: 'position', label: 'Position', type: 'text', required: true },
-            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: false },
            
             { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
             { name: 'probationPeriod', label: 'Probation Period (months)', type: 'number', required: true },
@@ -526,11 +526,11 @@ export const documentTypes = [
             { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
             { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
             { name: 'designation', label: 'Designation', type: 'text', required: true },
-            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: false },
             { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
             { name: 'relievingDate', label: 'Relieving Date', type: 'date', required: true },
             // { name: 'workDescription', label: 'Work Description', type: 'textarea', required: true },
-            { name: 'conduct', label: 'Conduct & Performance', type: 'select', options: ['Excellent', 'Very Good', 'Good', 'Satisfactory'], required: true },
+            { name: 'conduct', label: 'Conduct & Performance', type: 'select', options: ['Excellent', 'Very Good', 'Good', 'Satisfactory'], required: false },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
         ]
     },
@@ -543,11 +543,11 @@ export const documentTypes = [
             { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
             { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
             { name: 'designation', label: 'Designation', type: 'text', required: true },
-            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: false},
             { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
             { name: 'lastWorkingDay', label: 'Last Working Day', type: 'date', required: true },
-            { name: 'noticePeriod', label: 'Notice Period Served', type: 'text', required: true },
-            { name: 'handoverStatus', label: 'Handover Status', type: 'select', options: ['Completed', 'Partially Completed', 'Not Applicable'], required: true },
+            { name: 'noticePeriod', label: 'Notice Period(Days)', type: 'text', required:false },
+            { name: 'handoverStatus', label: 'Handover Status', type: 'select', options: ['Completed', 'Partially Completed', 'Not Applicable'], required: false },
             { name: 'issueDate', label: 'Issue Date', type: 'date', required: true }
         ]
     },
@@ -579,14 +579,14 @@ export const documentTypes = [
             { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
             { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
             { name: 'designation', label: 'Designation', type: 'text', required: true },
-            { name: 'department', label: 'Department', type: 'text', required: true },
-            { name: 'currentCTC', label: 'Current CTC (Annual)', type: 'number', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: false },
+            { name: 'currentCTC', label: 'Current CTC (Annual)', type: 'number', required: false },
             { name: 'newCTC', label: 'New CTC (Annual)', type: 'number', required: true },
             {
                 name: 'incrementPercentage',
                 label: 'Increment Percentage',
                 type: 'number',
-                required: true,
+                required: false,
                 formula: '(newCTC - currentCTC) / currentCTC * 100', // 👈 dynamic formula
                 suffix: '%'
             },
@@ -847,14 +847,14 @@ export const documentTypes = [
             { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
             { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
             { name: 'designation', label: 'Designation', type: 'text', required: true },
-            { name: 'department', label: 'Department', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: false },
             {name:  'date', label:'F&F Date', type:'date', required: true},
             { name: 'month', label: 'For the Month', type: 'month', required: true },
             { name: 'totalSalary', label: 'Total Salary', type: 'number', required: true },
             { name: 'doj', label: 'Joining Date', type: 'date', require: true },
             { name: 'dateofresignation', label: 'Date of Resignation', type: 'date', required: true },
             { name: 'dateofleaving', label: 'Date of Leaving', type: 'date',  required: true },
-             { name:'leaveencashment' , label:'Leave encashment', type:'number', required: true},
+             { name:'leaveencashment' , label:'Leave encashment', type:'number', required:false},
             { name: 'paiddays', label: 'Paid days ', type: 'number', required: true },
             {
                 name: 'fullandfinalType',
@@ -874,6 +874,36 @@ export const documentTypes = [
             // { name: 'pf', label: 'PF', type: 'number', required: true },
             // { name: 'professionalTax', label: 'Professional Tax', type: 'number', required: true },
             // { name: 'incomeTax', label: 'Income Tax', type: 'number', required: true }
+        ]
+    },
+
+    {
+        id: 17,
+        name: 'Confirmation Letter',
+        template: 'confirmation-letter',
+        fields: [
+            { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
+            { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+            { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+            { name: 'effectiveDate', label: 'Effective Date', type: 'date', required: true },
+            { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
+            { name: 'totalSalary', label: 'Total Salary', type: 'number', required: true },
+            // { name: 'newSalary', label: 'New Salary', type: 'number', required: true },
+            { name: 'position', label: 'Position', type: 'text', required: true },
+            { name: 'department', label: 'Department', type: 'text', required: false },
+            {
+                name: 'confirmationType',
+                label: 'Confirmation Type',
+                type: 'select',
+                options: ['withPF', 'withoutPF'],
+                required: true
+            },
+
+
+
+           
+            
+           
         ]
     }
 
