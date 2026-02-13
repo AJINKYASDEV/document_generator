@@ -9,6 +9,7 @@ import NeweageIncrement from "../WithPF/CompanyWiseIncrement/NeweageIncrement";
 import RPIcrement from "../WithPF/CompanyWiseIncrement/RPIncrement";
 import SmartMatrixIncrement from "../WithPF/CompanyWiseIncrement/SmartMatrixIncrement";
 import SmartSoftwareIncrement from "../WithPF/CompanyWiseIncrement/SmartSoftwareIncrement";
+import NimbjaIncrement from "../WithPF/CompanyWiseIncrement/"
 //import QuickIncrement from "./CompanyWiseIncrement/QuickIncrement";
 
 
@@ -20,7 +21,7 @@ const companyComponentMap = {
   4: DevconsIncrement,
   5: RPIcrement,
   //6: PentaIncrement,
-  //7: NimbjaIncrement,
+  7: NimbjaIncrement,
   8: JDITIncrement,
   //9: QuickIncrement,
   10: SmartSoftwareIncrement,

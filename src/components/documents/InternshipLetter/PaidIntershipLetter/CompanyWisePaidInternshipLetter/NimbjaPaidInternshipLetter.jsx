@@ -432,7 +432,7 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
               }}
             >
               Subject: Letter of intent for the Internship of position as a{" "}
-              {data.field} Trainee.
+              {data.designation} Trainee.
             </Typography>
 
             {/* <Typography
@@ -470,7 +470,7 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
             }}
           >
             We are pleased to offer you the Internship of position as a{" "}
-            {data.field} Trainee with {company.name} with effective date{" "}
+            {data.designation} Trainee with {company.name} with effective date{" "}
             {formatDate(data.startDate)} considering your performance and
             support towards the organization.
           </Typography>

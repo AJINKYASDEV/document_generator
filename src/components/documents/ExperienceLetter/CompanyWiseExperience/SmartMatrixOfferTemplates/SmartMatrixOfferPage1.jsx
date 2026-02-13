@@ -247,11 +247,11 @@ const SmartMatrixOfferPage1 = ({ company, data }) => {
             component="img"
             src={company.signature}
             alt="Stamp"
-            sx={{ width: 110, position: "relative", left: "-8mm" }}
+            sx={{ width: 110, position: "relative", left: "-8mm", marginTop:"10mm" }}
           />
 
           {/* HR DETAILS BELOW STAMP */}
-          <Box sx={{ mt: "22mm", ml: "12mm" }}>
+          <Box sx={{ mt: "12mm", ml: "12mm" }}>
             <Typography>
               <strong>{company.hrName}</strong>
             </Typography>
