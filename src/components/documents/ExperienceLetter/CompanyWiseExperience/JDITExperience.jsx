@@ -71,7 +71,7 @@ const JDITExperience = ({ company, data }) => {
         It is to certify that <b>{mrms ? `${mrms} ${employeeName}` : employeeName}</b> was employed as a{" "}
         <b>{designation}</b> in the {department} department of{" "}
         <b>JDIT SOFTWARE SOLUTIONS PVT. LTD.</b> from{" "}
-        <b>{formatDate(startDate)}</b> to <b>{formatDate(endDate)}</b>.
+        <b>{formatDate(data.joiningDate)}</b> to <b>{formatDate(data.relievingDate)}</b>.
       </Typography>
 
       {/* ================= PARAGRAPH 2 ================= */}

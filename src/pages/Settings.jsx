@@ -1,26 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  Grid,
-  Switch,
-  FormControlLabel,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Button,
-  Divider,
-  Card,
-  CardContent,
-  CardHeader,
-  Alert,
-  TextField,
-  Chip,
-  List,
-  ListItem,
+import {  Box, Container, Paper,Typography, Grid,Switch, FormControlLabel, Select, MenuItem, FormControl, InputLabel,
+  Button, Divider, Card, CardContent, CardHeader, Alert,TextField, Chip, List, ListItem,
   ListItemText,
   ListItemSecondaryAction,
   IconButton,
@@ -233,6 +213,7 @@ const Settings = () => {
         }
       ]
     },
+
     {
       title: 'Privacy & Security',
       icon: <SecurityIcon />,

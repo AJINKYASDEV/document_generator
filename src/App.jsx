@@ -19,6 +19,7 @@ import ErrorBoundary from './components/common/ErrorBoundary';
 import ToastProvider from './components/common/Toast';
 import { PageTransition } from './components/common/AnimatedContainer';
 import './App.css';
+import SignUp from './pages/SignUp';
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -50,113 +51,122 @@ function App() {
           <AuthProvider>
             <CompanyProvider>
               <DocumentProvider>
-              <Routes>
-                <Route path="/login" element={
-                  <PageTransition>
-                    <ErrorBoundaryWithNavigation><Login /></ErrorBoundaryWithNavigation>
-                  </PageTransition>
-                } />
-                <Route path="/" element={<Navigate to="/dashboard" />} />
-                <Route
-                  path="/dashboard"
-                  element={
-                    <ProtectedRoute>
+                <Routes>
+                  <Route path="/login" element={
+                    <PageTransition>
+                      <ErrorBoundaryWithNavigation><Login /></ErrorBoundaryWithNavigation>
+                    </PageTransition>
+                  } />
+                  <Route
+                    path="/signup"
+                    element={
                       <PageTransition>
-                        <ErrorBoundaryWithNavigation>
-                          <DashboardLayout>
-                            <Dashboard />
-                          </DashboardLayout>
-                        </ErrorBoundaryWithNavigation>
+                        <SignUp />
                       </PageTransition>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/documents/create"
-                  element={
-                    <ProtectedRoute>
-                      <PageTransition>
-                        <ErrorBoundaryWithNavigation>
-                          <DashboardLayout>
-                            <DocumentCreate />
-                          </DashboardLayout>
-                        </ErrorBoundaryWithNavigation>
-                      </PageTransition>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/documents/preview"
-                  element={
-                    <ProtectedRoute>
-                      <PageTransition>
-                        <ErrorBoundaryWithNavigation>
-                          <DashboardLayout>
-                            <DocumentPreview />
-                          </DashboardLayout>
-                        </ErrorBoundaryWithNavigation>
-                      </PageTransition>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/company-management"
-                  element={
-                    <ProtectedRoute>
-                      <PageTransition>
-                        <ErrorBoundaryWithNavigation>
-                          <DashboardLayout>
-                            <CompanyManagement />
-                          </DashboardLayout>
-                        </ErrorBoundaryWithNavigation>
-                      </PageTransition>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute>
-                      <PageTransition>
-                        <ErrorBoundaryWithNavigation>
-                          <DashboardLayout>
-                            <Profile />
-                          </DashboardLayout>
-                        </ErrorBoundaryWithNavigation>
-                      </PageTransition>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/settings"
-                  element={
-                    <ProtectedRoute>
-                      <PageTransition>
-                        <ErrorBoundaryWithNavigation>
-                          <DashboardLayout>
-                            <Settings />
-                          </DashboardLayout>
-                        </ErrorBoundaryWithNavigation>
-                      </PageTransition>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/analytics"
-                  element={
-                    <ProtectedRoute>
-                      <PageTransition>
-                        <ErrorBoundaryWithNavigation>
-                          <DashboardLayout>
-                            <Analytics />
-                          </DashboardLayout>
-                        </ErrorBoundaryWithNavigation>
-                      </PageTransition>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="*" element={<Navigate to="/dashboard" />} />
-              </Routes>
+                    }
+                  />
+
+                  <Route path="/" element={<Navigate to="/dashboard" />} />
+                  <Route
+                    path="/dashboard"
+                    element={
+                      <ProtectedRoute>
+                        <PageTransition>
+                          <ErrorBoundaryWithNavigation>
+                            <DashboardLayout>
+                              <Dashboard />
+                            </DashboardLayout>
+                          </ErrorBoundaryWithNavigation>
+                        </PageTransition>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/documents/create"
+                    element={
+                      <ProtectedRoute>
+                        <PageTransition>
+                          <ErrorBoundaryWithNavigation>
+                            <DashboardLayout>
+                              <DocumentCreate />
+                            </DashboardLayout>
+                          </ErrorBoundaryWithNavigation>
+                        </PageTransition>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/documents/preview"
+                    element={
+                      <ProtectedRoute>
+                        <PageTransition>
+                          <ErrorBoundaryWithNavigation>
+                            <DashboardLayout>
+                              <DocumentPreview />
+                            </DashboardLayout>
+                          </ErrorBoundaryWithNavigation>
+                        </PageTransition>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/company-management"
+                    element={
+                      <ProtectedRoute>
+                        <PageTransition>
+                          <ErrorBoundaryWithNavigation>
+                            <DashboardLayout>
+                              <CompanyManagement />
+                            </DashboardLayout>
+                          </ErrorBoundaryWithNavigation>
+                        </PageTransition>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <ProtectedRoute>
+                        <PageTransition>
+                          <ErrorBoundaryWithNavigation>
+                            <DashboardLayout>
+                              <Profile />
+                            </DashboardLayout>
+                          </ErrorBoundaryWithNavigation>
+                        </PageTransition>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/settings"
+                    element={
+                      <ProtectedRoute>
+                        <PageTransition>
+                          <ErrorBoundaryWithNavigation>
+                            <DashboardLayout>
+                              <Settings />
+                            </DashboardLayout>
+                          </ErrorBoundaryWithNavigation>
+                        </PageTransition>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/analytics"
+                    element={
+                      <ProtectedRoute>
+                        <PageTransition>
+                          <ErrorBoundaryWithNavigation>
+                            <DashboardLayout>
+                              <Analytics />
+                            </DashboardLayout>
+                          </ErrorBoundaryWithNavigation>
+                        </PageTransition>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route path="*" element={<Navigate to="/dashboard" />} />
+                </Routes>
               </DocumentProvider>
             </CompanyProvider>
           </AuthProvider>
