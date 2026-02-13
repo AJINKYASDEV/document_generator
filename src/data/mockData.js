@@ -891,6 +891,7 @@ export const documentTypes = [
             // { name: 'newSalary', label: 'New Salary', type: 'number', required: true },
             { name: 'position', label: 'Position', type: 'text', required: true },
             { name: 'department', label: 'Department', type: 'text', required: false },
+            { name: 'address', label: 'Address', type: 'textarea', required: false },
             {
                 name: 'confirmationType',
                 label: 'Confirmation Type',
