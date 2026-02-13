@@ -20,36 +20,54 @@ const formatCurrency = (value) => {
 };
 
 /* ===================== SALARY CALCULATION ===================== */
+/* ===================== SALARY CALCULATION ===================== */
 const calculateSalaryBreakup = (annualCTC) => {
   if (!annualCTC) {
     return { salaryBreakup: [], totalPerMonth: 0, totalPerYear: 0 };
   }
 
-  const components = [
-    { label: "Basic", percent: 40.13 },
-    { label: "House Rent Allowance", percent: 17.98 },
-    { label: "Dearness Allowance", percent: 15.99 },
-    { label: "Food Allowance", percent: 13.94 },
-    { label: "Special Allowance", percent: 11.96 },
+  const round2 = (num) => Number(num.toFixed(2));
+
+  // Percentage Components
+  const basicAnnual = round2(annualCTC * 0.4013);
+  const hraAnnual = round2(annualCTC * 0.1798);
+  const daAnnual = round2(annualCTC * 0.1599);
+  const foodAnnual = round2(annualCTC * 0.1394);
+  const specialAnnual = round2(annualCTC * 0.1196);
+
+  // ✅ PF Fixed (same like increment)
+  const pfMonthly = 3750;
+  const pfAnnual = round2(pfMonthly * 12);
+
+  // Monthly values
+  const basicMonthly = round2(basicAnnual / 12);
+  const hraMonthly = round2(hraAnnual / 12);
+  const daMonthly = round2(daAnnual / 12);
+  const foodMonthly = round2(foodAnnual / 12);
+  const specialMonthly = round2(specialAnnual / 12);
+
+  const salaryBreakup = [
+    { label: "Basic", perMonth: basicMonthly, perYear: basicAnnual },
+    { label: "House Rent Allowance", perMonth: hraMonthly, perYear: hraAnnual },
+    { label: "Dearness Allowance", perMonth: daMonthly, perYear: daAnnual },
+    { label: "Food Allowance", perMonth: foodMonthly, perYear: foodAnnual },
+    { label: "Special Allowance", perMonth: specialMonthly, perYear: specialAnnual },
+    { label: "Provident Fund (PF)", perMonth: pfMonthly, perYear: pfAnnual }, // ✅ Added PF
   ];
 
-  const salaryBreakup = components.map((c) => {
-    const perYear = Math.round(annualCTC * (c.percent / 100));
-    const perMonth = Math.round(perYear / 12);
-    return { label: c.label, perMonth, perYear };
-  });
-
-  const totalPerMonth = salaryBreakup.reduce(
-    (sum, r) => sum + r.perMonth,
-    0
+  const totalPerMonth = round2(
+    salaryBreakup.reduce((sum, r) => sum + r.perMonth, 0)
   );
-  const totalPerYear = salaryBreakup.reduce(
-    (sum, r) => sum + r.perYear,
-    0
+
+  const totalPerYear = round2(
+    salaryBreakup.reduce((sum, r) => sum + r.perYear, 0)
   );
 
   return { salaryBreakup, totalPerMonth, totalPerYear };
 };
+
+
+
 
 /* ===================== PAGE WRAPPER ===================== */
 const Page = ({ company, children }) => (

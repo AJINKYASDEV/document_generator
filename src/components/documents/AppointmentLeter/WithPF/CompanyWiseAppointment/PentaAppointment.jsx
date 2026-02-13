@@ -42,8 +42,8 @@ const generateSalaryBreakup = (annualCTC) => {
   const pfAnnual = pfMonthly * 12;
 
   // Remaining amount goes to Other Allowances
-  const misc = round2(
-    annualCTC - (basic + hra + special + conveyance + pfAnnual)
+  const pf = round2(
+    annualCTC - (basic + hra + special + food + pfAnnual)
   );
 
   return [
