@@ -20,16 +20,6 @@ import NimbjaCertification from "./CompanyWiseCertification/NimbjaCertification"
 // map company shortName OR id to component
 const companyComponentMap = {
   1: CubeageCertification,
-<<<<<<< HEAD
-  //   2: NeweageExperience,
-  3: SmartMatrixCertification,
-  4: DevconsCertification,
-  5: RPCertification,
-  //   6: PentaExperience,
-  7: NimbjaCertification,
-  //   8: JDITExperience,
-  //   10: SmartSoftwareExperience,
-=======
   2: NeweageCertification,
 //   3: SmartMatrixExperience,
   4: DevconsCertification,
@@ -37,7 +27,6 @@ const companyComponentMap = {
 //   6: PentaExperience,
   8: JditCertification,
   10: SmartSoftwareCertification,
->>>>>>> b942c54598e610beac5f97379345fecb78871a0b
 };
 
 const CertificationLetterTemplate = ({ company, data }) => {

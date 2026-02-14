@@ -602,7 +602,7 @@ const NimbjaOfferPage1 = ({ company, data }) => {
                   width: "34mm",
                   display: "block",
                   mb: "4mm",
-                  ml: "-30mm",
+                  ml: "-52mm",
                 }}
               />
             )}

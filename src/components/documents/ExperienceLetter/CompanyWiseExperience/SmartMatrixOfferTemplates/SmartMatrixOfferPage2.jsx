@@ -176,7 +176,7 @@ const SmartMatrixOfferPage2 = ({ data, company }) => {
                 component="img"
                 src={company.signature}
                 alt="Sign"
-                sx={{ width: 110 }}
+                sx={{ width: 110,ml:"-5mm",mt:"18mm" }}
               />
             </Grid>
             <Grid item>

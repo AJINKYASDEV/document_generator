@@ -196,7 +196,7 @@ const SmartMatrixOfferPage1 = ({ company, data }) => {
         }}
       >
         Your annual salary, allowances, and contributions put together will be
-        <strong>INR {(grossSalary / 100000).toFixed(1)} LPA.</strong>
+        <strong> INR {(grossSalary / 100000).toFixed(1)} LPA.</strong>
       </Typography>
 
       <Typography
