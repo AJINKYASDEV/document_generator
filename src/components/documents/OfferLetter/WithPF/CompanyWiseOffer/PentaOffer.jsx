@@ -67,8 +67,6 @@ const calculateSalaryBreakup = (annualCTC) => {
 };
 
 
-
-
 /* ===================== PAGE WRAPPER ===================== */
 const Page = ({ company, children }) => (
   <Box
