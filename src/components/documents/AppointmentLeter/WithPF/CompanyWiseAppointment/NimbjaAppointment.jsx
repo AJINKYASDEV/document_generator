@@ -487,12 +487,14 @@ const NimbjaAppointment = ({ data, company }) => {
             food: 0.06,
           };
 
+          const food = 3750;
+
           /* ===== MONTHLY CALCULATION (ROUND HERE ONLY) ===== */
           const basicMonthly = round2(grossMonthly * PERCENT.basic);
           const hraMonthly = round2(grossMonthly * PERCENT.hra);
           const daMonthly = round2(grossMonthly * PERCENT.da);
           const specialMonthly = round2(grossMonthly * PERCENT.special);
-          const foodMonthly = round2(grossMonthly * PERCENT.food);
+          const foodMonthly = food / 12;
 
           const usedMonthly =
             basicMonthly +
@@ -527,7 +529,7 @@ const NimbjaAppointment = ({ data, company }) => {
               annual: round0(specialMonthly * 12),
             },
             {
-              name: "Superannuation Fund",
+              name: "Provident Fund",
               monthly: foodMonthly,
               annual: round0(foodMonthly * 12),
             },
