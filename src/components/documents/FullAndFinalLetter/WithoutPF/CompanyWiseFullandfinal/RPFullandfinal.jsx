@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Box,
@@ -305,5 +306,4 @@ const RPFullAndFinal = ({ company = {}, data = {} }) => {
   );
 };
 
-export default RPFullAndFinal;
-
+export default NimbjaFullAndFinal;

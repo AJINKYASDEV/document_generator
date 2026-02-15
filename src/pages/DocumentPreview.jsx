@@ -31,9 +31,10 @@ import CertificationLetterTemplate from '../components/documents/InternshipCompl
 import SalarySlipLetterTemplate from "../components/documents/SalarySlip/SalarySlipTemplate";
 import IncrementTemplate from "../components/documents/IncrementLetter/IncrementTemplate";
 import OfferTemplate from "../components/documents/OfferLetter/OfferLetterTemplate";
-import FullAndFinalLetterTemplate from "../components/documents/FullandFinalLetter/FullandFinalLetterTemplate";
+//import FullAndFinalLetterTemplate from "../components/documents/FullandFinalLetter/FullandFinalLetterTemplate";
 import AppointmentLetterTemplate from "../components/documents/AppointmentLeter/AppointmentLetterTemplate";
 import ConfirmationLetterTemplate from "../components/documents/ConfirmationLetter/ConfirmationLetterTemplate";
+import FullandfinalLetterTemplate from "../components/documents/FullandfinalLetter/FullandfinalLetterTemplate";
 //import FullAndFinalLetterTemplate from "../components/documents/FullAndFinalLetter/FullAndFinalLetterTemplate";
 
 
@@ -99,8 +100,8 @@ const DocumentPreview = () => {
         return <ExperienceLetterTemplate data={documentData} company={selectedCompany} />;
       case 'relieving-letter':
         return <RelievingLetterTemplate data={documentData} company={selectedCompany} />;
-       //case 'FullAndFinal-letter':
-        // return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
+       case 'fullandfinal-letter':
+        return <FullandfinalLetterTemplate data={documentData} company={selectedCompany} />;
 
       // case 'salary-transaction':
       // return <SalaryTransactionTemplate data={documentData} company={selectedCompany} />;
@@ -116,8 +117,8 @@ const DocumentPreview = () => {
       // return <TerminationLetterTemplate data={documentData} company={selectedCompany} />;
       // case 'transfer-letter':
         // return <TransferLetterTemplate data={documentData} company={selectedCompany} />;
-        case 'fullandfinal-letter':
-         return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
+        // case 'fullandfinal-letter':
+        //  return <FullAndFinalLetterTemplate data={documentData} company={selectedCompany} />;
          case 'confirmation-letter':
         return <ConfirmationLetterTemplate data={documentData} company={selectedCompany} />;
       default:
