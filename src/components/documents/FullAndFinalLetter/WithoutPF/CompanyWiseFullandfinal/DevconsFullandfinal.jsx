@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Box,
@@ -43,18 +44,47 @@ const numberToWords = (num = 0) => {
 
   const inWords = (n) => {
     if (n < 20) return a[n];
-    if (n < 100) return b[Math.floor(n / 10)] + (n % 10 ? " " + a[n % 10] : "");
-    if (n < 1000) return a[Math.floor(n / 100)] + " Hundred" + (n % 100 ? " " + inWords(n % 100) : "");
-    if (n < 100000) return inWords(Math.floor(n / 1000)) + " Thousand";
-    if (n < 10000000) return inWords(Math.floor(n / 100000)) + " Lakh";
-    return inWords(Math.floor(n / 10000000)) + " Crore";
+
+    if (n < 100)
+      return (
+        b[Math.floor(n / 10)] +
+        (n % 10 ? " " + a[n % 10] : "")
+      );
+
+    if (n < 1000)
+      return (
+        a[Math.floor(n / 100)] +
+        " Hundred" +
+        (n % 100 ? " " + inWords(n % 100) : "")
+      );
+
+    if (n < 100000)
+      return (
+        inWords(Math.floor(n / 1000)) +
+        " Thousand" +
+        (n % 1000 ? " " + inWords(n % 1000) : "")
+      );
+
+    if (n < 10000000)
+      return (
+        inWords(Math.floor(n / 100000)) +
+        " Lakh" +
+        (n % 100000 ? " " + inWords(n % 100000) : "")
+      );
+
+    return (
+      inWords(Math.floor(n / 10000000)) +
+      " Crore" +
+      (n % 10000000 ? " " + inWords(n % 10000000) : "")
+    );
   };
 
-  return `${inWords(Math.round(num))} Rs. Only`;
+  return `${inWords(Math.round(num))} Only`;
 };
 
+
 /* ================== COMPONENT ================== */
-const SmartMatrixFullAndFinal = ({ company = {}, data = {} }) => {
+const DevconsFullAndFinal = ({ company = {}, data = {} }) => {
   const totalDays = Number(data.workdays || ' ');
   const paidDays = Number(data.paiddays || 0);
   const ratio = paidDays / totalDays;
@@ -150,7 +180,7 @@ const SmartMatrixFullAndFinal = ({ company = {}, data = {} }) => {
             </TableRow>
 
             {/* SALARY PARTICULARS */}
-            <TableRow>
+            <TableRow sx={{ background: "#f5f5f5" }}>
               <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
                 Salary particulars
               </TableCell>
@@ -166,7 +196,7 @@ const SmartMatrixFullAndFinal = ({ company = {}, data = {} }) => {
             </TableRow>
 
             {/* EARNINGS */}
-            <TableRow>
+            <TableRow sx={{ background: "#f2dede" }}>
               <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Earnings</TableCell>
               <TableCell sx={{ ...cell, ...bold, ...center }}>Actual</TableCell>
               <TableCell sx={{ ...cell, ...bold, ...center }}>Earned</TableCell>
@@ -178,7 +208,7 @@ const SmartMatrixFullAndFinal = ({ company = {}, data = {} }) => {
               ["Dearness Allowance", da],
               ["Special Allowances", special],
               ["Food Allowances", food],
-              ["PF Allowances", pfAllowance],
+              ["Misc Allowances", pfAllowance],
             ].map(([label, val]) => (
               <TableRow key={label}>
                 <TableCell colSpan={2} sx={cell}>{label}</TableCell>
@@ -200,21 +230,23 @@ const SmartMatrixFullAndFinal = ({ company = {}, data = {} }) => {
               </TableCell>
             </TableRow>
 
+            {/* <TableRow>
+              <TableCell colSpan={3} sx={cell}>Provident Fund</TableCell>
+              <TableCell sx={{ ...cell, ...right }}>{formatAmt(pf)}</TableCell>
+            </TableRow> */}
+
             <TableRow>
-              <TableCell colSpan={2} sx={cell}>Professional Tax</TableCell>
-              <TableCell sx={cell}></TableCell>
+              <TableCell colSpan={3} sx={cell}>Professional Tax</TableCell>
               <TableCell sx={{ ...cell, ...right }}>{formatAmt(pt)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} sx={cell}>Others</TableCell>
-              <TableCell sx={cell}></TableCell>
+              <TableCell colSpan={3} sx={cell}>Others</TableCell>
               <TableCell sx={{ ...cell, ...right }}>{formatAmt(others)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Total Deductions</TableCell>
-              <TableCell sx={cell}></TableCell>
+              <TableCell colSpan={3} sx={{ ...cell, ...bold }}>Total Deductions</TableCell>
               <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(totalDeductions)}</TableCell>
             </TableRow>
 
@@ -227,23 +259,20 @@ const SmartMatrixFullAndFinal = ({ company = {}, data = {} }) => {
 
             <TableRow>
               <TableCell colSpan={2} sx={cell}>Leave encashment (Days)</TableCell>
-              <TableCell sx={{ ...cell, ...right }}>
-                {formatAmt(data.leaveencashment)}
+              <TableCell colSpan={2} sx={{ ...cell, ...right }}>
+                00
               </TableCell>
-              <TableCell sx={cell}></TableCell>
             </TableRow>
 
-            <TableRow>
+             <TableRow>
               <TableCell colSpan={2} sx={cell}>Total (Days)</TableCell>
-              <TableCell sx={cell}></TableCell>
-              <TableCell sx={{ ...cell, ...right }}>
+              <TableCell colSpan={2} sx={{ ...cell, ...right }}>
                 {formatAmt(totalEarned)}
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Net Payable (Rs)</TableCell>
-              <TableCell sx={cell}></TableCell>
+              <TableCell colSpan={3} sx={{ ...cell, ...bold }}>Net Payable (Rs)</TableCell>
               <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(netPay)}</TableCell>
             </TableRow>
 
@@ -278,4 +307,4 @@ const SmartMatrixFullAndFinal = ({ company = {}, data = {} }) => {
   );
 };
 
-export default SmartMatrixFullAndFinal;
+export default DevconsFullAndFinal;

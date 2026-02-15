@@ -18,6 +18,10 @@ const DevconsAppointmentLetter = ({ company, data }) => {
   /* ================= HELPERS ================= */
   const firstName = data.employeeName?.split(" ")[0] || "";
 
+  
+  const round2 = (num) => Number(Number(num).toFixed(2));
+
+
   const formatDate = (date) =>
     date
       ? new Date(date).toLocaleDateString("en-US", {
@@ -36,31 +40,44 @@ const DevconsAppointmentLetter = ({ company, data }) => {
   };
 
   /* ================= SALARY LOGIC ================= */
-  const round2 = (n) => Number(n.toFixed(2));
-  const annualCTC = Number(data.salary || 0);
+  const annualCTC = round2(Number(data.salary || 0));
 
-  const basic = round2(annualCTC * 0.34);
-  const hra = round2(annualCTC * 0.20);
-  const da = round2(annualCTC * 0.035);
-  const special = round2(annualCTC * 0.345);
-  const food = round2(annualCTC * 0.06);
+// ===== Static PF =====
+const pfMonthly = 3750;
+const pfAnnual = round2(pfMonthly * 12);
 
-  const misc = round2(
-    annualCTC - (basic + hra + da + special + food)
-  );
+// ===== Fixed % Components =====
+const basicAnnual = round2(annualCTC * 0.34);
+const hraAnnual = round2(annualCTC * 0.20);
+const daAnnual = round2(annualCTC * 0.035);
+const foodAnnual = round2(annualCTC * 0.06);
 
-  /* ================= PF (ADDED) ================= */
-  const pfMonthly = 3750;
-  const pfAnnual = pfMonthly * 12;
+// ===== Special = Balance Amount =====
+const specialAnnual = round2(
+  annualCTC -
+    (basicAnnual + hraAnnual + daAnnual + foodAnnual + pfAnnual)
+);
 
-  const salaryRows = [
-    ["Basic", basic / 12, basic],
-    ["House Rent Allowance", hra / 12, hra],
-    ["Dearness Allowance", da / 12, da],
-    ["Special Allowance", special / 12, special],
-    ["Food Allowance", food / 12, food],
-    ["Misc. Allowance", misc / 12, misc],
-  ];
+// ===== Monthly Values =====
+const basicMonthly = round2(basicAnnual / 12);
+const hraMonthly = round2(hraAnnual / 12);
+const daMonthly = round2(daAnnual / 12);
+const specialMonthly = round2(specialAnnual / 12);
+const foodMonthly = round2(foodAnnual / 12);
+
+// ===== Totals (Exact CTC Match) =====
+const totalMonthly = round2(annualCTC / 12);
+const totalAnnual = annualCTC;
+
+
+const salaryRows = [
+  ["Basic", basicMonthly, basicAnnual],
+  ["House Rent Allowance", hraMonthly, hraAnnual],
+  ["Dearness Allowance", daMonthly, daAnnual],
+  ["Special Allowance", specialMonthly, specialAnnual],
+  ["Food Allowance", foodMonthly, foodAnnual],
+  ["Provident Fund (PF)", pfMonthly, pfAnnual],
+];
 
   return (
     <>
@@ -351,41 +368,31 @@ const DevconsAppointmentLetter = ({ company, data }) => {
           </TableHead>
 
           <TableBody>
-            {salaryRows.map(([name, monthly, annual], i) => (
-              <TableRow key={i}>
-                <TableCell>{name}</TableCell>
-                <TableCell align="right">
-                  {formatCurrency(monthly)}
-                </TableCell>
-                <TableCell align="right">
-                  {formatCurrency(annual)}
-                </TableCell>
-              </TableRow>
-            ))}
+  {salaryRows.map(([name, monthly, annual], i) => (
+    <TableRow key={i}>
+      <TableCell>{name}</TableCell>
+      <TableCell align="right">
+        {formatCurrency(monthly)}
+      </TableCell>
+      <TableCell align="right">
+        {formatCurrency(annual)}
+      </TableCell>
+    </TableRow>
+  ))}
 
-            {/* ✅ PF Row Added */}
-            <TableRow>
-              <TableCell>Provident Fund (PF)</TableCell>
-              <TableCell align="right">
-                {formatCurrency(pfMonthly)}
-              </TableCell>
-              <TableCell align="right">
-                {formatCurrency(pfAnnual)}
-              </TableCell>
-            </TableRow>
+  <TableRow sx={{ backgroundColor: "#f4c430" }}>
+    <TableCell>
+      <b>Total Monthly Gross Salary</b>
+    </TableCell>
+    <TableCell align="right">
+      <b>{formatCurrency(totalMonthly)}</b>
+    </TableCell>
+    <TableCell align="right">
+      <b>{formatCurrency(totalAnnual)}</b>
+    </TableCell>
+  </TableRow>
+</TableBody>
 
-            <TableRow sx={{ backgroundColor: "#f4c430" }}>
-              <TableCell>
-                <b>Total Monthly Gross Salary</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>{formatCurrency(annualCTC / 12)}</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>{formatCurrency(annualCTC)}</b>
-              </TableCell>
-            </TableRow>
-          </TableBody>
         </Table>
       </A4Page>
     </>
