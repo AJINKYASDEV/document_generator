@@ -497,7 +497,7 @@ export const documentTypes = [
             { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
             { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
             { name: 'address', label: 'Address', type: 'textarea', required: true },
-            { name: 'employeeId', label: 'EmployeeId', type: 'text', required: true },
+            //{ name: 'employeeId', label: 'EmployeeId', type: 'text', required: true },
             { name: 'position', label: 'Position', type: 'text', required: true },
             { name: 'department', label: 'Department', type: 'text', required: false },
            
@@ -840,7 +840,7 @@ export const documentTypes = [
     },
     {
         id: 16,
-        name: 'FullandFinal Letter',
+        name: 'Fullandfinal Letter',
         template: 'fullandfinal-letter',
         fields: [
            // { name: 'mrms', label: 'Select Title', type: 'select', options: ['Mr.', 'Mrs.', 'Miss.', 'Mx.'], required: true },
@@ -857,8 +857,8 @@ export const documentTypes = [
              { name:'leaveencashment' , label:'Leave encashment', type:'number', required:false},
             { name: 'paiddays', label: 'Paid days ', type: 'number', required: true },
             {
-                name: 'fullandfinalType',
-                label: 'FullAndFinal Type',
+                name: 'finalType',
+                label: 'FullandFinal Type',
                 type: 'select',
                 options: ['withPF', 'withoutPF'],
                 required: true
