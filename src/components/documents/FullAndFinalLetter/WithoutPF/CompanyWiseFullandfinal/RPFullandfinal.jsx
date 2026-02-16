@@ -306,4 +306,4 @@ const RPFullAndFinal = ({ company = {}, data = {} }) => {
   );
 };
 
-export default NimbjaFullAndFinal;
+export default RPFullAndFinal;
