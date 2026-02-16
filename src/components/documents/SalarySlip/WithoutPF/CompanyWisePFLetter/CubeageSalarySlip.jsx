@@ -62,14 +62,15 @@ const CubeageSalarySlip = ({ data, company }) => {
   const desg = data.designation || "Quality Analyst";
   // Convert "YYYY-MM" → "Month YY" (e.g. "2025-07" → "July 25")
   const month = (() => {
-    if (!data.month) return "March 22"; // fallback
+    if (!data.month) return "March 2022"; // fallback
 
     const [year, monthNum] = data.month.split("-");
     const date = new Date(year, monthNum - 1); // JS months start at 0
     const monthName = date.toLocaleString("default", { month: "long" });
-    const shortYear = year.slice(2);
-    return `${monthName} ${shortYear}`;
+
+    return `${monthName} ${year}`; // ✅ Full year
   })();
+
 
   // === Total Salary ===
   const totalSalary = parseFloat(data.totalSalary || 35000); // default fallback
@@ -87,7 +88,7 @@ const CubeageSalarySlip = ({ data, company }) => {
 
   const totalEarning = basic + hra + conveyance + food + special + others;
   const totalDed = pt + otherDed;
-  const net = totalEarning - totalDed;
+  const   net = totalEarning - totalDed;
   const netInWords = numberToWords(Math.round(net));
 
   return (

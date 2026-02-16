@@ -196,7 +196,7 @@ const SmartMatrixOfferPage1 = ({ company, data }) => {
         }}
       >
         Your annual salary, allowances, and contributions put together will be
-        <strong>INR {(grossSalary / 100000).toFixed(1)} LPA.</strong>
+        <strong> INR {(grossSalary / 100000).toFixed(1)} LPA.</strong>
       </Typography>
 
       <Typography
@@ -212,12 +212,12 @@ const SmartMatrixOfferPage1 = ({ company, data }) => {
       </Typography>
 
       {/* ================= CLOSING ================= */}
-      <Typography sx={{ mb: "6mm", fontFamily: "Verdana, Geneva, sans-serif" }}>
-        
-      </Typography>
+      <Typography
+        sx={{ mb: "6mm", fontFamily: "Verdana, Geneva, sans-serif" }}
+      ></Typography>
 
       <Typography sx={{ mb: "2mm", fontFamily: "Verdana, Geneva, sans-serif" }}>
-         <strong>{company.name}</strong>
+        <strong>{company.name}</strong>
       </Typography>
 
       {/* ================= SIGNATURES ================= */}
@@ -245,13 +245,13 @@ const SmartMatrixOfferPage1 = ({ company, data }) => {
         >
           <Box
             component="img"
-            src={company.stamp}
+            src={company.signature}
             alt="Stamp"
-            sx={{ width: 110, position: "relative", left: "-8mm" }}
+            sx={{ width: 110, position: "relative", left: "-8mm", marginTop:"10mm" }}
           />
 
           {/* HR DETAILS BELOW STAMP */}
-          <Box sx={{ mt: "2mm", ml: "12mm" }}>
+          <Box sx={{ mt: "12mm", ml: "12mm" }}>
             <Typography>
               <strong>{company.hrName}</strong>
             </Typography>
@@ -266,15 +266,16 @@ const SmartMatrixOfferPage1 = ({ company, data }) => {
           sx={{
             mt: "18mm", // signature slightly lower than stamp
             ml: "-30mm",
-            
           }}
         >
           <Box
             component="img"
-            src={company.signature}
+            src={company.stamp}
             alt="Signature"
             sx={{
               width: 130,
+              ml: "2mm",
+              mt: "-25mm",
               transform: "translateX(-5mm)", // 👈 stronger left move
             }}
           />

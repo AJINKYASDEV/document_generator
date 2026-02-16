@@ -169,20 +169,20 @@ const SmartMatrixOfferPage2 = ({ data, company }) => {
         <strong>{company.name}</strong>
       </Typography>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Box sx={{ mt: "6mm" }}>
+        <Box sx={{ mt: "",mb:"8mm" }}>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
               <Box
                 component="img"
-                src={company.stamp}
-                alt="Stamp"
-                sx={{ width: 110 }}
+                src={company.signature}
+                alt="Sign"
+                sx={{ width: 110,ml:"-5mm",mt:"18mm" }}
               />
             </Grid>
             <Grid item>
               <Box
                 component="img"
-                src={company.signature}
+                src={company.stamp}
                 alt="Signature"
                 sx={{ width: 130, mt: "18mm", ml: "-2mm" }}
               />

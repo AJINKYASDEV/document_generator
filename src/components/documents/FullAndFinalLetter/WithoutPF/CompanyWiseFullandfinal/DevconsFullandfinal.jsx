@@ -130,7 +130,7 @@ const DevconsFullAndFinal = ({ company = {}, data = {} }) => {
       <Box p="10mm">
         <Table sx={{ borderCollapse: "collapse" }}>
           <TableBody>
-
+          
             {/* TITLE */}
             <TableRow>
               <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>

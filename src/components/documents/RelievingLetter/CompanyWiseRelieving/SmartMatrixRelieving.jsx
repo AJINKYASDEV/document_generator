@@ -337,11 +337,11 @@ const SmartMatrixRelieving = ({ company, data }) => {
         >
           {/* LEFT: STAMP + NAME */}
           <div style={{ textAlign: "left" }}>
-            {company.stamp && (
+            {company.signature && (
               <img
-                src={company.stamp}
-                alt="Company Stamp"
-                style={{ width: "110px", marginBottom: "6mm" }}
+                src={company.signature}
+                alt="HR Signature"
+                style={{ width: "130px" }}
               />
             )}
 
@@ -354,12 +354,12 @@ const SmartMatrixRelieving = ({ company, data }) => {
           </div>
 
           {/* RIGHT: SIGNATURE (PULLED LEFT) */}
-          <div style={{ marginLeft: "-25mm", marginTop: "18mm" }}>
-            {company.signature && (
+          <div style={{ marginLeft: "-25mm", marginTop: "-12mm" }}>
+            {company.stamp && (
               <img
-                src={company.signature}
-                alt="HR Signature"
-                style={{ width: "130px" }}
+                src={company.stamp}
+                alt="Company Stamp"
+                style={{ width: "110px", marginBottom: "6mm" }}
               />
             )}
           </div>
