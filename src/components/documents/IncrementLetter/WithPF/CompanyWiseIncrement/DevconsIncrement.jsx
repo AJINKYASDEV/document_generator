@@ -1,3 +1,4 @@
+import dilipSignature from "../../../../../assets/images/devconssoftware/dilip_kumar_signature.png";
 
 
 
@@ -136,7 +137,7 @@ const DevconsIncrement = ({ company = {}, data = {} }) => {
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 4, mb: 2 }}>
             {company?.signature && (
-              <img src={company.dilipSignature} alt="Signature" style={{ height: 60 }} />
+              <img src={dilipSignature} alt="Signature" style={{ height: 60 }} />
             )}
             {company?.stamp && (
               <img src={company.stamp} alt="Stamp" style={{ height: 110 }} />
