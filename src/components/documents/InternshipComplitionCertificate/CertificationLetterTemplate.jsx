@@ -12,6 +12,8 @@ import SmartSoftwareCertification from "./CompanyWiseCertification/SmartSoftware
 import DevconsCertification from "./CompanyWiseCertification/DevconsCertification";
 import RPCertification from "./CompanyWiseCertification/RPCertification";
 import CubeageCertification from "./CompanyWiseCertification/CubeageCertification";
+import SmartMatrixCertification from "./CompanyWiseCertification/SmartMatrixCertification";
+import NimbjaCertification from "./CompanyWiseCertification/NimbjaCertification";
 // import SmartMatrixExperience from "./CompanyWiseExperience/SmartMatrixExperience";
 // import SmartSoftwareExperience from "./CompanyWiseExperience/SmartSoftwareExperience";
 

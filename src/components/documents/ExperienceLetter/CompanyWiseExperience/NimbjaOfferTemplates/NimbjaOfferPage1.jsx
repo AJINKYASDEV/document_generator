@@ -402,6 +402,11 @@ const baseText = {
   color: "#000",
 };
 
+const formatIndianCurrency = (value) => {
+  if (!value) return "";
+  return Number(value).toLocaleString("en-IN");
+};
+
 const NimbjaOfferPage1 = ({ company, data }) => {
   const offerDate = formatDate(data.issueDate);
   const joiningDate = formatDate(data.joiningDate);
@@ -456,18 +461,19 @@ const NimbjaOfferPage1 = ({ company, data }) => {
         </Typography>
       </Typography>
 
-      <Typography sx={{ ...baseText, mb: "5mm" }}>
-        Subject&nbsp;&nbsp;&nbsp;&nbsp;: Letter of intent for the position of{" "}
+      <Typography sx={{ ...baseText, mb: "5mm", fontFamily: "Bahnschrift" }}>
+        Subject&nbsp;&nbsp;&nbsp;&nbsp;:{" "}
         <Typography
           component="span"
           sx={{
-            fontWeight: "",
-            fontFamily: 'Bahnschrift, "Segoe UI", Arial, sans-serif',
+            borderBottom: "1px solid #000",
+            display: "inline",
+            paddingBottom: "1px",
+            fontFamily: "Bahnschrift",
           }}
         >
-          {data.position}
+          Letter of intent for the position of {data.position}.
         </Typography>
-        .
       </Typography>
 
       {/* ================= GREETING ================= */}
@@ -483,7 +489,7 @@ const NimbjaOfferPage1 = ({ company, data }) => {
       </Typography>
 
       {/* ================= PARAGRAPHS ================= */}
-      <Typography sx={{ ...baseText, textAlign: "justify", mb: "5mm" }}>
+      <Typography sx={{ ...baseText, textAlign: "justify", mb: "5mm",marginTop:"-2mm" }}>
         Welcome to{" "}
         <Typography
           component="span"
@@ -513,8 +519,8 @@ const NimbjaOfferPage1 = ({ company, data }) => {
       <Typography sx={{ ...baseText, textAlign: "justify", mb: "5mm" }}>
         On Joining, your all-inclusive Cost to the Company (CTC) will be{" "}
         <Typography component="span" sx={{ fontWeight: 600 }}>
-          Rs. {data.salary}/-
-        </Typography>{" "}
+          Rs.{formatIndianCurrency(data.salary)}/-
+        </Typography>
         as per Annexure A. This offer is made on the basis of your having
         furnished to the Company information and documents in support of your
         age, academic qualifications, previous work experience, relieving letter
@@ -606,7 +612,7 @@ const NimbjaOfferPage1 = ({ company, data }) => {
                 fontFamily: '"Bahnschrift", "Segoe UI", sans-serif', // 🔑 ADDED
               }}
             >
-              <strong>Signature :</strong> _________________________
+              <strong>Signature :</strong> _________________________ 
             </Typography>
 
             <Typography
@@ -625,10 +631,4 @@ const NimbjaOfferPage1 = ({ company, data }) => {
 };
 
 export default NimbjaOfferPage1;
-
-
-
-
-
-
 

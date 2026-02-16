@@ -153,7 +153,7 @@ const NimbjaInternship = ({ company, data }) => {
                   fontFamily: '"Bahnschrift","Segoe UI",Arial,sans-serif',
                 }}
               >
-                Name: {data.internName}
+                Dear {data.mrms} {data.employeeName}, 
               </Typography>
 
               <Typography
@@ -189,7 +189,7 @@ const NimbjaInternship = ({ company, data }) => {
                 fontFamily: '"Bahnschrift","Segoe UI",Arial,sans-serif',
               }}
             >
-              Dear {data.internName},
+              Dear {data.employeeName},
             </Typography>
 
             {/* PARAGRAPH 1 */}
@@ -280,9 +280,7 @@ const NimbjaInternship = ({ company, data }) => {
                 mb: "6mm",
                 fontFamily: '"Bahnschrift","Segoe UI",Arial,sans-serif',
               }}
-            >
-              
-            </Typography>
+            ></Typography>
             <Typography
               sx={{
                 fontSize: "12pt",
