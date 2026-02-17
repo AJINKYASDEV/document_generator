@@ -32,62 +32,45 @@ const getFinancialYear = (effectiveDate) => {
   /* ================= SALARY LOGIC (STANDARDIZED – SAME AS DEVCONS) ================= */
 
   // Helper to keep 2 decimals everywhere
-  const round2 = (num) => Number(num.toFixed(2));
+const round0 = (num) => Math.round(num);
 
   // Source of truth
-  const annualCTC = round2(Number(data.newCTC || 0));
+  const monthlyCTC = round0(Number(data.newCTC || 0));
 
-  // Fixed annual components (percent based)
-  const basicAnnual = round2(annualCTC * 0.40);
-  const hraAnnual = round2(annualCTC * 0.18);
-  const daAnnual = round2(annualCTC * 0.12);
-  const specialAnnual = round2(annualCTC * 0.16);
-  const foodAnnual = round2(annualCTC * 0.06);
+  // ================= PERCENTAGE BREAKUP =================
+const basicMonthly = round0(monthlyCTC * 0.40);
+const hraMonthly = round0(monthlyCTC * 0.18);
+const daMonthly = round0(monthlyCTC * 0.12);
+const specialMonthly = round0(monthlyCTC * 0.16);
+const foodMonthly = round0(monthlyCTC * 0.06);
+const miscMonthly = round0(monthlyCTC * 0.08); // 8%
 
-  // Sum of fixed components
-  const usedAnnual =
-    basicAnnual +
-    hraAnnual +
-    daAnnual +
-    specialAnnual +
-    foodAnnual;
+// ================= ANNUAL VALUES =================
+const basicAnnual = round0(basicMonthly * 12);
+const hraAnnual = round0(hraMonthly * 12);
+const daAnnual = round0(daMonthly * 12);
+const specialAnnual = round0(specialMonthly * 12);
+const foodAnnual = round0(foodMonthly * 12);
+const miscAnnual = round0(miscMonthly * 12);
 
-  // ✅ Adjustment component (guarantees exact CTC)
-  const miscAnnual = round2(annualCTC - usedAnnual);
+// ================= SALARY TABLE STRUCTURE =================
+const salaryRows = [
+  ["Basic", basicMonthly, basicAnnual],
+  ["House Rent Allowance", hraMonthly, hraAnnual],
+  ["Dearness Allowance", daMonthly, daAnnual],
+  ["Special Allowance", specialMonthly, specialAnnual],
+  ["Food Allowance", foodMonthly, foodAnnual],
+  ["Misc. Allowance", miscMonthly, miscAnnual],
+];
 
-  // Monthly breakup (derived ONLY from final annual values)
-  const basicSalary = round2(basicAnnual / 12);
-  const hra = round2(hraAnnual / 12);
-  const dearnessAllowance = round2(daAnnual / 12);
-  const specialAllowance = round2(specialAnnual / 12);
-  const foodAllowance = round2(foodAnnual / 12);
-  const miscAllowance = round2(miscAnnual / 12);
+// ================= TOTALS =================
+const totalMonthly = round0(
+  salaryRows.reduce((sum, row) => sum + row[1], 0)
+);
 
-
-
-  const salaryComponents = [
-    { name: "Basic", monthly: basicSalary, annual: basicAnnual },
-    { name: "House Rent Allowance", monthly: hra, annual: hraAnnual },
-    { name: "Dearness Allowance", monthly: dearnessAllowance, annual: daAnnual },
-    { name: "Special Allowance", monthly: specialAllowance, annual: specialAnnual },
-    { name: "Food Allowance", monthly: foodAllowance, annual: foodAnnual },
-    { name: "Misc. Allowance", monthly: miscAllowance, annual: miscAnnual },
-  ];
-
-
-  const totalMonthly = round2(
-    salaryComponents.reduce((sum, row) => sum + row.monthly, 0)
-  );
-
-  const totalAnnual = round2(
-    salaryComponents.reduce((sum, row) => sum + row.annual, 0)
-  );
-
-  // Alias for existing UI usage
-  const totalEarnings = totalMonthly;
-  const ctc = totalAnnual;
-
-
+const totalAnnual = round0(
+  salaryRows.reduce((sum, row) => sum + row[2], 0)
+);
 
   return (
 

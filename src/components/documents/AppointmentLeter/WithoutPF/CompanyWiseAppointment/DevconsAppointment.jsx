@@ -27,28 +27,48 @@ const DevconsAppointmentLetter = ({ company, data }) => {
       })
       : "";
 
-  /* ================= SALARY LOGIC ================= */
- const round2 = (n) => Number(n.toFixed(2));
- const annualCTC = Number(data.salary || 0);
+   /* ================= SALARY LOGIC ================= */
 
-  const basic = round2(annualCTC * 0.34);
-  const hra = round2(annualCTC * 0.20);
-  const da = round2(annualCTC * 0.035);
-  const special = round2(annualCTC * 0.345);
-  const food = round2(annualCTC * 0.06);
+  // 🔹 Round to whole number (no decimals)
+const round0 = (num) => Math.round(num);
 
-  const misc = round2(
-    annualCTC - (basic + hra + da + special + food)
-  );
+// ================= MONTHLY CTC =================
+const monthlyCTC = round0(Number(data.salary || 0));
 
-  const salaryRows = [
-    ["Basic", basic / 12, basic],
-    ["House Rent Allowance", hra / 12, hra],
-    ["Dearness Allowance", da / 12, da],
-    ["Special Allowance", special / 12, special],
-    ["Food Allowance", food / 12, food],
-    ["Misc. Allowance", misc / 12, misc],
-  ];
+// ================= PERCENTAGE BREAKUP =================
+const basicMonthly = round0(monthlyCTC * 0.40);
+const hraMonthly = round0(monthlyCTC * 0.18);
+const daMonthly = round0(monthlyCTC * 0.12);
+const specialMonthly = round0(monthlyCTC * 0.16);
+const foodMonthly = round0(monthlyCTC * 0.06);
+const miscMonthly = round0(monthlyCTC * 0.08); // 8%
+
+// ================= ANNUAL VALUES =================
+const basicAnnual = round0(basicMonthly * 12);
+const hraAnnual = round0(hraMonthly * 12);
+const daAnnual = round0(daMonthly * 12);
+const specialAnnual = round0(specialMonthly * 12);
+const foodAnnual = round0(foodMonthly * 12);
+const miscAnnual = round0(miscMonthly * 12);
+
+// ================= SALARY TABLE STRUCTURE =================
+const salaryRows = [
+  ["Basic", basicMonthly, basicAnnual],
+  ["House Rent Allowance", hraMonthly, hraAnnual],
+  ["Dearness Allowance", daMonthly, daAnnual],
+  ["Special Allowance", specialMonthly, specialAnnual],
+  ["Food Allowance", foodMonthly, foodAnnual],
+  ["Misc. Allowance", miscMonthly, miscAnnual],
+];
+
+// ================= TOTALS =================
+const totalMonthly = round0(
+  salaryRows.reduce((sum, row) => sum + row[1], 0)
+);
+
+const totalAnnual = round0(
+  salaryRows.reduce((sum, row) => sum + row[2], 0)
+);
 
 
   /* ================= TERMS SPLIT ================= */
@@ -384,10 +404,10 @@ const DevconsAppointmentLetter = ({ company, data }) => {
                 <b>Total Monthly Gross Salary</b>
               </TableCell>
               <TableCell align="right">
-                <b>{formatCurrency(annualCTC / 12)}</b>
+                <b>{formatCurrency(totalMonthly)}</b>
               </TableCell>
               <TableCell align="right">
-                <b>{formatCurrency(annualCTC)}</b>
+                <b>{formatCurrency(totalAnnual)}</b>
               </TableCell>
             </TableRow>
           </TableBody>

@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import {
   Box,
@@ -102,6 +100,10 @@ const totalAnnual = round0(
 
           <Typography mb={1}>
             <strong>Name :</strong> {data.employeeName}
+          </Typography>
+
+           <Typography mb={1}>
+            <strong>Address</strong> {data.address}
           </Typography>
 
           <Typography mb={3}>
