@@ -411,31 +411,20 @@ const DevconsConfirmationLetter = ({ company = {}, data = {} }) => {
 
   /* ================= SALARY LOGIC ================= */
 
-  /* ================= SALARY LOGIC (With PF Balanced Inside CTC) ================= */
-
-const round0 = (num) => Math.round(num);
+  const round0 = (num) => Math.round(num);
 
 // ================= MONTHLY CTC =================
 const monthlyCTC = round0(Number(data.totalSalary || 0));
 
-// ================= STATIC PF =================
-const pfMonthly = 3750; // ✅ Fixed PF
-
-// ================= FIXED PERCENTAGE COMPONENTS =================
+// ================= UPDATED PERCENTAGES =================
+const basicMonthly = round0(monthlyCTC * 0.48); // 40% + 8%
 const hraMonthly = round0(monthlyCTC * 0.18);
 const daMonthly = round0(monthlyCTC * 0.12);
 const specialMonthly = round0(monthlyCTC * 0.16);
 const foodMonthly = round0(monthlyCTC * 0.06);
 
-// ================= BASIC = REMAINING =================
-const basicMonthly = round0(
-  monthlyCTC -
-    (hraMonthly +
-      daMonthly +
-      specialMonthly +
-      foodMonthly +
-      pfMonthly)
-);
+// ================= STATIC PF =================
+const pfMonthly = 3750;
 
 // ================= ANNUAL VALUES =================
 const basicAnnual = basicMonthly * 12;
@@ -445,19 +434,26 @@ const specialAnnual = specialMonthly * 12;
 const foodAnnual = foodMonthly * 12;
 const pfAnnual = pfMonthly * 12;
 
-// ================= SALARY TABLE STRUCTURE =================
+// ================= SALARY TABLE =================
 const salaryRows = [
   ["Basic", basicMonthly, basicAnnual],
   ["House Rent Allowance", hraMonthly, hraAnnual],
   ["Dearness Allowance", daMonthly, daAnnual],
   ["Special Allowance", specialMonthly, specialAnnual],
   ["Food Allowance", foodMonthly, foodAnnual],
-  ["Provident Fund (PF)", pfMonthly, pfAnnual],
+  ["Provident Fund (PF)", pfMonthly, pfAnnual], // Separate
 ];
 
-// ================= TOTALS =================
-const totalMonthly = salaryRows.reduce((sum, row) => sum + row[1], 0);
-const totalAnnual = salaryRows.reduce((sum, row) => sum + row[2], 0);
+// ================= TOTAL EARNINGS =================
+const totalMonthly =
+  basicMonthly +
+  hraMonthly +
+  daMonthly +
+  specialMonthly +
+  foodMonthly;
+
+const totalAnnual = totalMonthly * 12;
+
 
 
 
