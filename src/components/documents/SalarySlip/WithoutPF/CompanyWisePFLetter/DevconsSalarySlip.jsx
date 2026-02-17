@@ -263,6 +263,7 @@ const netPay = round2(totalEarning - totalDeduction);
         </Table>
       </TableContainer>
     </A4Page>
+    
   );
 };
 

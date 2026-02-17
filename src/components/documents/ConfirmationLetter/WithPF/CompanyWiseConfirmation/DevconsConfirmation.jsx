@@ -388,52 +388,73 @@ const DevconsConfirmationLetter = ({ company = {}, data = {} }) => {
         })
       : "";
 
+       const numberToWords = (num = 0) => {
+  if (!num) return "Zero Rupees Only";
+
+  const ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+  const teens = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+  const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+
+  const inWords = (n) => {
+    if (n < 10) return ones[n];
+    if (n < 20) return teens[n - 10];
+    if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? " " + ones[n % 10] : "");
+    if (n < 1000) return ones[Math.floor(n / 100)] + " Hundred" + (n % 100 ? " " + inWords(n % 100) : "");
+    if (n < 100000) return inWords(Math.floor(n / 1000)) + " Thousand" + (n % 1000 ? " " + inWords(n % 1000) : "");
+    if (n < 10000000) return inWords(Math.floor(n / 100000)) + " Lakh" + (n % 100000 ? " " + inWords(n % 100000) : "");
+    return inWords(Math.floor(n / 10000000)) + " Crore";
+  };
+
+  return `${inWords(Math.round(num))} Rupees Only`;
+
+}
+
   /* ================= SALARY LOGIC ================= */
 
-  /* ================= SALARY LOGIC (With PF Balanced Inside CTC) ================= */
+  const round0 = (num) => Math.round(num);
 
-const round2 = (num) => Number(num.toFixed(2));
-const annualCTC = round2(Number(data.totalSalary || 0));
+// ================= MONTHLY CTC =================
+const monthlyCTC = round0(Number(data.totalSalary || 0));
 
-// ===== Static PF =====
+// ================= UPDATED PERCENTAGES =================
+const basicMonthly = round0(monthlyCTC * 0.48); // 40% + 8%
+const hraMonthly = round0(monthlyCTC * 0.18);
+const daMonthly = round0(monthlyCTC * 0.12);
+const specialMonthly = round0(monthlyCTC * 0.16);
+const foodMonthly = round0(monthlyCTC * 0.06);
+
+// ================= STATIC PF =================
 const pfMonthly = 3750;
-const pfAnnual = round2(pfMonthly * 12);
 
-// ===== Remaining After PF =====
-const remainingAfterPF = annualCTC - pfAnnual;
+// ================= ANNUAL VALUES =================
+const basicAnnual = basicMonthly * 12;
+const hraAnnual = hraMonthly * 12;
+const daAnnual = daMonthly * 12;
+const specialAnnual = specialMonthly * 12;
+const foodAnnual = foodMonthly * 12;
+const pfAnnual = pfMonthly * 12;
 
-// ===== Calculate % on Remaining =====
-const basicAnnual = round2(remainingAfterPF * 0.40);
-const hraAnnual = round2(remainingAfterPF * 0.18);
-const daAnnual = round2(remainingAfterPF * 0.12);
-const foodAnnual = round2(remainingAfterPF * 0.06);
-
-// ===== Special = Balance =====
-const specialAnnual = round2(
-  remainingAfterPF -
-    (basicAnnual + hraAnnual + daAnnual + foodAnnual)
-);
-
-// ===== Monthly =====
-const basicMonthly = round2(basicAnnual / 12);
-const hraMonthly = round2(hraAnnual / 12);
-const daMonthly = round2(daAnnual / 12);
-const foodMonthly = round2(foodAnnual / 12);
-const specialMonthly = round2(specialAnnual / 12);
-
-// ===== Salary Rows =====
+// ================= SALARY TABLE =================
 const salaryRows = [
   ["Basic", basicMonthly, basicAnnual],
   ["House Rent Allowance", hraMonthly, hraAnnual],
   ["Dearness Allowance", daMonthly, daAnnual],
   ["Special Allowance", specialMonthly, specialAnnual],
   ["Food Allowance", foodMonthly, foodAnnual],
-  ["Provident Fund (PF)", pfMonthly, pfAnnual],
+  ["Provident Fund (PF)", pfMonthly, pfAnnual], // Separate
 ];
 
-// ===== Totals =====
-const totalMonthly = round2(annualCTC / 12);
-const totalAnnual = annualCTC;
+// ================= TOTAL EARNINGS =================
+const totalMonthly =
+  basicMonthly +
+  hraMonthly +
+  daMonthly +
+  specialMonthly +
+  foodMonthly;
+
+const totalAnnual = totalMonthly * 12;
+
+
 
 
 
@@ -468,10 +489,15 @@ const totalAnnual = annualCTC;
             under consideration.
           </Typography>
 
-          <Typography mb={3} textAlign="justify">
-            Your total Gross salary will be Rs.{" "}
-            <strong>{formatCurrency(data.totalSalary)}</strong> per year.
-          </Typography>
+         <Typography mb={3} textAlign="justify">
+           Your total Gross salary will be Rs.{" "}
+           <strong>
+             {formatCurrency(data.totalSalary)} (
+             {numberToWords(Number(data.totalSalary))}
+             )
+           </strong>{" "}
+           per year.
+         </Typography>
 
           <Typography mb={3} textAlign="justify">
             Subject to various deductions as per company and government policy.
