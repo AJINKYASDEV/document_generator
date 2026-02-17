@@ -492,8 +492,8 @@ const totalAnnual = totalMonthly * 12;
          <Typography mb={3} textAlign="justify">
            Your total Gross salary will be Rs.{" "}
            <strong>
-             {formatCurrency(data.totalSalary)} (
-             {numberToWords(Number(data.totalSalary))}
+             {formatCurrency(totalAnnual)} (
+             {numberToWords(Number(totalAnnual))}
              )
            </strong>{" "}
            per year.
