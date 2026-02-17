@@ -29,35 +29,53 @@ const formatCurrency = (num) =>
     maximumFractionDigits: 2,
   });
 
-/* ================= SALARY BREAKUP ================= */
-
-const generateSalaryBreakup = (annualCTC) => {
-  const basic = round2(annualCTC * 0.40);
-  const hra = round2(annualCTC * 0.20);
-  const special = round2(annualCTC * 0.25);
-  const food = round2(annualCTC * 0.10);
-  const misc = round2(
-    annualCTC - (basic + hra + special + food)
-  );
-
-  return [
-    ["Basic", basic / 12, basic],
-    ["House Rent Allowance", hra / 12, hra],
-    ["Special Allowance", special / 12, special],
-    ["Food Allowance", food / 12, food],
-    ["Misc Allowance", misc / 12, misc],
-  ];
-};
-
 /* ================= MAIN COMPONENT ================= */
 
 const PentaConfirmation = ({ company, data }) => {
   if (!company || !data) return null;
 
   const annualCTC = Number(data.totalSalary || 0);
-  const salaryRows = generateSalaryBreakup(annualCTC);
 
-  const monthlyGross = round2(annualCTC / 12);
+  // 🔹 Round to whole number
+  const round0 = (num) => Math.round(num);
+
+  // ================= MONTHLY CTC =================
+//   const monthlyCTC = round0(annualCTC / 12);
+
+//   // ================= PERCENTAGE BREAKUP =================
+// // ================= MONTHLY CTC =================
+const monthlyCTC = round0(annualCTC / 12);
+
+// ================= PERCENTAGE BREAKUP =================
+const basicMonthly = round0(monthlyCTC * 0.40);
+const hraMonthly = round0(monthlyCTC * 0.18);
+const daMonthly = round0(monthlyCTC * 0.12);
+const specialMonthly = round0(monthlyCTC * 0.16);
+const foodMonthly = round0(monthlyCTC * 0.06);
+const miscMonthly = round0(monthlyCTC * 0.08);
+
+// ================= ANNUAL VALUES =================
+const basicAnnual = round0(basicMonthly * 12);
+const hraAnnual = round0(hraMonthly * 12);
+const daAnnual = round0(daMonthly * 12);
+const specialAnnual = round0(specialMonthly * 12);
+const foodAnnual = round0(foodMonthly * 12);
+const miscAnnual = round0(miscMonthly * 12);
+  // ================= TOTALS =================
+ const totalAnnual = round0(
+  salaryRows.reduce((sum, row) => sum + row[2], 0)
+);
+
+const totalMonthly = round0(totalAnnual / 12);
+  /* ================= MAIN COMPONENT ================= */
+
+  // const PentaConfirmation = ({ company, data }) => {
+  //   if (!company || !data) return null;
+
+  //   const annualCTC = Number(data.totalSalary || 0);
+  //   const salaryRows = generateSalaryBreakup(annualCTC);
+
+  //   const monthlyGross = round2(annualCTC / 12);
 
   return (
     <>
@@ -151,7 +169,6 @@ const PentaConfirmation = ({ company, data }) => {
                 HR Relations Lead
               </Typography>
             </Box>
-
             <Box>
 
               <Typography mt={15}>Signature: ____________</Typography>
@@ -164,7 +181,7 @@ const PentaConfirmation = ({ company, data }) => {
       {/* ================= PAGE 2 – SALARY STRUCTURE ================= */}
       <A4Page headerSrc={company.header} footerSrc={company.footer}>
         <Typography align="center" fontWeight={700} mt={4} mb={3}>
-          Annexure A – Salary Structure
+          Annexure A - Salary Structure
         </Typography>
 
         <Table
@@ -210,11 +227,9 @@ const PentaConfirmation = ({ company, data }) => {
                 <strong>Total Monthly Gross Salary</strong>
               </TableCell>
               <TableCell align="right">
-                <strong>{formatCurrency(monthlyGross)}</strong>
-              </TableCell>
+                <strong>{formatCurrency(totalMonthly)}</strong>              </TableCell>
               <TableCell align="right">
-                <strong>{formatCurrency(annualCTC)}</strong>
-              </TableCell>
+                <strong>{formatCurrency(totalAnnual)}</strong>              </TableCell>
             </TableRow>
 
           </TableBody>
