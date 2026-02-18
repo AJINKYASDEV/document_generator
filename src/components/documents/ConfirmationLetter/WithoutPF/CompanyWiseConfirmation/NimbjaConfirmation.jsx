@@ -71,6 +71,10 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
             <strong>Name :</strong> {data.employeeName}
           </Typography>
 
+          <Typography b={2} sx={{ fontFamily: "Bahnschrift", mt: "-2mm" }}>
+            <strong>Address:</strong> {data.address}
+          </Typography>
+
           <Typography mb={3} sx={{ fontFamily: "Bahnschrift" }}>
             <strong>Subject :</strong> Letter of intent for continued services
             as <strong>{data.position}</strong>
