@@ -194,8 +194,7 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
           const hraMonthly = round2(grossMonthly * PERCENT.hra);
           const daMonthly = round2(grossMonthly * PERCENT.da);
           const specialMonthly = round2(grossMonthly * PERCENT.special);
-          const foodMonthly = round2(food / 12);
-
+          const foodMonthly = food / 12;
 
           const usedMonthly =
             basicMonthly +
