@@ -2,13 +2,17 @@
 import React from "react";
 import {
   Box,
+  Typography,
   Table,
   TableBody,
   TableCell,
+  TableContainer,
   TableRow,
+  Paper,
 } from "@mui/material";
 
 import { formatCurrency, getProfessionalTax } from "../../../../../utils/salaryCalculations";
+import A4Page from "../../../../layout/A4Page";
 
 /* 🔢 Number to Words (Indian System) */
 const numberToWords = (num = 0) => {
@@ -53,198 +57,232 @@ const RPSalarySlip = ({ company = {}, data = {} }) => {
   const monthName = new Date(year, monthNum - 1).toLocaleString("en-IN", { month: "long" });
   const salaryMonth = `${monthName} ${year}`;
 
-  /* ===== DEVCONS SALARY LOGIC (USED FOR RP) ===== */
-  const grossSalary = Number(totalSalary);
+  // /* ===== DEVCONS SALARY LOGIC (USED FOR RP) ===== */
+  // const grossSalary = Number(totalSalary);
 
-  const basic = Math.round(grossSalary * 0.40);
-  const hra = Math.round(grossSalary * 0.20);
-  const conveyance = Math.round(grossSalary * 0.14);
-  const food = Math.round(grossSalary * 0.04);
-  const special = Math.round(grossSalary * 0.16);
-  const others = Math.round(grossSalary * 0.06);
+  // const basic = Math.round(grossSalary * 0.40);
+  // const hra = Math.round(grossSalary * 0.18);
+  // const conveyance = Math.round(grossSalary * 0.14);
+  // const food = Math.round(grossSalary * 0.04);
+  // const special = Math.round(grossSalary * 0.16);
+  // const others = Math.round(grossSalary * 0.06);
 
-  const pt = getProfessionalTax(month, grossSalary);
+  // const pt = getProfessionalTax(month, grossSalary);
+  // const totalEarning =
+  //   basic + hra + conveyance + food + special + others;
+
+  // const totalDeduction = pt + Number(otherDeduction);
+  // const netPay = totalEarning - totalDeduction;
+   const round2 = (num) => Number(num.toFixed(2));
+
+  const monthlyGross = round2(Number(totalSalary || 0));
+  
+  // Percentages (TOTAL = 100%)
+  const PERCENT = {
+    basic: 0.40,
+    hra: 0.18,
+    da: 0.12,
+    special: 0.16,
+    food: 0.06,
+    misc: 0.08,
+  };
+  
+  // Monthly breakup
+  const basic      = round2(monthlyGross * PERCENT.basic);
+  const hra        = round2(monthlyGross * PERCENT.hra);
+  const conveyance = round2(monthlyGross * PERCENT.da);     // DA
+  const special    = round2(monthlyGross * PERCENT.special);
+  const food       = round2(monthlyGross * PERCENT.food);
+  const others     = round2(monthlyGross * PERCENT.misc);
+  
+  // Totals
   const totalEarning =
-    basic + hra + conveyance + food + special + others;
-
-  const totalDeduction = pt + Number(otherDeduction);
-  const netPay = totalEarning - totalDeduction;
+    basic +
+    hra +
+    conveyance +
+    special +
+    food +
+    others;
+  
+  // Deductions
+  const pt = getProfessionalTax(month, totalEarning);
+  const totalDeduction = round2(pt + Number(otherDeduction || 0));
+  const netPay = round2(totalEarning - totalDeduction);
+  
+  
 
   return (
-    <Box
-      sx={{
-        width: "210mm",
-        minHeight: "297mm",
-        backgroundColor: "#fff",
-        fontFamily: `"Yu Gothic", "Segoe UI", Arial, sans-serif`,
-        "& *": { fontSize: "14px" },
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      {/* HEADER */}
-      {company?.header && (
-        <img src={company.header} alt="Header" style={{ width: "100%" }} />
-      )}
+        <A4Page
+          headerSrc={company.header}
+          footerSrc={company.footer}
+          
+          
+        >
+    
+     
+    
+      
 
       {/* CONTENT */}
-      <Box sx={{ px: "15mm", py: "10mm", flexGrow: 1 }}>
-        <Table
-          sx={{
-            width: "100%",
-            border: "1px solid #000",
-            borderCollapse: "collapse",
-            "& td": { border: "1px solid #000", padding: "4px 6px" },
-          }}
-        >
-          <TableBody>
-            <TableRow>
-              <TableCell colSpan={4} align="center" sx={{ fontWeight: 700, fontSize: "14px" }}>
-                {company?.name || "R P BUSINESS SOLUTIONS LLP."}
-              </TableCell>
-            </TableRow>
+       <TableContainer
+              component={Paper}
+              sx={{
+                border: "1.5px solid black",
+                borderRadius: 0,
+                mt: "5mm",
+                boxShadow: "none",
+                "& .MuiTableCell-root": {
+                  border: "1px solid black",
+                  fontSize: "11pt",
+                  padding: "6px 8px",
+                },
+              }}
+            >
+              <Table size="small">
+                <TableBody>
+                  {/* HEADER */}
+                  <TableRow>
+                    <TableCell colSpan={4} align="center" sx={{ fontWeight: "bold", fontSize: "14pt" }}>
+                      {company.name}
+                    </TableCell>
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell colSpan={4} align="center" sx={{ fontWeight: "bold" }}>
+                      {company.address}
+                    </TableCell>
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell colSpan={4} align="center" sx={{ fontWeight: "bold" }}>
+                      Salary Slip {salaryMonth}
+                    </TableCell>
+                  </TableRow>
+      
+                  {/* EMPLOYEE DETAILS */}
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 600 }}>Employee Name</TableCell>
+                    <TableCell>{employeeName}</TableCell>
+                    <TableCell>Employee ID</TableCell>
+                    <TableCell>{employeeId}</TableCell>
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 600 }}>Gender</TableCell>
+                    <TableCell>{gender}</TableCell>
+                    <TableCell>Department</TableCell>
+                    <TableCell>{department}</TableCell>
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 600 }}>DOJ</TableCell>
+                    <TableCell>{doj}</TableCell>
+                    <TableCell>PAN</TableCell>
+                    <TableCell>{pan}</TableCell>
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 600 }}>Designation</TableCell>
+                    <TableCell>{designation}</TableCell>
+                    <TableCell>DOB</TableCell>
+                    <TableCell>{dob}</TableCell>
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 600 }}>Mode</TableCell>
+                    <TableCell>{mode}</TableCell>
+                    <TableCell>Working Days</TableCell>
+                    <TableCell>{workdays}</TableCell>
+                  </TableRow>
+      
+                  {/* EARNINGS HEADER */}
+                  <TableRow>
+                    <TableCell align="center" sx={{ fontWeight: "bold" }}>Earnings</TableCell>
+                    <TableCell align="center" sx={{ fontWeight: "bold" }}>Amount</TableCell>
+                    <TableCell align="center" sx={{ fontWeight: "bold" }}>Deductions</TableCell>
+                    <TableCell align="center" sx={{ fontWeight: "bold" }}>Amount</TableCell>
+                  </TableRow>
+      
+                  {/* EARNINGS */}
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 600 }}>BASIC</TableCell>
+                    <TableCell align="right">{formatCurrency(basic)}</TableCell>
+                    <TableCell>PT</TableCell>
+                    <TableCell align="right">{formatCurrency(pt)}</TableCell>
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 600 }}>HRA</TableCell>
+                    <TableCell align="right">{formatCurrency(hra)}</TableCell>
+                    <TableCell>Other Deduction</TableCell>
+                    <TableCell align="right">{formatCurrency(otherDeduction)}</TableCell>
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 600 }}>DEARNESS ALLOWANCE</TableCell>
+                    <TableCell align="right">{formatCurrency(conveyance)}</TableCell>
+                    <TableCell />
+                    <TableCell />
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 600 }}>SPECIAL ALLOWANCE</TableCell>
+                    <TableCell align="right">{formatCurrency(special)}</TableCell>
+                    <TableCell />
+                    <TableCell />
+                  </TableRow>
+      
+                  <TableRow>  
+                    <TableCell sx={{ fontWeight: 600 }}>FOOD ALLOWANCE</TableCell>
+                    <TableCell align="right">{formatCurrency(food)}</TableCell>
+                    <TableCell />
+                    <TableCell />
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: 600 }}>MISC ALLOWANCE</TableCell>
+                    <TableCell align="right">{formatCurrency(others)}</TableCell>
+                    <TableCell />
+                    <TableCell />
+                  </TableRow>
+      
+                  {/* TOTAL */}
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: "bold" }}>Total</TableCell>
+                    <TableCell align="right" sx={{ fontWeight: "bold" }}>{formatCurrency(totalEarning)}</TableCell>
+                    <TableCell sx={{ fontWeight: "bold" }}>Total Deduction</TableCell>
+                    <TableCell align="right" sx={{ fontWeight: "bold" }}>{formatCurrency(totalDeduction)}</TableCell>
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: "bold" }}>Net Pay</TableCell>
+                    <TableCell align="right" sx={{ fontWeight: "bold" }}>{formatCurrency(netPay)}</TableCell>
+                    <TableCell />
+                    <TableCell />
+                  </TableRow>
+      
+                  <TableRow>
+                    <TableCell sx={{ fontWeight: "bold" }}>In Words</TableCell>
+                    <TableCell colSpan={3}>{numberToWords(netPay)}</TableCell>
+                  </TableRow>
+      
+                  {/* SIGNATURE */}
+                  <TableRow>
+                    <TableCell />
+                    <TableCell />
+                    <TableCell align="center">
+                      {company?.stamp && <img src={company.stamp} height={55} alt="Stamp" />}
+                    </TableCell>
+                    <TableCell align="center">
+                      {company?.signature && <img src={company.signature} height={40} alt="Signature" />}
+                      <Typography fontWeight="bold">Signature</Typography>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
 
-            <TableRow>
-              <TableCell colSpan={4} align="center" sx={{ fontWeight: 600 }}>
-                {company?.address}
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell colSpan={4} align="center" sx={{ fontWeight: 600 }}>
-                Salary Slip {salaryMonth}
-              </TableCell>
-            </TableRow>
-
-            {/* EMPLOYEE DETAILS */}
-            <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>Employee Name</TableCell>
-              <TableCell>{employeeName}</TableCell>
-              <TableCell fontWeight={600}>Employee ID</TableCell>
-              <TableCell>{employeeId}</TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>Gender</TableCell>
-              <TableCell>{gender}</TableCell>
-              <TableCell fontWeight={600}>Department</TableCell>
-              <TableCell>{department}</TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>DOJ</TableCell>
-              <TableCell>{doj}</TableCell>
-              <TableCell fontWeight={600}>Pan Number</TableCell>
-              <TableCell>{pan}</TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>Designation</TableCell>
-              <TableCell>{designation}</TableCell>
-              <TableCell fontWeight={600}>DOB</TableCell>
-              <TableCell>{dob}</TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell sx={{ fontWeight: 600, pb: 7 }}>Mode</TableCell>
-              <TableCell sx={{  pb: 7 }}>{mode}</TableCell>
-              <TableCell sx={{ fontWeight: 600, pb: 7 }}>Working days</TableCell>
-              <TableCell sx={{  pb: 7 }}>{workdays}</TableCell>
-            </TableRow>
-
-            {/* EARNINGS HEADER */}
-            <TableRow>
-              <TableCell align="center" sx={{ fontWeight: 600 }}>Earnings</TableCell>
-              <TableCell align="center" sx={{ fontWeight: 600 }}>Amount</TableCell>
-              <TableCell align="center" sx={{ fontWeight: 600 }}>Deductions</TableCell>
-              <TableCell align="center" sx={{ fontWeight: 600 }}>Amount</TableCell>
-            </TableRow>
-
-            {/* EARNINGS */}
-           {/* EARNINGS */}
-<TableRow>
-  <TableCell sx={{ fontWeight: 600 }}>BASIC</TableCell>
-  <TableCell>{formatCurrency(basic)}</TableCell>
-  <TableCell>PT</TableCell>
-  <TableCell>{formatCurrency(pt)}</TableCell>
-</TableRow>
-
-<TableRow>
-  <TableCell sx={{ fontWeight: 600 }}>HRA</TableCell>
-  <TableCell>{formatCurrency(hra)}</TableCell>
-  <TableCell>Other Deduction</TableCell>
-  <TableCell>{formatCurrency(otherDeduction)}</TableCell>
-</TableRow>
-
-<TableRow>
-  <TableCell sx={{ fontWeight: 600 }}>DEARNESS ALLOWANCE</TableCell>
-  <TableCell>{formatCurrency(conveyance)}</TableCell>
-  <TableCell />
-  <TableCell />
-</TableRow>
-
-<TableRow>
-  <TableCell sx={{ fontWeight: 600 }}>SPECIAL ALLOWANCE</TableCell>
-  <TableCell>{formatCurrency(special)}</TableCell>
-  <TableCell />
-  <TableCell />
-</TableRow>
-
-<TableRow>
-  <TableCell sx={{ fontWeight: 600 }}>FOOD ALLOWANCE</TableCell>
-  <TableCell>{formatCurrency(food)}</TableCell>
-  <TableCell />
-  <TableCell />
-</TableRow>
-
-<TableRow>
-  <TableCell sx={{ fontWeight: 600 }}>MISC ALLOWANCE</TableCell>
-  <TableCell>{formatCurrency(others)}</TableCell>
-  <TableCell />
-  <TableCell />
-</TableRow>
-
-
-            {/* TOTAL */}
-            <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>Total</TableCell>
-              <TableCell fontWeight={600}>{formatCurrency(totalEarning)}</TableCell>
-              <TableCell fontWeight={600}>Total Deduction</TableCell>
-              <TableCell fontWeight={600}>{formatCurrency(totalDeduction)}</TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>Net Pay</TableCell>
-              <TableCell fontWeight={600}>{formatCurrency(netPay)}</TableCell>
-              <TableCell />
-              <TableCell />
-            </TableRow>
-
-            <TableRow>
-              <TableCell sx={{ fontWeight: 600 }}>In Words</TableCell>
-              <TableCell colSpan={3}>{numberToWords(netPay)}</TableCell>
-            </TableRow>
-
-            {/* SIGNATURE */}
-            <TableRow>
-              <TableCell />
-              <TableCell />
-              <TableCell align="center">
-                {company?.stamp && <img src={company.stamp} alt="Stamp" height={55} />}
-              </TableCell>
-              <TableCell align="center">
-                {company?.signature && <img src={company.signature} alt="Signature" height={40} />}
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </Box>
-
-      {/* FOOTER */}
-      {company?.footer && (
-        <img src={company.footer} alt="Footer" style={{ width: "100%" }} />
-      )}
-    </Box>
+     </A4Page>
   );
 };
 

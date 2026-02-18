@@ -80,11 +80,17 @@ const totalAnnual = totalMonthly * 12;
             <strong>Name :</strong> {data.employeeName}
           </Typography>
 
+           <Typography mb={1}>
+              <strong>Address</strong> {data.address}
+             </Typography>
+
           <Typography mb={3}>
             <strong>Subject :</strong>{" "}
             Letter of intent for continued services as{" "}
             <strong>{data.position}</strong>
           </Typography>
+
+         
 
           <Typography mb={2}>Dear {firstName},</Typography>
 
@@ -99,7 +105,7 @@ const totalAnnual = totalMonthly * 12;
 
           <Typography mb={3} textAlign="justify">
             Your total Gross salary will be Rs.{" "}
-            <strong>{formatCurrency(data.totalSalary)}</strong> per year.
+            <strong>{formatCurrency(totalAnnual)}</strong> per year.
           </Typography>
 
           <Typography mb={3} textAlign="justify">
