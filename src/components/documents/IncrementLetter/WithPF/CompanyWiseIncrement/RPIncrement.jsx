@@ -33,51 +33,48 @@ const RPIncrement = ({ company = {}, data = {} }) => {
   };
 
   /* ================= SALARY LOGIC ================= */
+  const round0 = (num) => Math.round(num);
 
-  const annualCTC = round2(Number(data.newCTC || 0));
+  
+  const monthlyCTC = round0(Number(data.newCTC || 0));
 
-  const basicAnnual = round2(annualCTC * 0.40);
-  const hraAnnual = round2(annualCTC * 0.18);
-  const daAnnual = round2(annualCTC * 0.12);
-  const specialAnnual = round2(annualCTC * 0.16);
-  const foodAnnual = round2(annualCTC * 0.06);
+  // ================= UPDATED PERCENTAGES =================
+const basicMonthly = round0(monthlyCTC * 0.48); // 40% + 8%
+const hraMonthly = round0(monthlyCTC * 0.18);
+const daMonthly = round0(monthlyCTC * 0.12);
+const specialMonthly = round0(monthlyCTC * 0.16);
+const foodMonthly = round0(monthlyCTC * 0.06);
 
-  const usedAnnual =
-    basicAnnual +
-    hraAnnual +
-    daAnnual +
-    specialAnnual +
-    foodAnnual;
+// ================= STATIC PF =================
+const pfMonthly = 3750;
 
-  const miscAnnual = round2(annualCTC - usedAnnual);
+// ================= ANNUAL VALUES =================
+const basicAnnual = basicMonthly * 12;
+const hraAnnual = hraMonthly * 12;
+const daAnnual = daMonthly * 12;
+const specialAnnual = specialMonthly * 12;
+const foodAnnual = foodMonthly * 12;
+const pfAnnual = pfMonthly * 12;
 
-  const basicMonthly = round2(basicAnnual / 12);
-  const hraMonthly = round2(hraAnnual / 12);
-  const daMonthly = round2(daAnnual / 12);
-  const specialMonthly = round2(specialAnnual / 12);
-  const foodMonthly = round2(foodAnnual / 12);
-  const miscMonthly = round2(miscAnnual / 12);
+// ================= SALARY TABLE =================
+const salaryRows = [
+  ["Basic", basicMonthly, basicAnnual],
+  ["House Rent Allowance", hraMonthly, hraAnnual],
+  ["Dearness Allowance", daMonthly, daAnnual],
+  ["Special Allowance", specialMonthly, specialAnnual],
+  ["Food Allowance", foodMonthly, foodAnnual],
+  ["Provident Fund (PF)", pfMonthly, pfAnnual], // Separate
+];
 
-  const totalMonthly = round2(
-    basicMonthly +
-      hraMonthly +
-      daMonthly +
-      specialMonthly +
-      foodMonthly +
-      miscMonthly
-  );
+// ================= TOTAL EARNINGS =================
+const totalMonthly =
+  basicMonthly +
+  hraMonthly +
+  daMonthly +
+  specialMonthly +
+  foodMonthly;
 
-  const totalAnnual = round2(
-    basicAnnual +
-      hraAnnual +
-      daAnnual +
-      specialAnnual +
-      foodAnnual +
-      miscAnnual
-  );
-
-  const pfMonthly = 3750;
-  const pfAnnual = pfMonthly * 12;
+const totalAnnual = totalMonthly * 12;
 
   return (
     <>
@@ -107,7 +104,7 @@ const RPIncrement = ({ company = {}, data = {} }) => {
 
           <Typography mb={3}>
             In recognition of your performance your compensation has been
-            revised to <strong>{formatCurrency(annualCTC)}</strong> per annum
+            revised to <strong>{formatCurrency(totalAnnual)}</strong> per annum
             effective{" "}
             <strong>{formatDate(data.effectiveDate)}</strong>.
           </Typography>
@@ -242,12 +239,12 @@ const RPIncrement = ({ company = {}, data = {} }) => {
                 <TableCell align="right">{formatCurrency(foodAnnual)}</TableCell>
               </TableRow>
 
-              <TableRow>
+              {/* <TableRow>
                 <TableCell>Misc. Allowance</TableCell>
                 <TableCell align="right">{formatCurrency(miscMonthly)}</TableCell>
                 <TableCell></TableCell>
                 <TableCell align="right">{formatCurrency(miscAnnual)}</TableCell>
-              </TableRow>
+              </TableRow> */}
 
               <TableRow>
                 <TableCell>Provident Fund (PF)</TableCell>

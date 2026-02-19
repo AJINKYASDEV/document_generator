@@ -24,48 +24,48 @@ const RPConfirmationLetter = ({ company = {}, data = {} }) => {
 
   /* ================= SALARY LOGIC (PF Balanced Inside CTC) ================= */
 
-  const round2 = (num) => Number(num.toFixed(2));
-  const annualCTC = round2(Number(data.totalSalary || 0));
+  const round0 = (num) => Math.round(num);
 
-  // ===== Static PF =====
-  const pfMonthly = 3750;
-  const pfAnnual = round2(pfMonthly * 12);
+  const monthlyCTC = round0(Number(data.totalSalary || 0));
 
-  // ===== Remaining After PF =====
-  const remainingAfterPF = annualCTC - pfAnnual;
+// ================= UPDATED PERCENTAGES =================
+const basicMonthly = round0(monthlyCTC * 0.48); // 40% + 8%
+const hraMonthly = round0(monthlyCTC * 0.18);
+const daMonthly = round0(monthlyCTC * 0.12);
+const specialMonthly = round0(monthlyCTC * 0.16);
+const foodMonthly = round0(monthlyCTC * 0.06);
 
-  // ===== Apply % on Remaining =====
-  const basicAnnual = round2(remainingAfterPF * 0.40);
-  const hraAnnual = round2(remainingAfterPF * 0.18);
-  const daAnnual = round2(remainingAfterPF * 0.12);
-  const foodAnnual = round2(remainingAfterPF * 0.06);
+// ================= STATIC PF =================
+const pfMonthly = 3750;
 
-  // ===== Special (Balancing Component - Never Negative) =====
-  let specialAnnual = round2(
-    remainingAfterPF -
-      (basicAnnual + hraAnnual + daAnnual + foodAnnual)
-  );
+// ================= ANNUAL VALUES =================
+const basicAnnual = basicMonthly * 12;
+const hraAnnual = hraMonthly * 12;
+const daAnnual = daMonthly * 12;
+const specialAnnual = specialMonthly * 12;
+const foodAnnual = foodMonthly * 12;
+const pfAnnual = pfMonthly * 12;
 
-  if (specialAnnual < 0) specialAnnual = 0;
+// ================= SALARY TABLE =================
+const salaryRows = [
+  ["Basic", basicMonthly, basicAnnual],
+  ["House Rent Allowance", hraMonthly, hraAnnual],
+  ["Dearness Allowance", daMonthly, daAnnual],
+  ["Special Allowance", specialMonthly, specialAnnual],
+  ["Food Allowance", foodMonthly, foodAnnual],
+  ["Provident Fund (PF)", pfMonthly, pfAnnual], // Separate
+];
 
-  // ===== Monthly Values =====
-  const basicMonthly = round2(basicAnnual / 12);
-  const hraMonthly = round2(hraAnnual / 12);
-  const daMonthly = round2(daAnnual / 12);
-  const foodMonthly = round2(foodAnnual / 12);
-  const specialMonthly = round2(specialAnnual / 12);
+// ================= TOTAL EARNINGS =================
+const totalMonthly =
+  basicMonthly +
+  hraMonthly +
+  daMonthly +
+  specialMonthly +
+  foodMonthly;
 
-  const salaryRows = [
-    ["Basic", basicMonthly, basicAnnual],
-    ["House Rent Allowance", hraMonthly, hraAnnual],
-    ["Dearness Allowance", daMonthly, daAnnual],
-    ["Special Allowance", specialMonthly, specialAnnual],
-    ["Food Allowance", foodMonthly, foodAnnual],
-    ["Provident Fund (PF)", pfMonthly, pfAnnual],
-  ];
+const totalAnnual = totalMonthly * 12;
 
-  const totalMonthly = round2(annualCTC / 12);
-  const totalAnnual = annualCTC;
 
   return (
     <>
@@ -80,11 +80,17 @@ const RPConfirmationLetter = ({ company = {}, data = {} }) => {
             <strong>Name :</strong> {data.employeeName}
           </Typography>
 
+           <Typography mb={1}>
+              <strong>Address</strong> {data.address}
+             </Typography>
+
           <Typography mb={3}>
             <strong>Subject :</strong>{" "}
             Letter of intent for continued services as{" "}
             <strong>{data.position}</strong>
           </Typography>
+
+         
 
           <Typography mb={2}>Dear {firstName},</Typography>
 
@@ -99,7 +105,7 @@ const RPConfirmationLetter = ({ company = {}, data = {} }) => {
 
           <Typography mb={3} textAlign="justify">
             Your total Gross salary will be Rs.{" "}
-            <strong>{formatCurrency(data.totalSalary)}</strong> per year.
+            <strong>{formatCurrency(totalAnnual)}</strong> per year.
           </Typography>
 
           <Typography mb={3} textAlign="justify">
