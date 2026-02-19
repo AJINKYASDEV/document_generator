@@ -50,7 +50,7 @@ const DevconsConfirmationLetter = ({ company = {}, data = {} }) => {
 const round0 = (num) => Math.round(num);
 
 // ================= MONTHLY CTC =================
-const monthlyCTC = round0(Number(data.totalSalary || 0));
+const monthlyCTC = round0(Number(data.totalSalary || 0));1
 
 // ================= PERCENTAGE BREAKUP =================
 const basicMonthly = round0(monthlyCTC * 0.40);
@@ -244,7 +244,7 @@ const totalAnnual = round0(
                 <b>{formatCurrency(totalMonthly)}</b>
               </TableCell>
               <TableCell align="right">
-                <b>{formatCurrency(totalAnnual)}</b>
+                <b>{formatCurrency(totalMonthly)}</b>
               </TableCell>
             </TableRow>
           </TableBody>
