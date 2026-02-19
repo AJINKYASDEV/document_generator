@@ -108,24 +108,29 @@ const netPay = round2(totalEarning - totalDeduction);
           boxShadow: "none",
           "& .MuiTableCell-root": {
             border: "1px solid black",
-          
+
             padding: "4px 6px",
-            fontFamily:"Bahnschrift"
+            fontFamily: "Bahnschrift",
           },
         }}
       >
         <Table size="small">
           <TableBody>
-
             {/* HEADER */}
             <TableRow>
-              <TableCell colSpan={4} align="center" sx={{ fontWeight: "bold",fontSize: "14pt",  }}>
+              <TableCell
+                colSpan={4}
+                align="center"
+                sx={{ fontWeight: "bold", fontSize: "14pt" }}
+              >
                 {company.name}
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={4} align="center"sx={{ fontWeight: "bold"  }} >{company.address}</TableCell>
+              <TableCell colSpan={4} align="center" sx={{ fontWeight: "bold" }}>
+                {company.address}
+              </TableCell>
             </TableRow>
 
             <TableRow>
@@ -172,8 +177,8 @@ const netPay = round2(totalEarning - totalDeduction);
 
             {/* <TableRow>
               {/* <TableCell>Bank</TableCell> */}
-              {/* <TableCell>{bankName}</TableCell> */}
-              {/* <TableCell />
+            {/* <TableCell>{bankName}</TableCell> */}
+            {/* <TableCell />
               <TableCell />
             </TableRow>  */}
 
@@ -186,42 +191,52 @@ const netPay = round2(totalEarning - totalDeduction);
 
             {/* EARNINGS / DEDUCTIONS */}
             <TableRow>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}>Earnings</TableCell>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}>Amount</TableCell>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}>Deductions</TableCell>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}>Amount</TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                Earnings
+              </TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                Amount
+              </TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                Deductions
+              </TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                Amount
+              </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>BASIC</TableCell>
+              <TableCell>Basic</TableCell>
               <TableCell align="right">{formatCurrency(BASIC)}</TableCell>
               <TableCell>PF</TableCell>
               <TableCell align="right">{formatCurrency(PF)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>HRA</TableCell>
+              <TableCell>Bouqet Of Benefits</TableCell>
               <TableCell align="right">{formatCurrency(HRA)}</TableCell>
               <TableCell>PT</TableCell>
               <TableCell align="right">{formatCurrency(pt)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>DEARNESS ALLOWANCE</TableCell>
+              <TableCell>HRA</TableCell>
               <TableCell align="right">{formatCurrency(DA)}</TableCell>
               <TableCell>Other Deduction</TableCell>
-              <TableCell align="right">{formatCurrency(totalDeduction)}</TableCell>
+              <TableCell align="right">
+                {formatCurrency(otherDeduction)}
+              </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>SPECIAL ALLOWANCE</TableCell>
+              <TableCell>City Allowance</TableCell>
               <TableCell align="right">{formatCurrency(SPECIAL)}</TableCell>
               <TableCell />
               <TableCell />
             </TableRow>
 
             <TableRow>
-              <TableCell>FOOD ALLOWANCE</TableCell>
+              <TableCell>Superannuation Fund</TableCell>
               <TableCell align="right">{formatCurrency(FOOD)}</TableCell>
               <TableCell />
               <TableCell />
@@ -265,14 +280,19 @@ const netPay = round2(totalEarning - totalDeduction);
               <TableCell />
               <TableCell />
               <TableCell align="center">
-                {company.stamp && <img src={company.stamp} height={60} alt="Stamp" />}
+                {company.stamp && (
+                  <img src={company.stamp} height={60} alt="Stamp" />
+                )}
               </TableCell>
               <TableCell align="center">
-                {company.signature && <img src={company.signature} height={28} alt="Signature" />}
-                <Typography fontWeight="bold" fontSize="9pt">Signature</Typography>
+                {company.signature && (
+                  <img src={company.signature} height={28} alt="Signature" />
+                )}
+                <Typography fontWeight="bold" fontSize="9pt">
+                  Signature
+                </Typography>
               </TableCell>
             </TableRow>
-
           </TableBody>
         </Table>
       </TableContainer>

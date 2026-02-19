@@ -118,10 +118,10 @@ const totalAnnual = round0(
             We are pleased to confirm your continued services at the position of{" "}
             <strong>{data.position}</strong> with{" "}
             <strong>Devcons Software Solutions Pvt. Ltd.</strong>{" "}
-            with effective date <strong>{data.effectiveDate}</strong>,
+            with effective date <strong> {formatDate(data.effectiveDate)}</strong>,
             considering your performance and support towards the organization.
             If there is any change in the date of joining, changes can be taken
-            under consideration.
+            under consideration.effectiveDate
           </Typography>
 
           <Typography mb={3} textAlign="justify">

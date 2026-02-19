@@ -18,9 +18,9 @@ const DevconsConfirmationLetter = ({ company = {}, data = {} }) => {
   const formatDate = (date) =>
     date
       ? new Date(date).toLocaleDateString("en-US", {
-          month: "long",
-          day: "2-digit",
-          year: "numeric",
+        day: "2-digit",  
+        month: "long",
+        year: "numeric",
         })
       : "";
 
@@ -107,6 +107,10 @@ const totalAnnual = totalMonthly * 12;
             <strong>Name :</strong> {data.employeeName}
           </Typography>
 
+          <Typography mb={1}>
+                      <strong>Address</strong> {data.address}
+                    </Typography>
+
           <Typography mb={3}>
             <strong>Subject :</strong>{" "}
             Letter of intent for continued services as{" "}
@@ -119,7 +123,7 @@ const totalAnnual = totalMonthly * 12;
             We are pleased to confirm your continued services at the position of{" "}
             <strong>{data.position}</strong> with{" "}
             <strong>Devcons Software Solutions Pvt. Ltd.</strong>{" "}
-            with effective date <strong>{data.effectiveDate}</strong>,
+            with effective date <strong>{formatDate(data.effectiveDate)}</strong>,
             considering your performance and support towards the organization.
             If there is any change in the date of joining, changes can be taken
             under consideration.
