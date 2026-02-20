@@ -239,7 +239,7 @@ export const companies = [
     footerImage: rp_footer,
     watermarkImage: placeholderWatermark,
     address:
-      "Address : 401,4th Floor,Sai Villa Commercial Appartment,Sr No 166,Malwadi road, Opps. to Sahyadri Hospital, Hadapsar,Pune-411028",
+      "Address : 301-B,3rd Floor,Sai Villa Commercial Appartment,Sr No 166,Malwadi road, Opps. to Sahyadri Hospital, Hadapsar,Pune-411028",
     email: " hr@rpbsolution.com",
     phone: "+91 9284888739",
     website: "https://www.rpbsolution.com/",
