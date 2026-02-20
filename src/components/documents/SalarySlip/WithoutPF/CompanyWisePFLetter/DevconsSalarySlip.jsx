@@ -102,8 +102,8 @@ const netPay = round2(totalEarning - totalDeduction);
       headerSrc={company.header}
       footerSrc={company.footer}
       watermarkSrc={company.watermark}
-      contentTop="45mm"
-      contentBottom="30mm"
+      // contentTop="45mm"
+      // contentBottom="30mm"
     >
       <TableContainer
         component={Paper}

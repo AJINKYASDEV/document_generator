@@ -50,7 +50,7 @@ const DevconsConfirmationLetter = ({ company = {}, data = {} }) => {
 const round0 = (num) => Math.round(num);
 
 // ================= MONTHLY CTC =================
-const monthlyCTC = round0(Number(data.totalSalary || 0));
+const monthlyCTC = round0(Number(data.totalSalary || 0));1
 
 // ================= PERCENTAGE BREAKUP =================
 const basicMonthly = round0(monthlyCTC * 0.40);
@@ -118,17 +118,17 @@ const totalAnnual = round0(
             We are pleased to confirm your continued services at the position of{" "}
             <strong>{data.position}</strong> with{" "}
             <strong>Devcons Software Solutions Pvt. Ltd.</strong>{" "}
-            with effective date <strong>{data.effectiveDate}</strong>,
+            with effective date <strong> {formatDate(data.effectiveDate)}</strong>,
             considering your performance and support towards the organization.
             If there is any change in the date of joining, changes can be taken
-            under consideration.
+            under consideration.effectiveDate
           </Typography>
 
           <Typography mb={3} textAlign="justify">
   Your total Gross salary will be Rs.{" "}
   <strong>
-    {formatCurrency(data.totalSalary)} (
-    {numberToWords(Number(data.totalSalary))}
+    {formatCurrency(totalAnnual)} (
+    {numberToWords(Number(totalAnnual))}
     )
   </strong>{" "}
   per year.
@@ -244,7 +244,7 @@ const totalAnnual = round0(
                 <b>{formatCurrency(totalMonthly)}</b>
               </TableCell>
               <TableCell align="right">
-                <b>{formatCurrency(totalAnnual)}</b>
+                <b>{formatCurrency(totalMonthly)}</b>
               </TableCell>
             </TableRow>
           </TableBody>

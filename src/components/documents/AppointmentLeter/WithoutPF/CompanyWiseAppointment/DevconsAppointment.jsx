@@ -148,7 +148,7 @@ const totalAnnual = round0(
 
   <li>
     <Typography fontSize={14}>
-      Your total emoluments will be <b>{formatLakhsPerAnnum(data.salary)}</b>.
+      Your total emoluments will be <b>{formatLakhsPerAnnum(totalAnnual)}</b>.
     </Typography>
   </li>
 

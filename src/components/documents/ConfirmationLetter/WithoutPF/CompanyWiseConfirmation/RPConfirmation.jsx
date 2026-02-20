@@ -120,6 +120,10 @@ const totalAnnual = round0(
             <strong>Name :</strong> {data.employeeName}
           </Typography>
 
+          <Typography mb={1}>
+                        <strong>Address</strong> {data.address}
+                       </Typography>
+
           <Typography mb={3}>
             <strong>Subject :</strong>{" "}
             Letter of intent for continued services as{" "}
@@ -138,7 +142,7 @@ const totalAnnual = round0(
                     </Typography>
           
                     <Typography mb={3} textAlign="justify">
-                      Your total Gross salary will be Rs. {formatCurrency(data.totalSalary)} per year.
+                      Your total Gross salary will be Rs. {formatCurrency(totalAnnual)} per year.
                       
                     </Typography>
           

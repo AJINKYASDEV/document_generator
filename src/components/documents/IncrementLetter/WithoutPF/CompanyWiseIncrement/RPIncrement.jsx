@@ -111,7 +111,7 @@ const totalAnnual = round0(
 
           <Typography mb={3}>
             In recognition of your performance your compensation has been
-            revised to{" "}<strong>{formatCurrency(ctc)}</strong> per annum effective{" "}
+            revised to{" "}<strong>{formatCurrency(totalAnnual)}</strong> per annum effective{" "}
             <strong>
               {new Date(data.effectiveDate).toLocaleDateString("en-US", {
                 month: "long",
@@ -221,14 +221,14 @@ const totalAnnual = round0(
 
                 <TableRow>
                   <TableCell>Basic</TableCell>
-                  <TableCell align="right">{formatCurrency(basicSalary)}</TableCell>
+                  <TableCell align="right">{formatCurrency(basicMonthly)}</TableCell>
                   <TableCell></TableCell>
                   <TableCell align="right">{formatCurrency(basicAnnual)}</TableCell>
                 </TableRow>
 
                 <TableRow>
                   <TableCell>House Rent Allowance</TableCell>
-                  <TableCell align="right">{formatCurrency(hra)}</TableCell>
+                  <TableCell align="right">{formatCurrency(hraMonthly)}</TableCell>
                   <TableCell></TableCell>
                   <TableCell align="right">{formatCurrency(hraAnnual)}</TableCell>
                 </TableRow>
@@ -236,7 +236,7 @@ const totalAnnual = round0(
                 <TableRow>
                   <TableCell>Dearness Allowance</TableCell>
                   <TableCell align="right">
-                    {formatCurrency(dearnessAllowance)}
+                    {formatCurrency(daMonthly)}
                   </TableCell>
                   <TableCell></TableCell>
                   <TableCell align="right">{formatCurrency(daAnnual)}</TableCell>
@@ -245,7 +245,7 @@ const totalAnnual = round0(
                 <TableRow>
                   <TableCell>Special Allowance</TableCell>
                   <TableCell align="right">
-                    {formatCurrency(specialAllowance)}
+                    {formatCurrency(specialMonthly)}
                   </TableCell>
                   <TableCell></TableCell>
                   <TableCell align="right">
@@ -256,7 +256,7 @@ const totalAnnual = round0(
                 <TableRow>
                   <TableCell>Food Allowance</TableCell>
                   <TableCell align="right">
-                    {formatCurrency(foodAllowance)}
+                    {formatCurrency(foodMonthly)}
                   </TableCell>
                   <TableCell></TableCell>
                   <TableCell align="right">
@@ -267,7 +267,7 @@ const totalAnnual = round0(
                 <TableRow>
                   <TableCell>Misc. Allowance</TableCell>
                   <TableCell align="right">
-                    {formatCurrency(miscAllowance)}
+                    {formatCurrency(miscMonthly)}
                   </TableCell>
                   <TableCell></TableCell>
                   <TableCell align="right">
@@ -280,13 +280,13 @@ const totalAnnual = round0(
                     Monthly Gross
                   </TableCell>
                   <TableCell sx={{ color: "#fff", fontWeight: 700 }} align="right">
-                    {formatCurrency(totalEarnings)}
+                    {formatCurrency(totalMonthly)}
                   </TableCell>
                   <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
                     Annual CTC
                   </TableCell>
                   <TableCell sx={{ color: "#fff", fontWeight: 700 }} align="right">
-                    {formatCurrency(ctc)}
+                    {formatCurrency(totalAnnual)}
                   </TableCell>
                 </TableRow>
               </TableBody>
