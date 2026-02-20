@@ -93,11 +93,7 @@ const NimbjaIncrement = ({ company, data }) => {
       monthly: foodMonthly,
       annual: foodAnnual,
     },
-    {
-      name: "Performance Bonus",
-      monthly: miscMonthly,
-      annual: miscAnnual,
-    },
+    
     {
       name: "Provident Fund (PF)",
       monthly: pfMonthly,
@@ -114,8 +110,12 @@ const NimbjaIncrement = ({ company, data }) => {
         )}
 
         <div style={content}>
-          <p style={rightDate}>{formatDate(data.issueDate)}</p>
-
+          <p style={{ ...rightDate, marginTop: "-10mm" }}>
+            {formatDate(data.issueDate)}
+          </p>
+          <p style={{ textAlign: "center", marginTop: "-10mm", marginBottom:"5mm",textDecoration:"underline", fontSize:"5mm" }}>
+            Appraisal Letter
+          </p>
           <p style={greeting}>
             Dear {data.candidateName || data.employeeName},
           </p>
