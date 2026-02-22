@@ -23,6 +23,8 @@ import {
 } from "@mui/material";
 import A4Page from "../../../../layout/A4Page";
 import { formatCurrency } from "../../../../../utils/salaryCalculations";
+import SalaryStructureTable from "../../../../common/SalaryStructureTable";
+
 
 const NimbjaConfirmation = ({ company = {}, data = {} }) => {
   const firstName = data.employeeName?.split(" ")[0] || "";
@@ -276,78 +278,35 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
 
       {/* ================= PAGE 2 ================= */}
       <A4Page headerSrc={company.header} footerSrc={company.footer}>
-        <Typography align="center" fontWeight={600} mb={4}>
-          Annexure A – Salary Structure
-        </Typography>
+        <Box className="a4-content-only">
+          <Typography
+            sx={{
+              textAlign: "right",
+              mb: "5mm",
+              mt: "-12mm",
+              fontSize: "11pt",
+              fontFamily: "Bahnschrift",
+            }}
+          >
+            {formatDate(data.issueDate)}
+          </Typography>
 
-        <Table
-          sx={{
-            width: "100%",
-            border: "1px solid #000",
-            "& td": {
-              border: "1px solid #000",
-              padding: "6px",
-              fontSize: "14px",
-            },
-          }}
-        >
-          <TableBody>
-            <TableRow sx={{ backgroundColor: "#f2b705" }}>
-              <TableCell>
-                <b>Salary Components</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>Per month (Rs.)</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>Per Annum (Rs.)</b>
-              </TableCell>
-            </TableRow>
+          <Typography
+            sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
+          >
+            <strong>
+              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
+            </strong>
+          </Typography>
 
-            {salaryRows.map(([name, monthly, annual], i) => (
-              <TableRow key={i}>
-                <TableCell>{name}</TableCell>
-                <TableCell align="right">{formatCurrency(monthly)}</TableCell>
-                <TableCell align="right">{formatCurrency(annual)}</TableCell>
-              </TableRow>
-            ))}
-
-            <TableRow sx={{ backgroundColor: "#f2b705" }}>
-              <TableCell>
-                <b>Total Monthly Gross Salary</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>{formatCurrency(totalMonthly)}</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>{formatCurrency(totalAnnual)}</b>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-
-        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 10 }}>
-          <Box>
-            <Box sx={{ display: "flex", gap: 3 }}>
-              {company?.signature && (
-                <img
-                  src={company.signature}
-                  alt="Signature"
-                  style={{ height: 60 }}
-                />
-              )}
-              {company?.stamp && (
-                <img src={company.stamp} alt="Stamp" style={{ height: 90 }} />
-              )}
-            </Box>
-            <Typography mt={1}>{company.hrName}</Typography>
-            <Typography>HR Relations Lead</Typography>
-          </Box>
-
-          <Box minWidth="250px" sx={{ mt: 10 }}>
-            <Typography>Signature: __________________</Typography>
-            <Typography mt={2}>Candidate Name: {data.employeeName}</Typography>
-          </Box>
+          {/* 🔥 ONLY THIS PART IS REPLACED */}
+          <SalaryStructureTable
+            salaryRows={salaryRows}
+            totalMonthly={totalMonthly}
+            totalAnnual={totalAnnual}
+            data={data}
+            formatDate={formatDate}
+          />
         </Box>
       </A4Page>
     </>
