@@ -1,131 +1,3 @@
-
-import React from "react";
-import {
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography,
-} from "@mui/material";
-
-/* ================== COMMON STYLES ================== */
-const cell = {
-  border: "1px solid #000",
-  fontSize: "13px",
-  padding: "4px 6px",
-};
-
-const bold = { fontWeight: 700 };
-const center = { textAlign: "center" };
-const right = { textAlign: "right" };
-
-/* ================== UTILS ================== */
-const formatDate = (d) =>
-  d ? new Date(d).toLocaleDateString("en-GB") : "";
-
-const formatMonth = (m) =>
-  m ? new Date(`${m}-01`).toLocaleString("default", { month: "long" }) : "";
-
-const formatAmt = (n) =>
-  Number(n || 0).toLocaleString("en-IN", { minimumFractionDigits: 2 });
-
-/* ================== NUMBER TO WORDS ================== */
-const numberToWords = (num = 0) => {
-  if (!num) return "Zero Only";
-
-  const a = [
-    "", "One", "Two", "Three", "Four", "Five", "Six",
-    "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
-    "Thirteen", "Fourteen", "Fifteen", "Sixteen",
-    "Seventeen", "Eighteen", "Nineteen",
-  ];
-  const b = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
-
-  const inWords = (n) => {
-    if (n < 20) return a[n];
-
-    if (n < 100)
-      return (
-        b[Math.floor(n / 10)] +
-        (n % 10 ? " " + a[n % 10] : "")
-      );
-
-    if (n < 1000)
-      return (
-        a[Math.floor(n / 100)] +
-        " Hundred" +
-        (n % 100 ? " " + inWords(n % 100) : "")
-      );
-
-    if (n < 100000)
-      return (
-        inWords(Math.floor(n / 1000)) +
-        " Thousand" +
-        (n % 1000 ? " " + inWords(n % 1000) : "")
-      );
-
-    if (n < 10000000)
-      return (
-        inWords(Math.floor(n / 100000)) +
-        " Lakh" +
-        (n % 100000 ? " " + inWords(n % 100000) : "")
-      );
-
-    return (
-      inWords(Math.floor(n / 10000000)) +
-      " Crore" +
-      (n % 10000000 ? " " + inWords(n % 10000000) : "")
-    );
-  };
-
-  return `${inWords(Math.round(num))} Only`;
-};
-
-
-/* ================== COMPONENT ================== */
-const NimbjaFullAndfinal = ({ company = {}, data = {} }) => {
-  const totalDays = Number(data.workdays || " ");
-  const paidDays = Number(data.paiddays || 0);
-  const ratio = paidDays / totalDays;
-
-  /* ---------- PENTA SALARY LOGIC ---------- */
-  const gross = Number(data.totalSalary || 0);
-
-  const basic = +(gross * 0.4).toFixed(2);
-  const hra = +(gross * 0.18).toFixed(2);
-  const da = +(gross * 0.12).toFixed(2);
-  const special = +(gross * 0.16).toFixed(2);
-  const food = +(gross * 0.06).toFixed(2);
-  const pfAllowance = +(gross - (basic + hra + da + special + food)).toFixed(2);
-
-  const earned = (v) => +(v * ratio).toFixed(2);
-
-  const totalActual = basic + hra + da + special + food + pfAllowance;
-
-  const totalEarned =
-    earned(basic) +
-    earned(hra) +
-    earned(da) +
-    earned(special) +
-    earned(food) +
-    earned(pfAllowance);
-
-  /* ---------- DEDUCTIONS ---------- */
-  // const pf = 1800;
-  const pt = 200;
-  const others = 2000;
-  const totalDeductions = pt + others;
-
-  const netPay =
-    totalEarned - totalDeductions + Number(data.leaveencashment || 0);
-
-  return (
-    <Box sx={{ width: "210mm", minHeight: "297mm", fontFamily: "Bahnschrift" }}>
-      {company.header && <img src={company.header} width="100%" alt="" />}
-
-      <Box p="10mm">
-        <Table sx={{ borderCollapse: "collapse", fontFamily: "Bahnschrift" }}>
 import React from "react";
 import {
   Box,
@@ -326,7 +198,6 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
             </TableRow>
 
             {/* SALARY PARTICULARS */}
-            <TableRow sx={{ background: "#c1edac" }}>
             <TableRow sx={{ background: "#f5f5f5" }}>
               <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
                 Salary particulars
@@ -347,7 +218,6 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
             </TableRow>
 
             {/* EARNINGS */}
-            <TableRow sx={{ background: "#c1edac" }}>
             <TableRow sx={{ background: "#f2dede" }}>
               <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
                 Earnings
@@ -358,11 +228,6 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
 
             {[
               ["Basic", basic],
-              ["Bouqet Of Benefits", hra],
-              ["HRA", da],
-              ["City Allowance", special],
-              ["Superannuation Fund", food],
-              ["Performance Bonus", pfAllowance],
               ["HRA", hra],
               ["Dearness Allowance", da],
               ["Special Allowances", special],
@@ -503,5 +368,4 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
   );
 };
 
-export default NimbjaFullAndfinal;
 export default NimbjaFullAndFinal;
