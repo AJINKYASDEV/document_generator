@@ -220,7 +220,11 @@ const netPay = round2(totalEarning - totalDeduction);
 
             <TableRow>
               <TableCell>PF</TableCell>
+<<<<<<<<< Temporary merge branch 1
               <TableCell align="right">{formatCurrency(3750 )}</TableCell>
+=========
+              <TableCell align="right">{formatCurrency(PF)}</TableCell>
+>>>>>>>>> Temporary merge branch 2
               <TableCell />
               <TableCell />
             </TableRow>
