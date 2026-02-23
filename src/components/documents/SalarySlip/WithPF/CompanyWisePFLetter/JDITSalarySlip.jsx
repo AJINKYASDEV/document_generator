@@ -712,60 +712,88 @@ const JDITSalarySlip = ({ company, data }) => {
   } = data;
 
   /* ================= SALARY CALCULATION ================= */
-  const {
-    basicSalary,
-    hra,
-    dearnessAllowance,
-    foodAllowance,
-    miscAllowance,
-    pf,
-    professionalTax,
-    otherDeduction,
-    totalDeductions,
+ /* ================= SALARY CALCULATION ================= */
+const {
+  basicSalary,
+  hra,
+  dearnessAllowance,
+  specialAllowance,
+  foodAllowance,
+  pf,
+  professionalTax,
+  otherDeduction,
+  totalDeductions,
+  totalEarning,
+  netPay,
+} = useMemo(() => {
+
+  const round2 = (num) => Number(Number(num || 0).toFixed(2));
+
+  const monthlyGross = round2(Number(totalSalary || 0));
+
+  /* ================= PERCENT BREAKUP ================= */
+  const PERCENT = {
+    basic: 0.48,
+    hra: 0.18,
+    da: 0.12,
+    special: 0.16,
+    food: 0.06,
+  };
+
+  const BASIC   = round2(monthlyGross * PERCENT.basic);
+  const HRA     = round2(monthlyGross * PERCENT.hra);
+  const DA      = round2(monthlyGross * PERCENT.da);
+  const SPECIAL = round2(monthlyGross * PERCENT.special);
+  const FOOD    = round2(monthlyGross * PERCENT.food);
+
+  const PF = 3750; // fixed PF
+  const OTHER = 2000; // if needed dynamic later
+
+  /* ================= TOTAL EARNINGS ================= */
+  const totalEarning =
+    BASIC +
+    HRA +
+    DA +
+    SPECIAL +
+    FOOD;
+
+  /* ================= DEDUCTIONS ================= */
+  const pt = getProfessionalTax(month, totalEarning);
+
+  const totalDeduction = round2(
+    PF +
+    pt +
+    Number(OTHER || 0)
+  );
+
+  /* ================= NET PAY ================= */
+  const netPay = round2(totalEarning - totalDeduction);
+
+  return {
+    basicSalary: BASIC,
+    hra: HRA,
+    dearnessAllowance: DA,
+    specialAllowance: SPECIAL,
+    foodAllowance: FOOD,
+    pf: PF,
+    professionalTax: pt,
+    otherDeduction: OTHER,
+    totalDeductions: totalDeduction,
+    totalEarning,
     netPay,
-  } = useMemo(() => {
-    const gross = Number(totalSalary) || 0;
+  };
 
-    /* ===== Earnings ===== */
-    const basic = Math.round(gross * 0.4);
-    const hraCalc = Math.round(basic * 0.4);
-    const da = Math.round(gross * 0.1);
-    const food = Math.round(gross * 0.1);
-    const misc = gross - (basic + hraCalc + da + food);
-
-    /* ===== Deductions ===== */
-    const PF = 3750;
-    const pt = getProfessionalTax(month, gross);
-    const other = 2000;
-
-    /* ===== Total Deduction (PF + PT + Other) ===== */
-    const total = PF + pt + other;
-
-    /* ===== Net Pay ===== */
-    const net = gross - total;
-
-    return {
-      basicSalary: basic,
-      hra: hraCalc,
-      dearnessAllowance: da,
-      foodAllowance: food,
-      miscAllowance: misc,
-      pf: PF,
-      professionalTax: pt,
-      otherDeduction: other,
-      totalDeductions: total,
-      netPay: net,
-    };
-  }, [totalSalary, month]);
+}, [totalSalary, month]);
 
   /* ================= ARRAYS ================= */
   const earnings = [
-    { label: <b>BASIC</b>, value: basicSalary },
-    { label: <b>HRA</b>, value: hra },
-    { label: <b>DEARNESS ALLOWANCE</b>, value: dearnessAllowance },
-    { label: <b>FOOD ALLOWANCE</b>, value: foodAllowance },
-    { label: <b>MISC ALLOWANCE</b>, value: miscAllowance },
-  ];
+  { label: <b>BASIC</b>, value: basicSalary },
+  { label: <b>HRA</b>, value: hra },
+  { label: <b>DEARNESS ALLOWANCE</b>, value: dearnessAllowance },
+  { label: <b>SPECIAL ALLOWANCE</b>, value: specialAllowance },
+  { label: <b>FOOD ALLOWANCE</b>, value: foodAllowance },
+  { label: <b>PF</b>, value: pf },
+];
 
   const deductions = [
     { label: "PF", value: pf },
@@ -793,16 +821,16 @@ const JDITSalarySlip = ({ company, data }) => {
           </TableRow>
 
           <TableRow>
-            <TableCell colSpan={4} sx={{ ...CELL, textAlign: "center", fontSize: "11px" }}>
+            <TableCell colSpan={4} sx={{ ...CELL, textAlign: "center", fontSize: "12px" }}>
               <b>
-                301 A, 3rd Floor, Sai Villa Commercial Apartment, Sr. No. 166,
+                401 A, 4rd Floor, Sai Villa Commercial Apartment, Sr. No. 166,
                 Malwadi Road, Opp. Sahyadri Hospital, Hadapsar, Pune - 411028.
               </b>
             </TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell colSpan={4} sx={{ ...CELL, textAlign: "center" }}>
+            <TableCell colSpan={4} sx={{ ...CELL, textAlign: "center",fontSize: "12px" }}>
               <b>Salary Slip {formatMonthYear(month)}</b>
             </TableCell>
           </TableRow>
@@ -859,8 +887,8 @@ const JDITSalarySlip = ({ company, data }) => {
           <TableRow>
             <TableCell sx={CELL}><b>Total Earnings</b></TableCell>
             <TableCell colSpan={3} sx={{ ...CELL, textAlign: "center" }}>
-              {formatCurrency(totalSalary)}
-            </TableCell>
+              {formatCurrency(totalSalary)}             
+              </TableCell>
           </TableRow>
 
           {/* DEDUCTIONS */}
@@ -906,16 +934,16 @@ const JDITSalarySlip = ({ company, data }) => {
         {/* SIGNATURE */}
         <TableBody>
           <TableRow>
-            <TableCell sx={{ ...CELL, width: "33%", height: "110px", textAlign: "center" }}>
-              {company.stamp && <img src={company.stamp} alt="Stamp" height="100" />}
+            <TableCell sx={{ ...CELL, width: "33%", height: "100px", textAlign: "center" }}>
+              {company.stamp && <img src={company.stamp} alt="Stamp" height="80" />}
             </TableCell>
 
             <TableCell sx={{ ...CELL, width: "34%", height: "110px" }} />
 
-            <TableCell colSpan={2} sx={{ ...CELL, width: "33%", height: "110px", textAlign: "center" }}>
+            <TableCell colSpan={2} sx={{ ...CELL, width: "33%", height: "100px", textAlign: "center" }}>
               {company.signature && (
                 <>
-                  <img src={company.signature} alt="Signature" height="50" />
+                  <img src={company.signature} alt="Signature" height="40" />
                   <Typography fontWeight="bold" fontSize="11px">
                     Signature
                   </Typography>

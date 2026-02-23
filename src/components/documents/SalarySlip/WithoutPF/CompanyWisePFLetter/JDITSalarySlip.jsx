@@ -728,7 +728,7 @@ const {
   // Monthly breakup
   const basic      = round2(monthlyGross * PERCENT.basic);
   const hraCalc    = round2(monthlyGross * PERCENT.hra);
-  const conveyance = round2(monthlyGross * PERCENT.da);     // DA
+  const conveyance = round2(monthlyGross * PERCENT.da);// DA
   const special    = round2(monthlyGross * PERCENT.special);
   const food       = round2(monthlyGross * PERCENT.food);
   const others     = round2(monthlyGross * PERCENT.misc);
@@ -823,7 +823,7 @@ const {
             >
               <b>
                 401 A, 4rd Floor, Sai Villa Commercial Apartment, Sr. No. 166, Malwadi Road, 
-Opp. Sahyadri Hospital, Hadapsar, Pune - 411028.
+                Opp. Sahyadri Hospital, Hadapsar, Pune - 411028.
 
               </b>
             </TableCell>
@@ -967,15 +967,15 @@ Opp. Sahyadri Hospital, Hadapsar, Pune - 411028.
         <TableBody>
           <TableRow>
             <TableCell sx={{ ...CELL, width: "33%", height: "110px", textAlign: "center" }}>
-              {company.stamp && <img src={company.stamp} alt="Stamp" height="100" />}
+              {company.stamp && <img src={company.stamp} alt="Stamp" height="80" />}
             </TableCell>
 
             <TableCell sx={{ ...CELL, width: "34%", height: "110px" }} />
 
-            <TableCell colSpan={2} sx={{ ...CELL, width: "33%", height: "110px", textAlign: "center" }}>
+            <TableCell colSpan={2} sx={{ ...CELL, width: "33%", height: "100px", textAlign: "center" }}>
               {company.signature && (
                 <>
-                  <img src={company.signature} alt="Signature" height="50" />
+                  <img src={company.signature} alt="Signature" height="40" />
                   <Typography fontWeight="bold" fontSize="11px">
                     Signature
                   </Typography>

@@ -19,7 +19,7 @@ const companyComponentMap = {
   5: RPSalarySlip,
   6: PentaSalarySlip,
   7: NimbjaSalarySlip,
-  //   8: JDITUnPaidInternshipLetter,
+     8: JDITSalarySlip,
   //   9: QuickUnPaidInternshipLetter,
   //   10:SmartSoftwareUnPaidInternshipLetter,
 };
