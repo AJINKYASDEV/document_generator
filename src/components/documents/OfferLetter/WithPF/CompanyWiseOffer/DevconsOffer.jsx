@@ -120,8 +120,8 @@ const totalAnnual = totalMonthly * 12;
               <b>{company.name}</b> is delighted to offer you the full-time position of{" "}
               <b>{data.position}</b> with an anticipated start date of{" "} 
               <b> {new Date(data.joiningDate).toLocaleDateString("en-US", {
-                month: "long",
                 day: "2-digit",
+                month: "long",
                 year: "numeric",
               })}</b>.
             </Typography>
