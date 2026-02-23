@@ -102,7 +102,7 @@ const NimbjaFullAndfinal = ({ company = {}, data = {} }) => {
 
   const gross = Number(data.totalSalary || 0);
 
-  const basic = +(gross * 0.4).toFixed(2);
+  const basic = +(gross * 0.48).toFixed(2);
   const hra = +(gross * 0.18).toFixed(2);
   const da = +(gross * 0.12).toFixed(2);
   const special = +(gross * 0.16).toFixed(2);
@@ -113,15 +113,11 @@ const NimbjaFullAndfinal = ({ company = {}, data = {} }) => {
 
   const earned = (v) => +(v * ratio).toFixed(2);
 
-  const totalActual = basic + hra + da + special + food + pfAllowance;
+  const totalActual = basic + hra + da + special + food;
 
   const totalEarned =
-    earned(basic) +
-    earned(hra) +
-    earned(da) +
-    earned(special) +
-    earned(food) +
-    pfAllowance; // static earned
+    earned(basic) + earned(hra) + earned(da) + earned(special) + earned(food);
+  //pfAllowance; // static earned
 
   /* ---------- DEDUCTIONS ---------- */
   const pf = 3750;

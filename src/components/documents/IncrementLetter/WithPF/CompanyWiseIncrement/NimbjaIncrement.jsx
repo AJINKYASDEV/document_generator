@@ -138,9 +138,9 @@ const NimbjaIncrement = ({ company = {}, data = {} }) => {
           <Typography sx={{ mb: 6 }}>Yours Sincerely,</Typography>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 4, mb: 2 }}>
-            {company?.signature && (
+            {company?.CEO && (
               <img
-                src={dilipSignature}
+                src={company.CEO}
                 alt="Signature"
                 style={{ height: 60 }}
               />

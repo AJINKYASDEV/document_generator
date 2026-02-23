@@ -47,11 +47,11 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
   // ================= SALARY TABLE STRUCTURE =================
   const salaryRows = [
     ["Basic", basicMonthly, basicAnnual],
-    ["House Rent Allowance", hraMonthly, hraAnnual],
-    ["Dearness Allowance", daMonthly, daAnnual],
-    ["Special Allowance", specialMonthly, specialAnnual],
-    ["Food Allowance", foodMonthly, foodAnnual],
-    ["Misc. Allowance", miscMonthly, miscAnnual],
+    ["Bouqet Of Benefits", hraMonthly, hraAnnual],
+    ["HRA", daMonthly, daAnnual],
+    ["City  Allowance", specialMonthly, specialAnnual],
+    ["Superannuation Fund", foodMonthly, foodAnnual],
+    ["Performance Bonus", miscMonthly, miscAnnual],
   ];
 
   // ================= TOTALS =================

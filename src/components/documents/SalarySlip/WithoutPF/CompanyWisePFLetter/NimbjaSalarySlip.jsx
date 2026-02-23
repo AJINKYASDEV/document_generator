@@ -20,17 +20,66 @@ import {
 const numberToWords = (num = 0) => {
   if (!num) return "Zero Rupees Only";
 
-  const ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
-  const teens = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
-  const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+  const ones = [
+    "",
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+  ];
+  const teens = [
+    "Ten",
+    "Eleven",
+    "Twelve",
+    "Thirteen",
+    "Fourteen",
+    "Fifteen",
+    "Sixteen",
+    "Seventeen",
+    "Eighteen",
+    "Nineteen",
+  ];
+  const tens = [
+    "",
+    "",
+    "Twenty",
+    "Thirty",
+    "Forty",
+    "Fifty",
+    "Sixty",
+    "Seventy",
+    "Eighty",
+    "Ninety",
+  ];
 
   const inWords = (n) => {
     if (n < 10) return ones[n];
     if (n < 20) return teens[n - 10];
-    if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? " " + ones[n % 10] : "");
-    if (n < 1000) return ones[Math.floor(n / 100)] + " Hundred" + (n % 100 ? " " + inWords(n % 100) : "");
-    if (n < 100000) return inWords(Math.floor(n / 1000)) + " Thousand" + (n % 1000 ? " " + inWords(n % 1000) : "");
-    if (n < 10000000) return inWords(Math.floor(n / 100000)) + " Lakh" + (n % 100000 ? " " + inWords(n % 100000) : "");
+    if (n < 100)
+      return tens[Math.floor(n / 10)] + (n % 10 ? " " + ones[n % 10] : "");
+    if (n < 1000)
+      return (
+        ones[Math.floor(n / 100)] +
+        " Hundred" +
+        (n % 100 ? " " + inWords(n % 100) : "")
+      );
+    if (n < 100000)
+      return (
+        inWords(Math.floor(n / 1000)) +
+        " Thousand" +
+        (n % 1000 ? " " + inWords(n % 1000) : "")
+      );
+    if (n < 10000000)
+      return (
+        inWords(Math.floor(n / 100000)) +
+        " Lakh" +
+        (n % 100000 ? " " + inWords(n % 100000) : "")
+      );
     return inWords(Math.floor(n / 10000000)) + " Crore";
   };
 
@@ -104,23 +153,21 @@ const NimbjaSalarySlip = ({ company = {}, data = {} }) => {
       footerSrc={company?.footer}
       watermarkSrc={company?.watermark}
       contentTop="35mm"
-      contentBottom="30mm"
+      contentBottom="45mm"
     >
       <TableContainer
         component={Paper}
         sx={{
-          border: "1.5px solid black",
+          width: "95%",
+          margin: "0 auto",
+          border: "1px solid #000",
           borderRadius: 0,
-          mt: "5mm",
-
-          mb: "15mm", // ⬅️ ADD THIS (lifts content away from footer)
           boxShadow: "none",
           "& .MuiTableCell-root": {
-            border: "1px solid black",
-            fontSize: "11pt",
-            padding: "6px 8px",
-            verticalAlign: "middle",
+            border: "1px solid #000",
+            padding: "5px 8px",
             fontFamily: "Bahnschrift",
+            fontSize: "10.5pt",
           },
         }}
       >
