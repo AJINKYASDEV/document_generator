@@ -286,9 +286,9 @@ const NimbjaOffer = ({ company, data }) => {
   return (
     <>
       {/* ================= PAGE 1 : OFFER LETTER ================= */}
-      <A4Page>
+      
         <NimbjaOfferPage1 company={company} data={data} />
-      </A4Page>
+      
 
       {/* ================= PAGE 2 : ANNEXURE / SALARY ================= */}
       <NimbjaOfferPage2 company={company} data={data} />

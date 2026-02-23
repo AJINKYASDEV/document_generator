@@ -104,25 +104,24 @@ const NimbjaSalarySlip = ({ company = {}, data = {} }) => {
       footerSrc={company?.footer}
       watermarkSrc={company?.watermark}
       contentTop="35mm"
-      contentBottom="30mm"
+      contentBottom="45mm"
     >
       <TableContainer
         component={Paper}
         sx={{
-          border: "1.5px solid black",
-          borderRadius: 0,
-          mt: "5mm",
+        width: "95%",
+        margin: "0 auto",
+        border: "1px solid #000",
+        borderRadius: 0,
+        boxShadow: "none",
+        "& .MuiTableCell-root": {
+          border: "1px solid #000",
+          padding: "5px 8px",
+          fontFamily: "Bahnschrift",
+          fontSize: "10.5pt",
+        },
+      }}
 
-          mb: "15mm", // ⬅️ ADD THIS (lifts content away from footer)
-          boxShadow: "none",
-          "& .MuiTableCell-root": {
-            border: "1px solid black",
-            fontSize: "11pt",
-            padding: "6px 8px",
-            verticalAlign: "middle",
-            fontFamily: "Bahnschrift",
-          },
-        }}
       >
         <Table size="small">
           <colgroup>

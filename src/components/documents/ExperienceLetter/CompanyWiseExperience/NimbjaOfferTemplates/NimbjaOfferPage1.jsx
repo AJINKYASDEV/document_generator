@@ -414,16 +414,16 @@ const NimbjaOfferPage1 = ({ company, data }) => {
 
   return (
     <A4Page
-      headerSrc={company.header}
-      footerSrc={company.footer}
-      watermarkSrc={company.watermarkImage || company.watermark || null}
-      contentTop="48mm"
-      contentBottom="28mm"
-      company={company}
+       headerSrc={company.header}
+       footerSrc={company.footer}
+      // watermarkSrc={company.watermarkImage || company.watermark || null}
+      // contentTop="48mm"
+      // contentBottom="28mm"
+      // company={company}
     >
       {/* ================= DATE ================= */}
       <Typography
-        sx={{ ...baseText, fontWeight: 600, textAlign: "right", mb: "9mm" }}
+         sx={{ ...baseText, fontWeight: 600, textAlign: "right", mb: "9mm" }}
       >
         {offerDate}
       </Typography>
