@@ -1043,7 +1043,7 @@ const NimbjaOffer = ({ company, data }) => {
 
       <A4Page headerSrc={company.header} footerSrc={company.footer}>
         <Box className="a4-content-only">
-          {/* <Typography
+          <Typography
             sx={{
               textAlign: "right",
               mb: "5mm",
@@ -1053,7 +1053,7 @@ const NimbjaOffer = ({ company, data }) => {
             }}
           >
             {formatDate(data.issueDate)}
-          </Typography> */}
+          </Typography>
 
           {/* <Typography
             sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
@@ -1061,7 +1061,7 @@ const NimbjaOffer = ({ company, data }) => {
             <strong>
               Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
             </strong>
-          </Typography> */}
+          </Typography>
 
           {/* 🔥 ONLY THIS PART IS REPLACED */}
           <SalaryStructureTable
@@ -1071,6 +1071,38 @@ const NimbjaOffer = ({ company, data }) => {
             data={data}
             formatDate={formatDate}
           />
+        </Box>
+        {/* Signature Block */}
+        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 9 }}>
+          <Box>
+            <Box sx={{ display: "flex", gap: 3 }}>
+              {company?.signature && (
+                <img
+                  src={company.signature}
+                  alt="Signature"
+                  style={{ height: 45 }}
+                />
+              )}
+              {company?.stamp && (
+                <img src={company.stamp} alt="Stamp" style={{ height: 100 }} />
+              )}
+            </Box>
+            <Typography mt={1} sx={{ fontFamily: "Bahnschrift" }}>
+              {company.hrName}
+            </Typography>
+            <Typography sx={{ fontFamily: "Bahnschrift" }}>
+              HR Relations Lead
+            </Typography>
+          </Box>
+
+          <Box minWidth="250px" sx={{ mt: 13, fontFamily: "Bahnschrift" }}>
+            <Typography sx={{ fontFamily: "Bahnschrift" }}>
+              Signature: __________________
+            </Typography>
+            <Typography mt={2} sx={{ mt: 1.5, fontFamily: "Bahnschrift" }}>
+              Candidate Name: {data.candidateName}
+            </Typography>
+          </Box>
         </Box>
       </A4Page>
     </>

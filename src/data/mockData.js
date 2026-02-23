@@ -90,6 +90,9 @@ import Nimbja_stamp from "../assets/images/Nimbja/Nimbja_stamp.png"
 import Nimbja_watermark from '../assets/images/Nimbja/nimbja_watermark.png'
 import Nimbja_CEO from '../assets/images/Nimbja/Nimbja_CEO.png'
 
+
+
+
 //QM  (Footer watermark Pending)
 import QMS_Header from "../assets/images/QMS/QMS_Header.png"
 import QMS_Sign from "../assets/images/QMS/QMS_Sign.png"

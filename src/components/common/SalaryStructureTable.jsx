@@ -86,6 +86,7 @@ const SalaryStructureTable = ({
           </TableRow>
         </TableBody>
       </Table>
+      
     </>
   );
 };

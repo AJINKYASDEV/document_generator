@@ -135,10 +135,10 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
   // ================= SALARY TABLE =================
   const salaryRows = [
     ["Basic", basicMonthly, basicAnnual],
-    ["House Rent Allowance", hraMonthly, hraAnnual],
-    ["Dearness Allowance", daMonthly, daAnnual],
-    ["Special Allowance", specialMonthly, specialAnnual],
-    ["Food Allowance", foodMonthly, foodAnnual],
+    ["Bouquet Of Benefits", hraMonthly, hraAnnual],
+    ["Hra", daMonthly, daAnnual],
+    ["City Allowance", specialMonthly, specialAnnual],
+    ["Superannuation Fund", foodMonthly, foodAnnual],
     ["Provident Fund (PF)", pfMonthly, pfAnnual], // Separate
   ];
 
@@ -307,6 +307,38 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
             data={data}
             formatDate={formatDate}
           />
+        </Box>
+        {/* Signature Block */}
+        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 9 }}>
+          <Box>
+            <Box sx={{ display: "flex", gap: 3 }}>
+              {company?.signature && (
+                <img
+                  src={company.signature}
+                  alt="Signature"
+                  style={{ height: 45 }}
+                />
+              )}
+              {company?.stamp && (
+                <img src={company.stamp} alt="Stamp" style={{ height: 100 }} />
+              )}
+            </Box>
+            <Typography mt={1} sx={{ fontFamily: "Bahnschrift" }}>
+              {company.hrName}
+            </Typography>
+            <Typography sx={{ fontFamily: "Bahnschrift" }}>
+              HR Relations Lead
+            </Typography>
+          </Box>
+
+          <Box minWidth="250px" sx={{ mt: 13, fontFamily: "Bahnschrift" }}>
+            <Typography sx={{ fontFamily: "Bahnschrift" }}>
+              Signature: __________________
+            </Typography>
+            <Typography mt={2} sx={{ mt: 1.5, fontFamily: "Bahnschrift" }}>
+              Candidate Name: {data.employeeName}
+            </Typography>
+          </Box>
         </Box>
       </A4Page>
     </>
