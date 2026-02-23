@@ -728,7 +728,7 @@ const {
   // Monthly breakup
   const basic      = round2(monthlyGross * PERCENT.basic);
   const hraCalc    = round2(monthlyGross * PERCENT.hra);
-  const conveyance = round2(monthlyGross * PERCENT.da);     // DA
+  const conveyance = round2(monthlyGross * PERCENT.da);// DA
   const special    = round2(monthlyGross * PERCENT.special);
   const food       = round2(monthlyGross * PERCENT.food);
   const others     = round2(monthlyGross * PERCENT.misc);
