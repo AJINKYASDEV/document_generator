@@ -696,8 +696,7 @@ const JDITSalarySlip = ({ company, data }) => {
     totalSalary,
   } = data;
 
-  /* ================= SALARY CALCULATION ================= */
-  /* ================= SALARY CALCULATION ================= */
+  
 /* ================= SALARY CALCULATION ================= */
 const {
   basicSalary,

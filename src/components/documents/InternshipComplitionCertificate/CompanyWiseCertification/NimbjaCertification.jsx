@@ -1,70 +1,104 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import A4Layout from "../../../layout/A4Page";
-
-/* ================= DATE FORMAT ================= */
-const formatDate = (date) => {
-  if (!date) return "";
-  const d = new Date(date);
-  const day = String(d.getDate()).padStart(2, "0");
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-  const year = d.getFullYear();
-  return `${day}/${month}/${year}`;
-};
-
-const baseText = {
-  fontFamily: "Segoe UI",
-  fontSize: "14px",
-  lineHeight: 1.8,
-};
+import A4Page from "../../../layout/A4Page";
 
 const NimbjaCertification = ({ company, data }) => {
+  const formatDate = (date) =>
+    new Date(date).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+
+  const title = (data?.mrms || "").toLowerCase().trim();
+
+  const pronouns =
+    title === "miss." || title === "mrs."
+      ? { subject: "She", object: "her", possessive: "her" }
+      : title === "mx."
+        ? { subject: "They", object: "them", possessive: "their" }
+        : { subject: "He", object: "him", possessive: "his" };
+
   return (
-    <A4Layout headerSrc={company.header} footerSrc={company.footer}>
-      <Box sx={{ px: "25mm", pt: "20mm" }}>
-        {/* Title */}
-        <Typography
-          align="center"
-          sx={{
-            ...baseText,
-            fontSize: "18px",
-            fontWeight: "bold",
-            mb: "15mm",
-            textTransform: "uppercase",
-          }}
-        >
-          Letter of Internship
-        </Typography>
+    <Box
+      sx={{
+        width: "210mm",
+        minHeight: "297mm",
+        backgroundColor: "#fff",
+        fontFamily: `"Bahnschrift", "Segoe UI", Arial, sans-serif`,
+        "& *": {
+          fontFamily: `"Bahnschrift", "Segoe UI", Arial, sans-serif`,
+        },
+      }}
+    >
+      <A4Page headerSrc={company.header} footerSrc={company.footer}>
+        {/* ================= CONTENT ================= */}
+        <Box>
+          {/* TITLE */}
+          <Typography
+            sx={{
+              textAlign: "center",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              mb: 6,
+              letterSpacing: "0.5px",
+            }}
+          >
+            LETTER OF INTERNSHIP COMPLETION
+          </Typography>
 
-        {/* Body */}
-        <Typography sx={{ ...baseText, mb: "8mm" }}>
-          This is to certify that <b>{data.employeeName}</b> has done his
-          internship at <b>Nimbja Security Solutions Pvt. Ltd.</b> from{" "}
-          <b>{formatDate(data.startDate)}</b> and end on{" "}
-          <b>{formatDate(data.endDate)}</b>.
-        </Typography>
+          {/* BODY */}
+          <Typography sx={{ mb: 2, textAlign: "justify" }}>
+            This is to certify that <strong>{data.employeeName}</strong> has
+            done {pronouns.possessive} internship at{" "}
+            <strong>DEVCONS SOFTWARE SOLUTIONS PVT. LTD.</strong> from{" "}
+            <strong>{formatDate(data.startDate)}</strong> to{" "}
+            <strong>{formatDate(data.completionDate)}</strong>.
+          </Typography>
 
-        <Typography sx={{ ...baseText, mb: "8mm" }}>
-          During the internship, he has demonstrated his skills with
-          self-motivation to learn new skills. His performance exceeded our
-          expectations and he was able to complete the given tasks on time. He
-          was designated as <b>{data.designation}</b>.
-        </Typography>
+          <Typography sx={{ mb: 9, textAlign: "justify" }}>
+            During the internship, {pronouns.subject.toLowerCase()} has
+            demonstrated {pronouns.possessive} skills with self-motivation to
+            learn new skills.{" "}
+            {pronouns.possessive.charAt(0).toUpperCase() +
+              pronouns.possessive.slice(1)}{" "}
+            performance exceeded our expectations and{" "}
+            {pronouns.subject.toLowerCase()} was able to complete the given
+            tasks on time. {pronouns.subject} was designated as{" "}
+            <strong>{data.role}</strong> with project named{" "}
+            <strong>{data.projectName}</strong>. We wish {pronouns.object} all
+            the best for {pronouns.possessive} upcoming career.
+          </Typography>
 
-        <Typography sx={{ ...baseText, mb: "15mm" }}>
-          We wish him all the best for his upcoming career.
-        </Typography>
+          {/* SIGN OFF */}
+          <Typography sx={{ mb: 1 }}>Yours faithfully,</Typography>
 
-        {/* Signature */}
-        <Typography sx={{ ...baseText, mb: "2mm" }}>Sincerely,</Typography>
+          <Typography sx={{ fontWeight: 700, mb: 3, fontSize: "13px" }}>
+            For DEVCONS SOFTWARE SOLUTIONS PVT. LTD.
+          </Typography>
 
-        <Typography sx={{ ...baseText, fontWeight: "bold" }}>
-          Kalpana Khade
-        </Typography>
-        <Typography sx={{ ...baseText }}>HR Relations Lead</Typography>
-        <Typography sx={{ ...baseText }}>Department of HR Relations</Typography>
-      </Box>
-    </A4Layout>
+          {/* SIGNATURE SECTION */}
+          <Box sx={{ display: "flex", alignItems: "flex-end", gap: 3 }}>
+            {company?.signature && (
+              <img
+                src={company.signature}
+                alt="Signature"
+                style={{ height: 55 }}
+              />
+            )}
+
+            {company?.stamp && (
+              <img src={company.stamp} alt="Stamp" style={{ height: 85 }} />
+            )}
+          </Box>
+
+          <Typography sx={{ fontWeight: 600, mt: 2, fontSize: "13px" }}>
+            {company.hrName}
+          </Typography>
+          <Typography sx={{ fontSize: "14px" }}>HR Relations Lead</Typography>
+        </Box>
+      </A4Page>
+    </Box>
   );
 };
 
