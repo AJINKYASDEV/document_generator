@@ -220,7 +220,7 @@ const netPay = round2(totalEarning - totalDeduction);
 
             <TableRow>
               <TableCell>PF</TableCell>
-              <TableCell align="right">{formatCurrency(3750 )}</TableCell>
+              <TableCell align="right">{formatCurrency( )}</TableCell>
               <TableCell />
               <TableCell />
             </TableRow>
