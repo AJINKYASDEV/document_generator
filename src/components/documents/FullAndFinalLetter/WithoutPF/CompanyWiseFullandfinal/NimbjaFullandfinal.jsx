@@ -369,4 +369,4 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
 };
 
 export default NimbjaFullAndFinal;
-     
+          
