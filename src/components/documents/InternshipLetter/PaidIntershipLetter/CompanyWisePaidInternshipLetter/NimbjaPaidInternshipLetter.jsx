@@ -133,30 +133,40 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
         // watermarkSrc={company.watermark}
       >
         <Box>
-          <Typography align="right" mb={3}>
+          <Typography sx={{ fontFamily: "Bahnschrift" }} align="right" mb={3}>
             {formatDate(data.issueDate)}
           </Typography>
 
-          <Typography mb={1}>
+          <Typography sx={{ fontFamily: "Bahnschrift" }} mb={1}>
             <strong>Name :</strong> {data.mrms} {data.employeeName}
           </Typography>
 
-          <Typography mb={3}>
+          <Typography sx={{ fontFamily: "Bahnschrift" }} mb={3}>
             <strong>Subject :</strong> Letter of intent for the Internship of
             position as <strong>{data.designation}</strong>
           </Typography>
 
-          <Typography mb={2}>Dear {firstName},</Typography>
+          <Typography sx={{ fontFamily: "Bahnschrift" }} mb={2}>
+            Dear {firstName},
+          </Typography>
 
-          <Typography mb={2} textAlign="justify">
+          <Typography
+            sx={{ fontFamily: "Bahnschrift" }}
+            mb={2}
+            textAlign="justify"
+          >
             We are pleased to offer you the Internship on position as an{" "}
             <strong>{data.designation}</strong> with{" "}
-            <strong>Devcons Software Solutions Pvt. Ltd.</strong> with effective
+            <strong>Nimbja Software Solutions Pvt. Ltd.</strong> with effective
             date <strong>{formatDate(data.startDate)}</strong> considering your
             performance and support towards the organization.
           </Typography>
 
-          <Typography mb={2} textAlign="justify">
+          <Typography
+            sx={{ fontFamily: "Bahnschrift" }}
+            mb={2}
+            textAlign="justify"
+          >
             If there is any change in the date of joining, changes can be taken
             under consideration. Your total Gross salary will be Rs.{" "}
             <strong>
@@ -165,37 +175,54 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
             per year.
           </Typography>
 
-          <Typography mb={2} textAlign="justify">
+          {/* <Typography mb={2} textAlign="justify">
             Subject to various deductions as per companies and government
             policy.
-          </Typography>
+          </Typography> */}
 
-          <Typography mb={2} textAlign="justify">
+          <Typography
+            sx={{ fontFamily: "Bahnschrift" }}
+            mb={2}
+            textAlign="justify"
+          >
             We welcome you to{" "}
-            <strong>Devcons Software Solutions Pvt. Ltd.</strong>
+            <strong>Nimbja Software Solutions Pvt. Ltd. </strong>
             family and hope it would be the beginning of a long and mutually
             beneficial association.
           </Typography>
 
-          <Typography mb={4}>
+          <Typography sx={{ fontFamily: "Bahnschrift" }} mb={4}>
             Kindly acknowledge the duplicate copy of this letter as an
             acceptance of this offer.
           </Typography>
 
-          <Typography mb={3}>Yours Sincerely,</Typography>
-          <Typography fontWeight={700} mb={2}>
-            For DEVCONS SOFTWARE SOLUTIONS PVT. LTD.
+          <Typography sx={{ fontFamily: "Bahnschrift" }} mb={3}>
+            Yours Sincerely,
+          </Typography>
+          <Typography
+            sx={{ fontFamily: "Bahnschrift" }}
+            fontWeight={700}
+            mb={2}
+          >
+            For Nimbja Security Solutions Pvt. Ltd.
           </Typography>
 
           {/* SIGNATURE BLOCK */}
-          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              mt: 4,
+              fontFamily: "Bahnschrift",
+            }}
+          >
             <Box>
-              <Box sx={{ display: "flex", gap: 3, mb: 1 }}>
+              <Box sx={{ display: "flex", gap: 2, mb: 1, mt: "2mm" }}>
                 {company?.signature && (
                   <img
                     src={company.signature}
                     alt="Signature"
-                    style={{ height: 60 }}
+                    style={{ height: 40 }}
                   />
                 )}
                 {company?.stamp && (
@@ -203,27 +230,33 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
                 )}
               </Box>
               {/* <Typography fontWeight={600}>{company.hrName}</Typography> */}
-              <Typography fontSize="16px">
-                <b>HR Relations Lead</b>
+              <Typography sx={{ fontWeight: 600, fontFamily: "Bahnschrift" }}>
+                {company.hrName}
+              </Typography>
+              <Typography sx={{ fontSize: "14px", fontFamily: "Bahnschrift" }}>
+                HR Relations Lead
               </Typography>
             </Box>
 
             <Box minWidth="260px" mb={3}>
-              <Box sx={{ display: "flex", mb: 2 }}>
-                <Typography fontSize="16px" mr={1}>
+              <Box sx={{ display: "flex", mb: 2, mt: "28mm" }}>
+                <Typography
+                  sx={{ fontSize: "16px", fontFamily: "Bahnschrift" }}
+                  mr={1}
+                >
                   Signature :
                 </Typography>
                 <Box sx={{ flexGrow: 1, borderBottom: "1px solid #000" }} />
               </Box>
 
-              <Typography fontSize="16px">
+              <Typography sx={{ fontSize: "16px", fontFamily: "Bahnschrift" }}>
                 Candidate Name : {data.employeeName}
               </Typography>
             </Box>
           </Box>
 
           <Typography
-            mt={4}
+            mt={3}
             fontSize="16px"
             textAlign="center"
             sx={{ textDecoration: "underline" }}
@@ -261,7 +294,7 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
             }}
           >
             <TableBody>
-              <TableRow sx={{ backgroundColor: "#f2b705" }}>
+              <TableRow sx={{ backgroundColor: "#9BBB59" }}>
                 <TableCell>
                   <strong>Salary Components</strong>
                 </TableCell>
@@ -281,7 +314,7 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
                 </TableRow>
               ))}
 
-              <TableRow sx={{ backgroundColor: "#f2b705" }}>
+              <TableRow sx={{ backgroundColor: "#9BBB59" }}>
                 <TableCell>
                   <strong>Total Monthly Gross Salary</strong>
                 </TableCell>
@@ -304,7 +337,7 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
                   <img
                     src={company.signature}
                     alt="Signature"
-                    style={{ height: 65 }}
+                    style={{ height: 45 }}
                   />
                 )}
                 {company?.stamp && (
@@ -318,14 +351,17 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
             </Box>
 
             <Box minWidth="260px" mb={3}>
-              <Box sx={{ display: "flex", mb: 2 }}>
-                <Typography fontSize="16px" mr={1}>
+              <Box sx={{ display: "flex", mb: 2, mt: "28mm" }}>
+                <Typography
+                  sx={{ fontSize: "16px", fontFamily: "Bahnschrift" }}
+                  mr={1}
+                >
                   Signature :
                 </Typography>
                 <Box sx={{ flexGrow: 1, borderBottom: "1px solid #000" }} />
               </Box>
 
-              <Typography fontSize="16px">
+              <Typography sx={{ fontSize: "16px", fontFamily: "Bahnschrift" }}>
                 Candidate Name : {data.employeeName}
               </Typography>
             </Box>

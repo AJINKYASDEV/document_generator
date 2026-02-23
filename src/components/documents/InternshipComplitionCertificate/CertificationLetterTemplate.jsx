@@ -26,6 +26,7 @@ const companyComponentMap = {
   5: RPCertification,
 //   6: PentaExperience,
   8: JditCertification,
+  9: NimbjaCertification,
   10: SmartSoftwareCertification,
 };
 
