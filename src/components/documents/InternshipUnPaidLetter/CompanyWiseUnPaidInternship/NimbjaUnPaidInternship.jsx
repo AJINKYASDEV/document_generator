@@ -63,7 +63,7 @@ const NimbjaUnPaidinternship = ({ company = {}, data = {} }) => {
           <Typography sx={{ mb: 2, textAlign: "justify" }}>
             We are pleased to offer you the internship on position as a{" "}
             <strong>{data.designation}</strong> with{" "}
-            <strong>Devcons Software Solutions Pvt. Ltd.</strong> with effective
+            <strong>Nimbja Security Solutions Pvt. Ltd.</strong> with effective
             date <strong>{formatDate(data.startDate)}</strong> considering your
             performance and support towards the organization.
           </Typography>
@@ -75,7 +75,7 @@ const NimbjaUnPaidinternship = ({ company = {}, data = {} }) => {
 
           <Typography sx={{ mb: 2, textAlign: "justify" }}>
             We welcome you to{" "}
-            <strong>Devcons Software Solutions Pvt. Ltd.</strong>
+            <strong>Nimbja Security Solutions Pvt. Ltd.</strong>
             Family and hope it would be the beginning of a long and mutually
             beneficial association.
           </Typography>
@@ -89,7 +89,7 @@ const NimbjaUnPaidinternship = ({ company = {}, data = {} }) => {
           <Typography sx={{ mb: 2 }}>Yours Sincerely,</Typography>
 
           <Typography sx={{ fontWeight: 700, mb: 2 }}>
-            For DEVCONS SOFTWARE SOLUTIONS PVT. LTD.
+            For Nimbja Security Solutions Pvt. Ltd.
           </Typography>
 
           {/* SIGNATURE + STAMP */}

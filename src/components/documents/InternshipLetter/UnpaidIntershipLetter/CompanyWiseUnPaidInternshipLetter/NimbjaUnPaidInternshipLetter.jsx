@@ -109,7 +109,7 @@ const NimbjaUnPaidinternshipLetter = ({ company = {}, data = {} }) => {
             normal course of internship.
           </Typography>
 
-          <Typography
+          {/* <Typography
             sx={{
               mb: 1,
               textAlign: "justify",
@@ -119,7 +119,7 @@ const NimbjaUnPaidinternshipLetter = ({ company = {}, data = {} }) => {
           >
             Subject to various deductions as per companies and government
             policy.
-          </Typography>
+          </Typography> */}
 
           {/* SIGN OFF */}
           <Typography sx={{ mb: 2, fontFamily: "Bahnschrift", }}>
