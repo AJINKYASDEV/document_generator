@@ -51,7 +51,7 @@ const NimbjaCertification = ({ company, data }) => {
           <Typography sx={{ mb: 2, textAlign: "justify" }}>
             This is to certify that <strong>{data.employeeName}</strong> has
             done {pronouns.possessive} internship at{" "}
-            <strong>DEVCONS SOFTWARE SOLUTIONS PVT. LTD.</strong> from{" "}
+            <strong>{company.name}</strong> from{" "}
             <strong>{formatDate(data.startDate)}</strong> to{" "}
             <strong>{formatDate(data.completionDate)}</strong>.
           </Typography>
@@ -74,7 +74,7 @@ const NimbjaCertification = ({ company, data }) => {
           <Typography sx={{ mb: 1 }}>Yours faithfully,</Typography>
 
           <Typography sx={{ fontWeight: 700, mb: 3, fontSize: "13px" }}>
-            For DEVCONS SOFTWARE SOLUTIONS PVT. LTD.
+            For {company.name} 
           </Typography>
 
           {/* SIGNATURE SECTION */}
