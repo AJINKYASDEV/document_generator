@@ -189,9 +189,10 @@ import {
 } from "@mui/material";
 import A4Page from "../../../../layout/A4Page";
 import { formatCurrency } from "../../../../../utils/salaryCalculations";
+import SalaryStructureTable from "../../../../common/SalaryStructureTable";
+
 
 const NimbjaOfferPage2 = ({ company, data }) => {
-
   /* ===== helper for consistent rounding ===== */
   const round2 = (num) => Number(num.toFixed(2));
   const round0 = (num) => Math.round(num); // 👈 yearly, no decimals
@@ -229,38 +230,38 @@ const NimbjaOfferPage2 = ({ company, data }) => {
   /* =====================================================
    STEP 3: FINAL ROWS (ANNUAL DERIVED FROM MONTHLY)
    ===================================================== */
- const rows = [
-   {
-     name: "Basic",
-     monthly: basicMonthly,
-     annual: round0(basicMonthly * 12), // ✅ FIXED
-   },
-   {
-     name: "Bouquet Of Benefits",
-     monthly: hraMonthly,
-     annual: round0(hraMonthly * 12), // ✅ FIXED
-   },
-   {
-     name: "HRA",
-     monthly: daMonthly,
-     annual: round0(daMonthly * 12), // ✅ FIXED
-   },
-   {
-     name: "City Allowance",
-     monthly: specialMonthly,
-     annual: round0(specialMonthly * 12), // ✅ FIXED
-   },
-   {
-     name: "Superannuation Fund",
-     monthly: foodMonthly,
-     annual: round0(foodMonthly * 12), // ✅ FIXED
-   },
-   {
-     name: "Performance Bonus",
-     monthly: miscMonthly,
-     annual: round0(miscMonthly * 12), // ✅ FIXED
-   },
- ];
+  const rows = [
+    {
+      name: "Basic",
+      monthly: basicMonthly,
+      annual: round0(basicMonthly * 12), // ✅ FIXED
+    },
+    {
+      name: "Bouquet Of Benefits",
+      monthly: hraMonthly,
+      annual: round0(hraMonthly * 12), // ✅ FIXED
+    },
+    {
+      name: "HRA",
+      monthly: daMonthly,
+      annual: round0(daMonthly * 12), // ✅ FIXED
+    },
+    {
+      name: "City Allowance",
+      monthly: specialMonthly,
+      annual: round0(specialMonthly * 12), // ✅ FIXED
+    },
+    {
+      name: "Superannuation Fund",
+      monthly: foodMonthly,
+      annual: round0(foodMonthly * 12), // ✅ FIXED
+    },
+    {
+      name: "Performance Bonus",
+      monthly: miscMonthly,
+      annual: round0(miscMonthly * 12), // ✅ FIXED
+    },
+  ];
 
   /* =====================================================
    STEP 4: TOTALS (GUARANTEED TO MATCH CTC)
@@ -282,161 +283,65 @@ const NimbjaOfferPage2 = ({ company, data }) => {
     backgroundColor: "#9BBB59",
   };
 
+  const formatDate = (date) =>
+    date
+      ? new Date(date).toLocaleDateString("en-US", {
+          month: "long",
+          day: "2-digit",
+          year: "numeric",
+        })
+      : "";
+  // ================= ANNUAL VALUES =================
+  const basicAnnual = round0(basicMonthly * 12);
+  const hraAnnual = round0(hraMonthly * 12);
+  const daAnnual = round0(daMonthly * 12);
+  const specialAnnual = round0(specialMonthly * 12);
+  const foodAnnual = round0(foodMonthly * 12);
+  const miscAnnual = round0(miscMonthly * 12);
+
+  const salaryRows = [
+    ["Basic", basicMonthly, basicAnnual],
+    ["Bouqet Of Benefits", hraMonthly, hraAnnual],
+    ["HRA", daMonthly, daAnnual],
+    ["City Allowance", specialMonthly, specialAnnual],
+    ["Superannuation Fund", foodMonthly, foodAnnual],
+    ["Performance Bonus", miscMonthly, miscAnnual],
+  ];
+
   return (
-    <A4Page
-      headerSrc={company.header}
-      footerSrc={company.footer}
-      contentTop="48mm"
-      contentBottom="28mm"
-      company={company}
-    >
-      {/* ================= TITLE ================= */}
-      <Typography
-        align="center"
-        sx={{
-          fontFamily: '"Bahnschrift", "Segoe UI", sans-serif',
-          fontSize: "13pt",
-          fontWeight: 600,
-          mb: "8mm",
-        }}
-      >
-        Annexure – A : Salary Structure
-      </Typography>
+    <A4Page headerSrc={company.header} footerSrc={company.footer}>
+      <Box className="a4-content-only">
+        <Typography
+          sx={{
+            textAlign: "right",
+            mb: "5mm",
+            mt: "-12mm",
+            fontSize: "11pt",
+            fontFamily: "Bahnschrift",
+          }}
+        >
+          {formatDate(data.issueDate)}
+        </Typography>
 
-      {/* ================= TABLE ================= */}
-      <TableContainer>
-        <Table sx={{ borderCollapse: "collapse" }}>
-          <TableHead>
-            <TableRow sx={GREEN_ROW}>
-              <TableCell sx={{ ...CELL, fontWeight: "bold" }}>
-                Salary Components
-              </TableCell>
-              <TableCell sx={{ ...CELL, fontWeight: "bold" }} align="right">
-                Per Month (Rs.)
-              </TableCell>
-              <TableCell sx={{ ...CELL, fontWeight: "bold" }} align="right">
-                Per Annum (Rs.)
-              </TableCell>
-            </TableRow>
-          </TableHead>
+        <Typography
+          sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
+        >
+          <strong>
+            Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
+          </strong>
+        </Typography>
 
-          <TableBody>
-            {rows.map((row, i) => (
-              <TableRow key={i}>
-                <TableCell sx={CELL}>{row.name}</TableCell>
-                <TableCell sx={CELL} align="right">
-                  {formatCurrency(row.monthly)}
-                </TableCell>
-                <TableCell sx={CELL} align="right">
-                  {formatCurrency(row.annual)}
-                </TableCell>
-              </TableRow>
-            ))}
-
-            {/* ================= TOTAL ================= */}
-            <TableRow sx={{ ...GREEN_ROW, fontWeight: "bold" }}>
-              <TableCell sx={CELL}>Total Salary</TableCell>
-              <TableCell sx={CELL} align="right">
-                {formatCurrency(totalMonthly)}
-              </TableCell>
-              <TableCell sx={CELL} align="right">
-                {formatCurrency(totalAnnual)}
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      {/* ================= SIGNATURE BLOCK (UNCHANGED) ================= */}
-      <Box sx={{ mt: "8mm", mb: "10mm" }}>
-        <Grid container justifyContent="space-between" alignItems="flex-start">
-          {/* ================= LEFT — HR ================= */}
-          <Grid item>
-            {/* Signature + Stamp */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "6mm",
-                mb: "4mm",
-              }}
-            >
-              {company.signature && (
-                <Box
-                  component="img"
-                  src={company.signature}
-                  alt="HR Signature"
-                  sx={{ width: "42mm", mt: "14mm", height: "12mm" }}
-                />
-              )}
-
-              {company.stamp && (
-                <Box
-                  component="img"
-                  src={company.stamp}
-                  alt="Company Stamp"
-                  sx={{ width: "32mm", ml: "-4mm" }}
-                />
-              )}
-            </Box>
-
-            {/* HR NAME ROW */}
-            <Typography
-              sx={{
-                fontFamily: '"Bahnschrift", "Segoe UI", sans-serif',
-                fontSize: "12pt",
-                fontWeight: "bold",
-              }}
-            >
-              {company.hrName}
-            </Typography>
-
-            {/* HR DESIGNATION — LOWER */}
-            <Typography
-              sx={{
-                fontFamily: '"Bahnschrift", "Segoe UI", sans-serif',
-                fontSize: "12pt",
-                mt: "1mm",
-              }}
-            >
-              <strong>HR Relations Lead</strong>
-            </Typography>
-          </Grid>
-
-          {/* ================= RIGHT — CANDIDATE (ALIGNED WITH HR NAME) ================= */}
-          <Grid
-            item
-            sx={{
-              mt: "34mm", // 🔑 aligns exactly with HR NAME row
-            }}
-          >
-            <Typography
-              sx={{
-                fontFamily: '"Bahnschrift"',
-                fontSize: "12pt",
-                mb: "1mm",
-                mt: "3mm",
-              }}
-            >
-              <strong>Signature : _________________________</strong>
-            </Typography>
-
-            <Typography
-              sx={{
-                fontFamily: '"Bahnschrift"',
-                fontSize: "12pt",
-                mb: "1mm",
-                mt: "1mm",
-              }}
-            >
-              <strong>Candidate Name:</strong>{" "}
-              <strong>{data.candidateName}</strong>
-            </Typography>
-          </Grid>
-        </Grid>
+        {/* 🔥 ONLY THIS PART IS REPLACED */}
+        <SalaryStructureTable
+          salaryRows={salaryRows}
+          totalMonthly={totalMonthly}
+          totalAnnual={totalAnnual}
+          data={data}
+          formatDate={formatDate}
+        />
       </Box>
     </A4Page>
   );
-};
+};;
 
 export default NimbjaOfferPage2;

@@ -1,5 +1,26 @@
+// import React from "react";
+// import { Box, Typography } from "@mui/material";
+// import A4Layout from "../../../layout/A4Page";
 
+// /* ================= DATE FORMAT ================= */
+// const formatDate = (date) => {
+//   if (!date) return "";
 
+//   const d = new Date(date);
+//   const day = String(d.getDate()).padStart(2, "0");
+//   const month = String(d.getMonth() + 1).padStart(2, "0");
+//   const year = d.getFullYear();
+
+//   return `${day}/${month}/${year}`;
+// };
+
+// const SmartMatrixCertification = ({ company, data }) => {
+//   return (
+//     <A4Layout headerSrc={company.header} footerSrc={company.footer}></A4Layout>
+//   );
+// };
+
+// export default SmartMatrixCertification;
 
 import React from "react";
 import { Box, Typography } from "@mui/material";
@@ -35,17 +56,17 @@ const formatDate = (date) => {
 };
 
 
-const CubeageCertification = ({ company, data }) => {
+const SmartMatrixCertification = ({ company, data }) => {
   return (
-    <A4Layout headerSrc={company.header} >
+    <A4Layout headerSrc={company.header} footerSrc={company.footer}>
       {/* ================= ISSUE DATE ================= */}
       <Box
         sx={{
           textAlign: "right",
           fontSize: "13px",
-          mt: "25mm",
+          mt: "10mm",
           mr: "10mm",
-          fontFamily: "Verdana",
+          fontFamily: "Bahnschrift",
           fontWeight: "bold",
         }}
       >
@@ -73,9 +94,9 @@ const CubeageCertification = ({ company, data }) => {
         >
           We are pleased to certify that <strong>{data.employeeName}</strong>,
           has joined our group to work on internship with organization name{" "}
-          <strong>Cubeage Technology Services Pvt. Ltd.</strong> The internship
-          <br />
-          program held on <strong>{formatDate(data.startDate)}</strong> to{" "}
+          <strong>SmartMatrix Digital Services Pvt Ltd</strong>.<br />
+          The internship program held on{" "}
+          <strong>{formatDate(data.startDate)}</strong> to{" "}
           <strong>{formatDate(data.completionDate)}</strong>.
         </Typography>
 
@@ -122,7 +143,18 @@ const CubeageCertification = ({ company, data }) => {
         <Typography
           sx={{ fontSize: "14px", mt: "-5mm", fontFamily: "Bahnschrift" }}
         >
-          Authorized Signature,
+          Yours Sincerely,
+        </Typography>
+
+        <Typography
+          sx={{
+            fontSize: "14px",
+            mt: "10mm",
+            fontWeight: "bold",
+            fontFamily: "Verdana",
+          }}
+        >
+          SmartMatrix Digital Services Pvt Ltd.
         </Typography>
 
         <Box
@@ -139,7 +171,7 @@ const CubeageCertification = ({ company, data }) => {
               src={company.signature}
               alt="HR Signature"
               style={{
-                height: "45px",
+                height: "40px",
                 marginBottom: "7mm",
               }}
             />
@@ -149,18 +181,22 @@ const CubeageCertification = ({ company, data }) => {
             <img
               src={company.stamp}
               alt="Company Stamp"
-              style={{ width: "110px", marginRight: "99mm" }}
+              style={{ width: "110px", marginRight: "88mm" }}
             />
           )}
         </Box>
 
-        <Typography sx={{ fontSize: "14px", mt: "18mm", fontFamily: "Verdana" }}>
-          <strong>Cubeage Technology Services Pvt. Ltd.</strong>
+        <Typography sx={{ fontSize: "14px", mt: "6mm", fontFamily: "Verdana" }}>
+          <strong>Shiv Lahane</strong>
+        </Typography>
+
+        <Typography sx={{ fontSize: "13px", mb: "2mm", fontFamily: "Verdana" }}>
+          <strong>HR Manager–HR Services</strong>
         </Typography>
       </Box>
     </A4Layout>
   );
 };
 
-export default CubeageCertification;
+export default SmartMatrixCertification;
 

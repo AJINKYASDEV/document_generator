@@ -30,36 +30,41 @@ const formatCurrency = (v) =>
   });
 
 /* ================= SIMPLE SALARY BREAKUP ================= */
-/* ================= SALARY BREAKUP WITH MISC ================= */
+/* ================= SALARY BREAKUP WITH PENTA LOGIC ================= */
 
 const generateSalaryBreakup = (annualCTC) => {
-  const basic = round2(annualCTC * 0.40);
-  const hra = round2(annualCTC * 0.20);
-  const special = round2(annualCTC * 0.25);
-  const food = round2(annualCTC * 0.10);
-  const misc = round2(
-    annualCTC - (basic + hra + special + food)
-  );
+  const round0 = (num) => Math.round(num);
+
+  const annual = round0(Number(annualCTC || 0));
+  const monthlyCTC = round0(annual / 12);
+
+  const basicMonthly = round0(monthlyCTC * 0.40);
+  const hraMonthly = round0(monthlyCTC * 0.18);
+  const daMonthly = round0(monthlyCTC * 0.12);
+  const specialMonthly = round0(monthlyCTC * 0.16);
+  const foodMonthly = round0(monthlyCTC * 0.06);
+  const miscMonthly = round0(monthlyCTC * 0.08);
 
   return [
-    ["Basic", basic / 12, basic],
-    ["House Rent Allowance", hra / 12, hra],
-    ["Special Allowance", special / 12, special],
-    ["Food Allowance", food / 12, food],
-    ["Misc Allowance", misc / 12, misc],
+    ["Basic", basicMonthly, basicMonthly * 12],
+    ["House Rent Allowance", hraMonthly, hraMonthly * 12],
+    ["Dearness Allowance", daMonthly, daMonthly * 12],
+    ["Special Allowance", specialMonthly, specialMonthly * 12],
+    ["Food Allowance", foodMonthly, foodMonthly * 12],
+    ["Misc Allowance", miscMonthly, miscMonthly * 12],
   ];
 };
-
 /* ================= MAIN COMPONENT ================= */
 
-const QuickConfirmation = ({ company, data }) => {
+const QuickConfirmation = ({ company = {}, data = {} }) => {
   if (!company || !data) return null;
 
   const annualCTC = Number(data.totalSalary || 0);
+
   const salaryRows = generateSalaryBreakup(annualCTC);
 
   const monthlyGross = salaryRows.reduce(
-    (sum, row) => sum + Number(row[1]),
+    (sum, row) => sum + row[1],
     0
   );
 

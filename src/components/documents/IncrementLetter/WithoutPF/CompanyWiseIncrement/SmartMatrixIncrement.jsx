@@ -1141,18 +1141,18 @@ const SmartMatrixIncrement = ({ company, data }) => {
               {/* STAMP */}
               {company.stamp && (
                 <img
-                  src={company.stamp}
+                  src={company.CEO}
                   alt="Company Stamp"
-                  style={{ width: "38mm" }}
+                  style={{ width: "45mm" }}
                 />
               )}
 
               {/* SIGNATURE */}
               {company.signature && (
                 <img
-                  src={company.CEO}
+                  src={company.stamp}
                   alt="HR Signature"
-                  style={{ width: "45mm" }}
+                  style={{ width: "38mm" }}
                 />
               )}
             </Box>

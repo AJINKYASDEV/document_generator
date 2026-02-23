@@ -10,112 +10,52 @@ import {
   TableCell,
   TableContainer,
 } from "@mui/material";
-import A4Page from "../../../../layout/A4Page";
-import { formatCurrency } from "../../../../../utils/salaryCalculations";
-import SalaryStructureTable from "../../../../common/SalaryStructureTable";
+import A4Page from "../../layout/A4Page";
+import { formatCurrency } from "../../../utils/salaryCalculations";
 
 
 // ================= TABLE CELL STYLES =================
-const NimbjaAppointment = ({ company, data }) => {
-  if (!company || !data) return null;
+const headCell = {
+  fontWeight: 700,
+  border: "1px solid #333",
+  fontFamily: "Times New Roman",
+};
 
-  /* ================= HELPERS ================= */
-  const firstName = data.employeeName?.split(" ")[0] || "";
+const bodyCell = {
+  border: "1px solid #333",
+  fontFamily: "Times New Roman",
+};
 
-  const round2 = (num) => Number(Number(num).toFixed(2));
+const totalCell = {
+  fontWeight: 700,
+  border: "1px solid #333",
+  fontFamily: "Times New Roman",
+};
 
-  const formatDate = (date) =>
-    date
-      ? new Date(date).toLocaleDateString("en-US", {
-          month: "long",
-          day: "2-digit",
-          year: "numeric",
-        })
-      : "";
 
-  const formatLakhsPerAnnum = (amount) => {
-    if (!amount || isNaN(amount)) return "";
 
-    const lakhs = amount / 100000;
+/* ================= DATE FORMAT ================= */
+const formatDate = (date) => {
+  if (!date) return "";
+  return new Date(date).toLocaleDateString("en-US", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+};
+const formatOneCurrency = (salary) => {
+  if (!salary) return "";
 
-    return `${lakhs % 1 === 0 ? lakhs : lakhs.toFixed(1)} Lakhs per annum`;
-  };
+  const valueInLakhs = salary / 100000;
 
-  /* ================= SALARY LOGIC ================= */
-  const round0 = (num) => Math.round(num);
+  // remove .0 if number is whole
+  return valueInLakhs % 1 === 0
+    ? valueInLakhs.toString()
+    : valueInLakhs.toFixed(1);
+};
+const NimbjaAppointment1 = ({ data, company }) => {
+  if (!data || !company) return null;
 
-  // // ===== Static PF =====
-  // const pfMonthly = 3750;
-  // const pfAnnual = round2(pfMonthly * 12);
-
-  // // ===== Fixed % Components =====
-  // const basicAnnual = round2(annualCTC * 0.34);
-  // const hraAnnual = round2(annualCTC * 0.20);
-  // const daAnnual = round2(annualCTC * 0.035);
-  // const foodAnnual = round2(annualCTC * 0.06);
-
-  // // ===== Special = Balance Amount =====
-  // const specialAnnual = round2(
-  //   annualCTC -
-  //     (basicAnnual + hraAnnual + daAnnual + foodAnnual + pfAnnual)
-  // );
-
-  // // ===== Monthly Values =====
-  // const basicMonthly = round2(basicAnnual / 12);
-  // const hraMonthly = round2(hraAnnual / 12);
-  // const daMonthly = round2(daAnnual / 12);
-  // const specialMonthly = round2(specialAnnual / 12);
-  // const foodMonthly = round2(foodAnnual / 12);
-
-  // // ===== Totals (Exact CTC Match) =====
-  // const totalMonthly = round2(annualCTC / 12);
-  // const totalAnnual = annualCTC;
-
-  // const salaryRows = [
-  //   ["Basic", basicMonthly, basicAnnual],
-  //   ["House Rent Allowance", hraMonthly, hraAnnual],
-  //   ["Dearness Allowance", daMonthly, daAnnual],
-  //   ["Special Allowance", specialMonthly, specialAnnual],
-  //   ["Food Allowance", foodMonthly, foodAnnual],
-  //   ["Provident Fund (PF)", pfMonthly, pfAnnual],
-  // ];
-
-  // ================= MONTHLY CTC =================
-  const monthlyCTC = round0(Number(data.salary || 0));
-
-  // ================= UPDATED PERCENTAGES =================
-  const basicMonthly = round0(monthlyCTC * 0.48); // 40% + 8%
-  const hraMonthly = round0(monthlyCTC * 0.18);
-  const daMonthly = round0(monthlyCTC * 0.12);
-  const specialMonthly = round0(monthlyCTC * 0.16);
-  const foodMonthly = round0(monthlyCTC * 0.06);
-
-  // ================= STATIC PF =================
-  const pfMonthly = 3750;
-
-  // ================= ANNUAL VALUES =================
-  const basicAnnual = basicMonthly * 12;
-  const hraAnnual = hraMonthly * 12;
-  const daAnnual = daMonthly * 12;
-  const specialAnnual = specialMonthly * 12;
-  const foodAnnual = foodMonthly * 12;
-  const pfAnnual = pfMonthly * 12;
-
-  // ================= SALARY TABLE =================
-  const salaryRows = [
-    ["Basic", basicMonthly, basicAnnual],
-    ["Bouqet Of Benefits", hraMonthly, hraAnnual],
-    ["HRA", daMonthly, daAnnual],
-    ["City Allowance", specialMonthly, specialAnnual],
-    ["Superannuation Fund", foodMonthly, foodAnnual],
-    ["Provident Fund (PF)", pfMonthly, pfAnnual], // Separate
-  ];
-
-  // ================= TOTAL EARNINGS =================
-  const totalMonthly =
-    basicMonthly + hraMonthly + daMonthly + specialMonthly + foodMonthly;
-
-  const totalAnnual = totalMonthly * 12;
   return (
     <>
       <A4Page headerSrc={company.header} footerSrc={company.footer}>
@@ -158,7 +98,7 @@ const NimbjaAppointment = ({ company, data }) => {
           <Typography
             sx={{
               mb: "10mm",
-              mt: "-3mm",
+              mt:"-3mm",
               whiteSpace: "pre-line",
               fontSize: "11pt",
               fontFamily: "Bahnschrift",
@@ -188,7 +128,6 @@ const NimbjaAppointment = ({ company, data }) => {
               mb: "5mm",
               fontSize: "12pt",
               fontFamily: "Bahnschrift",
-              textDecoration: "underline",
             }}
           >
             Letter of Appointment
@@ -225,7 +164,8 @@ const NimbjaAppointment = ({ company, data }) => {
                 sx={{ mb: "3mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
               >
                 Your total emoluments will be{" "}
-                <strong>Rs. {formatLakhsPerAnnum(totalAnnual)}</strong>
+                <strong>Rs. {formatOneCurrency(data.salary)}</strong> Lakh per
+                annum.
               </Typography>
             </li>
 
@@ -506,7 +446,7 @@ const NimbjaAppointment = ({ company, data }) => {
                     sx={{
                       fontFamily: "Bahnschrift",
                       textAlign: "right",
-                      marginRight: "-3mm",
+                      marginRight:"-3mm"
                     }}
                   >
                     Name: {data.employeeName}
@@ -520,7 +460,7 @@ const NimbjaAppointment = ({ company, data }) => {
                       ml: "73mm",
                     }}
                   >
-                    Date : _________________
+                  Date : _________________
                   </Typography>
                 </Box>
               </Box>
@@ -529,39 +469,233 @@ const NimbjaAppointment = ({ company, data }) => {
         </div>
       </A4Page>
       <A4Page headerSrc={company.header} footerSrc={company.footer}>
-        <Box className="a4-content-only">
-          <Typography
-            sx={{
-              textAlign: "right",
-              mb: "5mm",
-              mt: "-12mm",
-              fontSize: "11pt",
-              fontFamily: "Bahnschrift",
-            }}
-          >
-            {formatDate(data.issueDate)}
-          </Typography>
+        {(() => {
+          /* ===== helpers ===== */
+          const round2 = (num) => Number(num.toFixed(2)); // monthly
+          const round0 = (num) => Math.round(num); // annual
 
-          <Typography
-            sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
-          >
-            <strong>
-              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
-            </strong>
-          </Typography>
+          /* ===== SOURCE OF TRUTH ===== */
+          const annualCTC = round0(
+            Number(data.totalsalary || data.ctc || data.annualSalary || 0),
+          );
 
-          {/* 🔥 ONLY THIS PART IS REPLACED */}
-          <SalaryStructureTable
-            salaryRows={salaryRows}
-            totalMonthly={totalMonthly}
-            totalAnnual={totalAnnual}
-            data={data}
-            formatDate={formatDate}
-          />
-        </Box>
-      </A4Page>
+          const grossMonthly = round2(annualCTC / 12);
+
+          /* ===== PERCENT CONFIG (100%) ===== */
+          const PERCENT = {
+            basic: 0.4,
+            hra: 0.18,
+            da: 0.12,
+            special: 0.16,
+            food: 0.06,
+          };
+
+          /* ===== MONTHLY CALCULATION (ROUND HERE ONLY) ===== */
+          const basicMonthly = round2(grossMonthly * PERCENT.basic);
+          const hraMonthly = round2(grossMonthly * PERCENT.hra);
+          const daMonthly = round2(grossMonthly * PERCENT.da);
+          const specialMonthly = round2(grossMonthly * PERCENT.special);
+          const foodMonthly = round2(grossMonthly * PERCENT.food);
+
+          const usedMonthly =
+            basicMonthly +
+            hraMonthly +
+            daMonthly +
+            specialMonthly +
+            foodMonthly;
+
+          /* ===== ADJUSTMENT BUCKET ===== */
+          const miscMonthly = round2(grossMonthly - usedMonthly);
+
+          /* ===== FINAL SALARY COMPONENTS ===== */
+          const rows = [
+            {
+              name: "Basic",
+              monthly: basicMonthly,
+              annual: round0(basicMonthly * 12),
+            },
+            {
+              name: "Bouquet Of Benefits",
+              monthly: hraMonthly,
+              annual: round0(hraMonthly * 12),
+            },
+            {
+              name: "HRA",
+              monthly: daMonthly,
+              annual: round0(daMonthly * 12),
+            },
+            {
+              name: "City Allowance",
+              monthly: specialMonthly,
+              annual: round0(specialMonthly * 12),
+            },
+            {
+              name: "Superannuation Fund",
+              monthly: foodMonthly,
+              annual: round0(foodMonthly * 12),
+            },
+            {
+              name: "Performance Bonus",
+              monthly: miscMonthly,
+              annual: round0(miscMonthly * 12),
+            },
+          ];
+
+          /* ===== TOTALS (MATCH CTC ALWAYS) ===== */
+          // 
+           const totalMonthly = round2(
+             rows.reduce((sum, r) => sum + r.monthly, 0),
+           );
+
+           const totalAnnual = round0(
+             rows.reduce((sum, r) => sum + r.annual, 0),
+           );
+
+           /* ================= TABLE STYLES (UNCHANGED) ================= */
+           const CELL = {
+             border: "1px solid #000",
+             fontFamily: '"Bahnschrift", "Segoe UI", sans-serif',
+             fontSize: "11pt",
+             padding: "6px 8px",
+             lineHeight: 1.4,
+           };
+
+           const GREEN_ROW = {
+             backgroundColor: "#9BBB59",
+           };
+
+          return (
+            <>
+              <A4Page headerSrc={company.header} footerSrc={company.footer}>
+                {/* ================= ROOT WRAPPER ================= */}
+                <Box
+                  sx={{
+                    fontFamily: "Bahnschrift",
+                    position: "relative",
+                  }}
+                >
+                  {/* ================= ISSUE DATE ================= */}
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      right: "18mm",
+                      mt: "-10mm",
+                      fontFamily: "Bahnschrift",
+                    }}
+                  >
+                    {formatDate(data.issueDate)}
+                  </Box>
+
+                  {/* ================= EMPLOYEE DETAILS ================= */}
+                  <Box sx={{ fontSize: "8pt" }}>
+                    <Typography
+                      sx={{ fontSize: "11pt", fontFamily: "Bahnschrift" }}
+                    >
+                      Ref: {company.regNo}
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        fontWeight: "bold",
+                        mt: "6mm",
+                        textDecoration: "underline",
+                        fontFamily: "Bahnschrift",
+                        fontSize: "12pt",
+                        textAlign: "center",
+                      }}
+                    >
+                      Salary Structure - Break Up
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        fontSize: "10pt",
+                        mt: "8mm",
+                        fontFamily: "Bahnschrift",
+                      }}
+                    >
+                      Name : {data.mrms} {data.employeeName}
+                    </Typography>
+
+                    <Typography
+                      sx={{ fontSize: "10pt", fontFamily: "Bahnschrift" }}
+                    >
+                      Designation : {data.position}
+                    </Typography>
+
+                    <Typography
+                      sx={{ fontSize: "10pt", fontFamily: "Bahnschrift" }}
+                    >
+                      Date of Joining : {formatDate(data.joiningDate)}
+                    </Typography>
+
+                    <Typography
+                      sx={{ fontSize: "10pt", fontFamily: "Bahnschrift" }}
+                    >
+                      Employee ID : {data.employeeId}
+                    </Typography>
+                  </Box>
+                  <br />
+
+                  {/* ================= SALARY TABLE ================= */}
+                  <TableContainer>
+                    <Table sx={{ borderCollapse: "collapse" }}>
+                      <TableHead>
+                        <TableRow sx={GREEN_ROW}>
+                          <TableCell sx={{ ...CELL, fontWeight: "bold" }}>
+                            Salary Components
+                          </TableCell>
+                          <TableCell
+                            sx={{ ...CELL, fontWeight: "bold" }}
+                            align="right"
+                          >
+                            Per Month (Rs.)
+                          </TableCell>
+                          <TableCell
+                            sx={{ ...CELL, fontWeight: "bold" }}
+                            align="right"
+                          >
+                            Per Annum (Rs.)
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+
+                      <TableBody>
+                        {rows.map((row, i) => (
+                          <TableRow key={i}>
+                            <TableCell sx={CELL}>{row.name}</TableCell>
+                            <TableCell sx={CELL} align="right">
+                              {formatCurrency(row.monthly)}
+                            </TableCell>
+                            <TableCell sx={CELL} align="right">
+                              {formatCurrency(row.annual)}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+
+                        {/* ================= TOTAL ================= */}
+                        <TableRow sx={{ ...GREEN_ROW, fontWeight: "bold" }}>
+                          <TableCell sx={CELL}>Total Salary</TableCell>
+                          <TableCell sx={CELL} align="right">
+                            {formatCurrency(totalMonthly)}
+                          </TableCell>
+                          <TableCell sx={CELL} align="right">
+                            {formatCurrency(totalAnnual)}
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </Box>
+              </A4Page>
+            </>
+          );
+        })()}
+      </A4Page> 
     </>
   );
 };
 
-export default NimbjaAppointment;
+export default NimbjaAppointment1;
+
+

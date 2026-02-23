@@ -41,21 +41,22 @@ const CubeageRelieving = ({ company, data }) => {
           boxSizing: "border-box",
         }}
       >
-        {/* ================= DATE ================= */}
-        <p style={{ textAlign: "right", marginBottom: "18pt" }}>
-          Date: {formatDate(data.issueDate)}
-        </p>
-
-        {/* ================= TITLE ================= */}
         <p
           style={{
             textAlign: "center",
             fontWeight: 600, // ✅ softened like Word
-            marginBottom: "10pt",
+            marginTop: "-28mm",
           }}
         >
           RELIEVING – CUM – EXPERIENCE LETTER
         </p>
+
+        {/* ================= DATE ================= */}
+        <p style={{ textAlign: "right", marginBottom: "2mm" }}>
+          Date: {formatDate(data.issueDate)}
+        </p>
+
+        {/* ================= TITLE ================= */}
 
         {/* ================= SUB TITLE ================= */}
         <p

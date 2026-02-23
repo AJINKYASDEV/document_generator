@@ -18,15 +18,22 @@ const companyComponentMap = {
 };
 
 const InternshipLetterTemplate = ({ company, data }) => {
-  if (!company) return null;
+  // 🔑 This value must come from form / documentData
+  const internshipType = data?.internshipType; // "paid" | "unpaid"
 
-  const InternshipComponent = companyComponentMap[company.id];
-
-  if (!InternshipComponent) {
-    return <div>No experience template available for this company</div>;
+  if (!internshipType) {
+    return <div>Internship type not selected</div>;
   }
 
-  return <InternshipComponent company={company} data={data} />;
+  if (internshipType === "paid") {
+    return <NimbjaPaidInternshipLetter company={company} data={data} />;
+  }
+
+  if (internshipType === "unpaid") {
+    return <UnpaidinternshipTemplate company={company} data={data} />;
+  }
+
+  return <div>Invalid internship type</div>;
 };
 
 export default InternshipLetterTemplate;

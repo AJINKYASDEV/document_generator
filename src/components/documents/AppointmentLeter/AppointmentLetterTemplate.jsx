@@ -3,7 +3,6 @@ import WithPFAppointmentLetterTemplate from "./WithPF/WithPFAppointmentLetterTem
 import WithoutPFAppointmentLetterTemplate from "./WithoutPF/WithoutPFAppointmentLetterTemplate";
 
 
-
 const AppointmentLetterTemplate = ({ company, data }) => {
   // 🔑 This value must come from form / documentData
   const AppointmentType = data?.appointmentType; // "paid" | "unpaid"

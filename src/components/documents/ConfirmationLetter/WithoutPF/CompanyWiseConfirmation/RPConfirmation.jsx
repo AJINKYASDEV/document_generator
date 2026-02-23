@@ -22,49 +22,48 @@ const RPConfirmationLetter = ({ company = {}, data = {} }) => {
         })
       : "";
 
-  /* ================= SALARY LOGIC (Internship Pattern) ================= */
+  /* ================= SALARY LOGIC ================= */
 
-  const round2 = (num) => Number(num.toFixed(2));
-  const annualCTC = round2(Number(data.totalSalary || 0));
+  // 🔹 Round to whole number (no decimals)
+const round0 = (num) => Math.round(num);
 
-  const basicAnnual = round2(annualCTC * 0.40);
-  const hraAnnual = round2(annualCTC * 0.18);
-  const daAnnual = round2(annualCTC * 0.12);
-  const specialAnnual = round2(annualCTC * 0.16);
-  const foodAnnual = round2(annualCTC * 0.06);
+// ================= MONTHLY CTC =================
+const monthlyCTC = round0(Number(data.totalSalary || 0));
 
-  const usedAnnual =
-    basicAnnual +
-    hraAnnual +
-    daAnnual +
-    specialAnnual +
-    foodAnnual;
+// ================= PERCENTAGE BREAKUP =================
+const basicMonthly = round0(monthlyCTC * 0.40);
+const hraMonthly = round0(monthlyCTC * 0.18);
+const daMonthly = round0(monthlyCTC * 0.12);
+const specialMonthly = round0(monthlyCTC * 0.16);
+const foodMonthly = round0(monthlyCTC * 0.06);
+const miscMonthly = round0(monthlyCTC * 0.08); // 8%
 
-  const miscAnnual = round2(annualCTC - usedAnnual);
+// ================= ANNUAL VALUES =================
+const basicAnnual = round0(basicMonthly * 12);
+const hraAnnual = round0(hraMonthly * 12);
+const daAnnual = round0(daMonthly * 12);
+const specialAnnual = round0(specialMonthly * 12);
+const foodAnnual = round0(foodMonthly * 12);
+const miscAnnual = round0(miscMonthly * 12);
 
-  const basicMonthly = round2(basicAnnual / 12);
-  const hraMonthly = round2(hraAnnual / 12);
-  const daMonthly = round2(daAnnual / 12);
-  const specialMonthly = round2(specialAnnual / 12);
-  const foodMonthly = round2(foodAnnual / 12);
-  const miscMonthly = round2(miscAnnual / 12);
+// ================= SALARY TABLE STRUCTURE =================
+const salaryRows = [
+  ["Basic", basicMonthly, basicAnnual],
+  ["House Rent Allowance", hraMonthly, hraAnnual],
+  ["Dearness Allowance", daMonthly, daAnnual],
+  ["Special Allowance", specialMonthly, specialAnnual],
+  ["Food Allowance", foodMonthly, foodAnnual],
+  ["Misc. Allowance", miscMonthly, miscAnnual],
+];
 
-  const salaryRows = [
-    ["Basic", basicMonthly, basicAnnual],
-    ["House Rent Allowance", hraMonthly, hraAnnual],
-    ["Dearness Allowance", daMonthly, daAnnual],
-    ["Special Allowance", specialMonthly, specialAnnual],
-    ["Food Allowance", foodMonthly, foodAnnual],
-    ["Misc. Allowance", miscMonthly, miscAnnual],
-  ];
+// ================= TOTALS =================
+const totalMonthly = round0(
+  salaryRows.reduce((sum, row) => sum + row[1], 0)
+);
 
-  const totalMonthly = round2(
-    salaryRows.reduce((sum, row) => sum + row[1], 0)
-  );
-
-  const totalAnnual = round2(
-    salaryRows.reduce((sum, row) => sum + row[2], 0)
-  );
+const totalAnnual = round0(
+  salaryRows.reduce((sum, row) => sum + row[2], 0)
+);
 
   /* ================= NUMBER TO WORDS ================= */
 
@@ -121,6 +120,10 @@ const RPConfirmationLetter = ({ company = {}, data = {} }) => {
             <strong>Name :</strong> {data.employeeName}
           </Typography>
 
+          <Typography mb={1}>
+                        <strong>Address</strong> {data.address}
+                       </Typography>
+
           <Typography mb={3}>
             <strong>Subject :</strong>{" "}
             Letter of intent for continued services as{" "}
@@ -128,23 +131,29 @@ const RPConfirmationLetter = ({ company = {}, data = {} }) => {
           </Typography>
 
           <Typography mb={2}>Dear {firstName},</Typography>
-
-          <Typography mb={3} textAlign="justify">
-                      We are pleased to confirm your continued services at the position of
-                      Software Test Engineer with DEVCONS SOFTWARE SOLUTIONS PVT. LTD.
-                      with effective date {data.effectiveDate}. 
-                      considering your performance and support towards the organization.
-                      If there is any change in the date of joining, changes can be taken under consideration.
           
+                    <Typography mb={3} textAlign="justify">
+                      We are pleased to confirm your continued services at the position of{" "}
+                      <strong>{data.position}</strong> with{" "}
+                      <strong>R P Business Solutions LLP</strong> with effective date{" "}
+                      <strong>{formatDate(data.effectiveDate)}</strong>, considering your performance
+                      and support towards the organization. If there is any change in the
+                      date of joining, changes can be taken under consideration.
                     </Typography>
           
                     <Typography mb={3} textAlign="justify">
-                      Your total Gross salary will be Rs. {formatCurrency(data.totalSalary)} per year.
-                      
+                      Your total Gross salary will be Rs.{" "}
+                      <strong>{formatCurrency(totalAnnual)}</strong> per year.
                     </Typography>
           
                     <Typography mb={3} textAlign="justify">
-                      Subject to various deductions as per companies and government policy.The roles and responsibilities and other terms and conditions of your employment will be Specified in your letter of appointment. We welcome you to R P BUSINESS SOLUTIONS LLP. Family and hope it would be the beginning of a long and mutually beneficial association. Kindly acknowledge the duplicate copy of this letter as an acceptance of this offer.
+                      Subject to various deductions as per company and government policy.
+                      The roles and responsibilities and other terms and conditions of your
+                      employment will be specified in your letter of appointment. We welcome
+                      you to R P Business Solutions LLP family and hope it would be the
+                      beginning of a long and mutually beneficial association. Kindly
+                      acknowledge the duplicate copy of this letter as an acceptance of
+                      this offer.
                     </Typography>
 
           <Typography mb={3}>For {company.name}</Typography>

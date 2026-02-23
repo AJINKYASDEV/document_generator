@@ -28,37 +28,59 @@ const formatCurrency = (value) => {
 };
 
 /* ===================== SALARY CALCULATION ===================== */
-const calculateSalaryBreakup = (annualCTC) => {
-  if (!annualCTC) {
-    return { salaryBreakup: [], totalPerMonth: 0, totalPerYear: 0 };
-  }
 
-  const components = [
-    { label: "Basic", percent: 40.13 },
-    { label: "House Rent Allowance", percent: 17.98 },
-    { label: "Dearness Allowance", percent: 15.99 },
-    { label: "Food Allowance", percent: 13.94 },
-    { label: "Special Allowance", percent: 11.96 },
+/* ===================== SALARY CALCULATION ===================== */
+
+const calculateSalaryBreakup = (annualCTC) => {
+  const round0 = (num) => Math.round(num);
+
+  // 🔥 Your required percentages
+  const basicAnnual   = round0(annualCTC * 0.40);
+  const hraAnnual     = round0(annualCTC * 0.18);
+  const daAnnual      = round0(annualCTC * 0.12);
+  const specialAnnual = round0(annualCTC * 0.16);
+  const foodAnnual    = round0(annualCTC * 0.06);
+  const miscAnnual    = round0(annualCTC * 0.08);
+
+  const salaryBreakup = [
+    {
+      label: "Basic ",
+      perMonth: round0(basicAnnual / 12),
+      perYear: basicAnnual,
+    },
+    {
+      label: "House Rent Allowance ",
+      perMonth: round0(hraAnnual / 12),
+      perYear: hraAnnual,
+    },
+    {
+      label: "Dearness Allowance ",
+      perMonth: round0(daAnnual / 12),
+      perYear: daAnnual,
+    },
+    {
+      label: "Special Allowance ",
+      perMonth: round0(specialAnnual / 12),
+      perYear: specialAnnual,
+    },
+    {
+      label: "Food Allowance ",
+      perMonth: round0(foodAnnual / 12),
+      perYear: foodAnnual,
+    },
+    {
+      label: "Misc. Allowance ",
+      perMonth: round0(miscAnnual / 12),
+      perYear: miscAnnual,
+    },
   ];
 
-  const salaryBreakup = components.map((c) => {
-    const perYear = Math.round(annualCTC * (c.percent / 100));
-    const perMonth = Math.round(perYear / 12);
-    return { label: c.label, perMonth, perYear };
-  });
-
-  const totalPerMonth = salaryBreakup.reduce(
-    (sum, r) => sum + r.perMonth,
-    0
-  );
-  const totalPerYear = salaryBreakup.reduce(
-    (sum, r) => sum + r.perYear,
-    0
-  );
-
-  return { salaryBreakup, totalPerMonth, totalPerYear };
+  return {
+    salaryBreakup,
+    monthlyCTC: round0(annualCTC / 12),
+    annualCTC,
+  };
 };
-
 /* ===================== PAGE WRAPPER ===================== */
 const Page = ({ company, children }) => (
   <Box
@@ -140,7 +162,7 @@ const SignatureBlock = ({ company, candidateName, showCandidate = true }) => {
           {company.hrName}
         </Typography>
         <Typography sx={{ fontSize: 14, fontWeight: "bold" }}>
-          Group Leader – Shared HR Services
+          Group Leader - Shared HR Services
         </Typography>
       </Box>
 
@@ -169,9 +191,8 @@ const PentaOffer = ({ company, data }) => {
     );
   }
 
-  const annualCTC = Number(data.salary || 0);
-  const finalData = calculateSalaryBreakup(annualCTC);
-
+ const annualCTC = Number(data.salary || 0);
+const finalData = calculateSalaryBreakup(annualCTC);
   return (
     <>
       {/* ================= PAGE 1 – OFFER LETTER ================= */}
@@ -337,10 +358,10 @@ const PentaOffer = ({ company, data }) => {
                   Total Monthly Gross Salary
                 </TableCell>
                 <TableCell sx={{ textAlign: "right", fontWeight: "bold" }}>
-                  {formatCurrency(finalData.totalPerMonth)}
+                  {formatCurrency(finalData.monthlyCTC)}
                 </TableCell>
                 <TableCell sx={{ textAlign: "right", fontWeight: "bold" }}>
-                  {formatCurrency(finalData.totalPerYear)}
+                  {formatCurrency(finalData.annualCTC)}
                 </TableCell>
               </TableRow>
             </TableBody>

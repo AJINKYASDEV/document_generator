@@ -21,56 +21,49 @@ const DevconsOffer = ({ company, data }) => {
   
 
   // Helper – 2 decimal precision
-  const round2 = (num) => Number(num.toFixed(2));
+const round0 = (num) => Math.round(num);
 
   // Source of truth
-  const annualCTC = round2(Number(data.salary || data.ctc || 0));
+  const monthlyCTC = round0(Number(data.salary || data.ctc || 0));
 
-  // Annual components (percentage based)
-  const basicAnnual = round2(annualCTC * 0.40);
-  const hraAnnual = round2(annualCTC * 0.18);
-  const daAnnual = round2(annualCTC * 0.12);
-  const specialAnnual = round2(annualCTC * 0.16);
-  const foodAnnual = round2(annualCTC * 0.06);
+  // ================= PERCENTAGE BREAKUP =================
+const basicMonthly = round0(monthlyCTC * 0.40);
+const hraMonthly = round0(monthlyCTC * 0.18);
+const daMonthly = round0(monthlyCTC * 0.12);
+const specialMonthly = round0(monthlyCTC * 0.16);
+const foodMonthly = round0(monthlyCTC * 0.06);
+const miscMonthly = round0(monthlyCTC * 0.08); // 8%
 
-  // Balance rounding difference
-  const usedAnnual =
-    basicAnnual +
-    hraAnnual +
-    daAnnual +
-    specialAnnual +
-    foodAnnual;
+// ================= ANNUAL VALUES =================
+const basicAnnual = round0(basicMonthly * 12);
+const hraAnnual = round0(hraMonthly * 12);
+const daAnnual = round0(daMonthly * 12);
+const specialAnnual = round0(specialMonthly * 12);
+const foodAnnual = round0(foodMonthly * 12);
+const miscAnnual = round0(miscMonthly * 12);
 
-  // 👇 prevents ₹1 mismatch
-  const miscAnnual = round2(annualCTC - usedAnnual);
+// ================= SALARY TABLE STRUCTURE =================
+const salaryRows = [
+  ["Basic", basicMonthly, basicAnnual],
+  ["House Rent Allowance", hraMonthly, hraAnnual],
+  ["Dearness Allowance", daMonthly, daAnnual],
+  ["Special Allowance", specialMonthly, specialAnnual],
+  ["Food Allowance", foodMonthly, foodAnnual],
+  ["Misc. Allowance", miscMonthly, miscAnnual],
+];
 
-  // Monthly breakup (derived from final annual)
-  const basicMonthly = round2(basicAnnual / 12);
-  const hraMonthly = round2(hraAnnual / 12);
-  const daMonthly = round2(daAnnual / 12);
-  const specialMonthly = round2(specialAnnual / 12);
-  const foodMonthly = round2(foodAnnual / 12);
-  const miscMonthly = round2(miscAnnual / 12);
+// ================= TOTALS =================
+const totalMonthly = round0(
+  salaryRows.reduce((sum, row) => sum + row[1], 0)
+);
 
-  // Table rows (UI stays SAME)
-  const salaryComponents = [
-    { name: "Basic", monthly: basicMonthly, annual: basicAnnual },
-    { name: "House Rent Allowance", monthly: hraMonthly, annual: hraAnnual },
-    { name: "Dearness Allowance", monthly: daMonthly, annual: daAnnual },
-    { name: "Special Allowance", monthly: specialMonthly, annual: specialAnnual },
-    { name: "Food Allowance", monthly: foodMonthly, annual: foodAnnual },
-    { name: "Misc. Allowance", monthly: miscMonthly, annual: miscAnnual },
-  ];
+const totalAnnual = round0(
+  salaryRows.reduce((sum, row) => sum + row[2], 0)
+);
 
-  // Totals (guaranteed match)
-  const totalMonthly = round2(
-    salaryComponents.reduce((sum, row) => sum + row.monthly, 0)
-  );
-
-  const totalAnnual = round2(
-    salaryComponents.reduce((sum, row) => sum + row.annual, 0)
-  );
-
+  
+  
+  
   const firstName = data.candidateName?.trim().split(" ")[0];
 
 
@@ -143,7 +136,7 @@ const DevconsOffer = ({ company, data }) => {
 
             <Typography sx={{ mb: 1, textAlign: "justify" }}>
               The starting salary for this position is{" "}
-              <b>{formatCurrency(annualCTC)}</b> per annum. Payment is on monthly basis
+              <b>{formatCurrency(totalAnnual)}</b> per annum. Payment is on monthly basis
               by direct deposit.
             </Typography>
 
@@ -242,17 +235,17 @@ const DevconsOffer = ({ company, data }) => {
                 </TableHead>
 
                 <TableBody>
-                  {salaryComponents.map((row, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{row.name}</TableCell>
-                      <TableCell align="right">
-                        {formatCurrency(row.monthly)}
-                      </TableCell>
-                      <TableCell align="right">
-                        {formatCurrency(row.annual, 2)}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {salaryRows.map(([name, monthly, annual], i) => (
+                                <TableRow key={i}>
+                                  <TableCell>{name}</TableCell>
+                                  <TableCell align="right">
+                                    {formatCurrency(monthly)}
+                                  </TableCell>
+                                  <TableCell align="right">
+                                    {formatCurrency(annual)}
+                                  </TableCell>
+                                </TableRow>
+                              ))}
 
                   <TableRow sx={{ backgroundColor: "#ffc000" }}>
                     <TableCell sx={{ fontWeight: 700 }}>
@@ -262,7 +255,7 @@ const DevconsOffer = ({ company, data }) => {
                       {formatCurrency(totalMonthly)}
                     </TableCell>
                     <TableCell align="right" sx={{ fontWeight: 700 }}>
-                      {formatCurrency(totalAnnual, 2)}
+                      {formatCurrency(totalAnnual)}
                     </TableCell>
                   </TableRow>
                 </TableBody>
