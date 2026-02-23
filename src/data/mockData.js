@@ -337,7 +337,7 @@ export const companies = [
         headerImage: jdit_header,
         footerImage: jdit_footer,
         watermarkImage: jdit_watermark,
-        address: '301, 3th Floor, Sai Vill Commercial Apartment,Next to Vaibhav Talkies, Behind RR Dage saries, Sr. No. 166,Malwadi Road, App. Sahyadri Hospital, Hadapsar, Pune 411028.',
+        address: '401, 4th Floor, Sai Vill Commercial Apartment,Next to Vaibhav Talkies, Behind RR Dage saries, Sr. No. 166,Malwadi Road, App. Sahyadri Hospital, Hadapsar, Pune 411028.',
         email: 'hr@jditbs.com',
         phone: '+91 8390930580',
         website: 'https://www.jditbs.com/',
