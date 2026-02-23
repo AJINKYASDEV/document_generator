@@ -1,4 +1,5 @@
-import React, { useMemo } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import {
   Box,
   Typography,
@@ -10,8 +11,6 @@ import {
   TableContainer,
   Paper,
 } from "@mui/material";
-
-import { generateSalaryComponents } from "../../../../../utils/salaryCalculations";
 
 /* ================= DATE FORMAT ================= */
 const formatDate = (date) =>
@@ -37,32 +36,57 @@ const SmartSoftwareIncrement = ({ company, data }) => {
     issueDate = "",
     effectiveDate = "",
     newCTC = 0,
+    performanceBand = "Met Expectation",
   } = data;
 
-  const firstName = employeeName.split(" ")[0] || "";
+  const firstName = employeeName?.trim().split(" ")[0] || "";
 
-  /* ================= SALARY ================= */
-  const computedSalary = useMemo(() => generateSalaryComponents(newCTC), [newCTC]);
+  /* ================= ACCURATE SALARY LOGIC ================= */
 
-  const salaryComponents = computedSalary;
+  const round0 = (num) => Math.round(num);
 
-  // ✅ Calculate totals
-  const totalMonthly = salaryComponents.reduce(
-    (sum, row) => sum + Number(row.monthly || 0),
-    0
-  );
+  const annualInput = round0(Number(newCTC || 0));
+  const monthlyCTC = round0(annualInput / 12);
 
-  const totalAnnual = salaryComponents.reduce(
-    (sum, row) => sum + Number(row.annual || 0),
-    0
-  );
+  // Annual breakup based on Annual CTC
+  const basicAnnual = round0(annualInput * 0.4);
+  const hraAnnual = round0(annualInput * 0.18);
+  const daAnnual = round0(annualInput * 0.12);
+  const specialAnnual = round0(annualInput * 0.16);
+  const foodAnnual = round0(annualInput * 0.06);
 
-  const monthlyPF = 3750;
-  const annualPF = monthlyPF * 12;
+  // Dynamic last component to avoid mismatch
+  const miscAnnual =
+    annualInput -
+    (basicAnnual +
+      hraAnnual +
+      daAnnual +
+      specialAnnual +
+      foodAnnual);
+
+  // Monthly from annual
+  const basicMonthly = round0(basicAnnual / 12);
+  const hraMonthly = round0(hraAnnual / 12);
+  const daMonthly = round0(daAnnual / 12);
+  const specialMonthly = round0(specialAnnual / 12);
+  const foodMonthly = round0(foodAnnual / 12);
+  const miscMonthly = round0(miscAnnual / 12);
+
+  const salaryRows = [
+    { name: "Basic", monthly: basicMonthly, annual: basicAnnual },
+    { name: "House Rent Allowance", monthly: hraMonthly, annual: hraAnnual },
+    { name: "Dearness Allowance", monthly: daMonthly, annual: daAnnual },
+    { name: "Special Allowance", monthly: specialMonthly, annual: specialAnnual },
+    { name: "Food Allowance", monthly: foodMonthly, annual: foodAnnual },
+    { name: "Misc. Allowance", monthly: miscMonthly, annual: miscAnnual },
+  ];
+
+  const monthlyGross = monthlyCTC;
+  const annualCTC = annualInput;
 
   return (
     <>
-      {/* ================= PAGE 1 : INCREMENT LETTER ================= */}
+      {/* ================= PAGE 1 ================= */}
       <Box sx={pageStyle}>
         {company.headerImage && (
           <Box component="img" src={company.headerImage} sx={headerStyle} />
@@ -77,22 +101,24 @@ const SmartSoftwareIncrement = ({ company, data }) => {
             {formatDate(issueDate)}
           </Typography>
 
-          <Typography sx={{ mb: 4 }}>Dear {firstName},</Typography>
+          <Typography sx={{ mb: 4 }}>
+            Dear {firstName},
+          </Typography>
 
           <Typography sx={paragraph}>
-            At Smart Software Services, employee performance forms the core basis
-            for annual compensation review and career enhancement apart from
-            ensuring parity.
+            At Smart Software Services, employee performance forms the core
+            basis for annual compensation review and career enhancement apart
+            from ensuring parity.
           </Typography>
 
           <Typography sx={paragraph}>
             Your performance has been reviewed and your performance banding for
-            the year 2024–2025 is <b>"Met Expectation"</b>.
+            the year 2024–2025 is <b>"{performanceBand}"</b>.
           </Typography>
 
           <Typography sx={paragraph}>
             In recognition of your performance your compensation has been revised
-            to <b>INR {formatCurrency(totalAnnual)} per Annum</b> effective{" "}
+            to <b>INR {formatCurrency(annualCTC)} per Annum</b> effective{" "}
             <b>{formatDate(effectiveDate)}</b>.
           </Typography>
 
@@ -101,20 +127,24 @@ const SmartSoftwareIncrement = ({ company, data }) => {
           </Typography>
 
           <Typography sx={{ mb: 2 }}>
-            We look forward to your very active participation and contribution in
-            our journey of scaling newer heights.
+            We look forward to your very active participation and contribution
+            in our journey of scaling newer heights.
           </Typography>
 
           <Typography sx={{ mb: 2 }}>
-            Wishing you a happy and rewarding career with Smart Software Services
-            (I) Pvt Ltd.
+            Wishing you a happy and rewarding career with Smart Software
+            Services (I) Pvt Ltd.
           </Typography>
 
           <Typography sx={{ mb: 2 }}>Yours Sincerely,</Typography>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 3, mt: 2 }}>
             {company.incrementSignature && (
-              <Box component="img" src={company.incrementSignature} sx={{ height: 60 }} />
+              <Box
+                component="img"
+                src={company.incrementSignature}
+                sx={{ height: 60 }}
+              />
             )}
             {company.stamp && (
               <Box component="img" src={company.stamp} sx={{ height: 90 }} />
@@ -126,123 +156,108 @@ const SmartSoftwareIncrement = ({ company, data }) => {
           </Typography>
         </Box>
 
-        {company.footerImage && <Box component="img" src={company.footerImage} sx={footerStyle} />}
+        {company.footerImage && (
+          <Box component="img" src={company.footerImage} sx={footerStyle} />
+        )}
       </Box>
 
       {/* ================= PAGE BREAK ================= */}
       <Box sx={{ pageBreakBefore: "always" }} />
 
-      {/* ================= PAGE 2 : SALARY ANNEXURE ================= */}
+      {/* ================= PAGE 2 ================= */}
       <Box sx={pageStyle}>
-        {company.headerImage && <Box component="img" src={company.headerImage} sx={headerStyle} />}
+        {company.headerImage && (
+          <Box component="img" src={company.headerImage} sx={headerStyle} />
+        )}
 
         {company.watermarkImage && (
           <Box component="img" src={company.watermarkImage} sx={watermarkStyle} />
         )}
 
         <Box sx={contentStyle}>
-          <Typography align="center" sx={{ fontWeight: "bold", fontSize: "16px", mb: 4 }}>
+          <Typography
+            align="center"
+            sx={{ fontWeight: "bold", fontSize: "16px", mb: 4 }}
+          >
             Salary Annexure
           </Typography>
 
           <Box sx={{ mb: 4 }}>
             <Typography>Employee Code : {employeeId}</Typography>
             <Typography>Employee Name : {employeeName}</Typography>
-            <Typography>Effective Date : {formatDate(effectiveDate)}</Typography>
+            <Typography>
+              Effective Date : {formatDate(effectiveDate)}
+            </Typography>
           </Box>
 
-          {/* ================= TABLE ================= */}
-          <TableContainer sx={{ mb: "4mm" }}>
-            <Table
-              size="small"
-              sx={{ border: "1px solid #333", borderCollapse: "collapse", width: "100%" }}
-            >
+          <TableContainer
+            component={Paper}
+            sx={{ border: "1px solid #000", boxShadow: "none" }}
+          >
+            <Table size="small">
               <TableHead>
-                <TableRow
-                  sx={{
-                    backgroundColor: "#32a1c2ff",
-                    "& th": {
-                      color: "#000",
-                      fontWeight: 600,
-                      fontSize: "10pt",
-                      border: "1px solid #333",
-                      py: "0.4mm",
-                    },
-                  }}
-                >
-                  <TableCell>Salary Components</TableCell>
-                  <TableCell align="center">Per month (Rs.)</TableCell>
-                  <TableCell align="center">Per Annum (Rs.)</TableCell>
+                <TableRow sx={{ backgroundColor: "rgba(3,171,197,0.95)" }}>
+                  <TableCell sx={headerCell}>Salary Components</TableCell>
+                  <TableCell sx={headerCell} align="center">
+                    Per Month (Rs.)
+                  </TableCell>
+                  <TableCell sx={headerCell} align="center">
+                    Per Annum (Rs.)
+                  </TableCell>
                 </TableRow>
               </TableHead>
 
               <TableBody>
-                {salaryComponents
-                  .filter((row) => row.name !== "Misc")
-                  .map((row, i) => (
-                    <TableRow key={i}>
-                      <TableCell sx={tableCell}>{row.name}</TableCell>
-                      <TableCell align="center" sx={tableCell}>
-                        {formatCurrency(row.monthly)}
-                      </TableCell>
-                      <TableCell align="center" sx={tableCell}>
-                        {formatCurrency(row.annual)}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                {salaryRows.map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell sx={bodyCell}>{row.name}</TableCell>
+                    <TableCell sx={bodyCell} align="center">
+                      {formatCurrency(row.monthly)}
+                    </TableCell>
+                    <TableCell sx={bodyCell} align="center">
+                      {formatCurrency(row.annual)}
+                    </TableCell>
+                  </TableRow>
+                ))}
 
-                {/* Static PF Row */}
-                <TableRow>
-                  <TableCell sx={tableCell}>MISC A</TableCell>
-                  <TableCell align="center" sx={tableCell}>
-                    {formatCurrency(monthlyPF)}
+                <TableRow sx={{ backgroundColor: "rgba(3,171,197,0.95)" }}>
+                  <TableCell sx={totalCell}>Total Gross</TableCell>
+                  <TableCell sx={totalCell} align="center">
+                    {formatCurrency(monthlyGross)}
                   </TableCell>
-                  <TableCell align="center" sx={tableCell}>
-                    {formatCurrency(annualPF)}
+                  <TableCell sx={totalCell} align="center">
+                    {formatCurrency(annualCTC)}
                   </TableCell>
-                </TableRow>
-
-                {/* Total Row */}
-                <TableRow
-                  sx={{
-                    backgroundColor: "#32a1c2ff",
-                    "& td": {
-                      color: "#000",
-                      fontWeight: 600,
-                      fontSize: "10pt",
-                      border: "1px solid #333",
-                      py: "0.4mm",
-                    },
-                  }}
-                >
-                  <TableCell>Total Monthly Gross Salary</TableCell>
-                  <TableCell align="center">{formatCurrency(totalMonthly)}</TableCell>
-                  <TableCell align="center">{formatCurrency(totalAnnual)}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
 
           <Typography sx={{ mt: 4, fontSize: "13px" }}>
-            Please note that the details in this communication are confidential and
-            you are requested not to share the same with others.
+            Please note that the details in this communication are confidential
+            and you are requested not to share the same with others.
           </Typography>
         </Box>
 
-        {company.footerImage && <Box component="img" src={company.footerImage} sx={footerStyle} />}
+        {company.footerImage && (
+          <Box component="img" src={company.footerImage} sx={footerStyle} />
+        )}
       </Box>
     </>
   );
 };
 
 /* ================= STYLES ================= */
+
 const pageStyle = {
   width: "210mm",
   minHeight: "297mm",
   position: "relative",
   backgroundColor: "#fff",
   fontFamily: `"Times New Roman", serif`,
-  fontSize: "14px",
+  "@media print": {
+    boxShadow: "none",
+  },
 };
 
 const contentStyle = {
@@ -277,10 +292,25 @@ const watermarkStyle = {
   opacity: 0.07,
 };
 
-const tableCell = {
+const headerCell = {
   border: "1px solid #000",
-  fontSize: "11.5px",
-  padding: "3px 6px",
+  fontWeight: 600,
+  fontSize: "12px",
+};
+
+const bodyCell = {
+  border: "1px solid #000",
+  fontSize: "11px",
+};
+
+const totalCell = {
+  border: "1px solid #000",
+  fontWeight: 600,
+};
+
+SmartSoftwareIncrement.propTypes = {
+  company: PropTypes.object,
+  data: PropTypes.object,
 };
 
 export default SmartSoftwareIncrement;
