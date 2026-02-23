@@ -416,14 +416,14 @@ const NimbjaOfferPage1 = ({ company, data }) => {
     <A4Page
       headerSrc={company.header}
       footerSrc={company.footer}
-      watermarkSrc={company.watermarkImage || company.watermark || null}
+      
       contentTop="48mm"
       contentBottom="28mm"
-      company={company}
+      
     >
       {/* ================= DATE ================= */}
       <Typography
-        sx={{ ...baseText, fontWeight: 600, textAlign: "right", mb: "9mm" }}
+        sx={{ ...baseText, textAlign: "right", mb: "9mm" }}
       >
         {offerDate}
       </Typography>
@@ -441,7 +441,7 @@ const NimbjaOfferPage1 = ({ company, data }) => {
           component="span"
           sx={{
             fontWeight: "",
-            fontFamily: 'Bahnschrift, "Segoe UI", Arial, sans-serif',
+            fontFamily: 'Bahnschrift',
           }}
         >
           {data.candidateName}

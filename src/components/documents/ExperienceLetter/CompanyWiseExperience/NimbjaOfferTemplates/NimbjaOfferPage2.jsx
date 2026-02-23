@@ -311,7 +311,7 @@ const NimbjaOfferPage2 = ({ company, data }) => {
   return (
     <A4Page headerSrc={company.header} footerSrc={company.footer}>
       <Box className="a4-content-only">
-        <Typography
+        {/* <Typography
           sx={{
             textAlign: "right",
             mb: "5mm",
@@ -321,7 +321,7 @@ const NimbjaOfferPage2 = ({ company, data }) => {
           }}
         >
           {formatDate(data.issueDate)}
-        </Typography>
+        </Typography> */}
 
         <Typography
           sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
@@ -339,6 +339,7 @@ const NimbjaOfferPage2 = ({ company, data }) => {
           data={data}
           formatDate={formatDate}
         />
+        
       </Box>
     </A4Page>
   );
