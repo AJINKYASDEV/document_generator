@@ -9,11 +9,15 @@ import {
   Typography,
 } from "@mui/material";
 
+import A4Page from "../../../../layout/A4Page";
+
+
 /* ================== COMMON STYLES ================== */
 const cell = {
   border: "1px solid #000",
-  fontSize: "13px",
-  padding: "4px 6px",
+  fontSize: "13px",      // smaller text
+  padding: "3px 5px",    // less spacing
+  // lineHeight: 1.2,       
 };
 
 const bold = { fontWeight: 700 };
@@ -92,14 +96,14 @@ const DevconsFullAndFinal = ({ company = {}, data = {} }) => {
   /* ---------- PENTA SALARY LOGIC ---------- */
   const gross = Number(data.totalSalary || 0);
 
-  const basic = +(gross * 0.4).toFixed(2);
-  const hra = +(gross * 0.18).toFixed(2);
-  const da = +(gross * 0.12).toFixed(2);
-  const special = +(gross * 0.16).toFixed(2);
-  const food = +(gross * 0.06).toFixed(2);
-  const pfAllowance = +(gross - (basic + hra + da + special + food)).toFixed(2);
+  const basic = +(gross * 0.4);
+  const hra = +(gross * 0.18);
+  const da = +(gross * 0.12);
+  const special = +(gross * 0.16);
+  const food = +(gross * 0.06);
+  const pfAllowance = +(gross - (basic + hra + da + special + food));
 
-  const earned = (v) => +(v * ratio).toFixed(2);
+  const earned = (v) => +(v * ratio);
 
   const totalActual =
     basic + hra + da + special + food + pfAllowance;
@@ -124,13 +128,13 @@ const DevconsFullAndFinal = ({ company = {}, data = {} }) => {
     Number(data.leaveencashment || 0);
 
   return (
-    <Box sx={{ width: "210mm", minHeight: "297mm", fontFamily: "Segoe UI" }}>
-      {company.header && <img src={company.header} width="100%" alt="" />}
+       <A4Page headerSrc={company.header} footerSrc={company.footer}>
+   
 
-      <Box p="10mm">
+      <Box sx={{ width: "95%", margin: "0 auto" }}>
         <Table sx={{ borderCollapse: "collapse" }}>
           <TableBody>
-
+          
             {/* TITLE */}
             <TableRow>
               <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
@@ -258,14 +262,14 @@ const DevconsFullAndFinal = ({ company = {}, data = {} }) => {
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} sx={cell}>Leave encashment (Days)</TableCell>
+              <TableCell colSpan={2} sx={cell}>Leave encashment</TableCell>
               <TableCell colSpan={2} sx={{ ...cell, ...right }}>
                 00
               </TableCell>
             </TableRow>
 
              <TableRow>
-              <TableCell colSpan={2} sx={cell}>Total (Days)</TableCell>
+              <TableCell colSpan={2} sx={cell}>Total</TableCell>
               <TableCell colSpan={2} sx={{ ...cell, ...right }}>
                 {formatAmt(totalEarned)}
               </TableCell>
@@ -302,8 +306,7 @@ const DevconsFullAndFinal = ({ company = {}, data = {} }) => {
         </Table>
       </Box>
 
-      {company.footer && <img src={company.footer} width="100%" alt="" />}
-    </Box>
+      </A4Page>
   );
 };
 

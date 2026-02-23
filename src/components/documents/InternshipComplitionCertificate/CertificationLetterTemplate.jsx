@@ -12,6 +12,8 @@ import SmartSoftwareCertification from "./CompanyWiseCertification/SmartSoftware
 import DevconsCertification from "./CompanyWiseCertification/DevconsCertification";
 import RPCertification from "./CompanyWiseCertification/RPCertification";
 import CubeageCertification from "./CompanyWiseCertification/CubeageCertification";
+import SmartMatrixCertification from "./CompanyWiseCertification/SmartMatrixCertification";
+import NimbjaCertification from "./CompanyWiseCertification/NimbjaCertification";
 // import SmartMatrixExperience from "./CompanyWiseExperience/SmartMatrixExperience";
 // import SmartSoftwareExperience from "./CompanyWiseExperience/SmartSoftwareExperience";
 
@@ -24,6 +26,7 @@ const companyComponentMap = {
   5: RPCertification,
 //   6: PentaExperience,
   8: JditCertification,
+  9: NimbjaCertification,
   10: SmartSoftwareCertification,
 };
 

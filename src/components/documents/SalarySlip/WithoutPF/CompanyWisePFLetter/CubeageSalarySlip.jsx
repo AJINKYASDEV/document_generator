@@ -62,18 +62,20 @@ const CubeageSalarySlip = ({ data, company }) => {
   const desg = data.designation || "Quality Analyst";
   // Convert "YYYY-MM" → "Month YY" (e.g. "2025-07" → "July 25")
   const month = (() => {
-    if (!data.month) return "March 22"; // fallback
+    if (!data.month) return "March 2022"; // fallback
 
     const [year, monthNum] = data.month.split("-");
     const date = new Date(year, monthNum - 1); // JS months start at 0
     const monthName = date.toLocaleString("default", { month: "long" });
-    const shortYear = year.slice(2);
-    return `${monthName} ${shortYear}`;
+
+    return `${monthName} ${year}`; // ✅ Full year
   })();
+
 
   // === Total Salary ===
   const totalSalary = parseFloat(data.totalSalary || 35000); // default fallback
 
+  
   // === Auto-calculated components (percentages of totalSalary) ===
   const basic = totalSalary * 0.4013;
   const hra = totalSalary * 0.1798;
@@ -85,17 +87,23 @@ const CubeageSalarySlip = ({ data, company }) => {
   const pt = getProfessionalTax(data.month, totalSalary);
   const otherDed = parseFloat(data.otherDeduction || 2000);
 
-  const totalEarning = basic + hra + conveyance + food + special + others;
-  const totalDed = pt + otherDed;
-  const net = totalEarning - totalDed;
-  const netInWords = numberToWords(Math.round(net));
+const totalEarning = Math.round(
+  basic + hra + conveyance + food + special + others,
+);
+console.log("total earning  frontend : ",totalEarning)
 
+const totalDed = pt + otherDed;
+
+const net = totalEarning - totalDed;
+console.log("net  frontend : ", net);
+const adjustment = 2200;
+
+const issuedSalary = totalEarning - adjustment;
+console.log("issuedSalary  frontend : ", issuedSalary);
+   
   return (
-    <A4Page
-      headerSrc={company?.header}
-    >
-
-      <Box sx={{ pt: "16mm",mt:"10mm",textAlign:"center" }}>
+    <A4Page headerSrc={company?.header}>
+      <Box sx={{ pt: "16mm", mt: "10mm", textAlign: "center" }}>
         <Typography>Salary Statement for The Month of {month}</Typography>
         <TableContainer
           sx={{
@@ -110,7 +118,6 @@ const CubeageSalarySlip = ({ data, company }) => {
         >
           <Table size="small">
             <TableBody>
-
               {/* ===== TOP DETAILS BOX (FULL BORDER) ===== */}
               <TableRow>
                 <TableCell sx={{ border: "1.5px solid black" }} colSpan={2}>
@@ -122,133 +129,307 @@ const CubeageSalarySlip = ({ data, company }) => {
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ border: "1.5px solid black" }}>Employee Code:</TableCell>
-                <TableCell sx={{ border: "1.5px solid black" }}>{empId}</TableCell>
-                <TableCell sx={{ border: "1.5px solid black" }}>Total Days:</TableCell>
-                <TableCell sx={{ border: "1.5px solid black" }}>{totalWorkdays}</TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  Employee Code:
+                </TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  {empId}
+                </TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  Total Days:
+                </TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  {totalWorkdays}
+                </TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ border: "1.5px solid black" }}>Date Of Joining:</TableCell>
-                <TableCell sx={{ border: "1.5px solid black" }}>{doj}</TableCell>
-                <TableCell sx={{ border: "1.5px solid black" }}>Days Present:</TableCell>
-                <TableCell sx={{ border: "1.5px solid black" }}>{totalWorkdays}</TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  Date Of Joining:
+                </TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  {doj}
+                </TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  Days Present:
+                </TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  {totalWorkdays}
+                </TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ border: "1.5px solid black" }}>Date Of Birth:</TableCell>
-                <TableCell sx={{ border: "1.5px solid black" }}>{dob}</TableCell>
-                <TableCell sx={{ border: "1.5px solid black" }}>PAN NO:</TableCell>
-                <TableCell sx={{ border: "1.5px solid black" }}>{pan}</TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  Date Of Birth:
+                </TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  {dob}
+                </TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  PAN NO:
+                </TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }}>
+                  {pan}
+                </TableCell>
               </TableRow>
-
 
               {/* ==== SECTION HEADER (THICK BORDER LIKE WORD) ===== */}
               <TableRow>
-                <TableCell sx={{ border: "1.5px solid black", fontWeight: "bold" }}>
+                <TableCell
+                  sx={{ border: "1.5px solid black", fontWeight: "bold" }}
+                >
                   Specifications (A)
                 </TableCell>
-                <TableCell sx={{ border: "1.5px solid black", fontWeight: "bold" }}>
+                <TableCell
+                  sx={{ border: "1.5px solid black", fontWeight: "bold" }}
+                >
                   Amount
                 </TableCell>
-                <TableCell sx={{ border: "1.5px solid black", fontWeight: "bold" }}>
+                <TableCell
+                  sx={{ border: "1.5px solid black", fontWeight: "bold" }}
+                >
                   Deductions (B)
                 </TableCell>
-                <TableCell sx={{ border: "1.5px solid black", fontWeight: "bold" }}>
+                <TableCell
+                  sx={{ border: "1.5px solid black", fontWeight: "bold" }}
+                >
                   Amount
                 </TableCell>
               </TableRow>
 
               {/* ===== ROWS EXACT LIKE IMAGE ===== */}
               <TableRow>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}>Basic</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }} align="right">{formatCurrency(basic)}</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}>P.T.</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }} align="right">{formatCurrency(pt)}</TableCell>
+                <TableCell sx={{ borderRight: "1.5px solid black" }}>
+                  Basic
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                  align="right"
+                >
+                  {formatCurrency(basic)}
+                </TableCell>
+                <TableCell sx={{ borderRight: "1.5px solid black" }}>
+                  P.T.
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                  align="right"
+                >
+                  {formatCurrency(pt)}
+                </TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}>H.R.A.</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }} align="right">{formatCurrency(hra)}</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}>Other Deductions</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }} align="right">{formatCurrency(otherDed)}</TableCell>
+                <TableCell sx={{ borderRight: "1.5px solid black" }}>
+                  H.R.A.
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                  align="right"
+                >
+                  {formatCurrency(hra)}
+                </TableCell>
+                <TableCell sx={{ borderRight: "1.5px solid black" }}>
+                  Other Deductions
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                  align="right"
+                >
+                  {formatCurrency(otherDed)}
+                </TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}>D.A.</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }} align="right">{formatCurrency(conveyance)}</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
+                <TableCell sx={{ borderRight: "1.5px solid black" }}>
+                  D.A.
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                  align="right"
+                >
+                  {formatCurrency(conveyance)}
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}>L.T.A.</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }} align="right">{formatCurrency(food)}</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
+                <TableCell sx={{ borderRight: "1.5px solid black" }}>
+                  L.T.A.
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                  align="right"
+                >
+                  {formatCurrency(food)}
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}>ALLOWANCE (Shift+Skill)</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }} align="right">{formatCurrency(special)}</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
+                <TableCell sx={{ borderRight: "1.5px solid black" }}>
+                  ALLOWANCE (Shift+Skill)
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                  align="right"
+                >
+                  {formatCurrency(special)}
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}>Special Allowance</TableCell>
-                <TableCell sx={{ border: "1.5px solid black" }} align="right">{formatCurrency(others)}</TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
+                <TableCell sx={{ borderRight: "1.5px solid black" }}>
+                  Special Allowance
+                </TableCell>
+                <TableCell sx={{ border: "1.5px solid black" }} align="right">
+                  {formatCurrency(others)}
+                </TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
                 <TableCell sx={{ border: "1.5px solid black" }}></TableCell>
               </TableRow>
 
               {/* ===== TOTALS EXACT LIKE IMAGE ===== */}
               <TableRow>
-                <TableCell sx={{ fontWeight: "bold", borderRight: "1.5px solid black" }}>Grand Total "A"</TableCell>
-                <TableCell align="right" sx={{ fontWeight: "bold", border: "1.5px solid black", borderTop: "1.5px solid black" }}>
+                <TableCell
+                  sx={{ fontWeight: "bold", borderRight: "1.5px solid black" }}
+                >
+                  Grand Total "A"
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{
+                    fontWeight: "bold",
+                    border: "1.5px solid black",
+                    borderTop: "1.5px solid black",
+                  }}
+                >
                   {formatCurrency(totalEarning)}
                 </TableCell>
-                <TableCell sx={{ fontWeight: "bold", borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell align="right" sx={{ fontWeight: "bold", border: "1.5px solid black" }}>
+                <TableCell
+                  sx={{ fontWeight: "bold", borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ fontWeight: "bold", border: "1.5px solid black" }}
+                >
                   {formatCurrency(totalDed)}
                 </TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ fontWeight: "bold", border: "1.5px solid black", py: 2.7 }}>Net Salary</TableCell>
-                <TableCell align="right" sx={{ fontWeight: "bold", border: "1.5px solid black", py: 2.7 }}>
-                  {formatCurrency(net)}
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: "bold",
+                    border: "1.5px solid black",
+                    py: 2.7,
+                  }}
+                >
+                  Net Salary
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{
+                    fontWeight: "bold",
+                    border: "1.5px solid black",
+                    py: 2.7,
+                  }}
+                >
+                  {formatCurrency(totalEarning)}
                 </TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ fontWeight: "bold", border: "1.5px solid black" }}>Issued Salary</TableCell>
-                <TableCell align="right" sx={{ fontWeight: "bold", border: "1.5px solid black" }}>
-                  {formatCurrency(net - 200)}
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{ fontWeight: "bold", border: "1.5px solid black" }}
+                >
+                  Issued Salary
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ fontWeight: "bold", border: "1.5px solid black" }}
+                >
+                  {formatCurrency(issuedSalary)}
                 </TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ fontWeight: "bold", border: "1.5px solid black", pt: 2 }}>Balance Salary</TableCell>
-                <TableCell sx={{ border: "1.5px solid black", pt: 2 }} align="right">Nil</TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: "bold",
+                    border: "1.5px solid black",
+                    pt: 2,
+                  }}
+                >
+                  Balance Salary
+                </TableCell>
+                <TableCell
+                  sx={{ border: "1.5px solid black", pt: 2 }}
+                  align="right"
+                >
+                  Nil
+                </TableCell>
               </TableRow>
 
               <TableRow>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ borderRight: "1.5px solid black" }}></TableCell>
-                <TableCell sx={{ fontWeight: "bold", borderRight: "1.5px solid black", py: 2 }} colSpan={2}></TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{ borderRight: "1.5px solid black" }}
+                ></TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: "bold",
+                    borderRight: "1.5px solid black",
+                    py: 2,
+                  }}
+                  colSpan={2}
+                ></TableCell>
               </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
 
-        <Typography>*Computer Generated Salary Slip. No Signature Required</Typography>
+        <Typography>
+          *Computer Generated Salary Slip. No Signature Required
+        </Typography>
       </Box>
     </A4Page>
   );

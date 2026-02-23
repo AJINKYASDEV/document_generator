@@ -1,3 +1,4 @@
+import dilipSignature from "../../../../../assets/images/devconssoftware/dilip_kumar_signature.png";
 
 
 
@@ -15,59 +16,48 @@ import { formatCurrency } from "../../../../../utils/salaryCalculations";
 const DevconsIncrement = ({ company = {}, data = {} }) => {
 
   /* ================= HELPER ================= */
-  const round2 = (num) => Number(Number(num).toFixed(2));
+  const round0 = (num) => Math.round(num);
 
-  /* ================= SALARY LOGIC ================= */
+  // ================= MONTHLY CTC =================
+const monthlyCTC = round0(Number(data.newCTC  || 0));
 
-  const annualCTC = round2(Number(data.newCTC || 0));
+// ================= UPDATED PERCENTAGES =================
+const basicMonthly = round0(monthlyCTC * 0.48); // 40% + 8%
+const hraMonthly = round0(monthlyCTC * 0.18);
+const daMonthly = round0(monthlyCTC * 0.12);
+const specialMonthly = round0(monthlyCTC * 0.16);
+const foodMonthly = round0(monthlyCTC * 0.06);
 
-  // Percentage breakup
-  const basicAnnual = round2(annualCTC * 0.40);
-  const hraAnnual = round2(annualCTC * 0.18);
-  const daAnnual = round2(annualCTC * 0.12);
-  const specialAnnual = round2(annualCTC * 0.16);
-  const foodAnnual = round2(annualCTC * 0.06);
+// ================= STATIC PF =================
+const pfMonthly = 3750;
 
-  // Prevent ₹1 mismatch
-  const usedAnnual =
-    basicAnnual +
-    hraAnnual +
-    daAnnual +
-    specialAnnual +
-    foodAnnual;
+// ================= ANNUAL VALUES =================
+const basicAnnual = basicMonthly * 12;
+const hraAnnual = hraMonthly * 12;
+const daAnnual = daMonthly * 12;
+const specialAnnual = specialMonthly * 12;
+const foodAnnual = foodMonthly * 12;
+const pfAnnual = pfMonthly * 12;
 
-  const miscAnnual = round2(annualCTC - usedAnnual);
+// ================= SALARY TABLE =================
+const salaryRows = [
+  ["Basic", basicMonthly, basicAnnual],
+  ["House Rent Allowance", hraMonthly, hraAnnual],
+  ["Dearness Allowance", daMonthly, daAnnual],
+  ["Special Allowance", specialMonthly, specialAnnual],
+  ["Food Allowance", foodMonthly, foodAnnual],
+  ["Provident Fund (PF)", pfMonthly, pfAnnual], // Separate
+];
 
-  // Monthly breakup
-  const basicMonthly = round2(basicAnnual / 12);
-  const hraMonthly = round2(hraAnnual / 12);
-  const daMonthly = round2(daAnnual / 12);
-  const specialMonthly = round2(specialAnnual / 12);
-  const foodMonthly = round2(foodAnnual / 12);
-  const miscMonthly = round2(miscAnnual / 12);
+// ================= TOTAL EARNINGS =================
+const totalMonthly =
+  basicMonthly +
+  hraMonthly +
+  daMonthly +
+  specialMonthly +
+  foodMonthly;
 
-  // Totals (must match CTC)
-  const totalMonthly = round2(
-    basicMonthly +
-      hraMonthly +
-      daMonthly +
-      specialMonthly +
-      foodMonthly +
-      miscMonthly
-  );
-
-  const totalAnnual = round2(
-    basicAnnual +
-      hraAnnual +
-      daAnnual +
-      specialAnnual +
-      foodAnnual +
-      miscAnnual
-  );
-
-  /* ================= STATIC PF (DISPLAY ONLY) ================= */
-  const pfMonthly = 3750;
-  const pfAnnual = pfMonthly * 12;
+const totalAnnual = totalMonthly * 12;
 
   return (
     <>
@@ -117,7 +107,7 @@ const DevconsIncrement = ({ company = {}, data = {} }) => {
               })}
             </strong>.
             Your salary will increase to{" "}
-            <strong>{formatCurrency(data.newCTC)}</strong> per annum.
+            <strong>{formatCurrency(totalAnnual)}</strong> per annum.
           </Typography>
 
           <Typography sx={{ mb: 4, textAlign: "justify" }}>
@@ -136,7 +126,7 @@ const DevconsIncrement = ({ company = {}, data = {} }) => {
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 4, mb: 2 }}>
             {company?.signature && (
-              <img src={company.dilipSignature} alt="Signature" style={{ height: 60 }} />
+              <img src={dilipSignature} alt="Signature" style={{ height: 60 }} />
             )}
             {company?.stamp && (
               <img src={company.stamp} alt="Stamp" style={{ height: 110 }} />
@@ -264,12 +254,12 @@ const DevconsIncrement = ({ company = {}, data = {} }) => {
                 <TableCell align="right">{formatCurrency(foodAnnual)}</TableCell>
               </TableRow>
 
-              <TableRow>
+              {/* <TableRow>
                 <TableCell>Misc. Allowance</TableCell>
                 <TableCell align="right">{formatCurrency(miscMonthly)}</TableCell>
                 <TableCell></TableCell>
                 <TableCell align="right">{formatCurrency(miscAnnual)}</TableCell>
-              </TableRow>
+              </TableRow> */}
 
               <TableRow>
                 <TableCell>Provident Fund (PF)</TableCell>
