@@ -30,30 +30,31 @@ const formatCurrency = (num) =>
   });
 
 /* ================= SALARY BREAKUP ================= */
-
 const generateSalaryBreakup = (annualCTC) => {
-  const basic = round2(annualCTC * 0.35);
-  const hra = round2(annualCTC * 0.20);
-  const da =round2(annualCTC * 0.20);
-  const special = round2(annualCTC * 0.35);
-  const food = round2(annualCTC * 0.05);
+  const monthlyCTC = Math.round(annualCTC / 12);
 
-  // PF Fixed
-  const pfMonthly = 3750;
-  const pfAnnual = pfMonthly * 12;
+  // Calculate salary components (100%)
+  let basic = Math.round(monthlyCTC * 0.48);
+  let hra = Math.round(monthlyCTC * 0.18);
+  let da = Math.round(monthlyCTC * 0.12);
+  let special = Math.round(monthlyCTC * 0.16);
+  let food = Math.round(monthlyCTC * 0.06);
 
-  // Remaining amount goes to Other Allowances
-  const pf = round2(
-    annualCTC - (basic + hra + special + food + pfAnnual)
-  );
+  // Fix rounding difference
+  const calculated = basic + hra + da + special + food;
+  basic += monthlyCTC - calculated;
+
+  // Static PF (NOT calculated from CTC)
+  const pfMonthly = 3750;   // Fixed value
+  const pfAnnual = 3750 * 12;
 
   return [
-    ["Basic Salary", basic / 12, basic],
-    ["House Rent Allowance (HRA)", hra / 12, hra],
-    ["Dearness Allowance", da / 12, da],
-    ["Special Allowance", special / 12, special],
-    ["Food Allowance", food / 12, food],
-    ["Provider PF ", pfMonthly, pfAnnual],  // ✅ Added PF
+    ["Basic Salary", basic, basic * 12],
+    ["House Rent Allowance", hra, hra * 12],
+    ["Dearness Allowance", da, da * 12],
+    ["Special Allowance", special, special * 12],
+    ["Food Allowance", food, food * 12],
+    ["Provident Fund (PF)", pfMonthly, pfAnnual], // Just display
   ];
 };
 /* ================= MAIN COMPONENT ================= */
@@ -64,10 +65,9 @@ const PentaConfirmation = ({ company, data }) => {
   const annualCTC = Number(data.totalSalary || 0);
   const salaryRows = generateSalaryBreakup(annualCTC);
 
-  const monthlyGross = salaryRows.reduce(
-  (sum, row) => sum + Number(row[1]),
-  0
-);
+  const monthlyGross = salaryRows
+  .filter(row => row[0] !== "Provident Fund (PF)")
+  .reduce((sum, row) => sum + row[1], 0);
 
   return (
     <>
