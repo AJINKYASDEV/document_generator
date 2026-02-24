@@ -116,12 +116,8 @@ const NimbjaFullAndfinal = ({ company = {}, data = {} }) => {
   const totalActual = basic + hra + da + special + food;
 
   const totalEarned =
-    earned(basic) +
-    earned(hra) +
-    earned(da) +
-    earned(special) +
-    earned(food) 
-    //pfAllowance; // static earned
+    earned(basic) + earned(hra) + earned(da) + earned(special) + earned(food);
+  //pfAllowance; // static earned
 
   /* ---------- DEDUCTIONS ---------- */
   const pf = 3750;
