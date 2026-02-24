@@ -4,8 +4,8 @@ import React from "react";
 // import DevconsExperience from "./CompanyWiseExperience/DevconsExperience";
 // import JDITExperience from "./CompanyWiseExperience/JDITExperience";
 // import NeweageExperience from "./CompanyWiseExperience/NeweageExperience";
-// import PentaExperience from "./CompanyWiseExperience/PentaExperience";
 // import RPExperience from "./CompanyWiseExperience/RPExperience";
+import PentaCertification from "./CompanyWiseCertification/PentaCertification";
 import NeweageCertification from "./CompanyWiseCertification/NeweageCertification";
 import JditCertification from "./CompanyWiseCertification/JditCertification";
 import SmartSoftwareCertification from "./CompanyWiseCertification/SmartSoftwareCertification";
@@ -14,6 +14,7 @@ import RPCertification from "./CompanyWiseCertification/RPCertification";
 import CubeageCertification from "./CompanyWiseCertification/CubeageCertification";
 import SmartMatrixCertification from "./CompanyWiseCertification/SmartMatrixCertification";
 import NimbjaCertification from "./CompanyWiseCertification/NimbjaCertification";
+import QMSCertification from "./CompanyWiseCertification/QMSCertification";
 // import SmartMatrixExperience from "./CompanyWiseExperience/SmartMatrixExperience";
 // import SmartSoftwareExperience from "./CompanyWiseExperience/SmartSoftwareExperience";
 
@@ -24,8 +25,9 @@ const companyComponentMap = {
 //   3: SmartMatrixExperience,
   4: DevconsCertification,
   5: RPCertification,
-//   6: PentaExperience,
+  6: PentaCertification,
   8: JditCertification,
+  9: QMSCertification,
   10: SmartSoftwareCertification,
 };
 
