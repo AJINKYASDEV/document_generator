@@ -306,7 +306,7 @@ const NimbjaRelieving = ({ company, data }) => {
                 src={company.signature}
                 alt="HR Signature"
                 style={{
-                  width: "220px",
+                  width: "180px",
                   display: "block",
                   marginBottom: "8px",
                 }}

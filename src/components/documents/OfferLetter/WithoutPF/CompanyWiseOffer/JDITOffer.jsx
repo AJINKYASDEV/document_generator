@@ -98,34 +98,67 @@ const TEXT = {
 const JDITOffer = ({ company, data }) => {
   if (!company || !data) return null;
 
-  /* 🔥 OFFER LETTER FIELD NAMES */
-  const {
-    issueDate,
-    candidateName,
-    position,
-    joiningDate,
-    employeeId,
-    signatoryName,
-    signatoryDesignation,
-    newCTC,
-    salary,          // Annual CTC
-    location,
-  } = data;
-
-  /* 🔥 DERIVED VALUES */
-  // const annualCTC = Number(salary || 0);
-  // const monthlyCTC = Math.round(annualCTC / 12);
   const annualCTC = Number(salary || 0);
 
-  const salaryComponents = useMemo(
-    () => generateOfferLetterComponents(annualCTC),
-    [annualCTC]
+  /* ================= SALARY TABLE LOGIC ================= */
+
+const {
+  salaryRows,
+  totalMonthly,
+  totalAnnual,
+} = useMemo(() => {
+
+  // Helper – 0 decimal precision
+  const round0 = (num) => Math.round(Number(num || 0));
+
+  // Annual CTC (source of truth)
+  const annualCTC = round0(Number(salary || 0));
+
+  // Monthly CTC
+  const monthlyCTC = round0(annualCTC / 12);
+
+  /* ================= PERCENTAGE BREAKUP ================= */
+  const basicMonthly   = round0(monthlyCTC * 0.40);
+  const hraMonthly     = round0(monthlyCTC * 0.18);
+  const daMonthly      = round0(monthlyCTC * 0.12);
+  const specialMonthly = round0(monthlyCTC * 0.16);
+  const foodMonthly    = round0(monthlyCTC * 0.06);
+  const miscMonthly    = round0(monthlyCTC * 0.08);
+
+  /* ================= ANNUAL VALUES ================= */
+  const basicAnnual   = round0(basicMonthly * 12);
+  const hraAnnual     = round0(hraMonthly * 12);
+  const daAnnual      = round0(daMonthly * 12);
+  const specialAnnual = round0(specialMonthly * 12);
+  const foodAnnual    = round0(foodMonthly * 12);
+  const miscAnnual    = round0(miscMonthly * 12);
+
+  /* ================= SALARY TABLE STRUCTURE ================= */
+  const salaryRows = [
+    ["Basic", basicMonthly, basicAnnual],
+    ["House Rent Allowance", hraMonthly, hraAnnual],
+    ["Dearness Allowance", daMonthly, daAnnual],
+    ["Special Allowance", specialMonthly, specialAnnual],
+    ["Food Allowance", foodMonthly, foodAnnual],
+    ["Misc. Allowance", miscMonthly, miscAnnual],
+  ];
+
+  /* ================= TOTALS ================= */
+  const totalMonthly = round0(
+    salaryRows.reduce((sum, row) => sum + row[1], 0)
   );
 
-  const totalAnnual = annualCTC;
-  const totalMonthly = Math.round(annualCTC / 12);
+  const totalAnnual = round0(
+    salaryRows.reduce((sum, row) => sum + row[2], 0)
+  );
 
+  return {
+    salaryRows,
+    totalMonthly,
+    totalAnnual,
+  };
 
+}, [salary]);
 
 
   return (
@@ -381,7 +414,7 @@ const JDITOffer = ({ company, data }) => {
                     // color: "#fff !important",
                   }}
                 >
-                  {formatCurrency(totalMonthly)}
+{formatCurrency(row.monthly)}
                 </TableCell>
 
                 <TableCell
@@ -394,7 +427,7 @@ const JDITOffer = ({ company, data }) => {
                     // color: "#fff !important",
                   }}
                 >
-                  {formatCurrency(totalAnnual)}
+{formatCurrency(row.annual)}   
                 </TableCell>
               </TableRow>
             </TableBody>
