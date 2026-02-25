@@ -135,7 +135,7 @@ const NimbjaIncrement = ({ company = {}, data = {} }) => {
           <Typography
             sx={{ mb: 4, textAlign: "justify", fontFamily: "Bahnschrift" }}
           >
-            In recognition of your previous years of service with{" "}
+            In Recognition of your previous years of service with{" "}
             <strong>{company.name}</strong>, we are pleased to offer you a
             salary increment effective{" "}
             <strong>
@@ -211,7 +211,11 @@ const NimbjaIncrement = ({ company = {}, data = {} }) => {
             <strong>
               Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
             </strong>
+
+            
           </Typography>
+            
+            
 
           {/* 🔥 ONLY THIS PART IS REPLACED */}
           <SalaryStructureTable
@@ -222,6 +226,8 @@ const NimbjaIncrement = ({ company = {}, data = {} }) => {
             formatDate={formatDate}
           />
         </Box>
+
+        
       </A4Page>
     </>
   );

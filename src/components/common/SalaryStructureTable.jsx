@@ -28,6 +28,8 @@ const SalaryStructureTable = ({
         Annexure A Salary Structure{" "}
       </Typography>
 
+      
+
       {/* <Typography sx={{ fontFamily: "Bahnschrift" }} mb={0.5}>
         <b>Name:</b> {data?.mrms} {data?.employeeName}
       </Typography>
