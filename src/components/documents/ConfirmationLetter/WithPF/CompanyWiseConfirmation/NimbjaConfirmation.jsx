@@ -209,7 +209,7 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
           >
             If there is any change in the date of joining, changes can be taken
             under consideration. Your total Gross salary will be Rs.{" "}
-            <strong>{formatCurrency(data.totalSalary)}</strong> per year.
+            <strong>{formatCurrency(totalAnnual)}</strong> per year.
           </Typography>
 
           <Typography

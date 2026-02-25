@@ -1441,6 +1441,19 @@ const NimbjaIncrement = ({ company, data }) => {
         <div style={content}>
           <p style={rightDate}>{formatDate(data.issueDate)}</p>
 
+           <Typography
+                      sx={{
+                        textAlign: "Center",
+                        marginTop: "-8mm",
+                        mb: "5mm",
+                        fontFamily: "Verdana",
+                        textDecoration: "underline",
+                        fontSize: "15px",
+                      }}
+                    >
+                      Appraisal Letter
+                    </Typography>
+
           <p style={greeting}>
             Dear {data.candidateName || data.employeeName},
           </p>
