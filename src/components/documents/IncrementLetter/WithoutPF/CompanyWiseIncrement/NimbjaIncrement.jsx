@@ -1309,6 +1309,20 @@
 
 import React from "react";
 import { formatCurrency } from "../../../../../utils/salaryCalculations";
+import A4Page from "../../../../layout/A4Page";
+import {
+  Box,
+  Grid,
+  Typography,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableContainer,
+} from "@mui/material";
+import SalaryStructureTable from "../../../../common/SalaryStructureTable";
+
 
 /* ================= DATE FORMAT ================= */
 const formatDate = (date) => {
@@ -1371,12 +1385,12 @@ const NimbjaIncrement = ({ company, data }) => {
       annual: round0(hraMonthly * 12),
     },
     {
-      name: "City Allowance",
+      name: "HRA",
       monthly: daMonthly,
       annual: round0(daMonthly * 12),
     },
     {
-      name: "Retirals",
+      name: "City Allowance",
       monthly: specialMonthly,
       annual: round0(specialMonthly * 12),
     },
@@ -1393,12 +1407,28 @@ const NimbjaIncrement = ({ company, data }) => {
   ];
 
   const totalMonthly = round2(
-    salaryComponents.reduce((sum, i) => sum + i.monthly, 0)
+    salaryComponents.reduce((sum, i) => sum + i.monthly, 0),
   );
 
   const totalAnnual = round0(
-    salaryComponents.reduce((sum, i) => sum + i.annual, 0)
+    salaryComponents.reduce((sum, i) => sum + i.annual, 0),
   );
+  // ================= ANNUAL VALUES =================
+  const basicAnnual = round0(basicMonthly * 12);
+  const hraAnnual = round0(hraMonthly * 12);
+  const daAnnual = round0(daMonthly * 12);
+  const specialAnnual = round0(specialMonthly * 12);
+  const foodAnnual = round0(foodMonthly * 12);
+  const miscAnnual = round0(miscMonthly * 12);
+  // =================================================
+  const salaryRows = [
+    ["Basic", basicMonthly, basicAnnual],
+    ["Bouqet Of Benefits", hraMonthly, hraAnnual],
+    ["HRA", daMonthly, daAnnual],
+    ["City Allowance", specialMonthly, specialAnnual],
+    ["Superannuation Fund", foodMonthly, foodAnnual],
+    ["Performance Bonus", miscMonthly, miscAnnual],
+  ];
 
   return (
     <>
@@ -1416,9 +1446,9 @@ const NimbjaIncrement = ({ company, data }) => {
           </p>
 
           <p style={para}>
-            In recognition of your previous years of service with{" "}
-            <strong>{company.name}</strong>, we are pleased to inform you of a
-            salary increment. Effective{" "}
+            I am pleased to inform you that due to your consistent outstanding
+            performance and dedication to your role as Software Test Engineer,
+            we are providing you with a salary increment effective{" "}
             <strong>{formatDate(data.effectiveDate)}</strong>, your revised
             annual CTC will be <strong>{formatCurrency(annualCTC)}</strong>.
           </p>
@@ -1468,63 +1498,41 @@ const NimbjaIncrement = ({ company, data }) => {
       </div>
 
       {/* =========================== PAGE 2 =========================== */}
-      <div
-        className="a4-content-only"
-        style={{ ...page, pageBreakBefore: "always" }}
-      >
-        {company.headerImage && (
-          <img src={company.headerImage} alt="Header" style={fullWidth} />
-        )}
+      <A4Page headerSrc={company.header} footerSrc={company.footer}>
+        <Box className="a4-content-only">
+          <Typography
+            sx={{
+              textAlign: "right",
+              mb: "5mm",
+              mt: "-12mm",
+              fontSize: "11pt",
+              fontFamily: "Bahnschrift",
+            }}
+          >
+            {formatDate(data.issueDate)}
+          </Typography>
 
-        <div style={content}>
-          <p style={annexureTitle}>Annexure – A : Salary Structure</p>
+          <Typography
+            sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
+          >
+            <strong>
+              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
+            </strong>
+          </Typography>
 
-          <div style={{ marginBottom: "16px" }}>
-            <p>
-              <strong>Employee Code :</strong> {data.employeeId}
-            </p>
-            <p>
-              <strong>Employee Name :</strong>{" "}
-              {data.candidateName || data.employeeName}
-            </p>
-            <p>
-              <strong>Effective Date :</strong> {formatDate(data.effectiveDate)}
-            </p>
-          </div>
-
-          <table style={table}>
-            <thead>
-              <tr style={{ backgroundColor: "#abe568ff" }}>
-                <th style={thLeft}>Salary Components</th>
-                <th style={thCenter}>Per Month (Rs.)</th>
-                <th style={thCenter}>Per Annum (Rs.)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {salaryComponents.map((item, idx) => (
-                <tr key={idx}>
-                  <td style={tdLeft}>{item.name}</td>
-                  <td style={tdCenter}>{formatCurrency(item.monthly)}</td>
-                  <td style={tdCenter}>{formatCurrency(item.annual)}</td>
-                </tr>
-              ))}
-
-              <tr style={{ backgroundColor: "#abe568ff", fontWeight: 600 }}>
-                <td style={tdLeft}>Total Gross Salary</td>
-                <td style={tdCenter}>{formatCurrency(totalMonthly)}</td>
-                <td style={tdCenter}>{formatCurrency(totalAnnual)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        {company.footerImage && (
-          <img src={company.footerImage} alt="Footer" style={fullWidth} />
-        )}
-      </div>
+          {/* 🔥 ONLY THIS PART IS REPLACED */}
+          <SalaryStructureTable
+            salaryRows={salaryRows}
+            totalMonthly={totalMonthly}
+            totalAnnual={totalAnnual}
+            data={data}
+            formatDate={formatDate}
+          />
+        </Box>
+      </A4Page>
     </>
   );
-};
+};;
 
 /* ================= STYLES ================= */
 
