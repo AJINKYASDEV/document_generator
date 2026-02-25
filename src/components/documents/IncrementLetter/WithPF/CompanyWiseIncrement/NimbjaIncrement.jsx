@@ -100,7 +100,14 @@ const NimbjaIncrement = ({ company = {}, data = {} }) => {
             color: "#000",
           }}
         >
-          <Typography sx={{ textAlign: "right", mb: 6 }}>
+          <Typography
+            sx={{
+              textAlign: "right",
+              mb: 6,
+              mt: "-4mm",
+              fontFamily: "Bahnschrift",
+            }}
+          >
             {new Date(data.issueDate).toLocaleDateString("en-US", {
               month: "long",
               day: "2-digit",
@@ -108,9 +115,26 @@ const NimbjaIncrement = ({ company = {}, data = {} }) => {
             })}
           </Typography>
 
-          <Typography sx={{ mb: 4 }}>Dear {data.employeeName},</Typography>
+          <Typography
+            sx={{
+              textAlign: "Center",
+              marginTop: "-8mm",
+              mb: "5mm",
+              fontFamily: "Verdana",
+              textDecoration: "underline",
+              fontSize: "15px",
+            }}
+          >
+            Appraisal Letter
+          </Typography>
 
-          <Typography sx={{ mb: 4, textAlign: "justify" }}>
+          <Typography sx={{ mb: 4, fontFamily: "Bahnschrift" }}>
+            Dear {data.employeeName},
+          </Typography>
+
+          <Typography
+            sx={{ mb: 4, textAlign: "justify", fontFamily: "Bahnschrift" }}
+          >
             In recognition of your previous years of service with{" "}
             <strong>{company.name}</strong>, we are pleased to offer you a
             salary increment effective{" "}
@@ -125,32 +149,32 @@ const NimbjaIncrement = ({ company = {}, data = {} }) => {
             <strong>{formatCurrency(totalAnnual)}</strong> per annum.
           </Typography>
 
-          <Typography sx={{ mb: 4, textAlign: "justify" }}>
+          <Typography
+            sx={{ mb: 4, textAlign: "justify", fontFamily: "Bahnschrift" }}
+          >
             Your loyalty and commitment to the company over the years have been
             invaluable and this increment is a token of our appreciation. We
             look forward to many more years of your dedication and contribution.
           </Typography>
 
-          <Typography sx={{ mb: 8 }}>
+          <Typography sx={{ mb: 8, fontFamily: "Bahnschrift" }}>
             Once again, thank you for being such a reliable member of our team.
           </Typography>
 
-          <Typography sx={{ mb: 6 }}>Yours Sincerely,</Typography>
+          <Typography sx={{ mb: 6, fontFamily: "Bahnschrift" }}>
+            Yours Sincerely,
+          </Typography>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 4, mb: 2 }}>
             {company?.CEO && (
-              <img
-                src={company.CEO}
-                alt="Signature"
-                style={{ height: 60 }}
-              />
+              <img src={company.CEO} alt="Signature" style={{ height: 60 }} />
             )}
             {company?.stamp && (
               <img src={company.stamp} alt="Stamp" style={{ height: 110 }} />
             )}
           </Box>
 
-          <Typography sx={{ fontWeight: 600 }}>
+          <Typography sx={{ fontWeight: 600, fontFamily: "Bahnschrift" }}>
             CEO & Managing Director
           </Typography>
         </Box>

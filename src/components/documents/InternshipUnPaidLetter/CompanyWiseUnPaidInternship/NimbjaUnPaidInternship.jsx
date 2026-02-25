@@ -45,6 +45,8 @@ const NimbjaUnPaidinternship = ({ company = {}, data = {} }) => {
             {formatDate(data.issueDate)}
           </Typography>
 
+            
+
           {/* NAME */}
           <Typography sx={{ mb: 1 }}>
             <strong>Name :</strong> {data.mrms} {data.employeeName}

@@ -9,12 +9,13 @@ import {
 } from "@mui/material";
 import { formatCurrency } from "../../utils/salaryCalculations";
 
+
+
 const SalaryStructureTable = ({
   salaryRows = [],
   totalMonthly = 0,
   totalAnnual = 0,
-  data,
-  formatDate,
+  
 }) => {
   return (
     <>

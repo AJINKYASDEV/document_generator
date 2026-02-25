@@ -42,13 +42,14 @@ const NimbjaCertification = ({ company, data }) => {
               textTransform: "uppercase",
               mb: 6,
               letterSpacing: "0.5px",
+              textDecoration: "underline",
             }}
           >
             LETTER OF INTERNSHIP COMPLETION
           </Typography>
 
           {/* BODY */}
-          <Typography sx={{ mb: 2, textAlign: "justify" }}>
+          <Typography sx={{ mb: 2, textAlign: "justify", fontFamily: "Arial" }}>
             This is to certify that <strong>{data.employeeName}</strong> has
             done {pronouns.possessive} internship at{" "}
             <strong>{company.name}</strong> from{" "}
@@ -56,7 +57,7 @@ const NimbjaCertification = ({ company, data }) => {
             <strong>{formatDate(data.completionDate)}</strong>.
           </Typography>
 
-          <Typography sx={{ mb: 9, textAlign: "justify" }}>
+          <Typography sx={{ mb: 9, textAlign: "justify", fontFamily: "Arial" }}>
             During the internship, {pronouns.subject.toLowerCase()} has
             demonstrated {pronouns.possessive} skills with self-motivation to
             learn new skills.{" "}
@@ -71,10 +72,19 @@ const NimbjaCertification = ({ company, data }) => {
           </Typography>
 
           {/* SIGN OFF */}
-          <Typography sx={{ mb: 1 }}>Yours faithfully,</Typography>
+          <Typography sx={{ mb: 1, fontFamily: "Arial" }}>
+            Yours faithfully,
+          </Typography>
 
-          <Typography sx={{ fontWeight: 700, mb: 3, fontSize: "13px" }}>
-            For {company.name} 
+          <Typography
+            sx={{
+              fontWeight: 700,
+              mb: 3,
+              fontSize: "13px",
+              fontFamily: "Arial",
+            }}
+          >
+            For {company.name}
           </Typography>
 
           {/* SIGNATURE SECTION */}
@@ -83,19 +93,30 @@ const NimbjaCertification = ({ company, data }) => {
               <img
                 src={company.signature}
                 alt="Signature"
-                style={{ height: 55 }}
+                style={{ height: 45 }}
               />
             )}
 
             {company?.stamp && (
-              <img src={company.stamp} alt="Stamp" style={{ height: 85 }} />
+              <img src={company.stamp} alt="Stamp" style={{ height: 95 }} />
             )}
           </Box>
 
-          <Typography sx={{ fontWeight: 600, mt: 2, fontSize: "13px" }}>
+          <Typography
+            sx={{
+              fontWeight: 600,
+              mt: 2,
+              fontSize: "13px",
+              fontFamily: "Arial",
+            }}
+          >
             {company.hrName}
           </Typography>
-          <Typography sx={{ fontSize: "14px" }}>HR Relations Lead</Typography>
+          <Typography sx={{ fontSize: "14px", fontFamily: "Arial" }}>
+            <b>HR Relations Lead</b>
+            <br />
+            <b>Department of HR Relations</b>
+          </Typography>
         </Box>
       </A4Page>
     </Box>

@@ -951,6 +951,19 @@ const NimbjaOffer = ({ company, data }) => {
             >
               {formatDate(data.issueDate)}
             </Typography>
+
+            <Typography
+              sx={{
+                textAlign: "Center",
+                marginTop: "-8mm",
+                mb: "5mm",
+                fontFamily: "Verdana",
+                textDecoration: "underline",
+                fontSize: "15px",
+              }}
+            >
+              Offer Letter
+            </Typography>
             {/* NAME */}
             <Typography sx={{ mb: 2, fontFamily: "Bahnschrift" }}>
               Name : {data.mrms} {data.candidateName}
@@ -976,7 +989,7 @@ const NimbjaOffer = ({ company, data }) => {
               journey in which every employee contributes. We invite you to be
               part of this journey! This has reference to your application and
               subsequent interviews you had with us. We are pleased to offer you
-              the role of <b>{data.position}. </b>
+              the role of <b>{data.position} </b>
               {/* {new Date(data.joiningDate).toLocaleDateString("en-US", {
                 month: "long",
                 day: "2-digit",
