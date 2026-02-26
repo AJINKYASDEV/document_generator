@@ -1050,11 +1050,19 @@ const NimbjaOfferPage1 = ({ company, data }) => {
   const offerDate = formatDate(data.issueDate);
   const joiningDate = formatDate(data.joiningDate);
   const firstName = data.candidateName?.split(" ")[0] || "";
+  /* ================= SALARY LOGIC (MONTHLY INPUT) ================= */
 
+  const round2 = (num) => Math.round((Number(num) || 0) * 100) / 100;
+
+  // 🔥 INPUT IS MONTHLY
+  const monthlyGross = round2(data.salary || data.newCTC || 0);
+
+  // Annual derived
+  const totalAnnual = round2(monthlyGross * 12);
   return (
     <A4Page
-       headerSrc={company.header}
-       footerSrc={company.footer}
+      headerSrc={company.header}
+      footerSrc={company.footer}
       // watermarkSrc={company.watermarkImage || company.watermark || null}
       // contentTop="48mm"
       // contentBottom="28mm"
@@ -1062,9 +1070,22 @@ const NimbjaOfferPage1 = ({ company, data }) => {
     >
       {/* ================= DATE ================= */}
       <Typography
-         sx={{ ...baseText, fontWeight: 600, textAlign: "right", mb: "9mm" }}
+        sx={{ ...baseText, fontWeight: 600, textAlign: "right", mb: "9mm" }}
       >
         {offerDate}
+      </Typography>
+
+      <Typography
+        sx={{
+          textAlign: "Center",
+          marginTop: "-8mm",
+          mb: "5mm",
+          fontFamily: "Verdana",
+          textDecoration: "underline",
+          fontSize: "15px",
+        }}
+      >
+        Offer Letter
       </Typography>
 
       {/* ================= DETAILS ================= */}
@@ -1128,7 +1149,9 @@ const NimbjaOfferPage1 = ({ company, data }) => {
       </Typography>
 
       {/* ================= PARAGRAPHS ================= */}
-      <Typography sx={{ ...baseText, textAlign: "justify", mb: "5mm",marginTop:"-2mm" }}>
+      <Typography
+        sx={{ ...baseText, textAlign: "justify", mb: "5mm", marginTop: "-2mm" }}
+      >
         Welcome to{" "}
         <Typography
           component="span"
@@ -1139,8 +1162,8 @@ const NimbjaOfferPage1 = ({ company, data }) => {
         >
           {company.name}
         </Typography>
-        . Quality is not just a destination but a journey in which every
-        employee contributes. We invite you to be part of this journey!
+        Quality is not just a destination but a journey in which every employee
+        contributes. We invite you to be part of this journey!
         <br />
         This has reference to your application and subsequent interviews you had
         with us.
@@ -1158,7 +1181,7 @@ const NimbjaOfferPage1 = ({ company, data }) => {
       <Typography sx={{ ...baseText, textAlign: "justify", mb: "5mm" }}>
         On Joining, your all-inclusive Cost to the Company (CTC) will be{" "}
         <Typography component="span" sx={{ fontWeight: 600 }}>
-          Rs.{formatIndianCurrency(data.salary)}/-
+          Rs.{formatIndianCurrency(totalAnnual)}/-
         </Typography>
         as per Annexure A. This offer is made on the basis of your having
         furnished to the Company information and documents in support of your
@@ -1238,10 +1261,11 @@ const NimbjaOfferPage1 = ({ company, data }) => {
                 src={company.stamp}
                 alt="Company Stamp"
                 sx={{
-                  width: "34mm",
+                  
                   display: "block",
                   mb: "4mm",
                   ml: "-52mm",
+                  height: 100,
                 }}
               />
             )}
@@ -1251,7 +1275,7 @@ const NimbjaOfferPage1 = ({ company, data }) => {
                 fontFamily: '"Bahnschrift", "Segoe UI", sans-serif', // 🔑 ADDED
               }}
             >
-              <strong>Signature :</strong> _________________________ 
+              <strong>Signature :</strong> _________________________
             </Typography>
 
             <Typography
@@ -1267,7 +1291,7 @@ const NimbjaOfferPage1 = ({ company, data }) => {
       </Box>
     </A4Page>
   );
-};
+};;
 
 export default NimbjaOfferPage1;
 

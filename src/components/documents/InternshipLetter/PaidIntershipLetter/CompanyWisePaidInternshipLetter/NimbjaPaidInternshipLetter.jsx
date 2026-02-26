@@ -137,6 +137,19 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
             {formatDate(data.issueDate)}
           </Typography>
 
+          <Typography
+                                sx={{
+                                  textAlign: "Center",
+                                  marginTop: "-8mm",
+                                  mb: "5mm",
+                                  fontFamily: "Verdana",
+                                  textDecoration: "underline",
+                                  fontSize: "15px",
+                                }}
+                              >
+                                Internship Letter
+                              </Typography>
+
           <Typography sx={{ fontFamily: "Bahnschrift" }} mb={1}>
             <strong>Name :</strong> {data.mrms} {data.employeeName}
           </Typography>

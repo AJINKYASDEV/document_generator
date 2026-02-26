@@ -52,6 +52,19 @@ const NimbjaUnPaidinternshipLetter = ({ company = {}, data = {} }) => {
             {formatDate(data.issueDate)}
           </Typography>
 
+          <Typography
+                                          sx={{
+                                            textAlign: "Center",
+                                            marginTop: "-8mm",
+                                            mb: "5mm",
+                                            fontFamily: "Verdana",
+                                            textDecoration: "underline",
+                                            fontSize: "15px",
+                                          }}
+                                        >
+                                          Internship Letter
+                                        </Typography>
+
           {/* NAME */}
           <Typography sx={{ mb: 1, fontFamily: "Bahnschrift" }}>
             <strong>Name :</strong> {data.mrms} {data.employeeName}
@@ -101,7 +114,7 @@ const NimbjaUnPaidinternshipLetter = ({ company = {}, data = {} }) => {
             sx={{ mb: 4, textAlign: "justify", fontFamily: "Bahnschrift" }}
           >
             During the continuance of your internship with the Company or any
-            extension thereof and even after the cessation of your internship
+            extension there of and even after the cessation of your internship
             with the Company by any reason whatsoever: You shall protect and
             will not disclose all confidential information that may come in your
             possession or knowledge by virtue of your internship with the
@@ -151,7 +164,7 @@ const NimbjaUnPaidinternshipLetter = ({ company = {}, data = {} }) => {
             {/* LEFT – COMPANY SIGNATURE */}
             <Box>
               <Box
-                sx={{ display: "flex", alignItems: "center", gap: 3, mb: 1 }}
+                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 1 }}
               >
                 {company?.signature && (
                   <img
