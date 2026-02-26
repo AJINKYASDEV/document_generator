@@ -12,48 +12,61 @@ import A4Page from "../../../../layout/A4Page";
 
 /* ================= COMMON STYLES ================= */
 
-const tableCell = {
-  border: "1px solid #000",
-  fontSize: "12px",
-  padding: "6px",
-};
+// const tableCell = {
+//   border: "1px solid #000",
+//   fontSize: "12px",
+//   padding: "6px",
+// };
 
-const centerBold = {
-  ...tableCell,
-  fontWeight: 700,
-  textAlign: "center",
-};
+// const centerBold = {
+//   ...tableCell,
+//   fontWeight: 700,
+//   textAlign: "center",
+// };
 
-const boldCell = {
-  ...tableCell,
-  fontWeight: 700,
-};
+// const boldCell = {
+//   ...tableCell,
+//   fontWeight: 700,
+// };
 
-const rightCell = {
-  ...tableCell,
-  textAlign: "right",
-};
+// const rightCell = {
+//   ...tableCell,
+//   textAlign: "right",
+// };
 
-const centerCell = {
-  ...tableCell,
-  textAlign: "center",
-};
+// const centerCell = {
+//   ...tableCell,
+//   textAlign: "center",
+// };
 
-const headerBg = {
-  backgroundColor: "#ffffff",
-};
+// const headerBg = {
+//   backgroundColor: "#ffffff",
+// };
 
-const subHeaderBg = {
-  backgroundColor: "#ffffff",
-};
+// const subHeaderBg = {
+//   backgroundColor: "#ffffff",
+// };
+
+// const cell = {
+//   border: "1px solid #000",
+//   fontSize: "13px",
+//   padding: "4px 6px",
+// };
+
+// const right = { textAlign: "right" };  
 
 const cell = {
   border: "1px solid #000",
-  fontSize: "13px",
-  padding: "4px 6px",
+  fontSize: "13px",      // smaller text
+  padding: "3px 5px",    // less spacing
+  // lineHeight: 1.2,       
 };
 
-const right = { textAlign: "right" };       
+const bold = { fontWeight: 700 };
+const center = { textAlign: "center" };
+const right = { textAlign: "right" };
+
+
 
 /* ================== UTILS ================== */
 const formatDate = (d) =>
@@ -160,86 +173,80 @@ const JditFullAndFinal = ({ company, data }) => {
 
   return (
     <A4Page headerSrc={company.header} footerSrc={company.footer}>
-      <Box mt={-6}>
-        {/* ================= TITLE ================= */}
+      <Box sx={{ width: "95%", margin: "0 auto" }}>
         <Table sx={{ borderCollapse: "collapse" }}>
           <TableBody>
+          
+            {/* TITLE */}
             <TableRow>
-              <TableCell sx={{ ...centerBold, ...headerBg }} colSpan={4}>
+              <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
                 Full & Final Settlement Statement
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ ...centerBold, ...headerBg }} colSpan={4}>
-                JDIT SOFTWARE SOLUTIONS PVT. LTD.
+              <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
+                {company.name}
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ ...centerCell, ...headerBg }} colSpan={4}>
-                401, 4th Floor, Sai Villa Commercial Apartment,
-                Sr. No. 166, Malwadi Road, <br />
-                Opp. Sahyadri Hospital, Hadapsar, Pune - 411028.
+              <TableCell colSpan={4} sx={{ ...cell, ...center }}>
+                {company.address}
               </TableCell>
             </TableRow>
 
-            {/* ================= EMPLOYEE DETAILS ================= */}
+            {/* EMP DETAILS */}
             <TableRow>
-              <TableCell sx={boldCell}>Name Of The Employee</TableCell>
-              <TableCell sx={tableCell}>{data.employeeName}</TableCell>
-              <TableCell sx={boldCell}>F & F Date</TableCell>
-              <TableCell sx={tableCell}>{data.date}</TableCell>
+              <TableCell sx={cell}>Name of the employee</TableCell>
+              <TableCell sx={cell}>{data.employeeName}</TableCell>
+              <TableCell sx={cell}>F&F Date</TableCell>
+              <TableCell sx={cell}>{formatDate(data.date)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={boldCell}>Employee ID</TableCell>
-              <TableCell sx={tableCell}>{data.employeeId}</TableCell>
-              <TableCell sx={boldCell}>Joining Date</TableCell>
-              <TableCell sx={tableCell}>{data.doj}</TableCell>
+              <TableCell sx={cell}>Employee ID</TableCell>
+              <TableCell sx={cell}>{data.employeeId}</TableCell>
+              <TableCell sx={cell}>Joining Date</TableCell>
+              <TableCell sx={cell}>{formatDate(data.doj)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={boldCell}>Designation</TableCell>
-              <TableCell sx={tableCell}>{data.designation}</TableCell>
-              <TableCell sx={boldCell}>Date of Resigning</TableCell>
-              <TableCell sx={tableCell}>{data.dateofresignation}</TableCell>
+              <TableCell sx={cell}>Designation</TableCell>
+              <TableCell sx={cell}>{data.designation}</TableCell>
+              <TableCell sx={cell}>Date of Resignation</TableCell>
+              <TableCell sx={cell}>{formatDate(data.dateofresignation)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={boldCell}>Department</TableCell>
-              <TableCell sx={tableCell}>{data.department}</TableCell>
-              <TableCell sx={boldCell}>Date of Leaving</TableCell>
-              <TableCell sx={tableCell}>{data.dateofleaving}</TableCell>
+              <TableCell sx={cell}>Department</TableCell>
+              <TableCell sx={cell}>{data.department}</TableCell>
+              <TableCell sx={cell}>Date of Leaving</TableCell>
+              <TableCell sx={cell}>{formatDate(data.dateofleaving)}</TableCell>
             </TableRow>
 
-            {/* ================= SALARY HEADER ================= */}
-            <TableRow>
-              <TableCell sx={{ ...centerBold, ...subHeaderBg }} colSpan={2}>
+            {/* SALARY PARTICULARS */}
+            <TableRow >
+              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
                 Salary particulars
               </TableCell>
-              <TableCell sx={{ ...centerBold, ...subHeaderBg }}>
-                For the month
-              </TableCell>
-              <TableCell sx={{ ...centerBold, ...subHeaderBg }}>
-                {formatMonth(data.month)}
-              </TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...center }}>For the month</TableCell>
+              <TableCell sx={{ ...cell, ...center }}>{formatMonth(data.month)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={boldCell}>Total Day in the month</TableCell>
-              <TableCell sx={centerCell}>{data.workdays}</TableCell>
-              <TableCell sx={boldCell}>Paid days</TableCell>
-              <TableCell sx={centerCell}>{data.paiddays}</TableCell>
+              <TableCell sx={cell}>Total Day in the month</TableCell>
+              <TableCell sx={{ ...cell, ...center }}>{totalDays}</TableCell>
+              <TableCell sx={cell}>Paid days</TableCell>
+              <TableCell sx={{ ...cell, ...center }}>{paidDays}</TableCell>
             </TableRow>
 
-            <TableRow>
-              <TableCell sx={boldCell} colSpan={2}>Earnings</TableCell>
-              <TableCell sx={{ ...centerCell, ...boldCell }}>Actual</TableCell>
-              <TableCell sx={{ ...centerCell, ...boldCell }}>Earned</TableCell>
+            {/* EARNINGS */}
+            <TableRow sx={{ background: "#f2dede" }}>
+              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Earnings</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...center }}>Actual</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...center }}>Earned</TableCell>
             </TableRow>
-
-            {/* ================= EARNINGS ================= */}
 
             {[
               ["Basic", basic],
@@ -251,95 +258,92 @@ const JditFullAndFinal = ({ company, data }) => {
             ].map(([label, val]) => (
               <TableRow key={label}>
                 <TableCell colSpan={2} sx={cell}>{label}</TableCell>
-                <TableCell sx={{ ...cell, ...centerCell }}>{formatAmt(val)}</TableCell>
-                <TableCell sx={{ ...cell, ...centerCell }}>{formatAmt(earned(val))}</TableCell>
+                <TableCell sx={{ ...cell, ...right }}>{formatAmt(val)}</TableCell>
+                <TableCell sx={{ ...cell, ...right }}>{formatAmt(earned(val))}</TableCell>
               </TableRow>
             ))}
 
             <TableRow>
-              <TableCell sx={boldCell} colSpan={2}>Total</TableCell>
-              <TableCell sx={{ ...centerCell }}>{formatAmt(totalActual)}</TableCell>
-              <TableCell sx={{ ...centerCell }}>{formatAmt(totalEarned)}</TableCell>
+              <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Total</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(totalActual)}</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(totalEarned)}</TableCell>
             </TableRow>
 
-            {/* ================= DEDUCTIONS ================= */}
+            {/* DEDUCTIONS */}
             <TableRow>
-              <TableCell sx={centerBold} colSpan={4}>
+              <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
                 Less Deductions (-)
               </TableCell>
             </TableRow>
 
-            <TableRow>
-              <TableCell sx={{ ...tableCell, ...centerCell }} colSpan={2}>Professional Tax</TableCell>
+            {/* <TableRow>
+              <TableCell colSpan={3} sx={cell}>Provident Fund</TableCell>
+              <TableCell sx={{ ...cell, ...right }}>{formatAmt(pf)}</TableCell>
+            </TableRow> */}
 
-              <TableCell sx={rightCell}></TableCell>
-              <TableCell sx={rightCell}>200</TableCell>
+            <TableRow>
+              <TableCell colSpan={3} sx={cell}>Professional Tax</TableCell>
+              <TableCell sx={{ ...cell, ...right }}>{formatAmt(pt)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ ...tableCell, ...centerCell }} colSpan={2}>Others</TableCell>
-
-              <TableCell sx={{ ...tableCell, ...centerCell }}></TableCell>
-              <TableCell sx={rightCell}>2,000</TableCell>
+              <TableCell colSpan={3} sx={cell}>Others</TableCell>
+              <TableCell sx={{ ...cell, ...right }}>{formatAmt(others)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ ...tableCell, ...centerCell }} colSpan={2}>Total Deductions</TableCell>
-
-              <TableCell sx={rightCell}></TableCell>
-              <TableCell sx={rightCell}>2,200</TableCell>
+              <TableCell colSpan={3} sx={{ ...cell, ...bold }}>Total Deductions</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(totalDeductions)}</TableCell>
             </TableRow>
 
-            {/* ================= OTHER EARNINGS ================= */}
+            {/* OTHER EARNINGS */}
             <TableRow>
-              <TableCell sx={centerBold} colSpan={4}>
+              <TableCell colSpan={4} sx={{ ...cell, ...bold, ...center }}>
                 Other Earnings
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell sx={{ ...tableCell, ...centerCell }} colSpan={2}>Leave encashment (Days)</TableCell>
-              <TableCell sx={centerCell}>15</TableCell>
-
-              <TableCell sx={rightCell}></TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell sx={{ ...tableCell, ...centerCell }} colSpan={2}>Total</TableCell>
-
-              <TableCell sx={rightCell}></TableCell>
-              <TableCell sx={rightCell}>{formatAmt(totalEarned)}</TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell sx={{ ...tableCell, ...centerCell }} colSpan={2}>Net Payable (Rs)</TableCell>
-
-              <TableCell sx={rightCell}></TableCell>
-              <TableCell sx={rightCell}>{formatAmt(netPay)}</TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell sx={boldCell} colSpan={4}>
-                <Box sx={{ display: "flex", justifyContent: "space-between", px: 2 }}>
-                  <span>Amount in Words</span>
-                  <span>{numberToWords(netPay)}</span>
-                </Box>
+              <TableCell colSpan={2} sx={cell}>Leave encashment</TableCell>
+              <TableCell colSpan={2} sx={{ ...cell, ...right }}>
+                00
               </TableCell>
             </TableRow>
 
-            {/* ================= SIGNATURES ================= */}
-            <TableRow>
-              <TableCell sx={centerBold}></TableCell>
-              <TableCell sx={centerBold}><img src={company.stamp} width="80px" height="80px" /></TableCell>
-              <TableCell sx={centerBold} colSpan={2}><img src={company.signature} width="120px" height="60px" /></TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={centerCell}>Prepared By</TableCell>
-              <TableCell sx={centerCell}>Verified By</TableCell>
-              <TableCell sx={centerCell} colSpan={2}>
-                Approved By
+             <TableRow>
+              <TableCell colSpan={2} sx={cell}>Total</TableCell>
+              <TableCell colSpan={2} sx={{ ...cell, ...right }}>
+                {formatAmt(totalEarned)}
               </TableCell>
             </TableRow>
+
+            <TableRow>
+              <TableCell colSpan={3} sx={{ ...cell, ...bold }}>Net Payable (Rs)</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(netPay)}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell sx={cell}>Amount in Words</TableCell>
+              <TableCell colSpan={3} sx={cell}>{numberToWords(netPay)}</TableCell>
+            </TableRow>
+
+            {/* SIGNATURE */}
+            <TableRow>
+              <TableCell sx={{ ...cell, ...center }}></TableCell>
+              <TableCell sx={{ ...cell, ...center }}>
+                {company.stamp && <img src={company.stamp} height={60} alt="" />}
+              </TableCell>
+              <TableCell colSpan={2} sx={{ ...cell, ...center }}>
+                {company.signature && <img src={company.signature} height={45} alt="" />}
+              </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell sx={{ ...cell, ...center }}>Prepared By</TableCell>
+              <TableCell sx={{ ...cell, ...center }}>Verified By</TableCell>
+              <TableCell colSpan={2} sx={{ ...cell, ...center }}>Approved By</TableCell>
+            </TableRow>
+
           </TableBody>
         </Table>
       </Box>
