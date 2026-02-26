@@ -218,7 +218,7 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
             </TableRow>
 
             {/* EARNINGS */}
-            <TableRow sx={{ background: "#f2dede" }}>
+            <TableRow sx={{ background: "#bdf38d" }}>
               <TableCell colSpan={2} sx={{ ...cell, ...bold }}>
                 Earnings
               </TableCell>
@@ -228,11 +228,11 @@ const NimbjaFullAndFinal = ({ company = {}, data = {} }) => {
 
             {[
               ["Basic", basic],
-              ["HRA", hra],
-              ["Dearness Allowance", da],
-              ["Special Allowances", special],
-              ["Food Allowances", food],
-              ["Misc Allowances", pfAllowance],
+              ["Bouqet Of Benefits", hra],
+              ["HRA", da],
+              ["City Allowances", special],
+              ["Superannuation Fund ", food],
+              ["Performance Bonus", pfAllowance],
             ].map(([label, val]) => (
               <TableRow key={label}>
                 <TableCell colSpan={2} sx={cell}>

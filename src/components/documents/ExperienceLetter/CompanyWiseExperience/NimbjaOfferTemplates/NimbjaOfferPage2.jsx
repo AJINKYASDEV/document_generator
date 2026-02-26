@@ -272,6 +272,8 @@ const NimbjaOfferPage2 = ({ company, data }) => {
         })
       : "";
 
+      
+
 
   return (
     <A4Page headerSrc={company.header} footerSrc={company.footer}>
@@ -288,13 +290,13 @@ const NimbjaOfferPage2 = ({ company, data }) => {
           {formatDate(data.issueDate)}
         </Typography> */}
 
-        <Typography
+        {/* <Typography
           sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
         >
           <strong>
             Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
           </strong>
-        </Typography>
+        </Typography> */}
 
         {/* 🔥 ONLY THIS PART IS REPLACED */}
         <SalaryStructureTable

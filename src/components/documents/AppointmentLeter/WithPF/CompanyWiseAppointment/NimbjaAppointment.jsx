@@ -38,7 +38,7 @@ const NimbjaAppointment = ({ company, data }) => {
 
     const lakhs = amount / 100000;
 
-    return `${lakhs % 1 === 0 ? lakhs : lakhs.toFixed(1)} Lakhs per annum`;
+    return `${lakhs % 1 === 0 ? lakhs : lakhs.toFixed(1)} Lakhs Per Annum`;
   };
 
   /* ================= SALARY LOGIC ================= */
@@ -139,7 +139,7 @@ const NimbjaAppointment = ({ company, data }) => {
             sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
           >
             <strong>
-              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
+              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\{data.employeeId}
             </strong>
           </Typography>
 
@@ -546,7 +546,7 @@ const NimbjaAppointment = ({ company, data }) => {
             sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
           >
             <strong>
-              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
+              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\{data.employeeId}
             </strong>
           </Typography>
 

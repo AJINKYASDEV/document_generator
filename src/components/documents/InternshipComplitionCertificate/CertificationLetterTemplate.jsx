@@ -26,6 +26,7 @@ const companyComponentMap = {
   4: DevconsCertification,
   5: RPCertification,
   6: PentaCertification,
+  7: NimbjaCertification,
   8: JditCertification,
   9: QMSCertification,
   10: SmartSoftwareCertification,
