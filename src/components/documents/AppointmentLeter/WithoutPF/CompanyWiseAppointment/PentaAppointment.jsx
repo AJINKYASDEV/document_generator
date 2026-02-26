@@ -63,9 +63,9 @@ const PentaAppointment = ({ company, data }) => {
     <>
       Your Designation will be <strong>"{data.position}"</strong>.
     </>,
-    <>Your total emoluments will be <strong>Rs.{
+    <>Your total emoluments will be <strong>Rs. {
       annualCTC / 100000
-    } </strong>Lakhs per annum.</>,
+    } </strong>Lakhs Per Annum.</>,
     `Full details of your pay package are given in the enclosure to this letter. However, please note that, LTA is payable after completion of one year of service, subject to your getting confirmed in the service. If the company provides accommodation/transit accommodation, appropriate deductions will be made for the same, as per the rules applicable. `,
     `Whilst you are located abroad, the terms applicable will be intimated to you at the relevant point of time.`,
     `You shall be due for salary revision not before one year from your date of joining.`,

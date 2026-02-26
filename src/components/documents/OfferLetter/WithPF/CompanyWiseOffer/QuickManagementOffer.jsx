@@ -401,8 +401,8 @@ const getFirstName = (name = "") => name.split(" ")[0];
 const salaryStructure = [
   { label: "Basic", percent: 0.48 },
   { label: "House Rent Allowance", percent: 0.18 },
-  { label: "Dearness Allowance", percent: 0.16 },
-  { label: "Special Allowance", percent: 0.12 },
+  { label: "Dearness Allowance", percent: 0.12 },
+  { label: "Special Allowance", percent: 0.16 },
   { label: "Food Allowance", percent: 0.06 },
   // { label: "Misc. Allowance", percent: 0.08 },
 ];

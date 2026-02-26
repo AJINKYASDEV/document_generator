@@ -110,7 +110,7 @@ const QuickConfirmation = ({ company = {}, data = {} }) => {
           </Typography>
 
           <Typography fontSize={14} textAlign="justify" mt={2}>
-                     We are pleased to confirm your continued services at the position of Software Test<br />
+                     We are pleased to confirm your continued services at the position of {data.position}<br />
                      Engineer with {" "}<strong>{company.name}</strong> with effective date {" "}
                      <strong>{formatDate(data.effectiveDate)}</strong><br /> considering your performance and support towards the organization..
                    </Typography>
@@ -122,7 +122,9 @@ const QuickConfirmation = ({ company = {}, data = {} }) => {
          
          
                    <Typography fontSize={14} textAlign="justify" mt={2}>
-                     Subject to various deductions as per companies and government policy.The roles and responsibilities and other terms and conditions of your employment will be Specified in your letter of appointment. We welcome you to R P BUSINESS SOLUTIONS LLP. Family and hope it would be the beginning of a long and mutually beneficial association.Kindly acknowledge the duplicate copy of this letter as an acceptance of this offer.
+                     Subject to various deductions as per companies and government policy.The roles and
+                      responsibilities and other terms and conditions of your employment will be Specified 
+                      in your letter of appointment. We welcome you to  {company.name}. Family and hope it would be the beginning of a long and mutually beneficial association.Kindly acknowledge the duplicate copy of this letter as an acceptance of this offer.
                    </Typography>
 
           {/* Signature Section */}
