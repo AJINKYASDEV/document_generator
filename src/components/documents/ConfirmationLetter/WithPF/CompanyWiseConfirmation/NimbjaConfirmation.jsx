@@ -295,7 +295,7 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
             sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
           >
             <strong>
-              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
+              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\{data.employeeId}
             </strong>
           </Typography>
 

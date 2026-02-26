@@ -122,8 +122,8 @@ const NimbjaSalarySlip = ({ company = {}, data = {} }) => {
     basic: 0.4,
     hra: 0.18,
     da: 0.12,
-    special: 0.16,
-    food: 0.06,
+    special: 0.06,
+    food: 0.16,
     misc: 0.08,
   };
 
@@ -200,7 +200,7 @@ const NimbjaSalarySlip = ({ company = {}, data = {} }) => {
                 align="center"
                 sx={{ fontWeight: "bold", py: 1.5 }}
               >
-                Salary Slip {month}
+                Salary Slip {salaryMonth}
               </TableCell>
             </TableRow>
             {/* ===== EMPLOYEE INFO ===== */}

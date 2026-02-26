@@ -1477,7 +1477,7 @@ const NimbjaIncrement = ({ company, data }) => {
             fontWeight: 600,
           }}
         >
-          Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId} 
+          Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\{data.employeeId} 
         </Typography>
 
         {/* Title */}

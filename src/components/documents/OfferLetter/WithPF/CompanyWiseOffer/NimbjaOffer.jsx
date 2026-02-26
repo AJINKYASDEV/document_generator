@@ -1015,7 +1015,7 @@ const NimbjaOffer = ({ company, data }) => {
               Company shall be entitled to forthwith terminate your employment
               without notice. You are required to join the services of the
               Company at the earliest, but in any case, not later than{" "}
-              <b>{formatDate(data.joiningDate)}</b>
+              <b>{formatDate(data.joiningDate)}.</b>
             </Typography>
 
             <Typography sx={{ mb: 2, fontFamily: "Bahnschrift" }}>
