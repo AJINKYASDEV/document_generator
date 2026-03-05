@@ -397,8 +397,8 @@ const FONT = "Cambria, 'Times New Roman', serif";
 const cell = {
   border: "1px solid #000",
   fontFamily: FONT,
-  fontSize: "9.5pt", // 🔥 Reduced
-  padding: "3px 5px", // 🔥 Reduced
+  fontSize: "9.5pt",
+  padding: "3px 5px",
   verticalAlign: "middle",
 };
 

@@ -89,7 +89,7 @@ const SmartMatrixOfferPage1 = ({ company, data }) => {
   const offerDate = fmtDate(data.issueDate);
   const joiningDate = fmtDate(data.joiningDate);
   const monthlySalary = Number(data.salary || 0);
-  const annualSalary = monthlySalary * 12;
+  const annualSalary = Number(data.salary || 0);
   const lpa = (annualSalary / 100000).toFixed(1);
   const position = data.position;
 
@@ -204,9 +204,9 @@ const SmartMatrixOfferPage1 = ({ company, data }) => {
           <Box
             component="img"
             src={sign}
-            alt="Stamp"
+            alt="Signature"
             sx={{
-              width: 110,
+              width: 120,
               position: "relative",
               left: "-8mm",
               marginTop: "20mm",
@@ -234,12 +234,12 @@ const SmartMatrixOfferPage1 = ({ company, data }) => {
           <Box
             component="img"
             src={company.stamp}
-            alt="Signature"
+            alt="Stamp"
             sx={{
-              width: 130,
+              width: 120,
               ml: "2mm",
               mt: "-25mm",
-              transform: "translateX(-5mm)", // 👈 stronger left move
+              transform: "translateX(-5mm)", //  stronger left move
             }}
           />
         </Box>

@@ -14,6 +14,7 @@ import QuickSalarySlip from "../../WithPF/CompanyWisePFLetter/QMSSalarySlip";
 const companyComponentMap = {
   //   1: CubeageUnPaidInternshipLetter,
   //   2: NeweageUnPaidInternshipLetter,
+  2: NeweageSalarySlip,
   3: SmartMatrixSalarySlip,
   4: DevconsSalarySlip,
 
@@ -21,7 +22,7 @@ const companyComponentMap = {
   6: PentaSalarySlip,
   7: NimbjaSalarySlip,
   //   8: JDITUnPaidInternshipLetter,
-    9: QuickSalarySlip,
+  9: QuickSalarySlip,
   //   10:SmartSoftwareUnPaidInternshipLetter,
 };
 
