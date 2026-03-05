@@ -127,7 +127,7 @@ const SmartMatrixSalarySlip = ({ data = {}, company = {} }) => {
     hra: 0.18,
     da: 0.12,
     special: 0.16,
-    food: 0.06, // <-- IMPORTANT (see below)
+    food: 0.06,
   };
 
   /* Earnings */

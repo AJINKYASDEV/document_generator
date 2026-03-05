@@ -174,8 +174,8 @@ const SmartMatrixExperience = ({ company, data }) => {
                 style={{
                   margin: 0,
                   fontWeight: 600,
-                  marginTop: "-20mm", // block position
-                  marginBottom: "0.5mm", // tight gap to designation
+                  marginTop: "-20mm",
+                  marginBottom: "0.5mm",
                 }}
               >
                 <strong>{company.hrName}</strong>
