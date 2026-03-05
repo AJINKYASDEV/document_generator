@@ -1181,9 +1181,8 @@ const NimbjaOfferPage1 = ({ company, data }) => {
       <Typography sx={{ ...baseText, textAlign: "justify", mb: "5mm" }}>
         On Joining, your all-inclusive Cost to the Company (CTC) will be{" "}
         <Typography component="span" sx={{ fontWeight: 600 }}>
-          Rs.{formatIndianCurrency(totalAnnual)}/-
-        </Typography>
-        as per Annexure A. This offer is made on the basis of your having
+          Rs. {formatIndianCurrency(totalAnnual)}/-
+        </Typography> as per Annexure A. This offer is made on the basis of your having
         furnished to the Company information and documents in support of your
         age, academic qualifications, previous work experience, relieving letter
         from your last employer and other particulars on or before your day of
@@ -1194,7 +1193,7 @@ const NimbjaOfferPage1 = ({ company, data }) => {
         You are required to join the services of the Company at the earliest,
         but in any case, not later than{" "}
         <Typography component="span" sx={{ fontWeight: 600 }}>
-          {joiningDate}
+          {joiningDate}.
         </Typography>
       </Typography>
       <Typography sx={{ ...baseText, textAlign: "justify", mb: "5mm" }}>

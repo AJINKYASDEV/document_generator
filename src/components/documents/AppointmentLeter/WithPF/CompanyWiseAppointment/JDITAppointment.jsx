@@ -33,38 +33,58 @@ const formatCurrency = (v) =>
   });
 
 /* ================= SALARY BREAKUP ================= */
-const generateSalaryBreakup = (annualCTC) => {
-  const basic = round2(annualCTC * 0.34);
-  const hra = round2(annualCTC * 0.2);
-  const da = round2(annualCTC * 0.035);
-  const special = round2(annualCTC * 0.345);
-  const food = round2(annualCTC * 0.06);
+const generateSalaryBreakup = (monthlyCTC) => {
+  const round0 = (num) => Math.round(Number(num || 0));
 
-  const misc = round2(
-    annualCTC - (basic + hra + da + special + food)
-  );
+  // 🔹 Round monthly CTC
+  const monthly = round0(monthlyCTC);
 
-  const monthlyPF = 3750;
-  const annualPF = monthlyPF * 12;
+  // 🔹 PF (Static)
+  const pfMonthly = 3750;
+  const pfAnnual = pfMonthly * 12;
+
+  // 🔹 Updated Percentages
+  // 40% Basic + 8% Misc shifted into Basic
+  const basicMonthly = round0(monthly * 0.48);
+  const hraMonthly = round0(monthly * 0.18);
+  const daMonthly = round0(monthly * 0.12);
+  const specialMonthly = round0(monthly * 0.16);
+  const foodMonthly = round0(monthly * 0.06);
+
+  // 🔹 Annual
+  const basicAnnual = basicMonthly * 12;
+  const hraAnnual = hraMonthly * 12;
+  const daAnnual = daMonthly * 12;
+  const specialAnnual = specialMonthly * 12;
+  const foodAnnual = foodMonthly * 12;
 
   const salaryComponents = [
-    { name: "Basic Salary", monthly: basic / 12, annual: basic },
-    { name: "House Rent Allowance (HRA)", monthly: hra / 12, annual: hra },
-    { name: "Dearness Allowance (DA)", monthly: da / 12, annual: da },
-    { name: "Special Allowance", monthly: special / 12, annual: special },
-    { name: "Food Allowance", monthly: food / 12, annual: food },
-    { name: "Miscellaneous Allowance", monthly: misc / 12, annual: misc },
+    { name: "Basic", monthly: basicMonthly, annual: basicAnnual },
+    { name: "House Rent Allowance", monthly: hraMonthly, annual: hraAnnual },
+    { name: "Dearness Allowance", monthly: daMonthly, annual: daAnnual },
+    { name: "Special Allowance", monthly: specialMonthly, annual: specialAnnual },
+    { name: "Food Allowance", monthly: foodMonthly, annual: foodAnnual },
+    { name: "Provident Fund (PF)", monthly: pfMonthly, annual: pfAnnual },
   ];
 
-  const totalAnnual =
-    basic + hra + da + special + food + misc + annualPF;
+  const totalMonthly =
+    basicMonthly +
+    hraMonthly +
+    daMonthly +
+    specialMonthly +
+    foodMonthly 
+    
 
-  const totalMonthly = totalAnnual / 12;
+  const totalAnnual = totalMonthly * 12;
 
-  return { salaryComponents, monthlyPF, annualPF, totalMonthly, totalAnnual };
-
+  return {
+    salaryComponents,
+    totalMonthly,
+    totalAnnual,
+  };
+}
   
-};
+
 const tableCellStyle = { border: "1px solid #333" };
 
 /* ================= MAIN COMPONENT ================= */
@@ -72,26 +92,24 @@ const JDITAppointment = ({ company, data }) => {
   if (!company || !data) return null;
 
   const firstName = data.employeeName?.split(" ")[0] || "";
-  const annualCTC = Number(data.salary || 0);
-  const salaryRows = generateSalaryBreakup(annualCTC);
+  // const annualCTC = Number(data.salary || 0);
+  // const salaryRows = generateSalaryBreakup(annualCTC);
 
 
-    const {
-    salaryComponents,
-    monthlyPF,
-    annualPF,
-    totalMonthly,
-    totalAnnual,
-  } = generateSalaryBreakup(annualCTC);
+    const monthlyCTC = Number(data.salary || 0);
 
-
+const {
+  salaryComponents,
+  totalMonthly,
+  totalAnnual,
+} = generateSalaryBreakup(monthlyCTC);
 
 
 
   /* ================= TERMS ================= */
   const terms = [
     <> Your Designation will be <strong>"{data.position}"</strong>.   </>,
-    <>Your total emoluments will be <strong>Rs. {annualCTC / 100000} </strong>Lakhs per annum.</>,
+    <>Your total emoluments will be <strong>Rs. {totalAnnual / 100000} </strong>Lakhs per annum.</>,
     `Full details of your pay package are given in the enclosure to this letter. However, please note that, LTA is payable after completion of one year of service, subject to your getting confirmed in the service. If the company provides accommodation/transit accommodation, appropriate deductions will be made for the same, as per the rules applicable. `,
     `Whilst you are located abroad, the terms applicable will be intimated to you at the relevant point of time.`,
     `You shall be due for salary revision not before one year from your date of joining.`,
@@ -248,6 +266,7 @@ const JDITAppointment = ({ company, data }) => {
             gridTemplateColumns: "150px 10px auto",
             rowGap: 1,
             fontSize: "14px",
+            mb: "8mm" 
           }}
         >
           <Typography fontWeight="bold">Name</Typography>
@@ -268,148 +287,93 @@ const JDITAppointment = ({ company, data }) => {
         </Box>
 
         {/* SALARY TABLE */}
-        <TableContainer sx={{ mb: "4mm" }}>
-    <Table
-      size="small"
-      sx={{
-        border: "1px solid #333",
-        borderCollapse: "collapse",
-        width: "100%",
-        color: "#000",
-      }}
-    >
-      <TableHead>
+       <TableContainer sx={{ mb: "4mm" }}>
+  <Table
+    size="small"
+    sx={{
+      width: "100%",
+      borderCollapse: "collapse",
+      border: "1px solid #000",
+      "& .MuiTableCell-root": {
+        border: "1px solid #000",
+        fontSize: "10pt",
+        padding: "6px 8px",
+      },
+    }}
+  >
+    {/* ================= HEADER ================= */}
+    <TableHead>
+      <TableRow
+        sx={{
+          backgroundColor: "#000",
+          "& .MuiTableCell-root": {
+            color: "#fff !important",
+            fontWeight: 600,
+          },
+        }}
+      >
+        <TableCell align="left">
+          Salary Components
+        </TableCell>
+
+        <TableCell align="center">
+          Per month (Rs.)
+        </TableCell>
+
+        <TableCell align="center">
+          Per Annum (Rs.)
+        </TableCell>
+      </TableRow>
+    </TableHead>
+
+    {/* ================= BODY ================= */}
+    <TableBody>
+      {salaryComponents.map((row, i) => (
         <TableRow
+          key={i}
           sx={{
-            backgroundColor: "#000 !important",
-            "& th": {
-              color: "#fff !important",
-              fontWeight: 600,
-              fontSize: "10pt",
-              border: "1px solid #333",
-              py: "0.4mm",
-            },
+            backgroundColor: "#e6e6e6",
           }}
         >
-          <TableCell
-            sx={{
-              fontWeight: 600,
-              border: "1px solid #333",
-              fontSize: "10pt",
-              color: "#fff !important",
-              py: "0.4mm",
-            }}
-          >
-            Salary Components
+          <TableCell align="left">
+            {row.name}
           </TableCell>
 
-          <TableCell align="center">Per month (Rs.)</TableCell>
-
-          <TableCell align="center">Per Annum (Rs.)</TableCell>
-        </TableRow>
-      </TableHead>
-
-      <TableBody>
-        {/* Salary Components (excluding Misc if exists) */}
-        {salaryComponents
-          .filter((row) => row.name !== "Misc")
-          .map((row, i) => (
-            <TableRow key={i}>
-              <TableCell
-                sx={{
-                  border: "1px solid #333",
-                  fontSize: "9.75pt",
-                  py: "0.35mm",
-                }}
-              >
-                {row.name}
-              </TableCell>
-
-              <TableCell
-                align="center"
-                sx={{
-                  border: "1px solid #333",
-                  fontSize: "9.75pt",
-                  py: "0.35mm",
-                }}
-              >
-                {formatCurrency(row.monthly)}
-              </TableCell>
-
-              <TableCell
-                align="center"
-                sx={{
-                  border: "1px solid #333",
-                  fontSize: "9.75pt",
-                  py: "0.35mm",
-                }}
-              >
-                {formatCurrency(row.annual)}
-              </TableCell>
-            </TableRow>
-          ))}
-
-        {/* ✅ Static PF Row (Replacing Misc) */}
-        <TableRow>
-          <TableCell
-            sx={{
-              border: "1px solid #333",
-              fontSize: "9.75pt",
-              py: "0.35mm",
-            }}
-          >
-            Provident Fund (PF)
+          <TableCell align="right">
+            {formatCurrency(row.monthly)}
           </TableCell>
 
-          <TableCell
-            align="center"
-            sx={{
-              border: "1px solid #333",
-              fontSize: "9.75pt",
-              py: "0.35mm",
-            }}
-          >
-            {formatCurrency(3750)}
-          </TableCell>
-
-          <TableCell
-            align="center"
-            sx={{
-              border: "1px solid #333",
-              fontSize: "9.75pt",
-              py: "0.35mm",
-            }}
-          >
-            {formatCurrency(3750 * 12)}
+          <TableCell align="right">
+            {formatCurrency(row.annual)}
           </TableCell>
         </TableRow>
+      ))}
 
-        {/* Totals Row */}
-        <TableRow
-          sx={{
-            backgroundColor: "#000 !important",
-            "& td": {
-              color: "#fff !important",
-              fontWeight: 600,
-              fontSize: "10pt",
-              border: "1px solid #333",
-              py: "0.4mm",
-            },
-          }}
-        >
-          <TableCell>Total Monthly Gross Salary</TableCell>
+      {/* ================= TOTAL ROW ================= */}
+      <TableRow
+        sx={{
+          backgroundColor: "#000",
+          "& .MuiTableCell-root": {
+            color: "#fff !important",
+            fontWeight: 600,
+          },
+        }}
+      >
+        <TableCell align="left">
+          Total Monthly Gross Salary
+        </TableCell>
 
-          <TableCell align="center">
-            {formatCurrency(totalMonthly)}
-          </TableCell>
+        <TableCell align="right">
+          {formatCurrency(totalMonthly)}
+        </TableCell>
 
-          <TableCell align="center">
-            {formatCurrency(totalAnnual)}
-          </TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-  </TableContainer>
+        <TableCell align="right">
+          {formatCurrency(totalAnnual)}
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
 
       </A4Page>
     </>

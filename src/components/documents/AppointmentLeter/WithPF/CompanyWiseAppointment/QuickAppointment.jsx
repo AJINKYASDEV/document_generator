@@ -63,7 +63,7 @@ const QuickAppointment = ({ company, data }) => {
   /* ================= TERMS ================= */
   const terms = [
     <> Your Designation will be <strong>"{data.position}"</strong>.   </>,
-    <>Your total emoluments will be <strong>Rs. {annualCTC / 100000} </strong>Lakhs per annum.</>,
+    <>Your total emoluments will be <strong>Rs. {annualCTC / 100000} </strong>Lakhs Per Annum.</>,
     `Full details of your pay package are given in the enclosure to this letter. However, please note that, LTA is payable after completion of one year of service, subject to your getting confirmed in the service. If the company provides accommodation/transit accommodation, appropriate deductions will be made for the same, as per the rules applicable. `,
     `Whilst you are located abroad, the terms applicable will be intimated to you at the relevant point of time.`,
     `You shall be due for salary revision not before one year from your date of joining.`,
@@ -94,7 +94,7 @@ const QuickAppointment = ({ company, data }) => {
           </Typography>
 
           <Typography fontSize={15} mt={1}>
-            <strong>Ref:</strong> DSS\VER1.1\PUN\PIMSAU\ADM-CTRL/
+            <strong>Ref:</strong> QMS\VER1.1\PUN\PIMSAU\ADM-CTRL/
             {String(data.employeeId).padStart(4, "0")}
           </Typography>
 
@@ -211,7 +211,7 @@ const QuickAppointment = ({ company, data }) => {
       <A4Page headerSrc={company.header}>
 
            <Typography fontSize={15} mt={2}>
-            <strong>Ref:</strong> DSS\VER1.1\PUN\PIMSAU\ADM-CTRL/
+            <strong>Ref:</strong> QMS\VER1.1\PUN\PIMSAU\ADM-CTRL/
             {String(data.employeeId).padStart(4, "0")}
           </Typography>
         <Typography align="center" fontWeight={700} mb={3} mt={5}>

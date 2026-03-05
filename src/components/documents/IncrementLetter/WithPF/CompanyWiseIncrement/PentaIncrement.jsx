@@ -14,42 +14,99 @@ import { formatCurrency } from "../../../../../utils/salaryCalculations";
 const PentaIncrement = ({ company, data }) => {
     /* ================= SALARY LOGIC ================= */
 
-const generateSalaryBreakup = (annualCTC) => {
-  const monthlyCTC = Math.round(annualCTC / 12);
+// const generateSalaryBreakup = (annualCTC) => {
+//   const monthlyCTC = Math.round(annualCTC / 12);
 
-  let basic = Math.round(monthlyCTC * 0.48);
-  let hra = Math.round(monthlyCTC * 0.18);
-  let da = Math.round(monthlyCTC * 0.12);
-  let special = Math.round(monthlyCTC * 0.16);
-  let food = Math.round(monthlyCTC * 0.06);
+//   let basic = Math.round(monthlyCTC * 0.48);
+//   let hra = Math.round(monthlyCTC * 0.18);
+//   let da = Math.round(monthlyCTC * 0.12);
+//   let special = Math.round(monthlyCTC * 0.16);
+//   let food = Math.round(monthlyCTC * 0.06);
 
-  const calculated = basic + hra + da + special + food;
-  basic += monthlyCTC - calculated; // fix rounding
+//   const calculated = basic + hra + da + special + food;
+//   basic += monthlyCTC - calculated; // fix rounding
 
-  const pfMonthly = 3750; // Static
-  const pfAnnual = pfMonthly * 12;
+//   const pfMonthly = 3750; // Static
+//   const pfAnnual = pfMonthly * 12;
 
-  return [
-    { name: "Basic Salary", monthly: basic, annual: basic * 12 },
-    { name: "House Rent Allowance", monthly: hra, annual: hra * 12 },
-    { name: "Dearness Allowance", monthly: da, annual: da * 12 },
-    { name: "Special Allowance", monthly: special, annual: special * 12 },
-    { name: "Food Allowance", monthly: food, annual: food * 12 },
-    { name: "Provident Fund (PF)", monthly: pfMonthly, annual: pfAnnual }, // only display
-  ];
-};
+//   return [
+//     { name: "Basic Salary", monthly: basic, annual: basic * 12 },
+//     { name: "House Rent Allowance", monthly: hra, annual: hra * 12 },
+//     { name: "Dearness Allowance", monthly: da, annual: da * 12 },
+//     { name: "Special Allowance", monthly: special, annual: special * 12 },
+//     { name: "Food Allowance", monthly: food, annual: food * 12 },
+//     { name: "Provident Fund (PF)", monthly: pfMonthly, annual: pfAnnual }, // only display
+//   ];
+// };
 
-    // Totals
-  const annualCTC = Number(data.newCTC || 0);
+//     // Totals
+//   const annualCTC = Number(data.newCTC || 0);
 
-const salaryComponents = generateSalaryBreakup(annualCTC);
+// const salaryComponents = generateSalaryBreakup(annualCTC);
 
-const totalMonthly = salaryComponents
-  .filter((row) => row.name !== "Provident Fund (PF)")
-  .reduce((sum, row) => sum + row.monthly, 0);
+// const totalMonthly = salaryComponents
+//   .filter((row) => row.name !== "Provident Fund (PF)")
+//   .reduce((sum, row) => sum + row.monthly, 0);
 
-const totalAnnual = annualCTC; // because salary % = 100%
+// const totalAnnual = annualCTC; // because salary % = 100%
 
+
+/* ================= SALARY LOGIC (Same as DevconsIncrement) ================= */
+
+/* ================= SALARY LOGIC (MONTHLY BASED) ================= */
+
+const round0 = (num) => Math.round(num);
+
+// Now newCTC is MONTHLY CTC
+const monthlyCTC = round0(Number(data.newCTC || 0));
+
+// Calculate components from MONTHLY
+let basicMonthly = round0(monthlyCTC * 0.48);
+let hraMonthly = round0(monthlyCTC * 0.18);
+let daMonthly = round0(monthlyCTC * 0.12);
+let specialMonthly = round0(monthlyCTC * 0.16);
+let foodMonthly = round0(monthlyCTC * 0.06);
+
+// Fix rounding difference
+const calculated =
+  basicMonthly +
+  hraMonthly +
+  daMonthly +
+  specialMonthly +
+  foodMonthly;
+
+basicMonthly += monthlyCTC - calculated;
+
+// Static PF
+const pfMonthly = 3750;
+
+// Convert to Annual
+const basicAnnual = basicMonthly * 12;
+const hraAnnual = hraMonthly * 12;
+const daAnnual = daMonthly * 12;
+const specialAnnual = specialMonthly * 12;
+const foodAnnual = foodMonthly * 12;
+const pfAnnual = pfMonthly * 12;
+
+// Salary Rows
+const salaryComponents = [
+  { name: "Basic", monthly: basicMonthly, annual: basicAnnual },
+  { name: "House Rent Allowance", monthly: hraMonthly, annual: hraAnnual },
+  { name: "Dearness Allowance", monthly: daMonthly, annual: daAnnual },
+  { name: "Special Allowance", monthly: specialMonthly, annual: specialAnnual },
+  { name: "Food Allowance", monthly: foodMonthly, annual: foodAnnual },
+  { name: "Provident Fund (PF)", monthly: pfMonthly, annual: pfAnnual },
+];
+
+// Totals
+const totalMonthly =
+  basicMonthly +
+  hraMonthly +
+  daMonthly +
+  specialMonthly +
+  foodMonthly;
+
+const totalAnnual = totalMonthly * 12;
     return (
         <>
             {/* =====================================================
@@ -102,7 +159,7 @@ const totalAnnual = annualCTC; // because salary % = 100%
 
 
                         . Your salary will increase to{" "}
-                        <strong>{formatCurrency(data.newCTC)}</strong> per annum. Effective from <strong> {new Date(data.effectiveDate).toLocaleDateString("en-US", {
+                        <strong>{formatCurrency(totalAnnual)}</strong> per annum. Effective from <strong> {new Date(data.effectiveDate).toLocaleDateString("en-US", {
                             month: "long",
                             day: "2-digit",
                             year: "numeric",

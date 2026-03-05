@@ -64,25 +64,28 @@ const NeweageFullandfinal = ({ company, data }) => {
 const gross = Number(data.totalSalary || 0);
 
 // Correct Percentage Breakup (100%)
-const basic = +(gross * 0.48).toFixed(2);     // 40%
-const hra = +(gross * 0.18).toFixed(2);       // 18%
-const special = +(gross * 0.12).toFixed(2);   // 12%
-const da = +(gross * 0.16).toFixed(2);        // 16%
-const food = +(gross * 0.06).toFixed(2);      // 6%
-// const facility = +(gross * 0.08).toFixed(2);  // 8%
+const basic = Math.floor(gross * 0.48);
+const hra = Math.floor(gross * 0.18);
+const special = Math.floor(gross * 0.12);
+const da = Math.floor(gross * 0.16);
+const food = Math.floor(gross * 0.06);
 
 const earned = (value) =>
-  +(value * (paidDays && totalDays ? paidDays / totalDays : 0)).toFixed(2);
+  Math.floor(
+    value * (paidDays && totalDays ? paidDays / totalDays : 0)
+  );
 
-const totalActual =
-  basic + hra + special + da + food ;
+const totalActual = Math.floor(
+  basic + hra + special + da + food
+);
 
-const totalEarned =
+const totalEarned = Math.floor(
   earned(basic) +
   earned(hra) +
   earned(special) +
   earned(da) +
-  earned(food) ;
+  earned(food)
+);
   // earned(facility);
 
   /* ---------- DEDUCTIONS ---------- */
@@ -95,7 +98,7 @@ const totalEarned =
 
   return (
     <A4Page headerSrc={company.header} footerSrc={company.footer}>
-      <Box mt={2}>
+      <Box mt={-1}>
         <Table sx={{ borderCollapse: "collapse" }}>
           <TableBody>
 

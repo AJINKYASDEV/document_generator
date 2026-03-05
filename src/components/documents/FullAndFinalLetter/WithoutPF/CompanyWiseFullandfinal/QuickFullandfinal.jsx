@@ -140,8 +140,8 @@ const QuickFullandfinal = ({ company, data }) => {
     0
   );
 
-  const earnedTotal = earnings.reduce(
-    (sum, [, val]) => sum + val * paidRatio,
+   const earnedTotal = earnings.reduce(
+    (sum, [, val]) => sum + Math.floor(val * paidRatio),
     0
   );
 
@@ -260,7 +260,7 @@ const QuickFullandfinal = ({ company, data }) => {
                 <TableCell colSpan={2} sx={cell}>{label}</TableCell>
                 <TableCell sx={cell}>{numberFormat(val)}</TableCell>
                 <TableCell sx={cell}>
-                  {numberFormat(val * paidRatio)}
+                  {numberFormat(Math.floor(val * paidRatio))}
                 </TableCell>
               </TableRow>
             ))}
@@ -318,7 +318,7 @@ const QuickFullandfinal = ({ company, data }) => {
             <TableRow>
               <TableCell sx={cell}>Total</TableCell>
               <TableCell colSpan={2} sx={cell}></TableCell>
-              <TableCell sx={cell}>{numberFormat(data.totalSalary)}</TableCell>
+              <TableCell sx={cell}>{numberFormat(earnedTotal)}</TableCell>
             </TableRow>
 
             <TableRow sx={{ backgroundColor: totalBg }}>

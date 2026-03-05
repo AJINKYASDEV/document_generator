@@ -141,18 +141,17 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
           </Typography>
 
           <Typography
-                      sx={{
-                        textAlign: "Center",
-                        marginTop: "-8mm",
-                        mb: "5mm",
-                        fontFamily: "Verdana",
-                        textDecoration: "underline",
-                        fontSize: "15px",
-                      }}
-                    >
-                      Confirmation Letter
-                    </Typography>
-          
+            sx={{
+              textAlign: "Center",
+              marginTop: "-8mm",
+              mb: "5mm",
+              fontFamily: "Verdana",
+              textDecoration: "underline",
+              fontSize: "15px",
+            }}
+          >
+            Confirmation Letter
+          </Typography>
 
           <Typography mb={1} sx={{ fontFamily: "Bahnschrift" }}>
             <strong>Name :</strong> {data.employeeName}
@@ -179,8 +178,8 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
             We are pleased to confirm your continued services at the position of{" "}
             <strong>{data.position}</strong> with{" "}
             <strong>Nimbja Security Solutions Pvt. Ltd.</strong> with effective
-            date <strong>{data.effectiveDate}</strong>, considering your
-            performance and support towards the organization.
+            date <strong>{formatDate(data.effectiveDate)}</strong>, considering
+            your performance and support towards the organization.
           </Typography>
 
           <Typography
@@ -226,7 +225,7 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
                   <img
                     src={company.signature}
                     alt="Signature"
-                    style={{ height: 50 }}
+                    style={{ height: 50, marginTop: "5mm" }}
                   />
                 )}
                 {company?.stamp && (
@@ -253,6 +252,11 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
 
       {/* ================= PAGE 2 ================= */}
       <A4Page headerSrc={company.header} footerSrc={company.footer}>
+        <Typography
+          sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
+        >
+          <strong>Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\{data.employeeId}</strong>
+        </Typography>
         <Typography align="center" fontWeight={600} mb={4}>
           Annexure A – Salary Structure
         </Typography>
@@ -297,7 +301,7 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
                 <b>{formatCurrency(totalMonthly)}</b>
               </TableCell>
               <TableCell align="right">
-                <b>{formatCurrency(totalMonthly)}</b>
+                <b>{formatCurrency(totalAnnual)}</b>
               </TableCell>
             </TableRow>
           </TableBody>
@@ -310,7 +314,7 @@ const NimbjaConfirmation = ({ company = {}, data = {} }) => {
                 <img
                   src={company.signature}
                   alt="Signature"
-                  style={{ height: 60 }}
+                  style={{ height: 45, marginTop: "5mm" }}
                 />
               )}
               {company?.stamp && (

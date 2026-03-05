@@ -92,14 +92,14 @@ const NimbjaUnPaidinternshipLetter = ({ company = {}, data = {} }) => {
             performance and support towards the organization.
           </Typography>
 
-          <Typography
+          {/* <Typography
             sx={{ mb: 1, textAlign: "justify", fontFamily: "Bahnschrift" }}
           >
             This Offline Internship program will commence on{" "}
             <strong>
               {formatDate(data.startDate)} End on {formatDate(data.endDate)}
             </strong>
-          </Typography>
+          </Typography> */}
 
           <Typography
             sx={{ mb: 1, textAlign: "justify", fontFamily: "Bahnschrift" }}

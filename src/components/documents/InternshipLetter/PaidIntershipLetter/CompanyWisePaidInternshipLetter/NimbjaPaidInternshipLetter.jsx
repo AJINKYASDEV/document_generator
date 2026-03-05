@@ -269,7 +269,7 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
           </Box>
 
           <Typography
-            mt={3}
+            mt={1}
             fontSize="16px"
             textAlign="center"
             sx={{ textDecoration: "underline" }}

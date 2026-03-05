@@ -142,7 +142,7 @@ const  PentaFullandfinal = ({ company, data }) => {
   );
 
   const earnedTotal = earnings.reduce(
-    (sum, [, val]) => sum + val * paidRatio,
+    (sum, [, val]) => sum + Math.floor(val * paidRatio),
     0
   );
 
@@ -261,7 +261,7 @@ const  PentaFullandfinal = ({ company, data }) => {
                 <TableCell colSpan={2} sx={cell}>{label}</TableCell>
                 <TableCell sx={cell}>{numberFormat(val)}</TableCell>
                 <TableCell sx={cell}>
-                  {numberFormat(val * paidRatio)}
+                  {numberFormat(Math.floor(val * paidRatio))}
                 </TableCell>
               </TableRow>
             ))}
@@ -319,7 +319,7 @@ const  PentaFullandfinal = ({ company, data }) => {
             <TableRow>
               <TableCell sx={cell}>Total</TableCell>
               <TableCell colSpan={2} sx={cell}></TableCell>
-              <TableCell sx={cell}>{numberFormat(data.totalSalary)}</TableCell>
+              <TableCell sx={cell}>{numberFormat(earnedTotal)}</TableCell>
             </TableRow>
 
             <TableRow sx={{ backgroundColor: totalBg }}>

@@ -140,13 +140,15 @@ const QuickFullandfinal = ({ company, data }) => {
     0
   );
 
-  const earnedTotal = earnings.reduce(
+const earnedTotal = Math.floor(
+  earnings.reduce(
     (sum, item) =>
       item.excludeFromTotal
         ? sum
-        : sum + item.value * paidRatio,
+        : sum + Math.floor(item.value * paidRatio),
     0
-  );
+  )
+);
 
   /* ---- Deductions ---- */
   const deductionsTotal = salary.pt + salary.other + salary.pf;
@@ -269,11 +271,11 @@ const QuickFullandfinal = ({ company, data }) => {
                          </TableCell>
          
                          <TableCell sx={cell}>
-                           {numberFormat(
-                             item.label === "PF"
-                               ? item.value              // ✅ show full PF
-                               : item.value * paidRatio  // prorated others
-                           )}
+  {numberFormat(
+    item.label === "PF"
+      ? item.value
+      : Math.floor(item.value * paidRatio)
+  )}
                          </TableCell>
                        </TableRow>
                      ))}
@@ -338,7 +340,7 @@ const QuickFullandfinal = ({ company, data }) => {
             <TableRow>
               <TableCell sx={cell}>Total</TableCell>
               <TableCell colSpan={2} sx={cell}></TableCell>
-              <TableCell sx={cell}>{numberFormat(data.totalSalary)}</TableCell>
+              <TableCell sx={cell}>{numberFormat(earningsTotal)}</TableCell>
             </TableRow>
 
             <TableRow sx={{ backgroundColor: totalBg }}>

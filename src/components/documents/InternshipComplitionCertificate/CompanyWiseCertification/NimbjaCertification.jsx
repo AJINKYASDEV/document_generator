@@ -66,8 +66,7 @@ const NimbjaCertification = ({ company, data }) => {
             performance exceeded our expectations and{" "}
             {pronouns.subject.toLowerCase()} was able to complete the given
             tasks on time. {pronouns.subject} was designated as{" "}
-            <strong>{data.role}</strong> with project named{" "}
-            <strong>{data.projectName}</strong>. We wish {pronouns.object} all
+            <strong>{data.role}.</strong> We wish {pronouns.object} all
             the best for {pronouns.possessive} upcoming career.
           </Typography>
 

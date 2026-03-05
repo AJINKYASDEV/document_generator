@@ -1335,84 +1335,22 @@ const formatDate = (date) => {
 };
 
 const NimbjaIncrement = ({ company, data }) => {
-  if (!company || !data) return null;
+  /* ================= SALARY LOGIC (DEVCONS – CUSTOM ANNEXURE) ================= */
 
-  /* =====================================================
-     SALARY CALCULATION (UPDATED – PAYROLL SAFE)
-     ===================================================== */
+  // Helper to keep 2 decimals everywhere
+  const round0 = (num) => Math.round(num);
 
-  // helpers
-  const round2 = (num) => Number(num.toFixed(2)); // monthly
-  const round0 = (num) => Math.round(num); // yearly (NO decimals)
+  // Source of truth
+  const monthlyCTC = round0(Number(data.newCTC || 0));
 
-  // source of truth (YEARLY)
-  const annualCTC = round0(Number(data.newCTC || 0));
+  // ================= PERCENTAGE BREAKUP =================
+  const basicMonthly = round0(monthlyCTC * 0.4);
+  const hraMonthly = round0(monthlyCTC * 0.18);
+  const daMonthly = round0(monthlyCTC * 0.12);
+  const specialMonthly = round0(monthlyCTC * 0.16);
+  const foodMonthly = round0(monthlyCTC * 0.06);
+  const miscMonthly = round0(monthlyCTC * 0.08); // 8%
 
-  // percentage config
-  const PERCENT = {
-    basic: 0.4,
-    hra: 0.18,
-    da: 0.12,
-    special: 0.16,
-    food: 0.06,
-  };
-
-  // monthly breakup (round ONLY here)
-  const basicMonthly = round2((annualCTC * PERCENT.basic) / 12);
-  const hraMonthly = round2((annualCTC * PERCENT.hra) / 12);
-  const daMonthly = round2((annualCTC * PERCENT.da) / 12);
-  const specialMonthly = round2((annualCTC * PERCENT.special) / 12);
-  const foodMonthly = round2((annualCTC * PERCENT.food) / 12);
-
-  const grossMonthly = round2(annualCTC / 12);
-
-  const usedMonthly =
-    basicMonthly + hraMonthly + daMonthly + specialMonthly + foodMonthly;
-
-  // adjustment (absorbs rounding difference)
-  const miscMonthly = round2(grossMonthly - usedMonthly);
-
-  // final salary components (YEARLY = NO decimals)
-  const salaryComponents = [
-    {
-      name: "Basic",
-      monthly: basicMonthly,
-      annual: round0(basicMonthly * 12),
-    },
-    {
-      name: "Bouquet Of Benefits",
-      monthly: hraMonthly,
-      annual: round0(hraMonthly * 12),
-    },
-    {
-      name: "HRA",
-      monthly: daMonthly,
-      annual: round0(daMonthly * 12),
-    },
-    {
-      name: "City Allowance",
-      monthly: specialMonthly,
-      annual: round0(specialMonthly * 12),
-    },
-    {
-      name: "Superannuation Fund",
-      monthly: foodMonthly,
-      annual: round0(foodMonthly * 12),
-    },
-    {
-      name: "Performance Bonus",
-      monthly: miscMonthly,
-      annual: round0(miscMonthly * 12),
-    },
-  ];
-
-  const totalMonthly = round2(
-    salaryComponents.reduce((sum, i) => sum + i.monthly, 0),
-  );
-
-  const totalAnnual = round0(
-    salaryComponents.reduce((sum, i) => sum + i.annual, 0),
-  );
   // ================= ANNUAL VALUES =================
   const basicAnnual = round0(basicMonthly * 12);
   const hraAnnual = round0(hraMonthly * 12);
@@ -1420,15 +1358,21 @@ const NimbjaIncrement = ({ company, data }) => {
   const specialAnnual = round0(specialMonthly * 12);
   const foodAnnual = round0(foodMonthly * 12);
   const miscAnnual = round0(miscMonthly * 12);
-  // =================================================
+
+  // ================= SALARY TABLE STRUCTURE =================
   const salaryRows = [
     ["Basic", basicMonthly, basicAnnual],
-    ["Bouqet Of Benefits", hraMonthly, hraAnnual],
-    ["HRA", daMonthly, daAnnual],
-    ["City Allowance", specialMonthly, specialAnnual],
-    ["Superannuation Fund", foodMonthly, foodAnnual],
-    ["Performance Bonus", miscMonthly, miscAnnual],
+    ["House Rent Allowance", hraMonthly, hraAnnual],
+    ["Dearness Allowance", daMonthly, daAnnual],
+    ["Special Allowance", specialMonthly, specialAnnual],
+    ["Food Allowance", foodMonthly, foodAnnual],
+    ["Misc. Allowance", miscMonthly, miscAnnual],
   ];
+
+  // ================= TOTALS =================
+  const totalMonthly = round0(salaryRows.reduce((sum, row) => sum + row[1], 0));
+
+  const totalAnnual = round0(salaryRows.reduce((sum, row) => sum + row[2], 0));
 
   return (
     <>
@@ -1441,18 +1385,18 @@ const NimbjaIncrement = ({ company, data }) => {
         <div style={content}>
           <p style={rightDate}>{formatDate(data.issueDate)}</p>
 
-           <Typography
-                      sx={{
-                        textAlign: "Center",
-                        marginTop: "-8mm",
-                        mb: "5mm",
-                        fontFamily: "Verdana",
-                        textDecoration: "underline",
-                        fontSize: "15px",
-                      }}
-                    >
-                      Appraisal Letter
-                    </Typography>
+          <Typography
+            sx={{
+              textAlign: "Center",
+              marginTop: "-8mm",
+              mb: "5mm",
+              fontFamily: "Verdana",
+              textDecoration: "underline",
+              fontSize: "15px",
+            }}
+          >
+            Appraisal Letter
+          </Typography>
 
           <p style={greeting}>
             Dear {data.candidateName || data.employeeName},
@@ -1463,7 +1407,7 @@ const NimbjaIncrement = ({ company, data }) => {
             performance and dedication to your role as Software Test Engineer,
             we are providing you with a salary increment effective{" "}
             <strong>{formatDate(data.effectiveDate)}</strong>, your revised
-            annual CTC will be <strong>{formatCurrency(annualCTC)}</strong>.
+            annual CTC will be <strong>{formatCurrency(totalAnnual)}</strong>.
           </p>
 
           <p style={para}>
@@ -1512,40 +1456,146 @@ const NimbjaIncrement = ({ company, data }) => {
 
       {/* =========================== PAGE 2 =========================== */}
       <A4Page headerSrc={company.header} footerSrc={company.footer}>
-        <Box className="a4-content-only">
-          <Typography
-            sx={{
-              textAlign: "right",
-              mb: "5mm",
-              mt: "-12mm",
-              fontSize: "11pt",
-              fontFamily: "Bahnschrift",
-            }}
-          >
-            {formatDate(data.issueDate)}
-          </Typography>
+        {/* Date */}
+        <Typography
+          sx={{
+            textAlign: "right",
+            fontSize: "11pt",
+            fontFamily: "Bahnschrift",
+            mb: 2,
+          }}
+        >
+          {formatDate(data.issueDate)}
+        </Typography>
 
-          <Typography
-            sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
-          >
-            <strong>
-              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
-            </strong>
-          </Typography>
+        {/* Ref */}
+        <Typography
+          sx={{
+            fontSize: "11pt",
+            fontFamily: "Bahnschrift",
+            mb: 4,
+            fontWeight: 600,
+          }}
+        >
+          Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\{data.employeeId} 
+        </Typography>
 
-          {/* 🔥 ONLY THIS PART IS REPLACED */}
-          <SalaryStructureTable
-            salaryRows={salaryRows}
-            totalMonthly={totalMonthly}
-            totalAnnual={totalAnnual}
-            data={data}
-            formatDate={formatDate}
-          />
-        </Box>
+        {/* Title */}
+        <Typography
+          align="center"
+          sx={{
+            fontSize: "14pt",
+            fontWeight: 600,
+            textDecoration: "underline",
+            mb: 5,
+            fontFamily: "Bahnschrift",
+          }}
+        >
+          Salary Annexure A
+        </Typography>
+
+        {/* Employee Details */}
+       
+
+        {/* Table */}
+        <Table
+          sx={{
+            width: "100%",
+            borderCollapse: "collapse",
+            "& th": {
+              backgroundColor: "#8bc34a",
+              fontWeight: 700,
+              fontSize: "13px",
+              border: "1px solid #000",
+              padding: "6px",
+            },
+            "& td": {
+              border: "1px solid #000",
+              padding: "6px",
+              fontSize: "13px",
+              fontFamily: `"Times New Roman", Times, serif`,
+            },
+          }}
+        >
+          <TableBody>
+            {/* Header Row */}
+            <TableRow>
+              <TableCell sx={{ backgroundColor: "#8bc34a" }} align="center">
+                <b>Salary Components</b>
+              </TableCell>
+              <TableCell sx={{ backgroundColor: "#8bc34a" }} align="center">
+                <b>Per month (Rs.)</b>
+              </TableCell>
+              <TableCell sx={{ backgroundColor: "#8bc34a" }} align="center">
+                <b>Per Annum (Rs.)</b>
+              </TableCell>
+            </TableRow>
+
+            {/* Salary Rows */}
+            <TableRow>
+              <TableCell>Basic</TableCell>
+              <TableCell align="right">{basicMonthly}</TableCell>
+              <TableCell align="right">{basicAnnual}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>Bouqet Of Benefits</TableCell>
+              <TableCell align="right">{hraMonthly}</TableCell>
+              <TableCell align="right">{hraAnnual}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>HRA</TableCell>
+              <TableCell align="right">{daMonthly}</TableCell>
+              <TableCell align="right">{daAnnual}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>City Allowance</TableCell>
+              <TableCell align="right">{specialMonthly}</TableCell>
+              <TableCell align="right">{specialAnnual}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>Superannuation Fund</TableCell>
+              <TableCell align="right">{foodMonthly}</TableCell>
+              <TableCell align="right">{foodAnnual}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>Performance Bonus</TableCell>
+              <TableCell align="right">{miscMonthly}</TableCell>
+              <TableCell align="right">{miscAnnual}</TableCell>
+            </TableRow>
+
+            {/* Total Row */}
+            <TableRow sx={{ backgroundColor: "#8bc34a" }}>
+              <TableCell sx={{ fontWeight: 700 }}>Total Salary</TableCell>
+              <TableCell align="right" sx={{ fontWeight: 700 }}>
+                {totalMonthly}
+              </TableCell>
+              <TableCell align="right" sx={{ fontWeight: 700 }}>
+                {totalAnnual}
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+
+        {/* Confidential Note */}
+        <Typography
+          sx={{
+            mt: 6,
+            fontSize: "12pt",
+            fontFamily: "Bahnschrift",
+            textAlign: "center",
+          }}
+        >
+          
+        </Typography>
       </A4Page>
     </>
   );
-};;
+};
 
 /* ================= STYLES ================= */
 

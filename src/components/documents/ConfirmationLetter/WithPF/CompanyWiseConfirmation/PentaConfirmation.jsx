@@ -30,8 +30,7 @@ const formatCurrency = (num) =>
   });
 
 /* ================= SALARY BREAKUP ================= */
-const generateSalaryBreakup = (annualCTC) => {
-  const monthlyCTC = Math.round(annualCTC / 12);
+const generateSalaryBreakup = (monthlyCTC) => {
 
   // Calculate salary components (100%)
   let basic = Math.round(monthlyCTC * 0.48);
@@ -44,9 +43,9 @@ const generateSalaryBreakup = (annualCTC) => {
   const calculated = basic + hra + da + special + food;
   basic += monthlyCTC - calculated;
 
-  // Static PF (NOT calculated from CTC)
-  const pfMonthly = 3750;   // Fixed value
-  const pfAnnual = 3750 * 12;
+  // Static PF
+  const pfMonthly = 3750;
+  const pfAnnual = pfMonthly * 12;
 
   return [
     ["Basic Salary", basic, basic * 12],
@@ -54,7 +53,7 @@ const generateSalaryBreakup = (annualCTC) => {
     ["Dearness Allowance", da, da * 12],
     ["Special Allowance", special, special * 12],
     ["Food Allowance", food, food * 12],
-    ["Provident Fund (PF)", pfMonthly, pfAnnual], // Just display
+    ["Provident Fund (PF)", pfMonthly, pfAnnual],
   ];
 };
 /* ================= MAIN COMPONENT ================= */
@@ -62,8 +61,10 @@ const generateSalaryBreakup = (annualCTC) => {
 const PentaConfirmation = ({ company, data }) => {
   if (!company || !data) return null;
 
-  const annualCTC = Number(data.totalSalary || 0);
-  const salaryRows = generateSalaryBreakup(annualCTC);
+ const monthlyCTC = Number(data.totalSalary || 0);
+const annualCTC = monthlyCTC * 12;
+
+const salaryRows = generateSalaryBreakup(monthlyCTC);
 
   const monthlyGross = salaryRows
   .filter(row => row[0] !== "Provident Fund (PF)")
@@ -124,7 +125,8 @@ const PentaConfirmation = ({ company, data }) => {
 
          
    <Typography fontSize={14} textAlign="justify" mt={2}>
-           Subject to various deductions as per companies and government policy.The roles and responsibilities and other terms and conditions of your employment will be Specified in your letter of appointment. We welcome you to R P BUSINESS SOLUTIONS LLP. Family and hope it would be the beginning of a long and mutually beneficial association.Kindly acknowledge the duplicate copy of this letter as an acceptance of this offer.
+           Subject to various deductions as per companies and government policy.The roles and responsibilities and other terms and conditions of your employment will be
+            Specified in your letter of appointment. We welcome you to R P BUSINESS SOLUTIONS LLP. Family and hope it would be the beginning of a long and mutually beneficial association.Kindly acknowledge the duplicate copy of this letter as an acceptance of this offer.
           </Typography>
           {/* SIGNATURE SECTION */}
           <Box
