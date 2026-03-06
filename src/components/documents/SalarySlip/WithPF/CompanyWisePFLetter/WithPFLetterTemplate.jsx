@@ -19,9 +19,10 @@ const companyComponentMap = {
   5: RPSalarySlip,
   6: PentaSalarySlip,
   7: NimbjaSalarySlip,
+
   //   8: JDITUnPaidInternshipLetter,
   //   9: QuickUnPaidInternshipLetter,
-  //   10:SmartSoftwareUnPaidInternshipLetter,
+  10: SmartSoftwareSalarySlip,
 };
 
 const WithPFLetterTemplate = ({ company, data }) => {
