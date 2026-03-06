@@ -94,27 +94,29 @@ const DevconsFullAndFinal = ({ company = {}, data = {} }) => {
   const ratio = paidDays / totalDays;
 
   /* ---------- PENTA SALARY LOGIC ---------- */
-  const gross = Number(data.totalSalary || 0);
+  const gross = data.totalSalary || 0;
 
-  const basic = +(gross * 0.4);
-  const hra = +(gross * 0.18);
-  const da = +(gross * 0.12);
-  const special = +(gross * 0.16);
-  const food = +(gross * 0.06);
-  const pfAllowance = +(gross - (basic + hra + da + special + food));
+const basic = Math.floor(gross * 0.40);
+const hra = Math.floor(gross * 0.18);
+const da = Math.floor(gross * 0.12);
+const special = Math.floor(gross * 0.16);
+const food = Math.floor(gross * 0.06);
+const pfAllowance = Math.floor(
+  gross - (basic + hra + da + special + food)
+);
 
-  const earned = (v) => +(v * ratio);
+const earned = (v) => Math.floor(v * ratio);
 
-  const totalActual =
-    basic + hra + da + special + food + pfAllowance;
+const totalActual =
+  basic + hra + da + special + food + pfAllowance;
 
-  const totalEarned =
-    earned(basic) +
-    earned(hra) +
-    earned(da) +
-    earned(special) +
-    earned(food) +
-    earned(pfAllowance);
+const totalEarned =
+  earned(basic) +
+  earned(hra) +
+  earned(da) +
+  earned(special) +
+  earned(food) +
+  earned(pfAllowance);
 
   /* ---------- DEDUCTIONS ---------- */
   // const pf = 1800;

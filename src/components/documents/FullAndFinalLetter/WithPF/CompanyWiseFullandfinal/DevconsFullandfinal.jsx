@@ -196,7 +196,7 @@ const DevconsFullAndFinal = ({ company = {}, data = {} }) => {
             <TableRow>
               <TableCell colSpan={2} sx={{ ...cell, ...bold }}>Total</TableCell>
               <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(totalActual)}</TableCell>
-              <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(totalEarned)}</TableCell>
+              <TableCell sx={{ ...cell, ...bold, ...right }}>{formatAmt(totalEarned)}</TableCell> 
             </TableRow>
 
             {/* Deductions */}

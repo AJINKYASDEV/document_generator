@@ -38,7 +38,7 @@ const NimbjaAppointment = ({ company, data }) => {
 
     const lakhs = amount / 100000;
 
-    return `${lakhs % 1 === 0 ? lakhs : lakhs.toFixed(1)} Lakhs per annum`;
+    return `${lakhs % 1 === 0 ? lakhs : lakhs.toFixed(1)} Lakhs Per Annum`;
   };
 
   /* ================= SALARY LOGIC ================= */
@@ -139,7 +139,7 @@ const NimbjaAppointment = ({ company, data }) => {
             sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
           >
             <strong>
-              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
+              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\{data.employeeId}
             </strong>
           </Typography>
 
@@ -546,7 +546,7 @@ const NimbjaAppointment = ({ company, data }) => {
             sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
           >
             <strong>
-              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
+              Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\{data.employeeId}
             </strong>
           </Typography>
 
@@ -558,6 +558,38 @@ const NimbjaAppointment = ({ company, data }) => {
             data={data}
             formatDate={formatDate}
           />
+        </Box>
+        {/* Signature Block */}
+        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 9 }}>
+          <Box>
+            <Box sx={{ display: "flex", gap: 3 }}>
+              {company?.signature && (
+                <img
+                  src={company.signature}
+                  alt="Signature"
+                  style={{ height: 45 }}
+                />
+              )}
+              {company?.stamp && (
+                <img src={company.stamp} alt="Stamp" style={{ height: 100 }} />
+              )}
+            </Box>
+            <Typography mt={1} sx={{ fontFamily: "Bahnschrift" }}>
+              {company.hrName}
+            </Typography>
+            <Typography sx={{ fontFamily: "Bahnschrift" }}>
+              HR Relations Lead
+            </Typography>
+          </Box>
+
+          <Box minWidth="250px" sx={{ mt: 13, fontFamily: "Bahnschrift" }}>
+            <Typography sx={{ fontFamily: "Bahnschrift" }}>
+              Signature: __________________
+            </Typography>
+            <Typography mt={2} sx={{ mt: 1.5, fontFamily: "Bahnschrift" }}>
+              Candidate Name: {data.employeeName}
+            </Typography>
+          </Box>
         </Box>
       </A4Page>
     </>

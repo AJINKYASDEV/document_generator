@@ -9,12 +9,13 @@ import {
 } from "@mui/material";
 import { formatCurrency } from "../../utils/salaryCalculations";
 
+
+
 const SalaryStructureTable = ({
   salaryRows = [],
   totalMonthly = 0,
   totalAnnual = 0,
-  data,
-  formatDate,
+  
 }) => {
   return (
     <>
@@ -24,10 +25,12 @@ const SalaryStructureTable = ({
         mb={3}
         sx={{ fontFamily: "Bahnschrift" }}
       >
-        Salary Structure – Break Up
+        Annexure A Salary Structure{" "}
       </Typography>
 
-      <Typography sx={{ fontFamily: "Bahnschrift" }} mb={0.5}>
+      
+
+      {/* <Typography sx={{ fontFamily: "Bahnschrift" }} mb={0.5}>
         <b>Name:</b> {data?.mrms} {data?.employeeName}
       </Typography>
 
@@ -37,7 +40,7 @@ const SalaryStructureTable = ({
 
       <Typography sx={{ fontFamily: "Bahnschrift" }} mb={2}>
         <b>Date of Joining:</b> {formatDate?.(data?.joiningDate)}
-      </Typography>
+      </Typography> */}
 
       <Table
         sx={{
@@ -86,6 +89,7 @@ const SalaryStructureTable = ({
           </TableRow>
         </TableBody>
       </Table>
+      
     </>
   );
 };

@@ -47,11 +47,11 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
   // ================= SALARY TABLE STRUCTURE =================
   const salaryRows = [
     ["Basic", basicMonthly, basicAnnual],
-    ["House Rent Allowance", hraMonthly, hraAnnual],
-    ["Dearness Allowance", daMonthly, daAnnual],
-    ["Special Allowance", specialMonthly, specialAnnual],
-    ["Food Allowance", foodMonthly, foodAnnual],
-    ["Misc. Allowance", miscMonthly, miscAnnual],
+    ["Bouqet Of Benefits", hraMonthly, hraAnnual],
+    ["HRA", daMonthly, daAnnual],
+    ["City  Allowance", specialMonthly, specialAnnual],
+    ["Superannuation Fund", foodMonthly, foodAnnual],
+    ["Performance Bonus", miscMonthly, miscAnnual],
   ];
 
   // ================= TOTALS =================
@@ -136,6 +136,19 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
           <Typography sx={{ fontFamily: "Bahnschrift" }} align="right" mb={3}>
             {formatDate(data.issueDate)}
           </Typography>
+
+          <Typography
+                                sx={{
+                                  textAlign: "Center",
+                                  marginTop: "-8mm",
+                                  mb: "5mm",
+                                  fontFamily: "Verdana",
+                                  textDecoration: "underline",
+                                  fontSize: "15px",
+                                }}
+                              >
+                                Internship Letter
+                              </Typography>
 
           <Typography sx={{ fontFamily: "Bahnschrift" }} mb={1}>
             <strong>Name :</strong> {data.mrms} {data.employeeName}
@@ -256,7 +269,7 @@ const NimbjaPaidInternshipLetter = ({ company, data }) => {
           </Box>
 
           <Typography
-            mt={3}
+            mt={1}
             fontSize="16px"
             textAlign="center"
             sx={{ textDecoration: "underline" }}

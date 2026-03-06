@@ -90,6 +90,9 @@ import Nimbja_stamp from "../assets/images/Nimbja/Nimbja_stamp.png"
 import Nimbja_watermark from '../assets/images/Nimbja/nimbja_watermark.png'
 import Nimbja_CEO from '../assets/images/Nimbja/Nimbja_CEO.png'
 
+
+
+
 //QM  (Footer watermark Pending)
 import QMS_Header from "../assets/images/QMS/QMS_Header.png"
 import QMS_Sign from "../assets/images/QMS/QMS_Sign.png"
@@ -502,10 +505,10 @@ export const documentTypes = [
             { name: 'department', label: 'Department', type: 'text', required: false },
            
             { name: 'joiningDate', label: 'Joining Date', type: 'date', required: true },
-            { name: 'probationPeriod', label: 'Probation Period (months)', type: 'number', required: true },
+            { name: 'probationPeriod', label: 'Probation Period (months)', type: 'number', required: false },
             { name: 'salary', label: 'Annual Salary (CTC)', type: 'number', required: true },
-            { name: 'workLocation', label: 'Work Location', type: 'text', required: true },
-            { name: 'reportingManager', label: 'Reporting Manager', type: 'text', required: true },
+            { name: 'workLocation', label: 'Work Location', type: 'text', required: false },
+            { name: 'reportingManager', label: 'Reporting Manager', type: 'text', required: false },
             { name: 'workHours', label: 'Work Hours', type: 'text', required: false },
             {
                 name: 'appointmentType',

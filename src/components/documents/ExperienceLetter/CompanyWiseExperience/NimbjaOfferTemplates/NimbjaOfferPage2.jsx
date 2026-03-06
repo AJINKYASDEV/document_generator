@@ -194,81 +194,61 @@ import SalaryStructureTable from "../../../../common/SalaryStructureTable";
 
 const NimbjaOfferPage2 = ({ company, data }) => {
   /* ===== helper for consistent rounding ===== */
-  const round2 = (num) => Number(num.toFixed(2));
-  const round0 = (num) => Math.round(num); // 👈 yearly, no decimals
+  /* ======================================================
+   ✅ SMARTMATRIX LOGIC (INPUT IS MONTHLY)
+====================================================== */
 
-  /* ===== SOURCE OF TRUTH (ANNUAL CTC) ===== */
-  const annualCTC = round0(Number(data.salary || data.newCTC || 0));
+  const round2 = (num) => Math.round((Number(num) || 0) * 100) / 100;
 
-  /* ===== PERCENT CONFIG (TOTAL = 100%) ===== */
+  /* 🔥 INPUT IS MONTHLY */
+  const monthlyGross = round2(data.salary || data.newCTC || 0);
+
+  /* ANNUAL DERIVED */
+  const annualCTC = round2(monthlyGross * 12);
+
+  /* Same Percentage Structure */
   const PERCENT = {
     basic: 0.4,
     hra: 0.18,
     da: 0.12,
     special: 0.16,
     food: 0.06,
-    misc: 0.08, // adjustment bucket
   };
 
-  /* =====================================================
-   STEP 1: CALCULATE MONTHLY VALUES (ROUND HERE ONLY)
-   ===================================================== */
-  const basicMonthly = round2((annualCTC * PERCENT.basic) / 12);
-  const hraMonthly = round2((annualCTC * PERCENT.hra) / 12);
-  const daMonthly = round2((annualCTC * PERCENT.da) / 12);
-  const specialMonthly = round2((annualCTC * PERCENT.special) / 12);
-  const foodMonthly = round2((annualCTC * PERCENT.food) / 12);
+  /* Monthly Calculation */
+  const basicMonthly = round2(monthlyGross * PERCENT.basic);
+  const hraMonthly = round2(monthlyGross * PERCENT.hra);
+  const daMonthly = round2(monthlyGross * PERCENT.da);
+  const specialMonthly = round2(monthlyGross * PERCENT.special);
+  const foodMonthly = round2(monthlyGross * PERCENT.food);
 
-  /* ===== monthly used so far ===== */
-  const grossMonthly = round2(annualCTC / 12);
+  /* Adjustment to prevent rounding mismatch */
+  const miscMonthly = round2(
+    monthlyGross -
+      (basicMonthly + hraMonthly + daMonthly + specialMonthly + foodMonthly),
+  );
 
-  const usedMonthly =
-    basicMonthly + hraMonthly + daMonthly + specialMonthly + foodMonthly;
+  /* Annual Derived from Monthly */
+  const basicAnnual = round2(basicMonthly * 12);
+  const hraAnnual = round2(hraMonthly * 12);
+  const daAnnual = round2(daMonthly * 12);
+  const specialAnnual = round2(specialMonthly * 12);
+  const foodAnnual = round2(foodMonthly * 12);
+  const miscAnnual = round2(miscMonthly * 12);
 
-  const miscMonthly = round2(grossMonthly - usedMonthly);
-
-  /* =====================================================
-   STEP 3: FINAL ROWS (ANNUAL DERIVED FROM MONTHLY)
-   ===================================================== */
-  const rows = [
-    {
-      name: "Basic",
-      monthly: basicMonthly,
-      annual: round0(basicMonthly * 12), // ✅ FIXED
-    },
-    {
-      name: "Bouquet Of Benefits",
-      monthly: hraMonthly,
-      annual: round0(hraMonthly * 12), // ✅ FIXED
-    },
-    {
-      name: "HRA",
-      monthly: daMonthly,
-      annual: round0(daMonthly * 12), // ✅ FIXED
-    },
-    {
-      name: "City Allowance",
-      monthly: specialMonthly,
-      annual: round0(specialMonthly * 12), // ✅ FIXED
-    },
-    {
-      name: "Superannuation Fund",
-      monthly: foodMonthly,
-      annual: round0(foodMonthly * 12), // ✅ FIXED
-    },
-    {
-      name: "Performance Bonus",
-      monthly: miscMonthly,
-      annual: round0(miscMonthly * 12), // ✅ FIXED
-    },
+  /* Salary Rows */
+  const salaryRows = [
+    ["Basic", basicMonthly, basicAnnual],
+    ["Bouquet Of Benefits", hraMonthly, hraAnnual],
+    ["HRA", daMonthly, daAnnual],
+    ["City Allowance", specialMonthly, specialAnnual],
+    ["Superannuation Fund", foodMonthly, foodAnnual],
+    ["Performance Bonus", miscMonthly, miscAnnual],
   ];
 
-  /* =====================================================
-   STEP 4: TOTALS (GUARANTEED TO MATCH CTC)
-   ===================================================== */
-  const totalMonthly = round2(rows.reduce((sum, r) => sum + r.monthly, 0));
-
-  const totalAnnual = round0(rows.reduce((sum, r) => sum + r.annual, 0));
+  /* Totals (Guaranteed Correct) */
+  const totalMonthly = monthlyGross;
+  const totalAnnual = annualCTC;
 
   /* ================= TABLE STYLES (UNCHANGED) ================= */
   const CELL = {
@@ -291,27 +271,14 @@ const NimbjaOfferPage2 = ({ company, data }) => {
           year: "numeric",
         })
       : "";
-  // ================= ANNUAL VALUES =================
-  const basicAnnual = round0(basicMonthly * 12);
-  const hraAnnual = round0(hraMonthly * 12);
-  const daAnnual = round0(daMonthly * 12);
-  const specialAnnual = round0(specialMonthly * 12);
-  const foodAnnual = round0(foodMonthly * 12);
-  const miscAnnual = round0(miscMonthly * 12);
 
-  const salaryRows = [
-    ["Basic", basicMonthly, basicAnnual],
-    ["Bouqet Of Benefits", hraMonthly, hraAnnual],
-    ["HRA", daMonthly, daAnnual],
-    ["City Allowance", specialMonthly, specialAnnual],
-    ["Superannuation Fund", foodMonthly, foodAnnual],
-    ["Performance Bonus", miscMonthly, miscAnnual],
-  ];
+      
+
 
   return (
     <A4Page headerSrc={company.header} footerSrc={company.footer}>
       <Box className="a4-content-only">
-        <Typography
+        {/* <Typography
           sx={{
             textAlign: "right",
             mb: "5mm",
@@ -321,15 +288,15 @@ const NimbjaOfferPage2 = ({ company, data }) => {
           }}
         >
           {formatDate(data.issueDate)}
-        </Typography>
+        </Typography> */}
 
-        <Typography
+        {/* <Typography
           sx={{ mb: "6mm", fontSize: "11pt", fontFamily: "Bahnschrift" }}
         >
           <strong>
             Ref:NSS\VER1.1\PUN\PIMGUR\ADM-TEST\NSS0757 {data.employeeId}
           </strong>
-        </Typography>
+        </Typography> */}
 
         {/* 🔥 ONLY THIS PART IS REPLACED */}
         <SalaryStructureTable
@@ -340,8 +307,40 @@ const NimbjaOfferPage2 = ({ company, data }) => {
           formatDate={formatDate}
         />
       </Box>
+      {/* Signature Block */}
+      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 9 }}>
+        <Box>
+          <Box sx={{ display: "flex", gap: 3 }}>
+            {company?.signature && (
+              <img
+                src={company.signature}
+                alt="Signature"
+                style={{ height: 45 }}
+              />
+            )}
+            {company?.stamp && (
+              <img src={company.stamp} alt="Stamp" style={{ height: 100 }} />
+            )}
+          </Box>
+          <Typography mt={1} sx={{ fontFamily: "Bahnschrift" }}>
+            {company.hrName}
+          </Typography>
+          <Typography sx={{ fontFamily: "Bahnschrift" }}>
+            HR Relations Lead
+          </Typography>
+        </Box>
+
+        <Box minWidth="250px" sx={{ mt: 13, fontFamily: "Bahnschrift" }}>
+          <Typography sx={{ fontFamily: "Bahnschrift" }}>
+            Signature: __________________
+          </Typography>
+          <Typography mt={2} sx={{ mt: 1.5, fontFamily: "Bahnschrift" }}>
+            Candidate Name: {data.candidateName}
+          </Typography>
+        </Box>
+      </Box>
     </A4Page>
   );
-};;
+};;;
 
 export default NimbjaOfferPage2;
